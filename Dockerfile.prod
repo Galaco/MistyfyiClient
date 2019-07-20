@@ -8,7 +8,7 @@ RUN npm install
 COPY public ./public
 COPY src ./src
 COPY babel.config.js ./babel.config.js
-COPY .env ./.env
+COPY .env.prod ./.env
 
 RUN npm run build
 

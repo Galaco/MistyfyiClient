@@ -58,7 +58,7 @@ services:
     volumes:
       - ./public:/srv/app/maptracker/public
       - ./src:/srv/app/maptracker/src
-      - ./.env:/srv/app/maptracker/.env
+      - ./.env.dev:/srv/app/maptracker/.env
       - ./babel.config.js:/srv/app/maptracker/babel.config.js
     ports:
       - 8080:8080

@@ -5,5 +5,3 @@ services:
     build:
       dockerfile: ./Dockerfile.prod
       context: .
-    ports:
-      - 8080:80

@@ -50,7 +50,6 @@
         },
         data() {
             return {
-                privateServers: [],
                 isModalVisible: false,
             };
         },

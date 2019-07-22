@@ -5,11 +5,14 @@
                 <div class="row">
                     <div class="col-sm-5 offset-sm-1 strapline">
                         <h4>MapTracker</h4>
-                        <p>MapTracker is a near-realtime notification tool game server map rotation.</p>
+                        <p>MapTracker is a near-realtime notification tool for watching map rotations on dedicated video game servers.</p>
                         <p>Receive notifications on your device when servers you like switch to a map you enjoy.</p>
                     </div>
                     <div class="col-sm-4 offset-sm-1">
-                        A video
+                        <video src="#" poster="#" controls muted>
+                            <img src="fallback.jpg" alt="How does MapTracker work?">    
+                        </video>
+
                     </div>
                 </div>
             </div>

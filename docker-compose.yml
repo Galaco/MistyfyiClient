@@ -1,55 +1,55 @@
 version: '3'
 
 services:
-  sync:
-    build:
-      dockerfile: ./docker/dev/Dockerfile.sync
-      context: .
-    volumes:
-      - ./:/go/src/github.com/galaco/maptracker
-      - ./reflex.conf:/reflex.conf
-      - $GOPATH/pkg/mod/cache:/go/pkg/mod/cache
-    depends_on:
-      - database
-      - redis
-    environment:
-      - GO111MODULE=on
-      - DATABASE_HOST=database
-      - DATABASE_PORT=3306
-      - DATABASE_NAME=maptracker
-      - DATABASE_USER=root
-      - DATABASE_PASSWORD=password
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_PASSWORD=
+# sync:
+#   build:
+#     dockerfile: ./docker/dev/Dockerfile.sync
+#     context: .
+#   volumes:
+#     - ./:/go/src/github.com/galaco/maptracker
+#     - ./reflex.conf:/reflex.conf
+#     - $GOPATH/pkg/mod/cache:/go/pkg/mod/cache
+#   depends_on:
+#     - database
+#     - redis
+#   environment:
+#     - GO111MODULE=on
+#     - DATABASE_HOST=database
+#     - DATABASE_PORT=3306
+#     - DATABASE_NAME=maptracker
+#     - DATABASE_USER=root
+#     - DATABASE_PASSWORD=password
+#     - REDIS_HOST=redis
+#     - REDIS_PORT=6379
+#     - REDIS_PASSWORD=
 
-  api:
-    build:
-      dockerfile: ./docker/dev/Dockerfile.api
-      context: .
-    volumes:
-      - ./:/go/src/github.com/galaco/maptracker
-      - ./docker/prod/api/public.pub:/go/bin/public.pub
-      - ./reflex.conf:/reflex.conf
-      - $GOPATH/pkg/mod/cache:/go/pkg/mod/cache
-    depends_on:
-      - database
-      - redis
-    environment:
-      - GO111MODULE=on
-      - AUTH0_KEY_LOCATION=/go/bin/public.pub
-      - AUTH0_API_AUDIENCE=http://localhost:3000/api/
-      - AUTH0_API_DOMAIN=https://dev-puobt7a0.auth0.com/
-      - DATABASE_HOST=database
-      - DATABASE_PORT=3306
-      - DATABASE_NAME=maptracker
-      - DATABASE_USER=root
-      - DATABASE_PASSWORD=password
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_PASSWORD=
-    ports:
-      - 8081:3000
+# api:
+#   build:
+#     dockerfile: ./docker/dev/Dockerfile.api
+#     context: .
+#   volumes:
+#     - ./:/go/src/github.com/galaco/maptracker
+#     - ./docker/prod/api/public.pub:/go/bin/public.pub
+#     - ./reflex.conf:/reflex.conf
+#     - $GOPATH/pkg/mod/cache:/go/pkg/mod/cache
+#   depends_on:
+#     - database
+#     - redis
+#   environment:
+#     - GO111MODULE=on
+#     - AUTH0_KEY_LOCATION=/go/bin/public.pub
+#     - AUTH0_API_AUDIENCE=http://localhost:3000/api/
+#     - AUTH0_API_DOMAIN=https://dev-puobt7a0.auth0.com/
+#     - DATABASE_HOST=database
+#     - DATABASE_PORT=3306
+#     - DATABASE_NAME=maptracker
+#     - DATABASE_USER=root
+#     - DATABASE_PASSWORD=password
+#     - REDIS_HOST=redis
+#     - REDIS_PORT=6379
+#     - REDIS_PASSWORD=
+#   ports:
+#     - 8081:3000
 
   app:
     build:
@@ -65,35 +65,35 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
 
-  # DEVELOPMENT UTILITIES
-  database:
-    image: mysql:5.6
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_DATABASE: "maptracker"
-      MYSQL_ROOT_PASSWORD: "password"
-    ports:
-      - 3306:3306
-    volumes:
-      - container-volume:/var/lib/mysql
-      - ./docker/dev/database/mysql-dump/schema.sql:/docker-entrypoint-initdb.d/schema.sql
-      - ./docker/dev/database/mysql-dump/schema_data.sql:/docker-entrypoint-initdb.d/schema_data.sql
-
-  redis:
-    image: "redis:alpine"
-    ports:
-      - 6379:6379
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8089:8080
+#  # DEVELOPMENT UTILITIES
+#  database:
+#    image: mysql:5.6
+#    command: --default-authentication-plugin=mysql_native_password
+#    restart: always
+#    environment:
+#      MYSQL_DATABASE: "maptracker"
+#      MYSQL_ROOT_PASSWORD: "password"
+#    ports:
+#      - 3306:3306
+#    volumes:
+#      - container-volume:/var/lib/mysql
+#      - ./docker/dev/database/mysql-dump/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+#      - ./docker/dev/database/mysql-dump/schema_data.sql:/docker-entrypoint-initdb.d/schema_data.sql
+#
+#  redis:
+#    image: "redis:alpine"
+#    ports:
+#      - 6379:6379
+#
+#  adminer:
+#    image: adminer
+#    restart: always
+#    ports:
+#      - 8089:8080
 
   nats:
     image: nats-streaming:0.11.2
     restart: on-failure
 
-volumes:
-  container-volume:
+#volumes:
+#  container-volume:

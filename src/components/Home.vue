@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-sm-4 offset-sm-1">
                         <video src="#" poster="#" controls muted>
-                            <img src="fallback.jpg" alt="How does MapTracker work?">    
+                            <img src="fallback.jpg" alt="How does MapTracker work?">
                         </video>
 
                     </div>

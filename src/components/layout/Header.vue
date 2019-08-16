@@ -10,17 +10,19 @@
             <div>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <router-link class="navbar-brand" :to="{ name: 'servers' }" v-show="isLoggedIn()">
-                            <button class="btn btn-info log" v-show="isLoggedIn()">Servers
+                        <router-link :to="{ name: 'servers' }" v-show="isLoggedIn()">
+                            <button class="btn btn-info log" v-show="isLoggedIn()">
+                                <i class="material-icons btn-icon">view_list</i>
+                                <span>Servers</span>
                             </button>
                         </router-link>
                         <button class="btn btn-danger" v-show="isLoggedIn()" @click="handleLogout()">
-                            <span>Log Out</span>
                             <i class="material-icons btn-icon">power_settings_new</i>
+                            <span>Log Out</span>
                         </button>
                         <button class="btn btn-info" v-show="!isLoggedIn()" @click="handleLogin()">
-                            <span>Log In</span>
                             <i class="material-icons btn-icon">exit_to_app</i>
+                            <span>Log In/Register</span>
                         </button>
                     </li>
                 </ul>
@@ -74,11 +76,5 @@
     .navbar-brand:hover .app-icon {
         background-color: rgb(50, 50, 50);
         color: rgb(255, 150, 24);
-    }
-
-    .btn-icon {
-        margin-top: -4px;
-        margin-left: 8px;
-        vertical-align:middle;
     }
 </style>

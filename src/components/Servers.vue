@@ -10,15 +10,21 @@
                 <div class="col-sm-12 table-row-placeholder">You have not added any servers yet.</div>
             </div>
             <div class="row">
-                <div class="server card col-sm-4" v-for="(server,index) in servers" :key="index">
-                    <img class="card-img-top" src="#" alt="#">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ server.name }}</h5>
-                        <p class="card-subtitle mb-2 text-muted">{{ server.ip_address }}:{{ server.port}}</p>
-                        <p class="card-text">{{ server.current_map }}</p>
-                        <button type="button" class="btn btn-danger" @click="deleteServer(server)">Delete</button>
+                <div class="col-sm-3" v-for="(server,index) in servers" :key="index">
+                    <div class="server card">
+                        <img class="card-img-top" src="#" alt="#">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ server.name }}</h5>
+                            <p class="card-subtitle mb-2 text-muted">{{ server.ip_address }}:{{ server.port}}</p>
+                            <p class="card-text">{{ server.current_map }}</p>
+                            <button type="button" class="btn btn-danger" @click="showDeleteServerModal(server)">
+                                <i class="material-icons btn-icon">delete</i>
+                                <span>Delete</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
+
             </div>
             <div class="row controls">
                 <div class="col-sm-12">
@@ -26,31 +32,43 @@
                             type="button"
                             class="btn btn-primary"
                             @click="showAddServerModal"
-                    >Add Server
+                    >
+                        <i class="material-icons btn-icon">note_add</i>
+                        <span>Add Server</span>
                     </button>
                 </div>
             </div>
         </div>
         <AddServerModal
-                v-show="isModalVisible"
+                v-show="isNewServerModalVisible"
                 @close="closeAddServerModal"
+                @confirm="closeAddServerModal"
         />
+        <DeleteServerModal
+                v-show="isDeleteServerModalVisible"
+                @close="closeDeleteServerModal"
+                @confirm="deleteServer"
+         />
     </div>
 </template>
 
 <script>
     import AddServerModal from './AddServerModal';
+    import DeleteServerModal from './DeleteServerModal';
     import {DELETE_SERVER, FETCH_SERVERS} from "./../store/actions.type";
     import { mapGetters } from "vuex";
 
     export default {
         name: 'Servers',
         components: {
-            AddServerModal
+            AddServerModal,
+            DeleteServerModal
         },
         data() {
             return {
-                isModalVisible: false,
+                selectedServer: null,
+                isNewServerModalVisible: false,
+                isDeleteServerModalVisible: false,
             };
         },
         methods: {
@@ -66,13 +84,25 @@
                 });
             },
             showAddServerModal() {
-                this.isModalVisible = true;
+                this.isNewServerModalVisible = true;
             },
             closeAddServerModal() {
-                this.isModalVisible = false;
+                this.isNewServerModalVisible = false;
+                this.selectedServer = null;
             },
-            deleteServer(server) {
-                this.$store.dispatch(DELETE_SERVER, server).then(() => {
+            showDeleteServerModal(server) {
+                this.selectedServer = server;
+                this.isDeleteServerModalVisible = true;
+            },
+            closeDeleteServerModal() {
+                this.isDeleteServerModalVisible = false;
+            },
+            deleteServer() {
+                if (this.selectedServer === null) {
+                    return;
+                }
+                this.$store.dispatch(DELETE_SERVER, this.selectedServer).then(() => {
+                    this.closeDeleteServerModal();
                     this.getPrivateServers();
                 }).catch((data) => {
                     this.$toasted.show(`An error occurred: ${data.message}`, {
@@ -102,7 +132,6 @@
 <style scoped>
     .server.card {
         padding: 0;
-        margin: 0 15px;
         box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
     }
     .server.card img {

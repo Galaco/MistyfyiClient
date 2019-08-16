@@ -6,7 +6,7 @@
                         <header class="modal-header" id="addServerModalTitle">
                             <slot name="header">
                                 <h5 class="modal-title">Add server</h5>
-                                <button type="button" class="btn btn-danger btn-close" @click="close" aria-label="Close modal">x</button>
+                                <button type="button" class="btn btn-danger btn-close" @click="close" aria-label="Close modal"><i class="material-icons btn-icon">close</i></button>
                             </slot>
                         </header>
                         <section class="modal-body" id="modalDescription">
@@ -25,8 +25,14 @@
                         </section>
                         <footer class="modal-footer">
                             <slot name="footer">
-                                <button type="button" class="btn btn-primary" @click="submit" aria-label="Save modal">Save</button>
-                                <button type="button" class="btn btn-secondary" @click="close" aria-label="Close modal">Cancel</button>
+                                <button type="button" class="btn btn-primary" @click="submit" aria-label="Save modal">
+                                    <i class="material-icons btn-icon">check</i>
+                                    <span>Save</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary" @click="close" aria-label="Close modal">
+                                    <i class="material-icons btn-icon">cancel</i>
+                                    <span>Cancel</span>
+                                </button>
                             </slot>
                         </footer>
                     </div>
@@ -59,7 +65,8 @@
                         fitToScreen: true,
                         type: 'success'
                     });
-                    this.close();
+                    this.reset();
+                    this.$emit('confirm');
                 }).catch((body) => {
                     this.$toasted.show(`An error occurred: ${body.message}`, {
                         position: 'top-center',
@@ -69,6 +76,10 @@
                         type: 'error'
                     });
                 });
+            },
+            reset() {
+                this.serverIP = '';
+                this.serverPort = '';
             }
         },
     };

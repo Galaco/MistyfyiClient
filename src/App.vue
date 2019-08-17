@@ -26,6 +26,10 @@ export default {
     box-sizing: border-box;
   }
 
+  body {
+    overflow: hidden;
+  }
+
   #app {
     font-family: 'Source Sans Pro', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -33,6 +37,7 @@ export default {
     text-align: center;
     color: #2c3e50;
     background: #f1f4f6;
+    overflow-y: scroll;
   }
 
   #app > .content {

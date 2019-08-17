@@ -29,8 +29,37 @@ function deleteServer(ip, port) {
         }).then(response => response.data);
 }
 
+
+
+function getWatchedLevels() {
+    const url = `${BASE_URL}/api/v1/levels/list`;
+    return axios.get(url, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
+}
+
+function addWatchedLevel(name) {
+    const url = `${BASE_URL}/api/v1/levels/add`;
+    const data = {
+        name: name,
+    };
+    return axios.put(url, data, { headers: { Authorization: `Bearer ${getAccessToken()}` }}).then(response => response.data);
+}
+
+function deleteWatchedLevel(name) {
+    const url = `${BASE_URL}/api/v1/levels/remove`;
+    return axios.delete(url,
+        {
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
+            data: {
+                name: name,
+            }
+        }).then(response => response.data);
+}
+
 export {
     getServerStatuses,
     addNewServer,
-    deleteServer
+    deleteServer,
+    getWatchedLevels,
+    addWatchedLevel,
+    deleteWatchedLevel
 };

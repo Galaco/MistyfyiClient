@@ -6,7 +6,7 @@ import {deleteServer, getServerStatuses} from "../utils/servers-api";
 const state = {
     servers: [],
     isLoading: true,
-    serversCount: 0
+    serversCount: 0,
 };
 
 const getters = {

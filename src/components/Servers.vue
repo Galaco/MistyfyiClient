@@ -6,11 +6,23 @@
                     <h3>Watched Servers</h3>
                 </div>
             </div>
+            <div class="row controls">
+                <div class="col-sm-12">
+                    <button
+                            type="button"
+                            class="btn btn-primary"
+                            @click="showAddServerModal"
+                    >
+                        <i class="material-icons btn-icon">note_add</i>
+                        <span>Add Server</span>
+                    </button>
+                </div>
+            </div>
             <div class="row" v-if="serversCount === 0">
                 <div class="col-sm-12 table-row-placeholder">You have not added any servers yet.</div>
             </div>
             <div class="row">
-                <div class="col-sm-3" v-for="(server,index) in servers" :key="index">
+                <div class="col-md-3" v-for="(server,index) in servers" :key="index">
                     <div class="server card">
                         <img class="card-img-top" src="#" alt="#">
                         <div class="card-body">
@@ -24,21 +36,9 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
-            <div class="row controls">
-                <div class="col-sm-12">
-                    <button
-                            type="button"
-                            class="btn btn-primary"
-                            @click="showAddServerModal"
-                    >
-                        <i class="material-icons btn-icon">note_add</i>
-                        <span>Add Server</span>
-                    </button>
-                </div>
             </div>
         </div>
+        <UserLevels/>
         <AddServerModal
                 v-show="isNewServerModalVisible"
                 @close="closeAddServerModal"
@@ -55,6 +55,7 @@
 <script>
     import AddServerModal from './AddServerModal';
     import DeleteServerModal from './DeleteServerModal';
+    import UserLevels from './UserLevels/UserLevels';
     import {DELETE_SERVER, FETCH_SERVERS} from "./../store/actions.type";
     import { mapGetters } from "vuex";
 
@@ -62,7 +63,8 @@
         name: 'Servers',
         components: {
             AddServerModal,
-            DeleteServerModal
+            DeleteServerModal,
+            UserLevels,
         },
         data() {
             return {
@@ -138,6 +140,14 @@
         background-color: #DDD;
         width: 100%;
         height: 180px;
+    }
+    .server .card-title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .server .card-text {
+        height: 2.4rem;
     }
     .server-list .row {
         text-align: left;

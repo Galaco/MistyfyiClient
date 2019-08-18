@@ -20,12 +20,12 @@
         <div class="section-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4 offset-sm-1">
+                    <div class="col-sm-4 offset-sm-1 text-center">
                         <i class="material-icons heart">favorite_border</i>
                         <p>Never miss a map again! Play only the maps you love, in the places you love.</p>
                         <p>Near-realtime notifications pushed to your device when your favourite games servers switch to maps you love.</p>
                     </div>
-                    <div class="col-sm-4 offset-sm-2">
+                    <div class="col-sm-4 offset-sm-2 text-center">
                         <i class="material-icons games">games</i>
                         <p>All popular Source Engine games are supported, including Counterstrike: Global Offensive, Garry's Mod, Counterstrike: Source</p>
                         <p>Is your favorite game not supported? Please make a request and we'll endeavour to add it to our service.</p>

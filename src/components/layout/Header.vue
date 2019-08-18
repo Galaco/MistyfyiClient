@@ -77,4 +77,8 @@
         background-color: rgb(50, 50, 50);
         color: rgb(255, 150, 24);
     }
+
+    .navbar-right li a {
+        margin-right: 15px;
+    }
 </style>

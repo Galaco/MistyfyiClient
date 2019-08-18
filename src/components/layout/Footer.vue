@@ -1,6 +1,6 @@
 <template>
     <footer class="footer py-4 bg-dark text-white-50">
-        <div class="container">
+        <div class="container text-center">
             <router-link class="logo-font" :to="{ name: 'home', params: {} }">
                 MapTracker
             </router-link>is a dedicated game server map rotation tracker.

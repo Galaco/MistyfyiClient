@@ -26,6 +26,14 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="row" v-if="levelNamesCount === 0">
+                    <div class="col-sm-12 table-row-placeholder">You have not added any level names yet.</div>
+                </div>
+                <div class="row text-center" v-if="levelNamesCount === -1">
+                    <div class="col-sm-12 loading-spinner">
+                        <MoonLoader/>
+                    </div>
+                </div>
             </div>
         </div>
         <AddUserLevelModal
@@ -45,12 +53,14 @@
     import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from "../../store/actions.type";
     import { mapGetters } from "vuex";
     import {addWatchedLevel} from "../../utils/servers-api";
+    import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 
     export default {
         name: "UserLevels",
         components: {
             DeleteUserLevelModal,
             AddUserLevelModal,
+            MoonLoader,
         },
         methods: {
             getUserLevels() {
@@ -141,5 +151,17 @@
 
     td.controls, th.controls {
         text-align: right;
+    }
+
+    .table-row-placeholder {
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .loading-spinner {
+        height: 240px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 </style>

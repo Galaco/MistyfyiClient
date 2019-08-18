@@ -1,16 +1,11 @@
 <template>
-    <div class="container">
-        <div class="row header">
-            <div class="col-md-12">
-                <h3>Watched Map Names</h3>
-            </div>
-        </div>
+    <div class="container level-list">
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-striped">
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col" class="v-center">Watch Value</th>
+                        <th scope="col" class="v-center">Watched Map Names</th>
                         <th scope="col" class="controls">
                             <button type="button" class="btn btn-primary" @click="showAddModal()">
                                 <i class="material-icons btn-icon">note_add</i>
@@ -140,13 +135,6 @@
 </script>
 
 <style scoped>
-    .row.header {
-        text-align: left;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        border-bottom: solid 1px #EFEFEF;
-    }
-
     th.v-center, td.v-center {
         vertical-align: middle;
     }

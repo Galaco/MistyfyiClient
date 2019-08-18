@@ -6,7 +6,7 @@ import {deleteWatchedLevel, getWatchedLevels} from "../utils/servers-api";
 const state = {
     loadingLevelNames: true,
     levelNames: [],
-    levelNamesCount: 0
+    levelNamesCount: -1
 };
 
 const getters = {
@@ -27,8 +27,8 @@ const actions = {
         return getWatchedLevels()
             .then(({ data }) => {
                 commit(FETCH_LEVEL_NAMES_END, data.body);
-            }).catch(() => {
-
+            }).catch(({ data }) => {
+                commit(FETCH_LEVEL_NAMES_END, data);
             });
     },
     [DELETE_LEVEL_NAMES]({ commit }, params) {
@@ -36,8 +36,8 @@ const actions = {
         return deleteWatchedLevel(params.name)
             .then(({ data }) => {
                 commit(FETCH_LEVEL_NAMES_END, data.body);
-            }).catch(() => {
-
+            }).catch(({ data }) => {
+                commit(FETCH_LEVEL_NAMES_END, data);
             });
     }
 };

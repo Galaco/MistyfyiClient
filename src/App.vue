@@ -36,7 +36,7 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     background: #f1f4f6;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   #app > .content {

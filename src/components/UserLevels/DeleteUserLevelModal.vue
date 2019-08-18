@@ -5,13 +5,13 @@
                     <div class="modal-content">
                         <header class="modal-header" id="addServerModalTitle">
                             <slot name="header">
-                                <h5 class="modal-title">Delete Watched Level</h5>
+                                <h5 class="modal-title">Delete Watched Map</h5>
                                 <button type="button" class="btn btn-danger btn-close" @click="close" aria-label="Close modal"><i class="material-icons btn-icon">close</i></button>
                             </slot>
                         </header>
                         <section class="modal-body" id="modalDescription">
                             <slot name="body">
-                                <p>Are you sure you want to delete this watched level? This action cannot be undone.</p>
+                                <p>Are you sure you want to delete this watched map? This action cannot be undone.</p>
                             </slot>
                         </section>
                         <footer class="modal-footer">

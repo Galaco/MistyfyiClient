@@ -6,7 +6,7 @@ import {deleteServer, getServerStatuses} from "../utils/servers-api";
 const state = {
     servers: [],
     isLoading: true,
-    serversCount: 0,
+    serversCount: -1,
 };
 
 const getters = {
@@ -27,8 +27,8 @@ const actions = {
         return getServerStatuses()
             .then(({ data }) => {
                 commit(FETCH_END, data.body);
-            }).catch(() => {
-
+            }).catch(({ data }) => {
+                commit(FETCH_END, data);
             });
     },
     [DELETE_SERVER]({ commit }, params) {
@@ -36,8 +36,8 @@ const actions = {
         return deleteServer(params.ip_address, params.port)
             .then(({ data }) => {
                 commit(FETCH_END, data.body);
-            }).catch(() => {
-
+            }).catch(({ data }) => {
+                commit(FETCH_END, data);
             });
     }
 };

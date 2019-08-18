@@ -1,5 +1,5 @@
 import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from "./actions.type";
-import {FETCH_END, FETCH_LEVEL_NAMES_END, FETCH_LEVEL_NAMES_START, FETCH_START} from "./mutations.type";
+import {FETCH_LEVEL_NAMES_END, FETCH_LEVEL_NAMES_START} from "./mutations.type";
 import {deleteWatchedLevel, getWatchedLevels} from "../utils/servers-api";
 
 

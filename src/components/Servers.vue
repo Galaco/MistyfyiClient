@@ -1,21 +1,27 @@
 <template>
     <div>
         <div class="container server-list">
-            <div class="row header">
+            <div class="row">
                 <div class="col-sm-12">
-                    <h3>Watched Servers</h3>
-                </div>
-            </div>
-            <div class="row controls">
-                <div class="col-sm-12">
-                    <button
-                            type="button"
-                            class="btn btn-primary"
-                            @click="showAddServerModal"
-                    >
-                        <i class="material-icons btn-icon">note_add</i>
-                        <span>Add Server</span>
-                    </button>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="v-center">Watched Servers</th>
+                            <th scope="col" class="controls">
+                                <button
+                                        type="button"
+                                        class="btn btn-primary"
+                                        @click="showAddServerModal"
+                                >
+                                    <i class="material-icons btn-icon">note_add</i>
+                                    <span>Add Server</span>
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="row" v-if="serversCount === 0">
@@ -132,6 +138,16 @@
 </script>
 
 <style scoped>
+    th.v-center, td.v-center {
+        vertical-align: middle;
+    }
+
+    td.controls, th.controls {
+        text-align: right;
+    }
+    .container.server-list {
+        margin-bottom: 15px;
+    }
     .server.card {
         padding: 0;
         box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
@@ -148,12 +164,6 @@
     }
     .server .card-text {
         height: 2.4rem;
-    }
-    .server-list .row {
-        text-align: left;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        border-bottom: solid 1px #EFEFEF;
     }
     .table-row-placeholder {
         text-align: center;

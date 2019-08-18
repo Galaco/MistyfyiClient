@@ -5,7 +5,7 @@
                     <div class="modal-content">
                         <header class="modal-header" id="addServerModalTitle">
                             <slot name="header">
-                                <h5 class="modal-title">Delete Watched Level</h5>
+                                <h5 class="modal-title">New Watched Level</h5>
                                 <button type="button" class="btn btn-danger btn-close" @click="close" aria-label="Close modal"><i class="material-icons btn-icon">close</i></button>
                             </slot>
                         </header>

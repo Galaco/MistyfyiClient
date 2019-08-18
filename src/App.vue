@@ -34,7 +34,6 @@ export default {
     font-family: 'Source Sans Pro', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     color: #2c3e50;
     background: #f1f4f6;
     overflow-y: scroll;
@@ -73,5 +72,9 @@ export default {
     margin-top: -4px;
     vertical-align:middle;
     font-size: 18px;
+  }
+
+  .modal {
+    background: rgba(0, 0, 0, 0.8) !important;
   }
 </style>

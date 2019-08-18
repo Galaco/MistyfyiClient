@@ -27,6 +27,11 @@
             <div class="row" v-if="serversCount === 0">
                 <div class="col-sm-12 table-row-placeholder">You have not added any servers yet.</div>
             </div>
+            <div class="row text-center" v-if="serversCount === -1">
+                <div class="col-sm-12 loading-spinner">
+                    <MoonLoader/>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-3" v-for="(server,index) in servers" :key="index">
                     <div class="server card">
@@ -35,10 +40,17 @@
                             <h5 class="card-title">{{ server.name }}</h5>
                             <p class="card-subtitle mb-2 text-muted">{{ server.ip_address }}:{{ server.port}}</p>
                             <p class="card-text">{{ server.current_map }}</p>
-                            <button type="button" class="btn btn-danger" @click="showDeleteServerModal(server)">
-                                <i class="material-icons btn-icon">delete</i>
-                                <span>Delete</span>
-                            </button>
+                            <LastUpdated :date="server.last_updated"/>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-sm-12 text-right">
+                                    <button type="button" class="btn btn-danger" @click="showDeleteServerModal(server)">
+                                        <i class="material-icons btn-icon">delete</i>
+                                        <span>Delete</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -62,8 +74,10 @@
     import AddServerModal from './AddServerModal';
     import DeleteServerModal from './DeleteServerModal';
     import UserLevels from './UserLevels/UserLevels';
+    import LastUpdated from './Server/LastUpdated';
     import {DELETE_SERVER, FETCH_SERVERS} from "./../store/actions.type";
     import { mapGetters } from "vuex";
+    import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 
     export default {
         name: 'Servers',
@@ -71,6 +85,8 @@
             AddServerModal,
             DeleteServerModal,
             UserLevels,
+            LastUpdated,
+            MoonLoader,
         },
         data() {
             return {
@@ -155,18 +171,22 @@
     .server.card img {
         background-color: #DDD;
         width: 100%;
-        height: 180px;
+        height: 140px;
     }
     .server .card-title {
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
     }
-    .server .card-text {
-        height: 2.4rem;
-    }
     .table-row-placeholder {
         text-align: center;
         padding: 15px 0;
+    }
+
+    .loading-spinner {
+        height: 240px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 </style>

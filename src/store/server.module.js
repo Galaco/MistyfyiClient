@@ -23,11 +23,9 @@ const getters = {
 
 const actions = {
     [FETCH_SERVER_HISTORY]({ commit }, params) {
-        console.log(params);
         commit(FETCH_SERVER_HISTORY_START);
         return getServerHistory(params)
             .then(({ data }) => {
-                console.log(data);
                 commit(FETCH_SERVER_HISTORY_END, data.body);
             }).catch(({ data }) => {
                 commit(FETCH_SERVER_HISTORY_END, data);

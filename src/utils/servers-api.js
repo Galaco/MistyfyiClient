@@ -41,7 +41,7 @@ function addWatchedLevel(name) {
     const data = {
         name: name,
     };
-    return axios.put(url, data, { headers: { Authorization: `Bearer ${getAccessToken()}` }}).then(response => response.data);
+    return axios.put(url, data, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
 }
 
 function deleteWatchedLevel(name) {

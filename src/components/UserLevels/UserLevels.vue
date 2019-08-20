@@ -64,8 +64,8 @@
         },
         methods: {
             getUserLevels() {
-                this.$store.dispatch(FETCH_LEVEL_NAMES).catch((data) => {
-                    this.$toasted.show(`An error occurred: ${data.message}`, {
+                this.$store.dispatch(FETCH_LEVEL_NAMES).catch((err) => {
+                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
                         position: 'top-center',
                         duration: 5000,
                         fullWidth: true,
@@ -90,8 +90,8 @@
                         type: 'success'
                     });
                     this.closeAddModal();
-                }).catch((body) => {
-                    this.$toasted.show(`An error occurred: ${body.message}`, {
+                }).catch((err) => {
+                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
                         position: 'top-center',
                         duration: 5000,
                         fullWidth: true,
@@ -116,8 +116,8 @@
                 this.$store.dispatch(DELETE_LEVEL_NAMES, this.selectedLevel).then(() => {
                     this.closeDeleteModal();
                     this.getUserLevels();
-                }).catch((data) => {
-                    this.$toasted.show(`An error occurred: ${data.message}`, {
+                }).catch((err) => {
+                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
                         position: 'top-center',
                         duration: 5000,
                         fullWidth: true,

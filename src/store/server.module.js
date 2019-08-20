@@ -1,6 +1,7 @@
 import {FETCH_SERVER_HISTORY} from "./actions.type";
 import {FETCH_SERVER_HISTORY_END, FETCH_SERVER_HISTORY_START} from "./mutations.type";
 import {getServerHistory} from "../utils/servers-api";
+import {login} from "../utils/auth";
 
 
 const state = {
@@ -28,6 +29,9 @@ const actions = {
             .then(({ data }) => {
                 commit(FETCH_SERVER_HISTORY_END, data.body);
             }).catch(({ data }) => {
+                if (data.code === 401) {
+                    login();
+                }
                 commit(FETCH_SERVER_HISTORY_END, data);
             });
     }

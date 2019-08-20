@@ -90,8 +90,8 @@
         },
         methods: {
             getPrivateServers() {
-                this.$store.dispatch(FETCH_SERVERS).catch((data) => {
-                    this.$toasted.show(`An error occurred: ${data.message}`, {
+                this.$store.dispatch(FETCH_SERVERS).catch((err) => {
+                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
                         position: 'top-center',
                         duration: 5000,
                         fullWidth: true,
@@ -130,8 +130,8 @@
                 this.$store.dispatch(DELETE_SERVER, this.selectedServer).then(() => {
                     this.closeDeleteServerModal();
                     this.getPrivateServers();
-                }).catch((data) => {
-                    this.$toasted.show(`An error occurred: ${data.message}`, {
+                }).catch((err) => {
+                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
                         position: 'top-center',
                         duration: 5000,
                         fullWidth: true,

@@ -1,6 +1,7 @@
 import {DELETE_SERVER, FETCH_SERVERS} from "./actions.type";
 import {FETCH_END, FETCH_START} from "./mutations.type";
 import {deleteServer, getServerStatuses} from "../utils/servers-api";
+import {login} from "../utils/auth";
 
 
 const state = {
@@ -28,6 +29,9 @@ const actions = {
             .then(({ data }) => {
                 commit(FETCH_END, data.body);
             }).catch(({ data }) => {
+                if (data.code === 401) {
+                    login();
+                }
                 commit(FETCH_END, data);
             });
     },
@@ -37,6 +41,9 @@ const actions = {
             .then(({ data }) => {
                 commit(FETCH_END, data.body);
             }).catch(({ data }) => {
+                if (data.code === 401) {
+                    login();
+                }
                 commit(FETCH_END, data);
             });
     }

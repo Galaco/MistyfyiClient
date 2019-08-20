@@ -58,7 +58,7 @@
     }
 
     .navbar-brand-title {
-        margin-top: 4px;
+        vertical-align: middle;
     }
 
     .app-icon {

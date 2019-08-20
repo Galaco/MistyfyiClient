@@ -3,3 +3,6 @@ export const FETCH_START = "setLoading";
 
 export const FETCH_LEVEL_NAMES_END = "setLevelNamesLoaded";
 export const FETCH_LEVEL_NAMES_START = "setLevelNamesLoading";
+
+export const FETCH_SERVER_HISTORY_END = "setServerHistoryLoaded";
+export const FETCH_SERVER_HISTORY_START = "setServerHistoryLoading";

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    import {addNewServer} from '../utils/servers-api';
+    import {addNewServer} from '../../utils/servers-api';
 
     export default {
         name: 'modal',

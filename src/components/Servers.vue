@@ -34,25 +34,10 @@
             </div>
             <div class="row">
                 <div class="col-md-3" v-for="(server,index) in servers" :key="index">
-                    <div class="server card">
-                        <img class="card-img-top" src="#" alt="#">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ server.name }}</h5>
-                            <p class="card-subtitle mb-2 text-muted">{{ server.ip_address }}:{{ server.port}}</p>
-                            <p class="card-text">{{ server.current_map }}</p>
-                            <LastUpdated :date="server.last_updated"/>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-sm-12 text-right">
-                                    <button type="button" class="btn btn-danger" @click="showDeleteServerModal(server)">
-                                        <i class="material-icons btn-icon">delete</i>
-                                        <span>Delete</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Server :server="server"
+                            @delete="showDeleteServerModal"
+                            @history="showServerHistoryModal"
+                            />
                 </div>
             </div>
         </div>
@@ -67,14 +52,20 @@
                 @close="closeDeleteServerModal"
                 @confirm="deleteServer"
          />
+        <ServerHistoryModal
+                v-show="isServerHistoryModalVisible"
+                v-bind:server="selectedServer"
+                @close="closeServerHistoryModal"
+        />
     </div>
 </template>
 
 <script>
-    import AddServerModal from './AddServerModal';
-    import DeleteServerModal from './DeleteServerModal';
+    import AddServerModal from './Server/AddServerModal';
+    import DeleteServerModal from './Server/DeleteServerModal';
+    import ServerHistoryModal from './Server/HistoryModal';
     import UserLevels from './UserLevels/UserLevels';
-    import LastUpdated from './Server/LastUpdated';
+    import Server from './Server/Server';
     import {DELETE_SERVER, FETCH_SERVERS} from "./../store/actions.type";
     import { mapGetters } from "vuex";
     import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
@@ -84,15 +75,17 @@
         components: {
             AddServerModal,
             DeleteServerModal,
+            ServerHistoryModal,
             UserLevels,
-            LastUpdated,
             MoonLoader,
+            Server,
         },
         data() {
             return {
                 selectedServer: null,
                 isNewServerModalVisible: false,
                 isDeleteServerModalVisible: false,
+                isServerHistoryModalVisible: false,
             };
         },
         methods: {
@@ -114,12 +107,21 @@
                 this.isNewServerModalVisible = false;
                 this.selectedServer = null;
             },
+            showServerHistoryModal(server) {
+                this.selectedServer = server;
+                this.isServerHistoryModalVisible = true;
+            },
+            closeServerHistoryModal() {
+                this.isServerHistoryModalVisible = false;
+                this.selectedServer = null;
+            },
             showDeleteServerModal(server) {
                 this.selectedServer = server;
                 this.isDeleteServerModalVisible = true;
             },
             closeDeleteServerModal() {
                 this.isDeleteServerModalVisible = false;
+                this.selectedServer = null;
             },
             deleteServer() {
                 if (this.selectedServer === null) {
@@ -163,20 +165,6 @@
     }
     .container.server-list {
         margin-bottom: 15px;
-    }
-    .server.card {
-        padding: 0;
-        box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
-    }
-    .server.card img {
-        background-color: #DDD;
-        width: 100%;
-        height: 140px;
-    }
-    .server .card-title {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
     }
     .table-row-placeholder {
         text-align: center;

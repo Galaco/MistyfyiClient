@@ -55,11 +55,17 @@ function deleteWatchedLevel(name) {
         }).then(response => response.data);
 }
 
+function getServerHistory(id) {
+    const url = `${BASE_URL}/api/v1/server/history/${id}`;
+    return axios.get(url, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
+}
+
 export {
     getServerStatuses,
     addNewServer,
     deleteServer,
     getWatchedLevels,
     addWatchedLevel,
-    deleteWatchedLevel
+    deleteWatchedLevel,
+    getServerHistory
 };

@@ -3,3 +3,6 @@ export const DELETE_SERVER = "deleteServer";
 
 export const FETCH_LEVEL_NAMES = "levelNamesFetch";
 export const DELETE_LEVEL_NAMES = "deleteLevelNames";
+
+
+export const FETCH_SERVER_HISTORY = "serverHistoryFetch";

@@ -6,3 +6,6 @@ export const DELETE_LEVEL_NAMES = "deleteLevelNames";
 
 
 export const FETCH_SERVER_HISTORY = "serverHistoryFetch";
+
+
+export const FETCH_USER_PROFILE = "userProfileFetch";

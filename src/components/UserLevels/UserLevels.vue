@@ -52,7 +52,7 @@
     import AddUserLevelModal from "./AddUserLevelModal";
     import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from "../../store/actions.type";
     import { mapGetters } from "vuex";
-    import {addWatchedLevel} from "../../utils/servers-api";
+    import {addWatchedLevel} from "../../utils/levels-api";
     import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 
     export default {

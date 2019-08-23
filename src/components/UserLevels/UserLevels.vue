@@ -65,12 +65,8 @@
         methods: {
             getUserLevels() {
                 this.$store.dispatch(FETCH_LEVEL_NAMES).catch((err) => {
-                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
-                        position: 'top-center',
-                        duration: 5000,
-                        fullWidth: true,
-                        fitToScreen: true,
-                        type: 'error'
+                    this.$toasted.global.api_error({
+                        message : err.response.data.message
                     });
                 });
             },
@@ -82,22 +78,14 @@
             },
             addLevel(name) {
                 addWatchedLevel(name).then(() => {
-                    this.$toasted.show(`Now watching level ${name}`, {
-                        position: 'top-center',
-                        duration: 5000,
-                        fullWidth: true,
-                        fitToScreen: true,
-                        type: 'success'
+                    this.$toasted.global.api_success({
+                        message : `Now watching level: ${name}`
                     });
                     this.closeAddModal();
                     this.getUserLevels();
                 }).catch((err) => {
-                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
-                        position: 'top-center',
-                        duration: 5000,
-                        fullWidth: true,
-                        fitToScreen: true,
-                        type: 'error'
+                    this.$toasted.global.api_error({
+                        message : err.response.data.message
                     });
                 });
             },
@@ -115,15 +103,14 @@
                 }
 
                 this.$store.dispatch(DELETE_LEVEL_NAMES, this.selectedLevel).then(() => {
+                    this.$toasted.global.api_success({
+                        message : `Successfully deleted watch name: ${this.selectedLevel.name}`
+                    });
                     this.closeDeleteModal();
                     this.getUserLevels();
                 }).catch((err) => {
-                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
-                        position: 'top-center',
-                        duration: 5000,
-                        fullWidth: true,
-                        fitToScreen: true,
-                        type: 'error'
+                    this.$toasted.global.api_error({
+                        message : err.response.data.message
                     });
                 });
             },

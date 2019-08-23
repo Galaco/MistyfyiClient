@@ -34,6 +34,12 @@ export function logout() {
     router.go('/');
 }
 
+export function reauthenticate() {
+    clearIdToken();
+    clearAccessToken();
+    login();
+}
+
 export function requireAuth(to, from, next) {
     if (!isLoggedIn()) {
         next({

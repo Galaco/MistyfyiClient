@@ -95,12 +95,8 @@
             },
             getPrivateServers() {
                 this.$store.dispatch(FETCH_SERVERS).catch((err) => {
-                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
-                        position: 'top-center',
-                        duration: 5000,
-                        fullWidth: true,
-                        fitToScreen: true,
-                        type: 'error'
+                    this.$toasted.global.api_error({
+                        message : err.response.data.message
                     });
                 });
             },
@@ -130,15 +126,15 @@
                     return;
                 }
                 this.$store.dispatch(DELETE_SERVER, this.serverSelected).then(() => {
+                    this.$toasted.global.api_success({
+                        message : `Successfully deleted server: ${this.serverSelected.name}`
+                    });
                     this.closeDeleteServerModal();
                     this.getPrivateServers();
                 }).catch((err) => {
-                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
-                        position: 'top-center',
-                        duration: 5000,
-                        fullWidth: true,
-                        fitToScreen: true,
-                        type: 'error'
+                    console.log(err);
+                    this.$toasted.global.api_error({
+                        message : err.response.data.message
                     });
                 });
             },

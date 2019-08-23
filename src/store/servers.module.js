@@ -1,7 +1,7 @@
 import {DELETE_SERVER, FETCH_SERVERS} from "./actions.type";
-import {FETCH_SERVERS_END, FETCH_SERVERS_START} from "./mutations.type";
+import {FETCH_SERVERS_END, FETCH_SERVERS_START, DELETE_SERVERS_START, DELETE_SERVERS_END} from "./mutations.type";
 import {deleteServer, getServerStatuses} from "../utils/servers-api";
-import {login} from "../utils/auth";
+import {reauthenticate} from "../utils/auth";
 
 
 const state = {
@@ -30,19 +30,20 @@ const actions = {
                 commit(FETCH_SERVERS_END, data.body);
             }).catch(({ data }) => {
                 if (data.code === 401) {
-                    login();
+                    reauthenticate();
                 }
             });
     },
     [DELETE_SERVER]({ commit }, params) {
-        commit(FETCH_SERVERS_START);
+        commit(DELETE_SERVERS_START);
         return deleteServer(params.ip_address, params.port)
             .then(({ data }) => {
-                commit(FETCH_SERVERS_END, data.body);
-            }).catch(({ data }) => {
+                commit(DELETE_SERVERS_END, data.body);
+            }).catch((err, data) => {
                 if (data.code === 401) {
-                    login();
+                    reauthenticate();
                 }
+                commit(DELETE_SERVERS_END, data.body);
             });
     }
 };
@@ -55,7 +56,11 @@ const mutations = {
         state.servers = servers;
         state.serversCount = servers.length;
         state.isLoading = false;
-    }
+    },
+    [DELETE_SERVERS_START](state) {
+    },
+    [DELETE_SERVERS_END](state) {
+    },
 };
 
 export default {

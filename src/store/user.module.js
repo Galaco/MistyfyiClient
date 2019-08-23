@@ -1,6 +1,6 @@
 import {FETCH_USER_PROFILE} from "./actions.type";
 import {FETCH_USER_PROFILE_END, FETCH_USER_PROFILE_START} from "./mutations.type";
-import {login} from "../utils/auth";
+import {reauthenticate} from "../utils/auth";
 import {getUserProfile} from "../utils/user-api";
 
 
@@ -26,7 +26,7 @@ const actions = {
                 commit(FETCH_USER_PROFILE_END, data.body);
             }).catch(({ data }) => {
                 if (data.code === 401) {
-                    login();
+                    reauthenticate();
                 }
                 commit(FETCH_USER_PROFILE_END, data);
             });

@@ -53,12 +53,8 @@
         methods: {
             fetchHistory(id) {
                 this.$store.dispatch(FETCH_SERVER_HISTORY, id).catch((err) => {
-                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
-                        position: 'top-center',
-                        duration: 5000,
-                        fullWidth: true,
-                        fitToScreen: true,
-                        type: 'error'
+                    this.$toasted.global.api_error({
+                        message : err.response.data.message
                     });
                 });
             },

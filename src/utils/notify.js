@@ -22,6 +22,7 @@ function enableNotifications(uuid) {
 
     PushBot.register();
     PB.q.push(["alias", uuid]);
+    console.log("Request notification registration with uuid: " + uuid);
 }
 
 function sendNotification(title, message){

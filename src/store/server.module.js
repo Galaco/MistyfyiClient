@@ -1,7 +1,7 @@
 import {FETCH_SERVER_HISTORY, SELECT_SERVER} from "./actions.type";
 import {FETCH_SERVER_HISTORY_END, FETCH_SERVER_HISTORY_START, SELECT_SERVER_END} from "./mutations.type";
 import {getServerHistory} from "../utils/server-api";
-import {login} from "../utils/auth";
+import {reauthenticate} from "../utils/auth";
 
 
 const state = {
@@ -34,7 +34,7 @@ const actions = {
                 commit(FETCH_SERVER_HISTORY_END, data.body);
             }).catch(({ data }) => {
                 if (data.code === 401) {
-                    login();
+                    reauthenticate();
                 }
                 commit(FETCH_SERVER_HISTORY_END, data);
             });

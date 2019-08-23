@@ -6,7 +6,7 @@ import {
     FETCH_LEVEL_NAMES_START
 } from "./mutations.type";
 import {deleteWatchedLevel, getWatchedLevels} from "../utils/levels-api";
-import {login} from "../utils/auth";
+import {reauthenticate} from "../utils/auth";
 
 
 const state = {
@@ -35,7 +35,7 @@ const actions = {
                 commit(FETCH_LEVEL_NAMES_END, data.body);
             }).catch(({ data }) => {
                 if (data.code === 401) {
-                    login();
+                    reauthenticate();
                 }
                 commit(FETCH_LEVEL_NAMES_END, data);
             });
@@ -47,7 +47,7 @@ const actions = {
                 commit(DELETE_LEVEL_NAMES_END, data.body);
             }).catch(({ data }) => {
                 if (data.code === 401) {
-                    login();
+                    reauthenticate();
                 }
                 commit(DELETE_LEVEL_NAMES_END, data);
             });

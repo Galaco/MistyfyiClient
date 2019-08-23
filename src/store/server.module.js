@@ -1,6 +1,6 @@
 import {FETCH_SERVER_HISTORY} from "./actions.type";
 import {FETCH_SERVER_HISTORY_END, FETCH_SERVER_HISTORY_START} from "./mutations.type";
-import {getServerHistory} from "../utils/servers-api";
+import {getServerHistory} from "../utils/server-api";
 import {login} from "../utils/auth";
 
 

@@ -5,33 +5,24 @@
                     <div class="modal-content">
                         <header class="modal-header">
                             <slot name="header">
-                                <h5 class="modal-title">Server History</h5>
+                                <h5 class="modal-title">Enable Notifications</h5>
                                 <button type="button" class="btn btn-danger btn-close" @click="close" aria-label="Close modal"><i class="material-icons btn-icon">close</i></button>
                             </slot>
                         </header>
                         <section class="modal-body" id="modalDescription">
                             <slot name="body">
-                                <table class="table table-striped">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Changed</th>
-                                        <th scope="col">Map Name</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr v-for="(server,index) in history" :key="index">
-                                        <td>{{ server.date_created }}</td>
-                                        <td>{{ server.map_name }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <p>Enabling notifications will allow MapTracker to send you a message whenever a map on your watch list begins on a server you are watching.</p>
                             </slot>
                         </section>
                         <footer class="modal-footer">
                             <slot name="footer">
+                                <button type="button" class="btn btn-primary" @click="confirm" aria-label="Close modal">
+                                    <i class="material-icons btn-icon">check</i>
+                                    <span>Allow</span>
+                                </button>
                                 <button type="button" class="btn btn-secondary" @click="close" aria-label="Close modal">
                                     <i class="material-icons btn-icon">cancel</i>
-                                    <span>Close</span>
+                                    <span>Don't allow</span>
                                 </button>
                             </slot>
                         </footer>
@@ -42,40 +33,23 @@
 </template>
 
 <script>
-    import {FETCH_SERVER_HISTORY} from "../../store/actions.type";
+    import {COOKIE_NOTIFICATION_POPUP_SEEN, enableNotifications} from "../../utils/notify";
     import { mapGetters } from "vuex";
 
     export default {
         name: 'modal',
-        props: {
-            "server": Object,
-        },
         methods: {
-            fetchHistory(id) {
-                this.$store.dispatch(FETCH_SERVER_HISTORY, id).catch((err) => {
-                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
-                        position: 'top-center',
-                        duration: 5000,
-                        fullWidth: true,
-                        fitToScreen: true,
-                        type: 'error'
-                    });
-                });
+            confirm() {
+                this.$cookies.set(COOKIE_NOTIFICATION_POPUP_SEEN, true);
+                enableNotifications(this.userProfile.uuid);
+                this.$emit('close');
             },
             close() {
                 this.$emit('close');
             },
         },
-        watch: {
-            server: function(newValue) {
-                if (newValue == null) {
-                    return;
-                }
-                this.fetchHistory(newValue.id);
-            },
-        },
         computed: {
-            ...mapGetters(["history", "historyCount"]),
+            ...mapGetters(["userProfile"]),
         }
     };
 </script>

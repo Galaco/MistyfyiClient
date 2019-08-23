@@ -14,7 +14,7 @@ function addNewServer(ip, port) {
       ip: ip,
       port: port,
     };
-    return axios.put(url, data, { headers: { Authorization: `Bearer ${getAccessToken()}` }}).then(response => response.data);
+    return axios.put(url, data, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
 }
 
 function deleteServer(ip, port) {
@@ -26,46 +26,11 @@ function deleteServer(ip, port) {
                 ip: ip,
                 port: port
             }
-        }).then(response => response.data);
-}
-
-
-
-function getWatchedLevels() {
-    const url = `${BASE_URL}/api/v1/levels/list`;
-    return axios.get(url, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
-}
-
-function addWatchedLevel(name) {
-    const url = `${BASE_URL}/api/v1/levels/add`;
-    const data = {
-        name: name,
-    };
-    return axios.put(url, data, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
-}
-
-function deleteWatchedLevel(name) {
-    const url = `${BASE_URL}/api/v1/levels/remove`;
-    return axios.delete(url,
-        {
-            headers: { Authorization: `Bearer ${getAccessToken()}` },
-            data: {
-                name: name,
-            }
-        }).then(response => response.data);
-}
-
-function getServerHistory(id) {
-    const url = `${BASE_URL}/api/v1/server/history/${id}`;
-    return axios.get(url, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
+        });
 }
 
 export {
     getServerStatuses,
     addNewServer,
-    deleteServer,
-    getWatchedLevels,
-    addWatchedLevel,
-    deleteWatchedLevel,
-    getServerHistory
+    deleteServer
 };

@@ -4,7 +4,7 @@
             <div class="navbar-header">
                 <router-link class="navbar-brand" :to="{ name: 'home' }">
                     <i class="material-icons app-icon">devices</i>
-                    <span class="navbar-brand-title">MapTracker</span>
+                    <span class="navbar-brand-title">{{ $t('app_title') }}</span>
                 </router-link>
             </div>
             <div>
@@ -13,16 +13,16 @@
                         <router-link :to="{ name: 'servers' }" v-show="isLoggedIn()">
                             <button class="btn btn-info log" v-show="isLoggedIn()">
                                 <i class="material-icons btn-icon">view_list</i>
-                                <span>Servers</span>
+                                <span>{{ $t('header.links.servers') }}</span>
                             </button>
                         </router-link>
                         <button class="btn btn-danger" v-show="isLoggedIn()" @click="handleLogout()">
                             <i class="material-icons btn-icon">power_settings_new</i>
-                            <span>Log Out</span>
+                            <span>{{ $t('header.links.logout') }}</span>
                         </button>
                         <button class="btn btn-info" v-show="!isLoggedIn()" @click="handleLogin()">
                             <i class="material-icons btn-icon">exit_to_app</i>
-                            <span>Log In/Register</span>
+                            <span>{{ $t('header.links.login') }}</span>
                         </button>
                     </li>
                 </ul>

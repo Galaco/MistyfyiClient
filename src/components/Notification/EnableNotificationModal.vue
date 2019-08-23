@@ -53,22 +53,3 @@
         }
     };
 </script>
-
-<style>
-    .modal {
-        background: rgba(255, 255, 255, 0.8);
-        box-shadow: 2px 2px 20px 1px;
-        overflow-x: auto;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .modal-title {
-        line-height: 2rem;
-    }
-
-    .modal-body {
-        max-height: 60vh;
-        overflow-y: scroll;
-    }
-</style>

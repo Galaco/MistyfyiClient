@@ -2,9 +2,9 @@
     <footer class="footer py-4 bg-dark text-white-50">
         <div class="container text-center">
             <router-link class="logo-font" :to="{ name: 'home', params: {} }">
-                MapTracker
-            </router-link>is a dedicated game server map rotation tracker.
-            <span class="attribution">A project by
+                {{ $t('app_title') }}
+            </router-link>{{ $t('footer.description') }}
+            <span class="attribution">{{ $t('footer.owner') }}
         <a rel="noopener noreferrer" target="blank" href="https://www.galaco.me">
           Galaco</a
         > &copy; <span id="footer-year">{{ this.currentYear }}</span>.

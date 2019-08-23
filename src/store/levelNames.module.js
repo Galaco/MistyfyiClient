@@ -1,5 +1,10 @@
 import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from "./actions.type";
-import {FETCH_LEVEL_NAMES_END, FETCH_LEVEL_NAMES_START} from "./mutations.type";
+import {
+    DELETE_LEVEL_NAMES_END,
+    DELETE_LEVEL_NAMES_START,
+    FETCH_LEVEL_NAMES_END,
+    FETCH_LEVEL_NAMES_START
+} from "./mutations.type";
 import {deleteWatchedLevel, getWatchedLevels} from "../utils/levels-api";
 import {login} from "../utils/auth";
 
@@ -36,15 +41,15 @@ const actions = {
             });
     },
     [DELETE_LEVEL_NAMES]({ commit }, params) {
-        commit(FETCH_LEVEL_NAMES_START);
+        commit(DELETE_LEVEL_NAMES_START);
         return deleteWatchedLevel(params.name)
             .then(({ data }) => {
-                commit(FETCH_LEVEL_NAMES_END, data.body);
+                commit(DELETE_LEVEL_NAMES_END, data.body);
             }).catch(({ data }) => {
                 if (data.code === 401) {
                     login();
                 }
-                commit(FETCH_LEVEL_NAMES_END, data);
+                commit(DELETE_LEVEL_NAMES_END, data);
             });
     }
 };
@@ -57,7 +62,11 @@ const mutations = {
         state.levelNames = levelNames;
         state.levelNamesCount = levelNames.length;
         state.loadingLevelNames = false;
-    }
+    },
+    [DELETE_LEVEL_NAMES_START](state) {
+    },
+    [DELETE_LEVEL_NAMES_END](state) {
+    },
 };
 
 export default {

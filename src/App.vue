@@ -76,5 +76,13 @@ export default {
 
   .modal {
     background: rgba(0, 0, 0, 0.8) !important;
+    box-shadow: 2px 2px 20px 1px;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-title {
+    line-height: 2rem;
   }
 </style>

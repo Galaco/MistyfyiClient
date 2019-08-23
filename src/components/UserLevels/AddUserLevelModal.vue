@@ -5,7 +5,7 @@
                     <div class="modal-content">
                         <header class="modal-header">
                             <slot name="header">
-                                <h5 class="modal-title">New Watched Map</h5>
+                                <h5 class="modal-title">{{ $t('servers.mapNames.modals.add.title') }}</h5>
                                 <button type="button" class="btn btn-danger btn-close" @click="close" aria-label="Close modal"><i class="material-icons btn-icon">close</i></button>
                             </slot>
                         </header>
@@ -13,8 +13,8 @@
                             <slot name="body">
                                 <form method="POST">
                                     <div class="form-group">
-                                        <label for="adduserlevel_name">Map name:</label>
-                                        <input type="text" class="form-control" name="ip" id="adduserlevel_name" v-model="userLevelName" placeholder="Map name"/>
+                                        <label for="adduserlevel_name">{{ $t('servers.mapNames.modals.add.form.name') }}</label>
+                                        <input type="text" class="form-control" name="ip" id="adduserlevel_name" v-model="userLevelName" v-bind:placeholder="$t('servers.mapNames.modals.add.form.namePlaceholder')"/>
                                     </div>
                                 </form>
                             </slot>
@@ -23,11 +23,11 @@
                             <slot name="footer">
                                 <button type="button" class="btn btn-primary" @click="submit" aria-label="Save modal">
                                     <i class="material-icons btn-icon">check</i>
-                                    <span>Save</span>
+                                    <span>{{ $t('modal.buttons.save') }}</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary" @click="close" aria-label="Close modal">
                                     <i class="material-icons btn-icon">cancel</i>
-                                    <span>Cancel</span>
+                                    <span>{{ $t('modal.buttons.cancel') }}</span>
                                 </button>
                             </slot>
                         </footer>
@@ -55,17 +55,3 @@
         },
     };
 </script>
-
-<style>
-    .modal {
-        background: rgba(255, 255, 255, 0.8);
-        box-shadow: 2px 2px 20px 1px;
-        overflow-x: auto;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .modal-title {
-        line-height: 2rem;
-    }
-</style>

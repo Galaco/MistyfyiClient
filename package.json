@@ -16,6 +16,7 @@
     "jwt-decode": "^2.2.0",
     "vue": "^2.6.10",
     "vue-cookies": "^1.5.13",
+    "vue-i18n": "^8.14.0",
     "vue-router": "^3.1.2",
     "vue-spinner": "^1.0.3",
     "vue-toasted": "^1.1.27",

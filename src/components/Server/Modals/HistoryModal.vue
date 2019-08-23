@@ -5,7 +5,7 @@
                     <div class="modal-content">
                         <header class="modal-header">
                             <slot name="header">
-                                <h5 class="modal-title">Server History</h5>
+                                <h5 class="modal-title">{{ $t('servers.servers.modals.history.title') }}</h5>
                                 <button type="button" class="btn btn-danger btn-close" @click="close" aria-label="Close modal"><i class="material-icons btn-icon">close</i></button>
                             </slot>
                         </header>
@@ -14,8 +14,8 @@
                                 <table class="table table-striped">
                                     <thead class="thead-dark">
                                     <tr>
-                                        <th scope="col">Changed</th>
-                                        <th scope="col">Map Name</th>
+                                        <th scope="col">{{ $t('servers.servers.modals.history.body.headers.date') }}</th>
+                                        <th scope="col">{{ $t('servers.servers.modals.history.body.headers.mapName') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -31,7 +31,7 @@
                             <slot name="footer">
                                 <button type="button" class="btn btn-secondary" @click="close" aria-label="Close modal">
                                     <i class="material-icons btn-icon">cancel</i>
-                                    <span>Close</span>
+                                    <span>{{ $t('modal.buttons.close') }}</span>
                                 </button>
                             </slot>
                         </footer>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    import {FETCH_SERVER_HISTORY} from "../../store/actions.type";
+    import {FETCH_SERVER_HISTORY} from "../../../store/actions.type";
     import { mapGetters } from "vuex";
 
     export default {
@@ -80,19 +80,7 @@
     };
 </script>
 
-<style>
-    .modal {
-        background: rgba(255, 255, 255, 0.8);
-        box-shadow: 2px 2px 20px 1px;
-        overflow-x: auto;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .modal-title {
-        line-height: 2rem;
-    }
-
+<style scoped>
     .modal-body {
         max-height: 60vh;
         overflow-y: scroll;

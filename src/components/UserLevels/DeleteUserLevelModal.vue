@@ -3,7 +3,7 @@
             <div class="modal" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <header class="modal-header" id="addServerModalTitle">
+                        <header class="modal-header">
                             <slot name="header">
                                 <h5 class="modal-title">Delete Watched Map</h5>
                                 <button type="button" class="btn btn-danger btn-close" @click="close" aria-label="Close modal"><i class="material-icons btn-icon">close</i></button>

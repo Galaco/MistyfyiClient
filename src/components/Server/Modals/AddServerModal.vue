@@ -58,22 +58,14 @@
             },
             submit() {
                 addNewServer(this.serverIP, this.serverPort).then(() => {
-                    this.$toasted.show(`Now watching server ${this.serverIP}:${this.serverPort}`, {
-                        position: 'top-center',
-                        duration: 5000,
-                        fullWidth: true,
-                        fitToScreen: true,
-                        type: 'success'
+                    this.$toasted.global.api_success({
+                        message : `Now watching server: ${this.serverIP}:${this.serverPort}`
                     });
                     this.reset();
                     this.$emit('confirm');
                 }).catch((err) => {
-                    this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
-                        position: 'top-center',
-                        duration: 5000,
-                        fullWidth: true,
-                        fitToScreen: true,
-                        type: 'error'
+                    this.$toasted.global.api_error({
+                        message : err.response.data.message
                     });
                 });
             },

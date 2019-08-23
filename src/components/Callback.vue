@@ -10,7 +10,7 @@
             this.$nextTick(() => {
                 setAccessToken();
                 setIdToken();
-                this.$router.push('servers');
+                window.location.href = '/servers';
             });
         },
     }

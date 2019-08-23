@@ -5,7 +5,7 @@
                     <div class="modal-content">
                         <header class="modal-header" id="addServerModalTitle">
                             <slot name="header">
-                                <h5 class="modal-title">Add server</h5>
+                                <h5 class="modal-title">{{ $t('servers.servers.modals.add.title') }}</h5>
                                 <button type="button" class="btn btn-danger btn-close" @click="close" aria-label="Close modal"><i class="material-icons btn-icon">close</i></button>
                             </slot>
                         </header>
@@ -13,12 +13,12 @@
                             <slot name="body">
                                 <form method="POST">
                                     <div class="form-group">
-                                        <label for="addserver_ip">Server IP Address:</label>
-                                        <input type="text" class="form-control" name="ip" id="addserver_ip" v-model="serverIP" placeholder="Server ip (e.g. 127.0.0.1)"/>
+                                        <label for="addserver_ip">{{ $t('servers.servers.modals.add.form.ip') }}</label>
+                                        <input type="text" class="form-control" name="ip" id="addserver_ip" v-model="serverIP" v-bind:placeholder="$t('servers.servers.modals.add.form.ipPlaceholder')"/>
                                         </div>
                                     <div class="form-group">
-                                        <label for="addserver_port">Server port (optional):</label>
-                                        <input type="number" class="form-control" name="port" id="addserver_port" v-model="serverPort" placeholder="Server port (e.g. 27015)"/>
+                                        <label for="addserver_port">{{ $t('servers.servers.modals.add.form.port') }}</label>
+                                        <input type="number" class="form-control" name="port" id="addserver_port" v-model="serverPort" v-bind:placeholder="$t('servers.servers.modals.add.form.portPlaceholder')"/>
                                     </div>
                                 </form>
                             </slot>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    import {addNewServer} from '../../utils/servers-api';
+    import {addNewServer} from '../../../utils/servers-api';
 
     export default {
         name: 'modal',
@@ -84,17 +84,3 @@
         },
     };
 </script>
-
-<style>
-    .modal {
-        background: rgba(255, 255, 255, 0.8);
-        box-shadow: 2px 2px 20px 1px;
-        overflow-x: auto;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .modal-title {
-        line-height: 2rem;
-    }
-</style>

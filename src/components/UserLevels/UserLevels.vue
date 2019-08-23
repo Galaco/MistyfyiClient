@@ -5,11 +5,11 @@
                 <table class="table table-striped">
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col" class="v-center">Watched Map Names</th>
+                        <th scope="col" class="v-center">{{ $t('servers.mapNames.title') }}</th>
                         <th scope="col" class="controls">
                             <button type="button" class="btn btn-primary" @click="showAddModal()">
                                 <i class="material-icons btn-icon">note_add</i>
-                                <span>Add watch name</span>
+                                <span>{{ $t('servers.mapNames.buttons.add') }}</span>
                             </button>
                         </th>
                     </tr>
@@ -20,14 +20,14 @@
                         <td class="controls">
                             <button type="button" class="btn btn-danger" @click="showDeleteModal(level)">
                                 <i class="material-icons btn-icon">delete</i>
-                                <span>Delete</span>
+                                <span>{{ $t('servers.mapNames.buttons.delete') }}</span>
                             </button>
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="row" v-if="levelNamesCount === 0">
-                    <div class="col-sm-12 table-row-placeholder">You have not added any level names yet.</div>
+                    <div class="col-sm-12 table-row-placeholder">{{ $t('servers.mapNames.noItems') }}</div>
                 </div>
                 <div class="row text-center" v-if="levelNamesCount === -1">
                     <div class="col-sm-12 loading-spinner">
@@ -90,6 +90,7 @@
                         type: 'success'
                     });
                     this.closeAddModal();
+                    this.getUserLevels();
                 }).catch((err) => {
                     this.$toasted.show(`An error occurred: ${err.response.data.message}`, {
                         position: 'top-center',
@@ -154,6 +155,7 @@
     }
 
     .table-row-placeholder {
+        height: 5rem;
         text-align: center;
         padding: 15px 0;
     }

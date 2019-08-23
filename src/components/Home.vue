@@ -4,15 +4,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-5 offset-sm-1 strapline">
-                        <h4>MapTracker</h4>
-                        <p>MapTracker is a near-realtime notification tool for watching map rotations on dedicated video game servers.</p>
-                        <p>Receive notifications on your device when servers you like switch to a map you enjoy.</p>
+                        <h4>{{ $t('home.about.title') }}</h4>
+                        <p>{{ $t('home.about.tagline1') }}</p>
+                        <p>{{ $t('home.about.tagline2') }}</p>
                     </div>
                     <div class="col-sm-4 offset-sm-1">
                         <video src="#" poster="#" controls muted>
-                            <img src="fallback.jpg" alt="How does MapTracker work?">
+                            <img src="fallback.jpg" v-bind:alt="$t('home.about.taglineImageFallback')">
                         </video>
-
                     </div>
                 </div>
             </div>
@@ -22,13 +21,13 @@
                 <div class="row">
                     <div class="col-sm-4 offset-sm-1 text-center">
                         <i class="material-icons heart">favorite_border</i>
-                        <p>Never miss a map again! Play only the maps you love, in the places you love.</p>
-                        <p>Near-realtime notifications pushed to your device when your favourite games servers switch to maps you love.</p>
+                        <p>{{ $t('home.features.feature1.paragraph1') }}</p>
+                        <p>{{ $t('home.features.feature1.paragraph2') }}</p>
                     </div>
                     <div class="col-sm-4 offset-sm-2 text-center">
                         <i class="material-icons games">games</i>
-                        <p>All popular Source Engine games are supported, including Counterstrike: Global Offensive, Garry's Mod, Counterstrike: Source</p>
-                        <p>Is your favorite game not supported? Please make a request and we'll endeavour to add it to our service.</p>
+                        <p>{{ $t('home.features.feature2.paragraph1') }}</p>
+                        <p>{{ $t('home.features.feature2.paragraph2') }}</p>
                     </div>
                 </div>
             </div>
@@ -37,25 +36,25 @@
             <div class="container">
                 <div class="row header">
                     <div class="col-sm-10 offset-sm-1">
-                        <h4>Pricing</h4>
-                        <p>This is a one-map hobby project, but is expensive to keep running. By supporting this project with a small yearly fee, you can keep this project running, and you'll receive plenty of benefits.</p>
-                        <b>All money received will go towards hosting costs.</b>
+                        <h4>{{ $t('home.pricing.title') }}</h4>
+                        <p>{{ $t('home.pricing.strapline') }}</p>
+                        <b>{{ $t('home.pricing.notice') }}</b>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-5 offset-sm-1 tier-free">
-                        <h5 class="tier-header"><i class="material-icons person">person_outline</i>Free</h5>
+                        <h5 class="tier-header"><i class="material-icons person">person_outline</i>{{ $t('home.pricing.free.title') }}</h5>
                         <ul>
-                            <li>Monitor up to 3 game servers concurrently</li>
-                            <li>Watch for up to 3 specific map/level names across watched game servers</li>
+                            <li>{{ $t('home.pricing.free.feature1') }}</li>
+                            <li>{{ $t('home.pricing.free.feature2') }}</li>
                         </ul>
                     </div>
                     <div class="col-sm-5 tier-donator">
-                        <h5 class="tier-header"><i class="material-icons star">star_border</i>Donator (coming soon...)</h5>
+                        <h5 class="tier-header"><i class="material-icons star">star_border</i>{{ $t('home.pricing.paid.title') }}</h5>
                         <ul>
-                            <li>Monitor up to 100 game servers concurrently</li>
-                            <li>Watch for up to 100 specific map/level names across watched game servers</li>
-                            <li>Wildcard map/level name support</li>
+                            <li>{{ $t('home.pricing.paid.feature1') }}</li>
+                            <li>{{ $t('home.pricing.paid.feature2') }}</li>
+                            <li>{{ $t('home.pricing.paid.feature3') }}</li>
                         </ul>
                     </div>
                 </div>

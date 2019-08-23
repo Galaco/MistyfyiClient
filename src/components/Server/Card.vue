@@ -4,17 +4,17 @@
         <div class="card-body">
             <h5 class="card-title">{{ server.name }}</h5>
             <p class="card-subtitle mb-2 text-muted">{{ server.ip_address }}:{{ server.port}}</p>
-            <p class="card-text">{{ server.current_map }}</p>
+            <p class="card-text map-name">{{ server.current_map }}</p>
             <LastUpdated :date="server.last_updated"/>
         </div>
         <div class="card-footer">
             <button type="button" class="btn btn-secondary float-left" @click="history">
                 <i class="material-icons btn-icon">history</i>
-                <span>History</span>
+                <span>{{ $t('servers.servers.buttons.history') }}</span>
             </button>
             <button type="button" class="btn btn-danger float-right" @click="deleteServer">
                 <i class="material-icons btn-icon">delete</i>
-                <span>Delete</span>
+                <span>{{ $t('servers.servers.buttons.delete') }}</span>
             </button>
         </div>
     </div>
@@ -24,7 +24,7 @@
     import LastUpdated from './LastUpdated';
 
     export default {
-        name: 'Server',
+        name: 'ServerCard',
         components: {
             LastUpdated,
         },
@@ -44,6 +44,7 @@
 
 <style scoped>
     .server.card {
+        margin-bottom: 15px;
         padding: 0;
         box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
     }
@@ -56,6 +57,10 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+    }
+    .map-name {
+        height: 3rem;
+        overflow-y: hidden;
     }
     .card-footer button {
         font-size: 0.8rem;

@@ -148,7 +148,7 @@
             }, 15000);
         },
         computed: {
-            ...mapGetters(["servers", "serversCount", "serverSelected"]),
+            ...mapGetters(["servers", "serversCount", "serverSelected", "userProfile"]),
         }
     }
 </script>

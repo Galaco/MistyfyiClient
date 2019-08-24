@@ -43,8 +43,8 @@ export default function(l) {
                         },
                         paid: {
                             title: "Donator (coming soon...)",
-                            feature1: "Monitor up to 100 game servers concurrently",
-                            feature2: "Watch for up to 100 specific map/level names across watched game servers",
+                            feature1: "Monitor up to 20 game servers concurrently",
+                            feature2: "Watch for up to 50 specific map/level names across watched game servers",
                             feature3: "Wildcard map/level name support"
                         }
                     }
@@ -52,6 +52,10 @@ export default function(l) {
                 servers: {
                     servers: {
                         title: "Watched Servers",
+                        instructions: {
+                            free: "As a free user, you may watch up to 3 servers. You may also watch for up to 5 map names.",
+                            paid: "As a paid user, you may watch up to 20 servers. You may also watch for up to 50 map names. Wildcard (*) names are also supported, e.g. 'de_dust*'",
+                        },
                         buttons: {
                             add: "Add server",
                             history: "History",

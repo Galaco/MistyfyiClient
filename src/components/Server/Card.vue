@@ -54,6 +54,8 @@
         height: 140px;
         text-align: center;
         line-height: 140px;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
     .server .card-title {
         text-overflow: ellipsis;

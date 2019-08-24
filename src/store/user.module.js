@@ -24,11 +24,11 @@ const actions = {
         return getUserProfile(params)
             .then(({ data }) => {
                 commit(FETCH_USER_PROFILE_END, data.body);
-            }).catch(({ data }) => {
-                if (data.code === 401) {
+            }).catch((err) => {
+                const body = err.response.data;
+                if (body.code === 401) {
                     reauthenticate();
                 }
-                commit(FETCH_USER_PROFILE_END, data);
             });
     }
 };

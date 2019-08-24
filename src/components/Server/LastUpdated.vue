@@ -21,7 +21,7 @@
             this.formatted = new TimeAgo('en-US').format(new Date(this.date * 1000));
         },
         watch: {
-            date: function(newVal, oldVal) {
+            date: function() {
                 this.formatted = new TimeAgo('en-US').format(new Date(this.date * 1000));
             }
         }

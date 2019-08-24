@@ -33,11 +33,12 @@ const actions = {
         return getWatchedLevels()
             .then(({ data }) => {
                 commit(FETCH_LEVEL_NAMES_END, data.body);
-            }).catch(({ data }) => {
-                if (data.code === 401) {
+            }).catch((err) => {
+                const resp = err.response.data;
+                if (resp.code === 401) {
                     reauthenticate();
                 }
-                commit(FETCH_LEVEL_NAMES_END, data);
+                commit(FETCH_LEVEL_NAMES_END, resp.body);
             });
     },
     [DELETE_LEVEL_NAMES]({ commit }, params) {
@@ -45,11 +46,12 @@ const actions = {
         return deleteWatchedLevel(params.name)
             .then(({ data }) => {
                 commit(DELETE_LEVEL_NAMES_END, data.body);
-            }).catch(({ data }) => {
-                if (data.code === 401) {
+            }).catch((err) => {
+                const resp = err.response.data;
+                if (resp.code === 401) {
                     reauthenticate();
                 }
-                commit(DELETE_LEVEL_NAMES_END, data);
+                commit(DELETE_LEVEL_NAMES_END, resp.body);
             });
     }
 };
@@ -63,9 +65,9 @@ const mutations = {
         state.levelNamesCount = levelNames.length;
         state.loadingLevelNames = false;
     },
-    [DELETE_LEVEL_NAMES_START](state) {
+    [DELETE_LEVEL_NAMES_START]() {
     },
-    [DELETE_LEVEL_NAMES_END](state) {
+    [DELETE_LEVEL_NAMES_END]() {
     },
 };
 

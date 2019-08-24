@@ -1,6 +1,6 @@
 <template>
     <div class="server card">
-        <img class="card-img-top" src="#" alt="#">
+        <img class="card-img-top" src="#" v-bind:alt="`${server.current_map} thumbnail`">
         <div class="card-body">
             <h5 class="card-title">{{ server.name }}</h5>
             <p class="card-subtitle mb-2 text-muted">{{ server.ip_address }}:{{ server.port}}</p>
@@ -52,6 +52,8 @@
         background-color: #DDD;
         width: 100%;
         height: 140px;
+        text-align: center;
+        line-height: 140px;
     }
     .server .card-title {
         text-overflow: ellipsis;

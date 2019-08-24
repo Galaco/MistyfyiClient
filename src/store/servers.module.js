@@ -28,8 +28,9 @@ const actions = {
         return getServerStatuses()
             .then(({ data }) => {
                 commit(FETCH_SERVERS_END, data.body);
-            }).catch(({ data }) => {
-                if (data.code === 401) {
+            }).catch((err) => {
+                const resp = err.response.data;
+                if (resp.code === 401) {
                     reauthenticate();
                 }
             });
@@ -39,11 +40,12 @@ const actions = {
         return deleteServer(params.ip_address, params.port)
             .then(({ data }) => {
                 commit(DELETE_SERVERS_END, data.body);
-            }).catch((err, data) => {
-                if (data.code === 401) {
+            }).catch((err) => {
+                const resp = err.response.data;
+                if (resp.code === 401) {
                     reauthenticate();
                 }
-                commit(DELETE_SERVERS_END, data.body);
+                commit(DELETE_SERVERS_END, resp.body);
             });
     }
 };
@@ -57,9 +59,9 @@ const mutations = {
         state.serversCount = servers.length;
         state.isLoading = false;
     },
-    [DELETE_SERVERS_START](state) {
+    [DELETE_SERVERS_START]() {
     },
-    [DELETE_SERVERS_END](state) {
+    [DELETE_SERVERS_END]() {
     },
 };
 

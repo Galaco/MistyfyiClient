@@ -32,11 +32,11 @@ const actions = {
         return getServerHistory(params)
             .then(({ data }) => {
                 commit(FETCH_SERVER_HISTORY_END, data.body);
-            }).catch(({ data }) => {
-                if (data.code === 401) {
+            }).catch((err) => {
+                const resp = err.response.data;
+                if (resp.code === 401) {
                     reauthenticate();
                 }
-                commit(FETCH_SERVER_HISTORY_END, data);
             });
     },
     [SELECT_SERVER]({ commit }, params) {

@@ -23,9 +23,9 @@
 </template>
 
 <script>
-    import ServerList from './Server/ServerList';
-    import EnableNotificationModal from './Notification/EnableNotificationModal';
-    import UserLevels from './UserLevels/UserLevels';
+    import ServerList from '../components/Server/ServerList';
+    import EnableNotificationModal from '../components/Notification/EnableNotificationModal';
+    import UserLevels from '../components/UserLevels/UserLevels';
     import {shouldDisplayNotificationPopup} from "../utils/notify";
     import {FETCH_USER_PROFILE} from "../store/actions.type";
     import { mapGetters } from "vuex";

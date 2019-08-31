@@ -2,11 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from "./router";
 import store from "./store";
-import VueToasted  from 'vue-toasted';
+import VueToasted from 'vue-toasted';
 import VueCookies from 'vue-cookies';
+import VueMaterial from 'vue-material';
 import VueI18n from 'vue-i18n';
 import locale from './locale';
 
+Vue.use(VueMaterial);
 Vue.use(VueToasted);
 Vue.toasted.register('api_error', (payload) => {
   if(! payload.message) {

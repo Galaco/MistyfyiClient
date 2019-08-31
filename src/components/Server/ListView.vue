@@ -2,24 +2,20 @@
     <div class="container list-view">
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-striped">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">{{ $t('servers.servers.list.headers.server') }}</th>
-                        <th scope="col">{{ $t('servers.servers.list.headers.address') }}</th>
-                        <th scope="col">{{ $t('servers.servers.list.headers.map') }}</th>
-                        <th scope="col">{{ $t('servers.servers.list.headers.updated') }}</th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                <md-table>
+                    <md-table-row>
+                        <md-table-head scope="col">{{ $t('servers.servers.list.headers.server') }}</md-table-head>
+                        <md-table-head scope="col">{{ $t('servers.servers.list.headers.address') }}</md-table-head>
+                        <md-table-head scope="col">{{ $t('servers.servers.list.headers.map') }}</md-table-head>
+                        <md-table-head scope="col">{{ $t('servers.servers.list.headers.updated') }}</md-table-head>
+                        <md-table-head scope="col"></md-table-head>
+                    </md-table-row>
                     <Row v-for="(server,index) in servers" :key="index"
                          :server="server"
                          @delete="showDelete"
                          @history="showHistory"
                     />
-                    </tbody>
-                </table>
+                </md-table>
             </div>
         </div>
         <div class="row" v-if="serversCount === 0">

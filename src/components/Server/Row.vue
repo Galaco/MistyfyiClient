@@ -1,20 +1,21 @@
 <template>
-    <tr class="server">
-        <td class="list-text">{{ server.name }}</td>
-        <td class="list-text">{{ server.ip_address }}:{{ server.port}}</td>
-        <td class="list-text map-name">{{ server.current_map }}</td>
-        <td class="list-text last-updated"><LastUpdated :date="server.last_updated"/></td>
-        <td class="list-controls">
-            <button type="button" class="btn btn-secondary float-left" @click="history">
+    <md-table-row class="server">
+        <md-table-cell class="list-text">{{ server.name }}</md-table-cell>
+        <md-table-cell class="list-text">{{ server.ip_address }}:{{ server.port}}</md-table-cell>
+        <md-table-cell class="list-text map-name">{{ server.current_map }}</md-table-cell>
+        <md-table-cell class="list-text last-updated"><LastUpdated :date="server.last_updated"/></md-table-cell>
+        <md-table-cell class="list-controls">
+
+            <md-button class="md-primary" @click="history">
                 <i class="material-icons btn-icon">history</i>
                 <span>{{ $t('servers.servers.buttons.history') }}</span>
-            </button>
-            <button type="button" class="btn btn-danger float-right" @click="deleteServer">
+            </md-button>
+            <md-button class="md-accent" @click="deleteServer">
                 <i class="material-icons btn-icon">delete</i>
                 <span>{{ $t('servers.servers.buttons.delete') }}</span>
-            </button>
-        </td>
-    </tr>
+            </md-button>
+        </md-table-cell>
+    </md-table-row>
 </template>
 
 <script>

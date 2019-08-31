@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+        <Header/>
         <div class="section-1 font-weight-light mt-4 text-white">
             <div class="container">
                 <div class="row">
@@ -64,8 +65,10 @@
 </template>
 
 <script>
+    import Header from "../components/layout/Header";
     export default {
-        name: 'Home'
+        name: 'Home',
+        components: {Header}
     }
 </script>
 

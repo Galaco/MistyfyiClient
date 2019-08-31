@@ -12,21 +12,21 @@
                 <ul class="navbar-nav ml-auto mt-2 mt-md-0">
                     <li class="nav-item">
                         <router-link :to="{ name: 'servers' }" v-show="isLoggedIn()">
-                            <button class="btn btn-info log" v-show="isLoggedIn()">
+                            <md-button class="md-primary" v-show="isLoggedIn()">
                                 <i class="material-icons btn-icon">view_list</i>
                                 <span>{{ $t('header.links.servers') }}</span>
-                            </button>
+                            </md-button>
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-danger" v-show="isLoggedIn()" @click="handleLogout()">
+                        <md-button class="btn btn-danger md-primary" v-show="isLoggedIn()" @click="handleLogout()">
                             <i class="material-icons btn-icon">power_settings_new</i>
                             <span>{{ $t('header.links.logout') }}</span>
-                        </button>
-                        <button class="btn btn-info" v-show="!isLoggedIn()" @click="handleLogin()">
+                        </md-button>
+                        <md-button class="btn btn-info md-accent" v-show="!isLoggedIn()" @click="handleLogin()">
                             <i class="material-icons btn-icon">exit_to_app</i>
                             <span>{{ $t('header.links.login') }}</span>
-                        </button>
+                        </md-button>
                     </li>
                 </ul>
             </div>
@@ -60,6 +60,11 @@
 
 <style scoped>
     .navbar {
+        position: fixed;
+        width: 100vw;
+        height: 48px;
+        top:0;
+        left: 0;
         background: #fafbfc;
         margin-bottom: 16px;
         box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);

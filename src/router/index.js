@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./../components/Home";
-import Callback from "./../components/Callback";
-import Servers from "./../components/Servers";
+import Home from "../pages/Home";
+import Callback from "../pages/Callback";
+import Servers from "../pages/Servers";
 import { requireAuth } from './../utils/auth';
 
 Vue.use(Router);

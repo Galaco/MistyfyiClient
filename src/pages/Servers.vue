@@ -1,17 +1,11 @@
 <template>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="alert alert-primary" role="alert" v-show="userProfile.isSubscribed == false">
-                        {{ $t('servers.servers.instructions.free') }}
-                    </div>
-                    <div class="alert alert-primary" role="alert" v-show="userProfile.isSubscribed == true">
-                        {{ $t('servers.servers.instructions.paid') }}
-                    </div>
-                </div>
-            </div>
-        </div>
+    <span>
+        <span class="md-subheading" v-show="userProfile.isSubscribed === true">
+                {{ $t('servers.servers.instructions.free') }}
+            </span>
+            <span class="md-subheading" v-show="userProfile.isSubscribed === false">
+                {{ $t('servers.servers.instructions.paid') }}
+            </span>
         <ServerList/>
         <UserLevels/>
         <EnableNotificationModal
@@ -19,7 +13,7 @@
                 @confirm="closeEnableNotificationsPopup"
                 @close="closeEnableNotificationsPopup"
         />
-    </div>
+    </span>
 </template>
 
 <script>

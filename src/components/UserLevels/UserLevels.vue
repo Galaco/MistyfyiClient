@@ -2,30 +2,28 @@
     <div class="container level-list">
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-striped">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col" class="v-center">{{ $t('servers.mapNames.title') }}</th>
-                        <th scope="col" class="controls">
-                            <button type="button" class="btn btn-primary" @click="showAddModal()">
-                                <i class="material-icons btn-icon">note_add</i>
-                                <span>{{ $t('servers.mapNames.buttons.add') }}</span>
-                            </button>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="(level,index) in levelNames" :key="index">
-                        <td class="v-center">{{ level.name }}</td>
-                        <td class="controls">
-                            <button type="button" class="btn btn-danger" @click="showDeleteModal(level)">
+                <md-table md-card>
+                    <md-table-toolbar>
+                        <h1 class="md-title">{{ $t('servers.mapNames.title') }}</h1>
+                        <md-button class="md-primary" @click="showAddModal()">
+                            <i class="material-icons btn-icon">note_add</i>
+                            <span>{{ $t('servers.mapNames.buttons.add') }}</span>
+                        </md-button>
+                    </md-table-toolbar>
+                    <md-table-row>
+                        <md-table-head class="v-center">Map Name</md-table-head>
+                        <md-table-head class="controls"></md-table-head>
+                    </md-table-row>
+                    <md-table-row v-for="(level,index) in levelNames" :key="index">
+                        <md-table-cell class="v-center">{{ level.name }}</md-table-cell>
+                        <md-table-cell class="controls">
+                            <md-button class="md-accent" @click="showDeleteModal(level)">
                                 <i class="material-icons btn-icon">delete</i>
                                 <span>{{ $t('servers.mapNames.buttons.delete') }}</span>
-                            </button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                            </md-button>
+                        </md-table-cell>
+                    </md-table-row>
+                </md-table>
                 <div class="row" v-if="levelNamesCount === 0">
                     <div class="col-sm-12 table-row-placeholder">{{ $t('servers.mapNames.noItems') }}</div>
                 </div>
@@ -37,6 +35,7 @@
             </div>
         </div>
         <AddUserLevelModal
+                :md-active.sync="isAddModalVisible"
                 v-show="isAddModalVisible"
                 @close="closeAddModal"
                 @confirm="addLevel"/>

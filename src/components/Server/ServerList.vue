@@ -1,50 +1,46 @@
 <template>
     <div>
         <div class="container server-list">
-            <div class="row">
-                <div class="col-sm-12">
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col" class="v-center">{{ $t('servers.servers.title') }}</th>
-                            <th scope="col" class="controls">
-                                <div class="btn-group btn-group-toggle view-toggle">
-                                    <label class="btn btn-secondary" id="server-view-select-card" v-bind:class="{ active: displayVariant === 'card' }">
-                                        <input type="radio" name="server-view" autocomplete="off" checked @click="setViewMode('card')">
-                                        <i class="material-icons btn-icon">view_module</i>
-                                    </label>
-                                    <label class="btn btn-secondary" id="server-view-select-list" v-bind:class="{ active: displayVariant === 'list' }">
-                                        <input type="radio" name="server-view" autocomplete="off" @click="setViewMode('list')">
-                                        <i class="material-icons btn-icon">list</i>
-                                    </label>
-                                </div>
-                                <button
-                                        type="button"
-                                        class="btn btn-primary"
-                                        @click="showAddServerModal"
-                                >
-                                    <i class="material-icons btn-icon">note_add</i>
-                                    <span>{{ $t('servers.servers.buttons.add') }}</span>
-                                </button>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <md-card>
+
+            </md-card>
+            <md-table md-card>
+                <md-table-toolbar>
+                    <h1 class="md-title">{{ $t('servers.servers.title') }}</h1>
+                    <md-table-head scope="col" class="controls">
+                        <div class="btn-group btn-group-toggle view-toggle">
+                            <label class="btn btn-secondary" id="server-view-select-card" v-bind:class="{ active: displayVariant === 'card' }">
+                                <input type="radio" name="server-view" autocomplete="off" checked @click="setViewMode('card')">
+                                <i class="material-icons btn-icon">view_module</i>
+                            </label>
+                            <label class="btn btn-secondary" id="server-view-select-list" v-bind:class="{ active: displayVariant === 'list' }">
+                                <input type="radio" name="server-view" autocomplete="off" @click="setViewMode('list')">
+                                <i class="material-icons btn-icon">list</i>
+                            </label>
+                        </div>
+                        <button
+                                type="button"
+                                class="btn btn-primary"
+                                @click="showAddServerModal"
+                        >
+                            <i class="material-icons btn-icon">note_add</i>
+                            <span>{{ $t('servers.servers.buttons.add') }}</span>
+                        </button>
+                    </md-table-head>
+                </md-table-toolbar>
+
+                <ListView
+                        v-show="displayVariant === 'list'"
+                        @showHistory="showServerHistoryModal"
+                        @showDelete="showDeleteServerModal"
+                />
+                <CardView
+                        v-show="displayVariant === 'card'"
+                        @showHistory="showServerHistoryModal"
+                        @showDelete="showDeleteServerModal"
+                />
+            </md-table>
         </div>
-        <CardView
-                v-show="displayVariant === 'card'"
-                @showHistory="showServerHistoryModal"
-                @showDelete="showDeleteServerModal"
-        />
-        <ListView
-                v-show="displayVariant === 'list'"
-                @showHistory="showServerHistoryModal"
-                @showDelete="showDeleteServerModal"
-        />
         <AddServerModal
                 v-show="isNewServerModalVisible"
                 @close="closeAddServerModal"

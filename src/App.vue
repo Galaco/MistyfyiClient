@@ -1,22 +1,22 @@
 <template>
-  <div id="app" class="d-flex flex-column h-100">
-    <Header></Header>
-    <div class="content">
-      <router-view></router-view>
-    </div>
-    <Footer />
-  </div>
+  <span>
+    <App v-show="isLoggedIn()"/>
+    <router-view v-if="!isLoggedIn()"/>
+  </span>
 </template>
 
 <script>
-  import Header from "./components/layout/Header.vue";
-  import Footer from "./components/layout/Footer.vue";
+  import {isLoggedIn} from "./utils/auth";
+  import App from "./components/layout/App";
 
 export default {
+
   name: 'app',
   components: {
-    Header,
-    Footer
+    App
+  },
+  methods: {
+    isLoggedIn,
   }
 }
 </script>
@@ -24,23 +24,6 @@ export default {
 <style>
   * {
     box-sizing: border-box;
-  }
-
-  body {
-    overflow: hidden;
-  }
-
-  #app {
-    font-family: 'Source Sans Pro', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-    background: #f1f4f6;
-    overflow-y: auto;
-  }
-
-  #app > .content {
-    flex: 1 0 auto;
   }
 
   .material-icons {
@@ -72,17 +55,5 @@ export default {
     margin-top: -4px;
     vertical-align:middle;
     font-size: 18px;
-  }
-
-  .modal {
-    background: rgba(0, 0, 0, 0.8) !important;
-    box-shadow: 2px 2px 20px 1px;
-    overflow-x: auto;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .modal-title {
-    line-height: 2rem;
   }
 </style>

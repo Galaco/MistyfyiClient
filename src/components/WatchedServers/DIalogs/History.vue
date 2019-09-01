@@ -1,20 +1,20 @@
 <template>
-    <md-dialog :md-active.sync="show" id="serverHistoryModal">
-        <md-dialog-title>{{ $t('servers.servers.modals.history.title') }}</md-dialog-title>
-        <md-content>
+    <md-dialog :md-active.sync="show" id="serverHistoryDialog">
+        <md-dialog-title>{{ $t('servers.servers.dialogs.history.title') }}</md-dialog-title>
+        <md-dialog-content>
             <md-table class="vh60">
                 <md-table-row>
-                    <md-table-head>{{ $t('servers.servers.modals.history.body.headers.date') }}</md-table-head>
-                    <md-table-head>{{ $t('servers.servers.modals.history.body.headers.mapName') }}</md-table-head>
+                    <md-table-head>{{ $t('servers.servers.dialogs.history.body.headers.date') }}</md-table-head>
+                    <md-table-head>{{ $t('servers.servers.dialogs.history.body.headers.mapName') }}</md-table-head>
                 </md-table-row>
                 <md-table-row v-for="(server,index) in history" :key="index">
                     <md-table-cell>{{ server.date_created }}</md-table-cell>
                     <md-table-cell>{{ server.map_name }}</md-table-cell>
                 </md-table-row>
             </md-table>
-        </md-content>
+        </md-dialog-content>
         <md-dialog-actions>
-            <md-button class="md-secondary" @click="close">{{ $t('modal.buttons.close') }}</md-button>
+            <md-button class="md-secondary" @click="close">{{ $t('dialog.buttons.close') }}</md-button>
         </md-dialog-actions>
     </md-dialog>
 </template>
@@ -24,7 +24,7 @@
     import { mapGetters } from "vuex";
 
     export default {
-        name: 'modal',
+        name: 'History',
         props: {
             show: Boolean,
             server: Object,

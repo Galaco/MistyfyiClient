@@ -7,7 +7,7 @@
 
 <script>
   import {isLoggedIn} from "./utils/auth";
-  import App from "./components/layout/App";
+  import App from "./components/Layout/App";
 
 export default {
 

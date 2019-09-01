@@ -1,8 +1,8 @@
 <template>
-  <span>
-    <App v-show="isLoggedIn()"/>
-    <router-view v-if="!isLoggedIn()"/>
-  </span>
+  <div>
+    <App v-if="isLoggedIn() && !$route.meta.staticPage"/>
+    <router-view v-if="!isLoggedIn() || $route.meta.staticPage"/>
+  </div>
 </template>
 
 <script>

@@ -48,6 +48,8 @@
 
 <style scoped>
     .md-card {
+        width: 25%;
+        min-width: 240px;
         margin: 4px;
         display: inline-block;
         vertical-align: top;

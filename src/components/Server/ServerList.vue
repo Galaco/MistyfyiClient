@@ -1,58 +1,44 @@
 <template>
-    <div>
-        <div class="container server-list">
-            <md-card>
-
-            </md-card>
-            <md-table md-card>
+    <div class="server-list">
+        <md-card class="md-elevation-6">
+            <md-table>
                 <md-table-toolbar>
                     <h1 class="md-title">{{ $t('servers.servers.title') }}</h1>
-                    <md-table-head scope="col" class="controls">
-                        <div class="btn-group btn-group-toggle view-toggle">
-                            <label class="btn btn-secondary" id="server-view-select-card" v-bind:class="{ active: displayVariant === 'card' }">
-                                <input type="radio" name="server-view" autocomplete="off" checked @click="setViewMode('card')">
-                                <i class="material-icons btn-icon">view_module</i>
-                            </label>
-                            <label class="btn btn-secondary" id="server-view-select-list" v-bind:class="{ active: displayVariant === 'list' }">
-                                <input type="radio" name="server-view" autocomplete="off" @click="setViewMode('list')">
-                                <i class="material-icons btn-icon">list</i>
-                            </label>
-                        </div>
-                        <button
-                                type="button"
-                                class="btn btn-primary"
-                                @click="showAddServerModal"
-                        >
-                            <i class="material-icons btn-icon">note_add</i>
-                            <span>{{ $t('servers.servers.buttons.add') }}</span>
-                        </button>
-                    </md-table-head>
+                    <div>
+                        <md-icon class="view-toggle-icon">list</md-icon>
+                        <md-switch v-model="displayAsCard" class="md-primary view-toggle"></md-switch>
+                        <md-icon class="view-toggle-icon">view_module</md-icon>
+                    </div>
+                    <md-button class="md-primary" @click="showAddServerModal">
+                        <i class="material-icons btn-icon">note_add</i>
+                        <span>{{ $t('servers.servers.buttons.add') }}</span>
+                    </md-button>
                 </md-table-toolbar>
 
                 <ListView
-                        v-show="displayVariant === 'list'"
-                        @showHistory="showServerHistoryModal"
-                        @showDelete="showDeleteServerModal"
-                />
-                <CardView
-                        v-show="displayVariant === 'card'"
+                        v-show="displayAsCard === false"
                         @showHistory="showServerHistoryModal"
                         @showDelete="showDeleteServerModal"
                 />
             </md-table>
-        </div>
+            <CardView
+                    v-show="displayAsCard === true"
+                    @showHistory="showServerHistoryModal"
+                    @showDelete="showDeleteServerModal"
+            />
+        </md-card>
         <AddServerModal
-                v-show="isNewServerModalVisible"
+                v-bind:show="isNewServerModalVisible"
                 @close="closeAddServerModal"
                 @confirm="closeAddServerModal"
         />
         <DeleteServerModal
-                v-show="isDeleteServerModalVisible"
+                v-bind:show="isDeleteServerModalVisible"
                 @close="closeDeleteServerModal"
                 @confirm="deleteServer"
         />
         <ServerHistoryModal
-                v-show="isServerHistoryModalVisible"
+                v-bind:show="isServerHistoryModalVisible"
                 v-bind:server="serverSelected"
                 @close="closeServerHistoryModal"
         />
@@ -79,16 +65,13 @@
         },
         data() {
             return {
-                displayVariant: 'card',
+                displayAsCard: true,
                 isNewServerModalVisible: false,
                 isDeleteServerModalVisible: false,
                 isServerHistoryModalVisible: false,
             };
         },
         methods: {
-            setViewMode(variant) {
-                this.displayVariant = variant;
-            },
             getPrivateServers() {
                 this.$store.dispatch(FETCH_SERVERS).catch((err) => {
                     this.$toasted.global.api_error({
@@ -150,20 +133,11 @@
 </script>
 
 <style scoped>
-    th.v-center, td.v-center {
-        vertical-align: middle;
-    }
-
-    td.controls, th.controls {
-        text-align: right;
-    }
-    .container.server-list {
-        margin-bottom: 15px;
-    }
     .view-toggle {
-        margin: 0 8px;
+        margin-right: 0;
     }
-    #server-view-select-card, #server-view-select-list {
-        cursor: pointer;
+    .view-toggle-icon {
+        padding: 16px;
+        margin-top: -12px;
     }
 </style>

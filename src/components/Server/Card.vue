@@ -65,4 +65,10 @@
         text-overflow: ellipsis;
         overflow: hidden;
     }
+
+    .md-title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        height: 64px;
+    }
 </style>

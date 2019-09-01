@@ -41,8 +41,8 @@ const router = new Router({
   ]
 });
 
-router.afterEach((to, from) => {
-  document.title = to.meta.title || $t('footer.description');
+router.afterEach((to) => {
+  document.title = to.meta.title;
 });
 
 export default router;

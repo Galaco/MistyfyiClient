@@ -2,7 +2,7 @@
     <div class="page-container">
         <md-app md-waterfall md-mode="flexible" class="vh100">
             <md-app-toolbar class="md-large md-primary" style="overflow-x: hidden;">
-                <Toolbar title="Servers" :toggleMenu="toggleMenu"/>
+                <Toolbar :title="this.$route.meta.header" :toggleMenu="toggleMenu"/>
             </md-app-toolbar>
             <md-app-drawer :md-active.sync="menuVisible">
                 <Drawer />

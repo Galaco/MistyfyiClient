@@ -48,6 +48,8 @@
 
 <style scoped>
     .md-card {
+        width: 25%;
+        min-width: 240px;
         margin: 4px;
         display: inline-block;
         vertical-align: top;
@@ -62,5 +64,11 @@
         line-height: 140px;
         text-overflow: ellipsis;
         overflow: hidden;
+    }
+
+    .md-title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        height: 64px;
     }
 </style>

@@ -129,12 +129,8 @@
 </script>
 
 <style scoped>
-    th.v-center, td.v-center {
-        vertical-align: middle;
-    }
-
-    td.controls, th.controls {
-        text-align: right;
+    .level-list {
+        margin-bottom: 16px;
     }
 
     .table-row-placeholder {

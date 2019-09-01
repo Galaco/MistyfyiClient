@@ -16,7 +16,7 @@
     import { mapGetters } from "vuex";
 
     export default {
-        name: 'dialog',
+        name: 'EnableNotifications',
         props: {
             show: Boolean,
         },

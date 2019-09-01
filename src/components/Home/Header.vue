@@ -6,7 +6,7 @@
                 <span class="navbar-brand-title">{{ $t('app_title') }}</span>
             </router-link>
 
-            <div class="md-toolbar-section-end">
+            <div class="md-toolbar-section-end" style="margin-right: 32px; overflow-x: hidden;">
                 <router-link :to="{ name: 'servers' }" v-show="isLoggedIn()" id="toolbarOpenAppButton">
                     <md-button class="md-primary" v-show="isLoggedIn()">
                         <span>{{ $t('header.links.openApp') }}</span>

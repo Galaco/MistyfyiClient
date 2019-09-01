@@ -55,3 +55,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .instructions {
+        margin-bottom: 16px;
+    }
+</style>

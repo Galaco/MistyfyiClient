@@ -1,5 +1,5 @@
 <template>
-    <md-dialog :md-active.sync="show" id="addMapNameDialog">
+    <md-dialog :md-active.sync="show" id="addMapNameDialog" :md-click-outside-to-close="false">
         <md-dialog-title>{{ $t('servers.mapNames.dialogs.add.title') }}</md-dialog-title>
         <md-dialog-content>
             <form novalidate class="md-layout md-gutter">

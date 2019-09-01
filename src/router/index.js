@@ -7,24 +7,42 @@ import { requireAuth } from './../utils/auth';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
       name: "home",
       path: "/",
       component: Home,
+      meta: {
+        title: "MapTracker - Know when communities you love play maps you love",
+        staticPage: true
+      },
     },
     {
       name: "callback",
       path: "/callback",
       component: Callback,
+      meta: {
+        staticPage: false
+      },
     },
     {
       name: "servers",
       path: "/servers",
       component: Servers,
       beforeEnter: requireAuth,
+      meta: {
+        title: "MapTracker - Watched Servers",
+        header: "Servers",
+        staticPage: false
+      },
     }
   ]
 });
+
+router.afterEach((to) => {
+  document.title = to.meta.title;
+});
+
+export default router;

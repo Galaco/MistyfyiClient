@@ -8,7 +8,7 @@
                         <md-table-head scope="col">{{ $t('servers.servers.list.headers.address') }}</md-table-head>
                         <md-table-head scope="col">{{ $t('servers.servers.list.headers.map') }}</md-table-head>
                         <md-table-head scope="col">{{ $t('servers.servers.list.headers.updated') }}</md-table-head>
-                        <md-table-head scope="col"></md-table-head>
+                        <md-table-head scope="col">{{ $t('table.headers.actions') }}</md-table-head>
                     </md-table-row>
                     <Row v-for="(server,index) in servers" :key="index"
                          :server="server"

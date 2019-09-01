@@ -1,7 +1,7 @@
 <template>
     <div class="md-toolbar-row">
         <div class="md-toolbar-section-start">
-            <md-button class="md-icon-button" @click="toggleMenu">
+            <md-button class="md-icon-button" @click="toggleMenu" id="toggleMenuButton">
                 <md-icon>menu</md-icon>
             </md-button>
             <span class="md-title">{{ title }}</span>

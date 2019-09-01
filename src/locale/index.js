@@ -8,7 +8,7 @@ export default function(l) {
                     links: {
                         login: "Log in/Register",
                         logout: "Log out",
-                        servers: "Servers"
+                        openApp: "Go to app",
                     }
                 },
                 footer: {
@@ -124,6 +124,11 @@ export default function(l) {
                         close: "Close",
                         save: "Save",
                         delete: "Delete"
+                    }
+                },
+                table: {
+                    headers: {
+                        actions: "Actions",
                     }
                 }
             }

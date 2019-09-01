@@ -133,6 +133,9 @@
 </script>
 
 <style scoped>
+    .server-list {
+        margin-bottom: 16px;
+    }
     .view-toggle {
         margin-right: 0;
     }

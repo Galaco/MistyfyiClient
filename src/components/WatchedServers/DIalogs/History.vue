@@ -1,5 +1,5 @@
 <template>
-    <md-dialog :md-active.sync="show" id="serverHistoryDialog">
+    <md-dialog :md-active.sync="show" id="serverHistoryDialog" :md-click-outside-to-close="false">
         <md-dialog-title>{{ $t('servers.servers.dialogs.history.title') }}</md-dialog-title>
         <md-dialog-content>
             <md-table class="vh60">

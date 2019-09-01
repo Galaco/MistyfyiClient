@@ -5,14 +5,13 @@
         <md-table-cell class="list-text map-name">{{ server.current_map }}</md-table-cell>
         <md-table-cell class="list-text last-updated"><LastUpdated :date="server.last_updated"/></md-table-cell>
         <md-table-cell class="list-controls">
-
-            <md-button class="md-primary" @click="history">
-                <i class="material-icons btn-icon">history</i>
-                <span>{{ $t('servers.servers.buttons.history') }}</span>
+            <md-button class="md-icon-button md-primary md-raised" @click="history">
+                <md-icon>history</md-icon>
+                <md-tooltip md-direction="bottom">{{ $t('servers.servers.buttons.history') }}</md-tooltip>
             </md-button>
-            <md-button class="md-accent" @click="deleteServer">
-                <i class="material-icons btn-icon">delete</i>
-                <span>{{ $t('servers.servers.buttons.delete') }}</span>
+            <md-button class="md-icon-button md-accent md-raised" @click="deleteServer">
+                <md-icon>delete</md-icon>
+                <md-tooltip md-direction="bottom">{{ $t('servers.servers.buttons.delete') }}</md-tooltip>
             </md-button>
         </md-table-cell>
     </md-table-row>
@@ -41,7 +40,7 @@
 </script>
 
 <style scoped>
-    td {
-        vertical-align: middle;
-    }
+   .list-controls {
+       min-width: 160px;
+   }
 </style>

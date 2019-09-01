@@ -1,19 +1,23 @@
 <template>
-    <span>
-        <span class="md-subheading" v-show="userProfile.isSubscribed === true">
-                {{ $t('servers.servers.instructions.free') }}
-            </span>
-            <span class="md-subheading" v-show="userProfile.isSubscribed === false">
-                {{ $t('servers.servers.instructions.paid') }}
-            </span>
+    <div>
+        <div class="instructions">
+            <md-card class="md-elevation-6">
+                    <span class="md-subheading" v-show="userProfile.isSubscribed === false">
+                        {{ $t('servers.servers.instructions.free') }}
+                    </span>
+                <span class="md-subheading" v-show="userProfile.isSubscribed === true">
+                        {{ $t('servers.servers.instructions.paid') }}
+                    </span>
+            </md-card>
+        </div>
         <ServerList/>
         <UserLevels/>
         <EnableNotificationModal
-                v-show="isEnableNotificationModalVisible"
+                v-bind:show="isEnableNotificationModalVisible"
                 @confirm="closeEnableNotificationsPopup"
                 @close="closeEnableNotificationsPopup"
         />
-    </span>
+    </div>
 </template>
 
 <script>

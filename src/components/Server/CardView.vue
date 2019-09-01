@@ -8,14 +8,10 @@
                 <MoonLoader/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3" v-for="(server,index) in servers" :key="index">
-                <Card :server="server"
-                      @delete="showDelete"
-                      @history="showHistory"
-                />
-            </div>
-        </div>
+        <Card v-for="(server,index) in servers" :key="index" :server="server"
+              @delete="showDelete"
+              @history="showHistory"
+        />
     </div>
 </template>
 

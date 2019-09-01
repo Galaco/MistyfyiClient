@@ -1,44 +1,22 @@
 <template>
-    <transition name="modal-fade">
-            <div class="modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <header class="modal-header">
-                            <slot name="header">
-                                <h5 class="modal-title">{{ $t('servers.servers.modals.history.title') }}</h5>
-                                <button type="button" class="btn btn-danger btn-close" @click="close" aria-label="Close modal"><i class="material-icons btn-icon">close</i></button>
-                            </slot>
-                        </header>
-                        <section class="modal-body" id="modalDescription">
-                            <slot name="body">
-                                <table class="table table-striped">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">{{ $t('servers.servers.modals.history.body.headers.date') }}</th>
-                                        <th scope="col">{{ $t('servers.servers.modals.history.body.headers.mapName') }}</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr v-for="(server,index) in history" :key="index">
-                                        <td>{{ server.date_created }}</td>
-                                        <td>{{ server.map_name }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </slot>
-                        </section>
-                        <footer class="modal-footer">
-                            <slot name="footer">
-                                <button type="button" class="btn btn-secondary" @click="close" aria-label="Close modal">
-                                    <i class="material-icons btn-icon">cancel</i>
-                                    <span>{{ $t('modal.buttons.close') }}</span>
-                                </button>
-                            </slot>
-                        </footer>
-                    </div>
-                </div>
-            </div>
-    </transition>
+    <md-dialog :md-active.sync="show" id="serverHistoryModal">
+        <md-dialog-title>{{ $t('servers.servers.modals.history.title') }}</md-dialog-title>
+        <md-content>
+            <md-table class="vh60">
+                <md-table-row>
+                    <md-table-head>{{ $t('servers.servers.modals.history.body.headers.date') }}</md-table-head>
+                    <md-table-head>{{ $t('servers.servers.modals.history.body.headers.mapName') }}</md-table-head>
+                </md-table-row>
+                <md-table-row v-for="(server,index) in history" :key="index">
+                    <md-table-cell>{{ server.date_created }}</md-table-cell>
+                    <md-table-cell>{{ server.map_name }}</md-table-cell>
+                </md-table-row>
+            </md-table>
+        </md-content>
+        <md-dialog-actions>
+            <md-button class="md-secondary" @click="close">{{ $t('modal.buttons.close') }}</md-button>
+        </md-dialog-actions>
+    </md-dialog>
 </template>
 
 <script>
@@ -48,7 +26,8 @@
     export default {
         name: 'modal',
         props: {
-            "server": Object,
+            show: Boolean,
+            server: Object,
         },
         methods: {
             fetchHistory(id) {
@@ -77,8 +56,7 @@
 </script>
 
 <style scoped>
-    .modal-body {
+    .vh60 {
         max-height: 60vh;
-        overflow-y: scroll;
     }
 </style>

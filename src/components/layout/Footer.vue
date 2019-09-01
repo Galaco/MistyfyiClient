@@ -30,7 +30,9 @@
         margin-top: auto !important;
         padding-bottom: 1rem !important;
         padding-top: 1rem !important;
-        flex-shrink: none;
+        text-align: center;
+        background-color: #333;
+        color: #efefef;
     }
 
     footer a {

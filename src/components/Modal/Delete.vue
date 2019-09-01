@@ -1,8 +1,8 @@
 <template>
-    <md-dialog :md-active.sync="show" id="deleteMapNameModal">
-        <md-dialog-title>{{ $t('servers.mapNames.modals.delete.title') }}</md-dialog-title>
+    <md-dialog :md-active.sync="show" @md-clicked-outside="close">
+        <md-dialog-title>{{ title }}</md-dialog-title>
         <md-content>
-            {{ $t('servers.mapNames.modals.delete.body') }}
+            {{ content }}
         </md-content>
         <md-dialog-actions>
             <md-button class="md-accent" @click="submit">{{ $t('modal.buttons.delete') }}</md-button>
@@ -13,9 +13,12 @@
 
 <script>
     export default {
-        name: 'modal',
+        name: 'Delete',
         props: {
             show: Boolean,
+            title: String,
+            content: String,
+            actions: Object,
         },
         methods: {
             close() {

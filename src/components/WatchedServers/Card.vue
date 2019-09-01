@@ -1,5 +1,5 @@
 <template>
-    <md-card>
+    <md-card md-with-hover>
         <md-card-media>
             <img class="card-img-top" src="#" v-bind:alt="`${server.current_map} thumbnail`">
         </md-card-media>
@@ -46,29 +46,27 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .md-card {
-        width: 25%;
-        min-width: 240px;
         margin: 4px;
-        display: inline-block;
-        vertical-align: top;
-    }
-    .md-card-media {
-        background-color: #DDD;
-    }
-    .md-card img {
-        width: 100%;
-        height: 140px;
-        text-align: center;
-        line-height: 140px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
 
-    .md-title {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        height: 64px;
+        .md-title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            height: 64px;
+        }
+
+        .md-card-media {
+            background-color: #DDD;
+        }
+
+        img {
+            width: 100%;
+            height: 140px;
+            text-align: center;
+            line-height: 140px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
     }
 </style>

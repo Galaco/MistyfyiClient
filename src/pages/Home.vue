@@ -13,7 +13,7 @@
                 </video>
             </div>
         </div>
-        <div class="section-2 md-layout md-alignment-top-center">
+        <div class="section-2 md-layout md-alignment-top-center md-gutter">
             <div class="md-layout-item md-size-40 feature">
                 <i class="material-icons heart">favorite_border</i>
                 <p>{{ $t('home.features.feature1.paragraph1') }}</p>
@@ -54,8 +54,8 @@
 </template>
 
 <script>
-    import Header from "../components/layout/Header";
-    import Footer from "../components/layout/Footer";
+    import Header from "../components/Home/Header";
+    import Footer from "../components/Home/Footer";
     export default {
         name: 'Home',
         components: {

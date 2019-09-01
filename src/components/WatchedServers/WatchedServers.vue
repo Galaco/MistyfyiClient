@@ -9,7 +9,7 @@
                         <md-switch v-model="displayAsCard" class="md-primary view-toggle"></md-switch>
                         <md-icon class="view-toggle-icon">view_module</md-icon>
                     </div>
-                    <md-button class="md-primary" @click="showAddServerModal">
+                    <md-button class="md-primary" @click="showAddServerDialog">
                         <i class="material-icons btn-icon">note_add</i>
                         <span>{{ $t('servers.servers.buttons.add') }}</span>
                     </md-button>
@@ -17,58 +17,58 @@
 
                 <ListView
                         v-show="displayAsCard === false"
-                        @showHistory="showServerHistoryModal"
-                        @showDelete="showDeleteServerModal"
+                        @showHistory="showServerHistoryDialog"
+                        @showDelete="showDeleteServerDialog"
                 />
             </md-table>
             <CardView
                     v-show="displayAsCard === true"
-                    @showHistory="showServerHistoryModal"
-                    @showDelete="showDeleteServerModal"
+                    @showHistory="showServerHistoryDialog"
+                    @showDelete="showDeleteServerDialog"
             />
         </md-card>
-        <AddServerModal
-                v-bind:show="isNewServerModalVisible"
-                @close="closeAddServerModal"
-                @confirm="closeAddServerModal"
+        <AddServerDialog
+                v-bind:show="isNewServerDialogVisible"
+                @close="closeAddServerDialog"
+                @confirm="closeAddServerDialog"
         />
-        <DeleteServerModal
-                v-bind:show="isDeleteServerModalVisible"
-                @close="closeDeleteServerModal"
+        <DeleteServerDialog
+                v-bind:show="isDeleteServerDialogVisible"
+                @close="closeDeleteServerDialog"
                 @confirm="deleteServer"
         />
-        <ServerHistoryModal
-                v-bind:show="isServerHistoryModalVisible"
+        <ServerHistoryDialog
+                v-bind:show="isServerHistoryDialogVisible"
                 v-bind:server="serverSelected"
-                @close="closeServerHistoryModal"
+                @close="closeServerHistoryDialog"
         />
     </div>
 </template>
 
 <script>
-    import AddServerModal from './Modals/AddServerModal';
-    import DeleteServerModal from './Modals/DeleteServerModal';
-    import ServerHistoryModal from './Modals/HistoryModal';
+    import AddServerDialog from './DIalogs/AddServer';
+    import DeleteServerDialog from './DIalogs/DeleteServer';
+    import ServerHistoryDialog from './DIalogs/History';
     import CardView from './CardView';
-    import ListView from './ListView';
+    import ListView from './TableView';
     import {DELETE_SERVER, FETCH_SERVERS, SELECT_SERVER} from "./../../store/actions.type";
     import { mapGetters } from "vuex";
 
     export default {
         name: 'ServerList',
         components: {
-            AddServerModal,
-            DeleteServerModal,
-            ServerHistoryModal,
+            AddServerDialog,
+            DeleteServerDialog,
+            ServerHistoryDialog,
             CardView,
             ListView,
         },
         data() {
             return {
                 displayAsCard: true,
-                isNewServerModalVisible: false,
-                isDeleteServerModalVisible: false,
-                isServerHistoryModalVisible: false,
+                isNewServerDialogVisible: false,
+                isDeleteServerDialogVisible: false,
+                isServerHistoryDialogVisible: false,
             };
         },
         methods: {
@@ -79,25 +79,25 @@
                     });
                 });
             },
-            showAddServerModal() {
-                this.isNewServerModalVisible = true;
+            showAddServerDialog() {
+                this.isNewServerDialogVisible = true;
             },
-            closeAddServerModal() {
-                this.isNewServerModalVisible = false;
+            closeAddServerDialog() {
+                this.isNewServerDialogVisible = false;
                 this.$store.dispatch(SELECT_SERVER, null);
             },
-            showServerHistoryModal() {
-                this.isServerHistoryModalVisible = true;
+            showServerHistoryDialog() {
+                this.isServerHistoryDialogVisible = true;
             },
-            closeServerHistoryModal() {
-                this.isServerHistoryModalVisible = false;
+            closeServerHistoryDialog() {
+                this.isServerHistoryDialogVisible = false;
                 this.$store.dispatch(SELECT_SERVER, null);
             },
-            showDeleteServerModal() {
-                this.isDeleteServerModalVisible = true;
+            showDeleteServerDialog() {
+                this.isDeleteServerDialogVisible = true;
             },
-            closeDeleteServerModal() {
-                this.isDeleteServerModalVisible = false;
+            closeDeleteServerDialog() {
+                this.isDeleteServerDialogVisible = false;
                 this.$store.dispatch(SELECT_SERVER, null);
             },
             deleteServer() {
@@ -108,7 +108,7 @@
                     this.$toasted.global.api_success({
                         message : `Successfully deleted server: ${this.serverSelected.name}`
                     });
-                    this.closeDeleteServerModal();
+                    this.closeDeleteServerDialog();
                     this.getPrivateServers();
                 }).catch((err) => {
                     console.log(err);

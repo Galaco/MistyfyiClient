@@ -19,7 +19,7 @@
 
 <script>
     import { mapGetters } from "vuex";
-    import {isLoggedIn, login, logout} from '../../utils/auth';
+    import {isLoggedIn, login, logout} from '../../../utils/auth';
 
     export default {
         methods: {

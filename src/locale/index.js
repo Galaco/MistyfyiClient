@@ -70,7 +70,7 @@ export default function(l) {
                             }
                         },
                         noItems: "You have not added any servers yet.",
-                        modals: {
+                        dialogs: {
                             add: {
                                 title: "Add Server",
                                 form: {
@@ -102,7 +102,7 @@ export default function(l) {
                             delete: "Delete"
                         },
                         noItems: "You have not added any map names yet.",
-                        modals: {
+                        dialogs: {
                             add: {
                                 title: "Add Map Name",
                                 form: {
@@ -117,7 +117,7 @@ export default function(l) {
                         }
                     }
                 },
-                modal: {
+                dialog: {
                     buttons: {
                         confirm: "Confirm",
                         cancel: "Cancel",

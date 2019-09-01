@@ -4,7 +4,7 @@
             <md-table>
                 <md-table-toolbar>
                     <h1 class="md-title">{{ $t('servers.mapNames.title') }}</h1>
-                    <md-button class="md-primary" @click="showAddModal()" id="addMapNameButton">
+                    <md-button class="md-primary" @click="showAddDialog()" id="addMapNameButton">
                         <i class="material-icons btn-icon">note_add</i>
                         <span>{{ $t('servers.mapNames.buttons.add') }}</span>
                     </md-button>
@@ -16,10 +16,14 @@
                 <md-table-row v-for="(level,index) in levelNames" :key="index">
                     <md-table-cell class="v-center">{{ level.name }}</md-table-cell>
                     <md-table-cell class="controls">
-                        <md-button class="md-accent" @click="showDeleteModal(level)">
-                            <i class="material-icons btn-icon">delete</i>
-                            <span>{{ $t('servers.mapNames.buttons.delete') }}</span>
-                        </md-button>
+                        <div class="md-layout md-alignment-center md-gutter">
+                            <div class="md-layout-item md-size-40">
+                                <md-button class="md-icon-button md-accent md-raised" @click="showDeleteDialog(level)">
+                                    <md-icon>delete</md-icon>
+                                    <md-tooltip md-direction="bottom">{{ $t('servers.mapNames.buttons.delete') }}</md-tooltip>
+                                </md-button>
+                            </div>
+                        </div>
                     </md-table-cell>
                 </md-table-row>
             </md-table>
@@ -32,20 +36,20 @@
                 </div>
             </div>
         </md-card>
-        <AddUserLevelModal
-                v-bind:show="isAddModalVisible"
-                @close="closeAddModal"
+        <AddUserLevelDialog
+                v-bind:show="isAddDialogVisible"
+                @close="closeAddDialog"
                 @confirm="addLevel"/>
-        <DeleteUserLevelModal
-                v-bind:show="isDeleteModalVisible"
-                @close="closeDeleteModal"
+        <DeleteUserLevelDialog
+                v-bind:show="isDeleteDialogVisible"
+                @close="closeDeleteDialog"
                 @confirm="deleteLevel"/>
     </div>
 </template>
 
 <script>
-    import DeleteUserLevelModal from "./DeleteUserLevelModal";
-    import AddUserLevelModal from "./AddUserLevelModal";
+    import DeleteUserLevelDialog from "./Dialogs/DeleteWatchedMap";
+    import AddUserLevelDialog from "./Dialogs/AddWatchedMap";
     import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from "../../store/actions.type";
     import { mapGetters } from "vuex";
     import {addWatchedLevel} from "../../utils/levels-api";
@@ -54,8 +58,8 @@
     export default {
         name: "UserLevels",
         components: {
-            DeleteUserLevelModal,
-            AddUserLevelModal,
+            DeleteUserLevelDialog,
+            AddUserLevelDialog,
             MoonLoader,
         },
         methods: {
@@ -66,18 +70,18 @@
                     });
                 });
             },
-            showAddModal() {
-                this.isAddModalVisible = true;
+            showAddDialog() {
+                this.isAddDialogVisible = true;
             },
-            closeAddModal() {
-                this.isAddModalVisible = false;
+            closeAddDialog() {
+                this.isAddDialogVisible = false;
             },
             addLevel(name) {
                 addWatchedLevel(name).then(() => {
                     this.$toasted.global.api_success({
                         message : `Now watching level: ${name}`
                     });
-                    this.closeAddModal();
+                    this.closeAddDialog();
                     this.getUserLevels();
                 }).catch((err) => {
                     this.$toasted.global.api_error({
@@ -85,12 +89,12 @@
                     });
                 });
             },
-            showDeleteModal(level) {
-                this.isDeleteModalVisible = true;
+            showDeleteDialog(level) {
+                this.isDeleteDialogVisible = true;
                 this.selectedLevel = level;
             },
-            closeDeleteModal() {
-                this.isDeleteModalVisible = false;
+            closeDeleteDialog() {
+                this.isDeleteDialogVisible = false;
                 this.selectedLevel = null;
             },
             deleteLevel() {
@@ -102,7 +106,7 @@
                     this.$toasted.global.api_success({
                         message : `Successfully deleted watch name: ${this.selectedLevel.name}`
                     });
-                    this.closeDeleteModal();
+                    this.closeDeleteDialog();
                     this.getUserLevels();
                 }).catch((err) => {
                     this.$toasted.global.api_error({
@@ -113,9 +117,9 @@
         },
         data() {
             return {
-                isAddModalVisible: false,
+                isAddDialogVisible: false,
                 selectedLevel: null,
-                isDeleteModalVisible: false,
+                isDeleteDialogVisible: false,
             };
         },
         mounted() {
@@ -128,9 +132,15 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .level-list {
         margin-bottom: 16px;
+    }
+
+    th.controls {
+        text-align: center;
+        width: 160px;
+        min-width: 160px;
     }
 
     .table-row-placeholder {

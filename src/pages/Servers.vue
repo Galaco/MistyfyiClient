@@ -10,10 +10,10 @@
                     </span>
             </md-card>
         </div>
-        <ServerList/>
-        <UserLevels/>
-        <EnableNotificationModal
-                v-bind:show="isEnableNotificationModalVisible"
+        <WatchedServers/>
+        <WatchedMaps/>
+        <EnableNotificationDialog
+                v-bind:show="isEnableNotificationDialogVisible"
                 @confirm="closeEnableNotificationsPopup"
                 @close="closeEnableNotificationsPopup"
         />
@@ -21,9 +21,9 @@
 </template>
 
 <script>
-    import ServerList from '../components/Server/ServerList';
-    import EnableNotificationModal from '../components/Notification/EnableNotificationModal';
-    import UserLevels from '../components/UserLevels/UserLevels';
+    import WatchedServers from '../components/WatchedServers/WatchedServers';
+    import EnableNotificationDialog from '../components/Notification/EnableNotificationDialog';
+    import WatchedMaps from '../components/WatchedMaps/WatchedMaps';
     import {shouldDisplayNotificationPopup} from "../utils/notify";
     import {FETCH_USER_PROFILE} from "../store/actions.type";
     import { mapGetters } from "vuex";
@@ -31,23 +31,23 @@
     export default {
         name: 'Servers',
         components: {
-            EnableNotificationModal,
-            ServerList,
-            UserLevels,
+            EnableNotificationDialog,
+            WatchedServers,
+            WatchedMaps,
         },
         data() {
             return {
-                isEnableNotificationModalVisible: false,
+                isEnableNotificationDialogVisible: false,
             };
         },
         methods: {
             closeEnableNotificationsPopup() {
-                this.isEnableNotificationModalVisible = false;
+                this.isEnableNotificationDialogVisible = false;
             },
         },
         mounted() {
             this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
-                this.isEnableNotificationModalVisible = shouldDisplayNotificationPopup();
+                this.isEnableNotificationDialogVisible = shouldDisplayNotificationPopup();
             });
         },
         computed: {

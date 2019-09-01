@@ -1,23 +1,23 @@
 <template>
-    <md-dialog :md-active.sync="show" id="addServerModal">
-        <md-dialog-title>{{ $t('servers.servers.modals.add.title') }}</md-dialog-title>
-        <md-content>
+    <md-dialog :md-active.sync="show" id="addServerDialog">
+        <md-dialog-title>{{ $t('servers.servers.dialogs.add.title') }}</md-dialog-title>
+        <md-dialog-content>
             <form novalidate class="md-layout md-gutter">
                 <div class="md-layout-item md-small-size-100">
                     <md-field>
-                        <label for="addserver_ip">{{ $t('servers.servers.modals.add.form.ip') }}</label>
+                        <label for="addserver_ip">{{ $t('servers.servers.dialogs.add.form.ip') }}</label>
                         <md-input name="ip" id="addserver_ip" v-model="serverIP"/>
                     </md-field>
                     <md-field>
-                        <label for="addserver_ip">{{ $t('servers.servers.modals.add.form.port') }}</label>
+                        <label for="addserver_ip">{{ $t('servers.servers.dialogs.add.form.port') }}</label>
                         <md-input name="port" id="addserver_port" v-model="serverPort"/>
                     </md-field>
                 </div>
             </form>
-        </md-content>
+        </md-dialog-content>
         <md-dialog-actions>
-            <md-button class="md-primary" @click="submit">{{ $t('modal.buttons.save') }}</md-button>
-            <md-button class="md-secondary" @click="close">{{ $t('modal.buttons.cancel') }}</md-button>
+            <md-button class="md-primary" @click="submit">{{ $t('dialog.buttons.save') }}</md-button>
+            <md-button class="md-secondary" @click="close">{{ $t('dialog.buttons.cancel') }}</md-button>
         </md-dialog-actions>
     </md-dialog>
 </template>
@@ -26,7 +26,7 @@
     import {addNewServer} from '../../../utils/servers-api';
 
     export default {
-        name: 'modal',
+        name: 'AddServer',
         props: {
             show: Boolean,
         },

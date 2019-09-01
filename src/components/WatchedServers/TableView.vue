@@ -1,5 +1,23 @@
 <template>
-    <div class="container card-view">
+    <div class="container list-view">
+        <div class="row">
+            <div class="col-sm-12">
+                <md-table>
+                    <md-table-row>
+                        <md-table-head>{{ $t('servers.servers.list.headers.server') }}</md-table-head>
+                        <md-table-head>{{ $t('servers.servers.list.headers.address') }}</md-table-head>
+                        <md-table-head>{{ $t('servers.servers.list.headers.map') }}</md-table-head>
+                        <md-table-head>{{ $t('servers.servers.list.headers.updated') }}</md-table-head>
+                        <md-table-head class="controls">{{ $t('table.headers.actions') }}</md-table-head>
+                    </md-table-row>
+                    <Row v-for="(server,index) in servers" :key="index"
+                         :server="server"
+                         @delete="showDelete"
+                         @history="showHistory"
+                    />
+                </md-table>
+            </div>
+        </div>
         <div class="row" v-if="serversCount === 0">
             <div class="col-sm-12 table-row-placeholder">{{ $t('servers.servers.noItems') }}</div>
         </div>
@@ -8,15 +26,11 @@
                 <MoonLoader/>
             </div>
         </div>
-        <Card v-for="(server,index) in servers" :key="index" :server="server"
-              @delete="showDelete"
-              @history="showHistory"
-        />
     </div>
 </template>
 
 <script>
-    import Card from './Card';
+    import Row from './TableRow';
     import { mapGetters } from "vuex";
     import {SELECT_SERVER} from "../../store/actions.type";
     import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
@@ -25,7 +39,7 @@
         name: 'CardView',
         components: {
             MoonLoader,
-            Card,
+            Row,
         },
         methods: {
             showHistory(server) {
@@ -46,9 +60,15 @@
     }
 </script>
 
-<style scoped>
-    .card-view {
+<style scoped lang="scss">
+    .list-view {
         margin-bottom: 15px;
+
+        th.controls {
+            text-align: center;
+            width: 160px;
+            min-width: 160px;
+        }
     }
     .table-row-placeholder {
         text-align: center;

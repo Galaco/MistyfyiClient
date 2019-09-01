@@ -1,18 +1,19 @@
 <template>
     <Delete
-        id="deleteServerModal"
-        :title="$t('servers.servers.modals.delete.title')"
-        :content="$t('servers.servers.modals.delete.body')"
+        id="deleteServerDialog"
+        :title="$t('servers.servers.dialogs.delete.title')"
         @submit="submit"
         @close="close"
         :show="show"
-        />
+        >
+        <span>{{ $t('servers.servers.dialogs.delete.body') }}</span>
+    </Delete>
 </template>
 
 <script>
-    import Delete from './../../Modal/Delete';
+    import Delete from '../../Dialogs/Delete';
     export default {
-        name: 'modal',
+        name: 'DeleteServer',
         components: {
             Delete
         },

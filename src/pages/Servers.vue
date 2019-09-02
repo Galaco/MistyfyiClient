@@ -1,15 +1,14 @@
 <template>
     <div>
-        <div class="instructions">
-            <md-card class="md-elevation-6">
-                    <span class="md-subheading" v-show="userProfile.isSubscribed === false">
-                        {{ $t('servers.servers.instructions.free') }}
-                    </span>
-                <span class="md-subheading" v-show="userProfile.isSubscribed === true">
-                        {{ $t('servers.servers.instructions.paid') }}
-                    </span>
-            </md-card>
-        </div>
+        <md-card class="instructions">
+            <div class="md-layout md-gutter md-primary">
+                <div class="md-layout-item">
+                    <span class="md-body-2" v-show="userProfile.isSubscribed === false">{{ $t('servers.servers.instructions.free') }}</span>
+                    <span class="md-body-2" v-show="userProfile.isSubscribed === true">{{ $t('servers.servers.instructions.paid') }}</span>
+                </div>
+            </div>
+        </md-card>
+
         <WatchedServers/>
         <WatchedMaps/>
         <EnableNotificationDialog
@@ -58,6 +57,7 @@
 
 <style scoped>
     .instructions {
+        padding:16px;
         margin-bottom: 16px;
     }
 </style>

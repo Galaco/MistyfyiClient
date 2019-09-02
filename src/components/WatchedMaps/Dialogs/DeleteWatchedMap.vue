@@ -2,7 +2,7 @@
     <Delete
             id="deleteWatchedMapDialog"
             :title="$t('servers.mapNames.dialogs.delete.title')"
-            @submit="submit"
+            @confirm="submit"
             @close="close"
             :show="show"
     >

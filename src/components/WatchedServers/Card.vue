@@ -1,7 +1,7 @@
 <template>
     <md-card md-with-hover>
         <md-card-media>
-            <img class="card-img-top" src="#" v-bind:alt="`${server.current_map} thumbnail`">
+            <img class="card-img-top" src="#" v-bind:alt="`map thumbnail`">
         </md-card-media>
         <md-card-header>
             <div class="md-title">{{ server.name }}</div>

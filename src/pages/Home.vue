@@ -55,7 +55,7 @@
 
 <script>
     import Header from "../components/Home/Header";
-    import Footer from "../components/Home/Footer";
+    import Footer from "../components/Layout/Footer";
     export default {
         name: 'Home',
         components: {
@@ -87,6 +87,7 @@
     }
 
     .section-2 {
+        max-width: 100vw;
         min-height: 380px;
         padding: 100px 0;
         background: #fff;

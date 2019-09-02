@@ -11,18 +11,21 @@
                 <router-view></router-view>
             </md-app-content>
         </md-app>
+        <Footer/>
     </div>
 </template>
 
 <script>
     import Toolbar from './Toolbar/Toolbar';
     import Drawer from "./Drawer/Drawer";
+    import Footer from "./Footer";
 
     export default {
         name: 'App',
         components: {
             Drawer,
             Toolbar,
+            Footer,
         },
         data: () => ({
             menuVisible: false

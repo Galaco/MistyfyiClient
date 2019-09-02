@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <md-table>
-                    <md-table-row>
+                    <md-table-row  v-if="servers.length > 0">
                         <md-table-head>{{ $t('servers.servers.list.headers.server') }}</md-table-head>
                         <md-table-head>{{ $t('servers.servers.list.headers.address') }}</md-table-head>
                         <md-table-head>{{ $t('servers.servers.list.headers.map') }}</md-table-head>
@@ -17,9 +17,6 @@
                     />
                 </md-table>
             </div>
-        </div>
-        <div class="row" v-if="serversCount === 0">
-            <div class="col-sm-12 table-row-placeholder">{{ $t('servers.servers.noItems') }}</div>
         </div>
         <div class="row text-center" v-if="serversCount === -1">
             <div class="col-sm-12 loading-spinner">

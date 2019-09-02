@@ -2,7 +2,7 @@
     <Delete
         id="deleteServerDialog"
         :title="$t('servers.servers.dialogs.delete.title')"
-        @submit="submit"
+        @confirm="submit"
         @close="close"
         :show="show"
         >

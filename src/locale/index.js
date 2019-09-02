@@ -65,11 +65,15 @@ export default function(l) {
                             headers: {
                                 server: "Server",
                                 address: "Address",
-                                map: "Map",
+                                map: "Current Map",
                                 updated: "Updated",
                             }
                         },
-                        noItems: "You have not added any servers yet.",
+                        noItems: {
+                            add: "Add first server",
+                            title: "You have not added any servers yet.",
+                            description: "Once you add your favourite servers, you can view what they are playing here."
+                        },
                         dialogs: {
                             add: {
                                 title: "Add Server",
@@ -101,7 +105,11 @@ export default function(l) {
                             add: "Add watch name",
                             delete: "Delete"
                         },
-                        noItems: "You have not added any map names yet.",
+                        noItems: {
+                            add: "Add first map name",
+                            title: "You have not added any map names yet.",
+                            description: "Once you add map names, you can start receiving notifications when your favourite servers play them."
+                        },
                         dialogs: {
                             add: {
                                 title: "Add Map Name",

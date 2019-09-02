@@ -7,7 +7,7 @@
                     <div>
                         <md-icon class="view-toggle-icon">list</md-icon>
                         <md-switch v-model="displayAsCard" class="md-primary view-toggle"></md-switch>
-                        <md-icon class="view-toggle-icon">view_module</md-icon>
+                        <md-icon class="view-toggle-icon">view_column</md-icon>
                     </div>
                     <md-button class="md-primary" @click="showAddServerDialog">
                         <i class="material-icons btn-icon">note_add</i>
@@ -16,16 +16,26 @@
                 </md-table-toolbar>
 
                 <ListView
-                        v-show="displayAsCard === false"
+                        v-if="displayAsCard === false"
                         @showHistory="showServerHistoryDialog"
                         @showDelete="showDeleteServerDialog"
                 />
             </md-table>
             <CardView
-                    v-show="displayAsCard === true"
+                    v-if="displayAsCard === true"
                     @showHistory="showServerHistoryDialog"
                     @showDelete="showDeleteServerDialog"
             />
+            <md-empty-state
+                    v-if="serversCount === 0"
+                    md-icon="important_devices"
+                    :md-label="$t('servers.servers.noItems.title')"
+                    :md-description="$t('servers.servers.noItems.description')">
+                <md-button class="md-primary md-raised" @click="showAddServerDialog">
+                    <i class="material-icons btn-icon">note_add</i>
+                    <span>{{ $t('servers.servers.noItems.add') }}</span>
+                </md-button>
+            </md-empty-state>
         </md-card>
         <AddServerDialog
                 v-bind:show="isNewServerDialogVisible"
@@ -133,6 +143,9 @@
 </script>
 
 <style scoped>
+    .md-table-toolbar {
+        border-bottom: 1px solid #bbb;
+    }
     .server-list {
         margin-bottom: 16px;
     }

@@ -9,7 +9,7 @@
                         <span>{{ $t('servers.mapNames.buttons.add') }}</span>
                     </md-button>
                 </md-table-toolbar>
-                <md-table-row>
+                <md-table-row v-if="levelNames.length > 0">
                     <md-table-head class="v-center">Map Name</md-table-head>
                     <md-table-head class="controls">{{ $t('table.headers.actions') }}</md-table-head>
                 </md-table-row>
@@ -27,9 +27,17 @@
                     </md-table-cell>
                 </md-table-row>
             </md-table>
-            <div class="row" v-if="levelNamesCount === 0">
-                <div class="col-sm-12 table-row-placeholder">{{ $t('servers.mapNames.noItems') }}</div>
-            </div>
+
+            <md-empty-state
+                    v-if="levelNamesCount === 0"
+                    md-icon="create"
+                    :md-label="$t('servers.mapNames.noItems.title')"
+                    :md-description="$t('servers.mapNames.noItems.description')">
+                <md-button class="md-primary md-raised" @click="showAddDialog()" id="addFirstMapNameButton">
+                    <i class="material-icons btn-icon">note_add</i>
+                    <span>{{ $t('servers.mapNames.noItems.add') }}</span>
+                </md-button>
+            </md-empty-state>
             <div class="row text-center" v-if="levelNamesCount === -1">
                 <div class="col-sm-12 loading-spinner">
                     <MoonLoader/>
@@ -133,6 +141,10 @@
 </script>
 
 <style scoped lang="scss">
+    .md-table-toolbar {
+        border-bottom: 1px solid #bbb;
+    }
+
     .level-list {
         margin-bottom: 16px;
     }

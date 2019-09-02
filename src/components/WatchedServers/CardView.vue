@@ -1,14 +1,11 @@
 <template>
     <div class="container card-view">
-        <div class="row" v-if="serversCount === 0">
-            <div class="col-sm-12 table-row-placeholder">{{ $t('servers.servers.noItems') }}</div>
-        </div>
         <div class="row text-center" v-if="serversCount === -1">
             <div class="col-sm-12 loading-spinner">
                 <MoonLoader/>
             </div>
         </div>
-        <div class="md-layout md-alignment-center md-gutter">
+        <div class="md-layout md-alignment-center">
             <div v-for="(server,index) in servers" :key="index" class="md-layout-item md-large-size-25 md-medium-size-33 md-small-size-50 md-xsmall-size-100">
                 <Card :server="server"
                       @delete="showDelete"
@@ -50,9 +47,20 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+    .md-layout-item {
+        padding-left: 8px;
+        padding-right: 8px;
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
     .card-view {
-        margin-bottom: 15px;
     }
     .table-row-placeholder {
         text-align: center;

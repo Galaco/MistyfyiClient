@@ -1,12 +1,12 @@
 <template>
     <Delete
-            id="deleteWatchedMapDialog"
-            :title="$t('servers.mapNames.dialogs.delete.title')"
-            @confirm="submit"
-            @close="close"
-            :show="show"
-    >
-        <span>{{ $t('servers.mapNames.dialogs.delete.body') }}</span>
+        id="deleteServerDialog"
+        :title="$t('servers.servers.dialogs.delete.title')"
+        @confirm="submit"
+        @close="close"
+        :show="show"
+        >
+        <span>{{ $t('servers.servers.dialogs.delete.body') }}</span>
     </Delete>
 </template>
 
@@ -15,7 +15,7 @@ import Vue from 'vue';
 import Delete from './../../Dialogs/Delete.vue';
 
 export default Vue.extend({
-    name: 'DeleteWatchedMap',
+    name: 'DeleteServer',
     components: {
         Delete,
     },

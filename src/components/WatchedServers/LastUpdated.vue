@@ -2,28 +2,25 @@
     <small class="text-muted">Updated {{ formatted }}</small>
 </template>
 
-<script>
-    import TimeAgo from 'javascript-time-ago';
-    import en from 'javascript-time-ago/locale/en';
+<script lang="ts">
+import Vue from 'vue';
+import { format } from 'timeago.js';
 
-    export default {
-        name: "LastUpdated",
-        data() {
-            return {
-                formatted: '',
-            }
+export default Vue.extend({
+    name: 'LastUpdated',
+    data: () => ({
+        formatted: '',
+    }),
+    props: {
+       date: Number,
+    },
+    mounted() {
+        this.formatted = format(new Date(this.date * 1000), 'en_US');
+    },
+    watch: {
+        date() {
+            this.formatted = format(new Date(this.date * 1000), 'en_US');
         },
-        props: {
-           date: Number,
-        },
-        mounted() {
-            TimeAgo.addLocale(en);
-            this.formatted = new TimeAgo('en-US').format(new Date(this.date * 1000));
-        },
-        watch: {
-            date: function() {
-                this.formatted = new TimeAgo('en-US').format(new Date(this.date * 1000));
-            }
-        }
-    }
+    },
+});
 </script>

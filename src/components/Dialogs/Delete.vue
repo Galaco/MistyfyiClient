@@ -11,22 +11,23 @@
     </md-dialog>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 
-    export default {
-        name: 'Delete',
-        props: {
-            show: Boolean,
-            title: String,
-            actions: Object,
+export default Vue.extend({
+    name: 'Delete',
+    props: {
+        show: Boolean,
+        title: String,
+        actions: Object,
+    },
+    methods: {
+        close() {
+            this.$emit('close');
         },
-        methods: {
-            close() {
-                this.$emit('close');
-            },
-            submit() {
-                this.$emit('confirm');
-            },
+        submit() {
+            this.$emit('confirm');
         },
-    };
+    },
+});
 </script>

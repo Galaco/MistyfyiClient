@@ -23,29 +23,30 @@
     </md-table-row>
 </template>
 
-<script>
-    import LastUpdated from './LastUpdated';
+<script lang="ts">
+import Vue from 'vue';
+import LastUpdated from './LastUpdated.vue';
 
-    export default {
-        name: 'ServerRow',
-        components: {
-            LastUpdated,
+export default Vue.extend({
+    name: 'ServerRow',
+    components: {
+        LastUpdated,
+    },
+    props: {
+        server: Object,
+    },
+    methods: {
+        history() {
+            this.$emit('history', this.server);
         },
-        props: {
-            "server": Object,
+        deleteServer() {
+            this.$emit('history', this.server);
         },
-        methods: {
-            history() {
-                this.$emit("history", this.server);
-            },
-            deleteServer() {
-                this.$emit("delete", this.server);
-            }
-        }
-    }
+    },
+});
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
    .controls {
        width: 160px;
        min-width: 160px;

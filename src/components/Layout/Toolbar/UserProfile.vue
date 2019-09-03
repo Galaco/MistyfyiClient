@@ -17,24 +17,26 @@
     </md-menu>
 </template>
 
-<script>
-    import { mapGetters } from "vuex";
-    import {isLoggedIn, login, logout} from '../../../utils/auth';
+<script lang="ts">
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
+import {isLoggedIn, login, logout} from '../../../utils/auth';
 
-    export default {
-        methods: {
-            handleLogin() {
-                login();
-            },
-            handleLogout() {
-                logout();
-            },
-            isLoggedIn() {
-                return isLoggedIn();
-            },
+export default Vue.extend({
+    name: 'UserProfile',
+    methods: {
+        handleLogin() {
+            login();
         },
-        computed: {
-            ...mapGetters(["userProfile"]),
-        }
-    }
+        handleLogout() {
+            logout();
+        },
+        isLoggedIn() {
+            return isLoggedIn();
+        },
+    },
+    computed: {
+        ...mapGetters(['userProfile']),
+    },
+});
 </script>

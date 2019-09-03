@@ -55,94 +55,91 @@
     </div>
 </template>
 
-<script>
-    import AddServerDialog from './DIalogs/AddServer';
-    import DeleteServerDialog from './DIalogs/DeleteServer';
-    import ServerHistoryDialog from './DIalogs/History';
-    import CardView from './CardView';
-    import ListView from './TableView';
-    import {DELETE_SERVER, FETCH_SERVERS, SELECT_SERVER} from "./../../store/actions.type";
-    import { mapGetters } from "vuex";
+<script lang="ts">
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
+import AddServerDialog from './Dialogs/AddServer.vue';
+import DeleteServerDialog from './Dialogs/DeleteServer.vue';
+import ServerHistoryDialog from './Dialogs/History.vue';
+import CardView from './CardView.vue';
+import ListView from './TableView.vue';
+import {DELETE_SERVER, FETCH_SERVERS, SELECT_SERVER} from './../../store/actions.type';
 
-    export default {
-        name: 'ServerList',
-        components: {
-            AddServerDialog,
-            DeleteServerDialog,
-            ServerHistoryDialog,
-            CardView,
-            ListView,
-        },
-        data() {
-            return {
-                displayAsCard: true,
-                isNewServerDialogVisible: false,
-                isDeleteServerDialogVisible: false,
-                isServerHistoryDialogVisible: false,
-            };
-        },
-        methods: {
-            getPrivateServers() {
-                this.$store.dispatch(FETCH_SERVERS).catch((err) => {
-                    this.$toasted.global.api_error({
-                        message : err.response.data.message
-                    });
+export default Vue.extend({
+    name: 'ServerList',
+    components: {
+        AddServerDialog,
+        DeleteServerDialog,
+        ServerHistoryDialog,
+        CardView,
+        ListView,
+    },
+    data: () => ({
+        displayAsCard: true,
+        isNewServerDialogVisible: false,
+        isDeleteServerDialogVisible: false,
+        isServerHistoryDialogVisible: false,
+    }),
+    methods: {
+        getPrivateServers() {
+            this.$store.dispatch(FETCH_SERVERS).catch((err) => {
+                this.$toasted.global.api_error({
+                    message : err.response.data.message,
                 });
-            },
-            showAddServerDialog() {
-                this.isNewServerDialogVisible = true;
-            },
-            closeAddServerDialog() {
-                this.isNewServerDialogVisible = false;
-                this.$store.dispatch(SELECT_SERVER, null);
-            },
-            showServerHistoryDialog() {
-                this.isServerHistoryDialogVisible = true;
-            },
-            closeServerHistoryDialog() {
-                this.isServerHistoryDialogVisible = false;
-                this.$store.dispatch(SELECT_SERVER, null);
-            },
-            showDeleteServerDialog() {
-                this.isDeleteServerDialogVisible = true;
-            },
-            closeDeleteServerDialog() {
-                this.isDeleteServerDialogVisible = false;
-                this.$store.dispatch(SELECT_SERVER, null);
-            },
-            deleteServer() {
-                if (this.serverSelected === null) {
-                    return;
-                }
-                this.$store.dispatch(DELETE_SERVER, this.serverSelected).then(() => {
-                    this.$toasted.global.api_success({
-                        message : `Successfully deleted server: ${this.serverSelected.name}`
-                    });
-                    this.closeDeleteServerDialog();
-                    this.getPrivateServers();
-                }).catch((err) => {
-                    console.log(err);
-                    this.$toasted.global.api_error({
-                        message : err.response.data.message
-                    });
-                });
-            },
+            });
         },
-        mounted() {
-            this.getPrivateServers();
-
-            // Poll every 30 seconds to ensure server info is up to date
-            setInterval(() => {
+        showAddServerDialog() {
+            this.isNewServerDialogVisible = true;
+        },
+        closeAddServerDialog() {
+            this.isNewServerDialogVisible = false;
+            this.$store.dispatch(SELECT_SERVER, null);
+        },
+        showServerHistoryDialog() {
+            this.isServerHistoryDialogVisible = true;
+        },
+        closeServerHistoryDialog() {
+            this.isServerHistoryDialogVisible = false;
+            this.$store.dispatch(SELECT_SERVER, null);
+        },
+        showDeleteServerDialog() {
+            this.isDeleteServerDialogVisible = true;
+        },
+        closeDeleteServerDialog() {
+            this.isDeleteServerDialogVisible = false;
+            this.$store.dispatch(SELECT_SERVER, null);
+        },
+        deleteServer() {
+            if (this.serverSelected === null) {
+                return;
+            }
+            this.$store.dispatch(DELETE_SERVER, this.serverSelected).then(() => {
+                this.$toasted.global.api_success({
+                    message : `Successfully deleted server: ${this.serverSelected.name}`,
+                });
+                this.closeDeleteServerDialog();
                 this.getPrivateServers();
-            }, 15000);
+            }).catch((err) => {
+                this.$toasted.global.api_error({
+                    message : err.response.data.message,
+                });
+            });
         },
-        computed: {
-            ...mapGetters(["servers", "serversCount", "serverSelected", "userProfile"]),
-        }
-    }
+    },
+    mounted() {
+        this.getPrivateServers();
+        // Poll every 30 seconds to ensure server info is up to date
+        setInterval(() => {
+            this.getPrivateServers();
+        }, 15000);
+    },
+    computed: {
+        ...mapGetters(['servers', 'serversCount', 'serverSelected', 'userProfile']),
+    },
+});
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .md-table-toolbar {
         border-bottom: 1px solid #bbb;
     }

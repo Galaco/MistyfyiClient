@@ -22,41 +22,40 @@
     </md-dialog>
 </template>
 
-<script>
-    import {addNewServer} from '../../../utils/servers-api';
+<script lang="ts">
+import Vue from 'vue';
+import {addNewServer} from '../../../utils/servers-api';
 
-    export default {
-        name: 'AddServer',
-        props: {
-            show: Boolean,
+export default Vue.extend({
+    name: 'AddServer',
+    props: {
+        show: Boolean,
+    },
+    data: () => ({
+        serverIP: '',
+        serverPort: 0,
+    }),
+    methods: {
+        close() {
+            this.$emit('close');
         },
-        data: () => {
-            return {
-                serverIP: '',
-                serverPort: 0,
-            }
-        },
-        methods: {
-            close() {
-                this.$emit('close');
-            },
-            submit() {
-                addNewServer(this.serverIP, this.serverPort).then(() => {
-                    this.$toasted.global.api_success({
-                        message : `Now watching server: ${this.serverIP}:${this.serverPort}`
-                    });
-                    this.reset();
-                    this.$emit('confirm');
-                }).catch((err) => {
-                    this.$toasted.global.api_error({
-                        message : err.response.data.message
-                    });
+        submit() {
+            addNewServer(this.serverIP, this.serverPort).then(() => {
+                this.$toasted.global.api_success({
+                    message : `Now watching server: ${this.serverIP}:${this.serverPort}`,
                 });
-            },
-            reset() {
-                this.serverIP = '';
-                this.serverPort = '';
-            }
+                this.reset();
+                this.$emit('confirm');
+            }).catch((err) => {
+                this.$toasted.global.api_error({
+                    message : err.response.data.message,
+                });
+            });
         },
-    };
+        reset() {
+            this.serverIP = '';
+            this.serverPort = 0;
+        },
+    },
+});
 </script>

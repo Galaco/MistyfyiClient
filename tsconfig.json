@@ -11,13 +11,14 @@
     "sourceMap": true,
     "baseUrl": ".",
     "noImplicitAny": false,
-    "typeRoots": ["node_modules/@types", "types"],
+    "typeRoots": ["./node_modules/@types", "./types"],
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "jest"
     ],
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
     },
     "lib": [
@@ -31,6 +32,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "types/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],

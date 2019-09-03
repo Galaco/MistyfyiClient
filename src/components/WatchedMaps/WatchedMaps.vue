@@ -55,92 +55,93 @@
     </div>
 </template>
 
-<script>
-    import DeleteUserLevelDialog from "./Dialogs/DeleteWatchedMap";
-    import AddUserLevelDialog from "./Dialogs/AddWatchedMap";
-    import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from "../../store/actions.type";
-    import { mapGetters } from "vuex";
-    import {addWatchedLevel} from "../../utils/levels-api";
-    import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
+<script lang="ts">
+import Vue from 'vue';
+import DeleteUserLevelDialog from './Dialogs/DeleteWatchedMap.vue';
+import AddUserLevelDialog from './Dialogs/AddWatchedMap.vue';
+import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from './../../store/actions.type';
+import { mapGetters } from 'vuex';
+import {addWatchedLevel} from '../../utils/levels-api';
+import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 
-    export default {
-        name: "UserLevels",
-        components: {
-            DeleteUserLevelDialog,
-            AddUserLevelDialog,
-            MoonLoader,
-        },
-        methods: {
-            getUserLevels() {
-                this.$store.dispatch(FETCH_LEVEL_NAMES).catch((err) => {
-                    this.$toasted.global.api_error({
-                        message : err.response.data.message
-                    });
+export default Vue.extend({
+    name: 'UserLevels',
+    components: {
+        DeleteUserLevelDialog,
+        AddUserLevelDialog,
+        MoonLoader,
+    },
+    methods: {
+        getUserLevels() {
+            this.$store.dispatch(FETCH_LEVEL_NAMES).catch((err: any) => {
+                this.$toasted.global.api_error({
+                    message : err.response.data.message,
                 });
-            },
-            showAddDialog() {
-                this.isAddDialogVisible = true;
-            },
-            closeAddDialog() {
-                this.isAddDialogVisible = false;
-            },
-            addLevel(name) {
-                addWatchedLevel(name).then(() => {
-                    this.$toasted.global.api_success({
-                        message : `Now watching level: ${name}`
-                    });
-                    this.closeAddDialog();
-                    this.getUserLevels();
-                }).catch((err) => {
-                    this.$toasted.global.api_error({
-                        message : err.response.data.message
-                    });
+            });
+        },
+        showAddDialog() {
+            this.isAddDialogVisible = true;
+        },
+        closeAddDialog() {
+            this.isAddDialogVisible = false;
+        },
+        addLevel(name: string) {
+            addWatchedLevel(name).then(() => {
+                this.$toasted.global.api_success({
+                    message: `Now watching level: ${name}`,
                 });
-            },
-            showDeleteDialog(level) {
-                this.isDeleteDialogVisible = true;
-                this.selectedLevel = level;
-            },
-            closeDeleteDialog() {
-                this.isDeleteDialogVisible = false;
-                this.selectedLevel = null;
-            },
-            deleteLevel() {
-                if (this.selectedLevel === null) {
-                    return;
-                }
-
-                this.$store.dispatch(DELETE_LEVEL_NAMES, this.selectedLevel).then(() => {
-                    this.$toasted.global.api_success({
-                        message : `Successfully deleted watch name: ${this.selectedLevel.name}`
-                    });
-                    this.closeDeleteDialog();
-                    this.getUserLevels();
-                }).catch((err) => {
-                    this.$toasted.global.api_error({
-                        message : err.response.data.message
-                    });
+                this.closeAddDialog();
+                this.getUserLevels();
+            }).catch((err) => {
+                this.$toasted.global.api_error({
+                    message: err.response.data.message,
                 });
-            },
+            });
         },
-        data() {
-            return {
-                isAddDialogVisible: false,
-                selectedLevel: null,
-                isDeleteDialogVisible: false,
-            };
+        showDeleteDialog(level: any) {
+            this.isDeleteDialogVisible = true;
+            this.selectedLevel = level;
         },
-        mounted() {
-            this.getUserLevels();
+        closeDeleteDialog() {
+            this.isDeleteDialogVisible = false;
+            this.selectedLevel = {name: ''};
         },
-        computed: {
-            ...mapGetters(["levelNames", "levelNamesCount"]),
-        }
-    }
+        deleteLevel() {
+            if (this.selectedLevel.name.length === 0) {
+                return;
+            }
+            const deletedName = this.selectedLevel.name;
+            this.$store.dispatch(DELETE_LEVEL_NAMES, this.selectedLevel).then(() => {
+                this.$toasted.global.api_success({
+                    message: `Successfully deleted watch name: ${deletedName}`,
+                });
+                this.closeDeleteDialog();
+                this.getUserLevels();
+            }).catch((err) => {
+                this.$toasted.global.api_error({
+                    message: err.response.data.message,
+                });
+            });
+        },
+    },
+    data() {
+        return {
+            isAddDialogVisible: false,
+            selectedLevel: {name: ''},
+            isDeleteDialogVisible: false,
+        };
+    },
+    mounted() {
+        this.getUserLevels();
+    },
+    computed: {
+        ...mapGetters(['levelNames', 'levelNamesCount']),
+    },
+});
 
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .md-table-toolbar {
         border-bottom: 1px solid #bbb;
     }

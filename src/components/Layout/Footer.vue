@@ -13,19 +13,18 @@
     </footer>
 </template>
 
-<script>
-    export default {
-        name: "Footer",
+<script lang="ts">
+import Vue from 'vue';
 
-        data() {
-            return {
-                currentYear: new Date().getFullYear()
-            }
-        }
-    };
+export default Vue.extend({
+    name: 'Footer',
+    data: () => ({
+       currentYear: new Date().getFullYear(),
+    }),
+});
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     footer {
         margin-top: auto !important;
         padding-bottom: 1rem !important;

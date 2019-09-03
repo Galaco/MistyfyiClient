@@ -24,26 +24,27 @@
     </md-card>
 </template>
 
-<script>
-    import LastUpdated from './LastUpdated';
+<script lang="ts">
+import Vue from 'vue';
+import LastUpdated from './LastUpdated.vue';
 
-    export default {
-        name: 'ServerCard',
-        components: {
-            LastUpdated,
+export default Vue.extend({
+    name: 'ServerCard',
+    components: {
+        LastUpdated,
+    },
+    props: {
+        server: Object,
+    },
+    methods: {
+        history() {
+            this.$emit('history', this.server);
         },
-        props: {
-            "server": Object,
+        deleteServer() {
+            this.$emit('delete', this.server);
         },
-        methods: {
-            history() {
-                this.$emit("history", this.server);
-            },
-            deleteServer() {
-                this.$emit("delete", this.server);
-            }
-        }
-    }
+    },
+});
 </script>
 
 <style lang="scss" scoped>

@@ -19,43 +19,44 @@
     </md-dialog>
 </template>
 
-<script>
-    import {FETCH_SERVER_HISTORY} from "../../../store/actions.type";
-    import { mapGetters } from "vuex";
+<script lang="ts">
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
+import {FETCH_SERVER_HISTORY} from './../../../store/actions.type';
 
-    export default {
-        name: 'History',
-        props: {
-            show: Boolean,
-            server: Object,
-        },
-        methods: {
-            fetchHistory(id) {
-                this.$store.dispatch(FETCH_SERVER_HISTORY, id).catch((err) => {
-                    this.$toasted.global.api_error({
-                        message : err.response.data.message
-                    });
+export default Vue.extend({
+    name: 'History',
+    props: {
+        show: Boolean,
+        server: Object,
+    },
+    methods: {
+        fetchHistory(id: any) {
+            this.$store.dispatch(FETCH_SERVER_HISTORY, id).catch((err) => {
+                this.$toasted.global.api_error({
+                    message : err.response.data.message,
                 });
-            },
-            close() {
-                this.$emit('close');
-            },
+            });
         },
-        watch: {
-            server: function(newValue) {
-                if (newValue == null) {
-                    return;
-                }
-                this.fetchHistory(newValue.id);
-            },
+        close() {
+            this.$emit('close');
         },
-        computed: {
-            ...mapGetters(["history", "historyCount"]),
-        }
-    };
+    },
+    watch: {
+        server(newValue: any) {
+            if (newValue == null) {
+                return;
+            }
+            this.fetchHistory(newValue.id);
+        },
+    },
+    computed: {
+        ...mapGetters(['history', 'historyCount']),
+    },
+});
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .vh60 {
         max-height: 60vh;
     }

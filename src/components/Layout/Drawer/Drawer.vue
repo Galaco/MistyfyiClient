@@ -15,13 +15,15 @@
     </span>
 </template>
 
-<script>
-    export default {
-        name: "Drawer"
-    };
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+    name: 'Drawer',
+});
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .app-icon {
         font-size: 20px;
         color: #fb7e14;

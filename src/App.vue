@@ -5,19 +5,20 @@
   </div>
 </template>
 
-<script>
-  import {isLoggedIn} from "./utils/auth";
-  import App from "./components/Layout/App";
+<script lang="ts">
+import Vue from 'vue';
+import {isLoggedIn} from './utils/auth';
+import App from './components/Layout/App.vue';
 
-export default {
+export default Vue.extend({
   name: 'app',
   components: {
-    App
+    App,
   },
   methods: {
     isLoggedIn,
-  }
-}
+  },
+});
 </script>
 
 <style src="./assets/app.scss" lang="scss"></style>

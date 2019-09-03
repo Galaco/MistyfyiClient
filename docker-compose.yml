@@ -10,6 +10,9 @@ services:
       - ./src:/srv/app/maptracker/src
       - ./.env.dev:/srv/app/maptracker/.env
       - ./babel.config.js:/srv/app/maptracker/babel.config.js
+      - ./postcss.config.js:/srv/app/maptracker/postcss.config.js
+      - ./babel.config.json:/srv/app/maptracker/tsconfig.json
+      - ./babel.config.json:/srv/app/maptracker/tslint.json
     ports:
       - 8080:8080
     environment:

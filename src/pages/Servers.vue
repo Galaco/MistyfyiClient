@@ -19,43 +19,44 @@
     </div>
 </template>
 
-<script>
-    import WatchedServers from '../components/WatchedServers/WatchedServers';
-    import EnableNotificationDialog from '../components/Notification/EnableNotificationDialog';
-    import WatchedMaps from '../components/WatchedMaps/WatchedMaps';
-    import {shouldDisplayNotificationPopup} from "../utils/notify";
-    import {FETCH_USER_PROFILE} from "../store/actions.type";
-    import { mapGetters } from "vuex";
+<script lang="ts">
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
+import WatchedServers from '../components/WatchedServers/WatchedServers.vue';
+import EnableNotificationDialog from '../components/Notification/EnableNotificationDialog.vue';
+import WatchedMaps from '../components/WatchedMaps/WatchedMaps.vue';
+import {shouldDisplayNotificationPopup} from '../utils/notify';
+import {FETCH_USER_PROFILE} from '../store/actions.type';
 
-    export default {
-        name: 'Servers',
-        components: {
-            EnableNotificationDialog,
-            WatchedServers,
-            WatchedMaps,
+export default Vue.extend({
+    name: 'Servers',
+    components: {
+        EnableNotificationDialog,
+        WatchedServers,
+        WatchedMaps,
+    },
+    data() {
+        return {
+            isEnableNotificationDialogVisible: false,
+        };
+    },
+    methods: {
+        closeEnableNotificationsPopup() {
+            this.isEnableNotificationDialogVisible = false;
         },
-        data() {
-            return {
-                isEnableNotificationDialogVisible: false,
-            };
-        },
-        methods: {
-            closeEnableNotificationsPopup() {
-                this.isEnableNotificationDialogVisible = false;
-            },
-        },
-        mounted() {
-            this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
-                this.isEnableNotificationDialogVisible = shouldDisplayNotificationPopup();
-            });
-        },
-        computed: {
-            ...mapGetters(["userProfile"]),
-        }
-    }
+    },
+    mounted() {
+        this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
+            this.isEnableNotificationDialogVisible = shouldDisplayNotificationPopup();
+        });
+    },
+    computed: {
+        ...mapGetters(['userProfile']),
+    },
+});
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .instructions {
         padding:16px;
         margin-bottom: 16px;

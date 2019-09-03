@@ -53,20 +53,21 @@
     </div>
 </template>
 
-<script>
-    import Header from "../components/Home/Header";
-    import Footer from "../components/Layout/Footer";
-    export default {
-        name: 'Home',
-        components: {
-            Header,
-            Footer,
-        }
-    }
+<script lang="ts">
+import Vue from 'vue';
+import Header from './../components/Home/Header.vue';
+import Footer from './../components/Layout/Footer.vue';
+
+export default Vue.extend({
+    name: 'Home',
+    components: {
+        Header,
+        Footer,
+    },
+});
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
     .home {
         margin-top: -108px;
     }

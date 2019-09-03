@@ -11,27 +11,27 @@
     </md-dialog>
 </template>
 
-<script>
-    import {COOKIE_NOTIFICATION_POPUP_SEEN, enableNotifications} from "../../utils/notify";
-    import { mapGetters } from "vuex";
+<script lang="ts">
+import Vue from 'vue';
+import {enableNotifications} from '../../utils/notify';
+import { mapGetters } from 'vuex';
 
-    export default {
-        name: 'EnableNotifications',
-        props: {
-            show: Boolean,
+export default Vue.extend({
+    name: 'EnableNotifications',
+    props: {
+        show: Boolean,
+    },
+    methods: {
+        submit() {
+            enableNotifications(this.userProfile.uuid);
+            this.$emit('close');
         },
-        methods: {
-            submit() {
-                this.$cookies.set(COOKIE_NOTIFICATION_POPUP_SEEN, true);
-                enableNotifications(this.userProfile.uuid);
-                this.$emit('close');
-            },
-            close() {
-                this.$emit('close');
-            },
+        close() {
+            this.$emit('close');
         },
-        computed: {
-            ...mapGetters(["userProfile"]),
-        }
-    };
+    },
+    computed: {
+        ...mapGetters(['userProfile']),
+    },
+});
 </script>

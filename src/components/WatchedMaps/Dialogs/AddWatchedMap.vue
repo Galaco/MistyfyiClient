@@ -18,24 +18,24 @@
     </md-dialog>
 </template>
 
-<script>
-    export default {
-        name: 'AddWatchedMap',
-        props: {
-            show: Boolean,
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+    name: 'AddWatchedMap',
+    props: {
+        show: Boolean,
+    },
+    data: () => ({
+        userLevelName: '',
+    }),
+    methods: {
+        close() {
+            this.$emit('close');
         },
-        data: () => {
-            return {
-                userLevelName: '',
-            }
+        submit() {
+            this.$emit('confirm', this.userLevelName);
         },
-        methods: {
-            close() {
-                this.$emit('close');
-            },
-            submit() {
-                this.$emit('confirm', this.userLevelName);
-            },
-        },
-    };
+    },
+});
 </script>

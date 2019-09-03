@@ -13,16 +13,18 @@
     </div>
 </template>
 
-<script>
-    import UserProfile from './UserProfile';
-    export default {
-        name: "toolbar",
-        components: {
-            UserProfile
-        },
-        props: {
-            title: String,
-            toggleMenu: Function
-        }
-    }
+<script lang="ts">
+import Vue from 'vue';
+import UserProfile from './UserProfile.vue';
+
+export default Vue.extend({
+    name: 'toolbar',
+    components: {
+        UserProfile,
+    },
+    props: {
+        title: String,
+        toggleMenu: Function,
+    },
+});
 </script>

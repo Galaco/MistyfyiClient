@@ -23,31 +23,32 @@
     </nav>
 </template>
 
-<script>
-    import {isLoggedIn, login, logout} from '../../utils/auth';
+<script lang="ts">
+import Vue from 'vue';
+import {isLoggedIn, login, logout} from '../../utils/auth';
 
-    export default {
-        name: "Header",
-        data() {
-            return {
-              navCollapsed: true,
-            };
+export default Vue.extend({
+    name: 'Header',
+    data() {
+        return {
+          navCollapsed: true,
+        };
+    },
+    methods: {
+        handleLogin() {
+            login();
         },
-        methods: {
-            handleLogin() {
-                login();
-            },
-            handleLogout() {
-                logout();
-            },
-            isLoggedIn() {
-                return isLoggedIn();
-            },
-        }
-    };
+        handleLogout() {
+            logout();
+        },
+        isLoggedIn() {
+            return isLoggedIn();
+        },
+    },
+});
 </script>
 
-<style scoped>
+<style lange="scss" scoped>
     .navbar {
         position: fixed;
         width: 100vw;

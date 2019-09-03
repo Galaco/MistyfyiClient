@@ -15,30 +15,31 @@
     </div>
 </template>
 
-<script>
-    import Toolbar from './Toolbar/Toolbar';
-    import Drawer from "./Drawer/Drawer";
-    import Footer from "./Footer";
+<script lang="ts">
+import Vue from 'vue';
+import Toolbar from './Toolbar/Toolbar.vue';
+import Drawer from './Drawer/Drawer.vue';
+import Footer from './Footer.vue';
 
-    export default {
-        name: 'App',
-        components: {
-            Drawer,
-            Toolbar,
-            Footer,
+export default Vue.extend({
+    name: 'App',
+    components: {
+        Drawer,
+        Toolbar,
+        Footer,
+    },
+    data: () => ({
+        menuVisible: false,
+    }),
+    methods: {
+        toggleMenu() {
+            this.menuVisible = !this.menuVisible;
         },
-        data: () => ({
-            menuVisible: false
-        }),
-        methods: {
-            toggleMenu: function() {
-                this.menuVisible = !this.menuVisible;
-            }
-        }
-    };
+    },
+});
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .vh100 {
         min-height: 100vh;
     }

@@ -10,23 +10,25 @@
     </Delete>
 </template>
 
-<script>
-    import Delete from '../../Dialogs/Delete';
-    export default {
-        name: 'DeleteServer',
-        components: {
-            Delete
+<script lang="ts">
+import Vue from 'vue';
+import Delete from './../../Dialogs/Delete.vue';
+
+export default Vue.extend({
+    name: 'DeleteServer',
+    components: {
+        Delete,
+    },
+    props: {
+        show: Boolean,
+    },
+    methods: {
+        close() {
+            this.$emit('close');
         },
-        props: {
-            show: Boolean,
+        submit() {
+            this.$emit('confirm');
         },
-        methods: {
-            close() {
-                this.$emit('close');
-            },
-            submit() {
-                this.$emit('confirm');
-            },
-        },
-    };
+    },
+});
 </script>

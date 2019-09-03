@@ -16,38 +16,36 @@
     </div>
 </template>
 
-<script>
-    import Card from './Card';
-    import { mapGetters } from "vuex";
-    import {SELECT_SERVER} from "../../store/actions.type";
-    import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
+<script lang="ts">
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
+import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
+import Card from './Card.vue';
+import {SELECT_SERVER} from './../../store/actions.type';
 
-    export default {
-        name: 'CardView',
-        components: {
-            MoonLoader,
-            Card,
+export default Vue.extend({
+    name: 'CardView',
+    components: {
+        MoonLoader,
+        Card,
+    },
+    methods: {
+        showHistory(server: any) {
+            this.$store.dispatch(SELECT_SERVER, server);
+            this.$emit('showHistory');
         },
-        methods: {
-            showHistory(server) {
-                this.$store.dispatch(SELECT_SERVER, server);
-                this.$emit("showHistory");
-            },
-            showDelete(server) {
-                this.$store.dispatch(SELECT_SERVER, server);
-                this.$emit("showDelete");
-            }
+        showDelete(server: any) {
+            this.$store.dispatch(SELECT_SERVER, server);
+            this.$emit('showDelete');
         },
-        mounted() {
-
-        },
-        computed: {
-            ...mapGetters(["servers", "serversCount", "serverSelected"]),
-        }
-    }
+    },
+    computed: {
+        ...mapGetters(['servers', 'serversCount', 'serverSelected']),
+    },
+});
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .md-layout-item {
         padding-left: 8px;
         padding-right: 8px;
@@ -59,8 +57,6 @@
         &:last-child {
             padding-right: 0;
         }
-    }
-    .card-view {
     }
     .table-row-placeholder {
         text-align: center;

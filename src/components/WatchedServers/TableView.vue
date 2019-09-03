@@ -26,38 +26,36 @@
     </div>
 </template>
 
-<script>
-    import Row from './TableRow';
-    import { mapGetters } from "vuex";
-    import {SELECT_SERVER} from "../../store/actions.type";
-    import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
+<script lang="ts">
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
+import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
+import Row from './TableRow.vue';
+import {SELECT_SERVER} from './../../store/actions.type';
 
-    export default {
-        name: 'CardView',
-        components: {
-            MoonLoader,
-            Row,
+export default Vue.extend({
+    name: 'CardView',
+    components: {
+        MoonLoader,
+        Row,
+    },
+    methods: {
+        showHistory(server: any) {
+            this.$store.dispatch(SELECT_SERVER, server);
+            this.$emit('showHistory');
         },
-        methods: {
-            showHistory(server) {
-                this.$store.dispatch(SELECT_SERVER, server);
-                this.$emit("showHistory");
-            },
-            showDelete(server) {
-                this.$store.dispatch(SELECT_SERVER, server);
-                this.$emit("showDelete");
-            }
+        showDelete(server: any) {
+            this.$store.dispatch(SELECT_SERVER, server);
+            this.$emit('showDelete');
         },
-        mounted() {
-
-        },
-        computed: {
-            ...mapGetters(["servers", "serversCount", "serverSelected"]),
-        }
-    }
+    },
+    computed: {
+        ...mapGetters(['servers', 'serversCount', 'serverSelected']),
+    },
+});
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .list-view {
         margin-bottom: 15px;
 

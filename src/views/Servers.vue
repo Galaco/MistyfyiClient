@@ -47,7 +47,12 @@ export default Vue.extend({
     },
     mounted() {
         this.$store.dispatch(SET_USER_PROFILE, userInfo());
-        this.$store.dispatch(FETCH_USER_PROFILE);
+        this.isEnableNotificationDialogVisible = !this.$pushbots.areNotificationPermissionsGranted();
+        this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
+                if (this.isEnableNotificationDialogVisible) {
+                    this.$pushbots.setAlias(this.userProfile.uuid);
+                }
+        });
     },
     computed: {
         ...mapGetters(['userProfile']),

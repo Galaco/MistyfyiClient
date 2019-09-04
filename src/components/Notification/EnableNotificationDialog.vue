@@ -23,6 +23,7 @@ export default Vue.extend({
     methods: {
         submit() {
             this.$pushbots.requestNotificationsPermission();
+            this.$pushbots.setEmail(this.$auth.user.email);
             this.$emit('close');
         },
         close() {

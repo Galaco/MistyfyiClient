@@ -49,6 +49,9 @@ interface PushBotLib {
 // Pushbots is global
 declare var PB: PushBotLib;
 
+const APP_URL = process.env.VUE_APP_URL;
+const APP_ID = process.env.VUE_APP_PUSHBOTS_APP_ID;
+
 class Pushbots {
     private lib: PushBotLib;
 
@@ -56,8 +59,9 @@ class Pushbots {
         this.lib = lib;
         this.lib.events = [];
         this.lib.q = [];
-        this.lib.domain = process.env.VUE_APP_URL;
-        this.lib.app_id = process.env.PUSHBOTS_APP_ID;
+        this.lib.domain = APP_URL;
+        this.lib.app_id = APP_ID;
+        this.lib.auto_subscribe = false;
     }
 
     public requestNotificationsPermission() {

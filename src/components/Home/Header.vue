@@ -47,7 +47,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lange="scss" scoped>
+<style lang="scss" scoped>
     .navbar {
         position: fixed;
         width: 100vw;

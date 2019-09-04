@@ -6,6 +6,7 @@
                 <span class="navbar-brand-title">{{ $t('app_title') }}</span>
             </router-link>
         </md-toolbar>
+        <md-divider></md-divider>
         <md-list>
             <md-list-item :to="{ name: 'servers' }" exact>
                 <md-icon>view_list</md-icon>

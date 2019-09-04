@@ -7,7 +7,11 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import locale from './locale';
+import authPlugin from './plugins/auth0';
+import pushbots from './plugins/pushbots';
 
+Vue.use(authPlugin);
+Vue.use(pushbots);
 Vue.use(VueMaterial);
 Vue.use(VueToasted);
 Vue.toasted.register('api_error', (payload) => {

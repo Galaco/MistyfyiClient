@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getAccessToken } from './auth';
+import { getAccessToken } from '../../plugins/auth0';
 
 const BASE_URL = process.env.VUE_APP_API_URL;
 
@@ -8,29 +8,29 @@ function getServerStatuses() {
     return axios.get(url, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
 }
 
-function addNewServer(ip, port) {
+function addNewServer(ip: string, port: number) {
     const url = `${BASE_URL}/api/v1/servers/add`;
     const data = {
-      ip: ip,
-      port: port,
+      ip,
+      port,
     };
     return axios.put(url, data, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
 }
 
-function deleteServer(ip, port) {
+function deleteServer(ip: string, port: number) {
     const url = `${BASE_URL}/api/v1/servers/remove`;
     return axios.delete(url,
         {
             headers: { Authorization: `Bearer ${getAccessToken()}` },
             data: {
-                ip: ip,
-                port: port
-            }
+                ip,
+                port,
+            },
         });
 }
 
 export {
     getServerStatuses,
     addNewServer,
-    deleteServer
+    deleteServer,
 };

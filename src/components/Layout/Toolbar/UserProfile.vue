@@ -20,19 +20,18 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
-import {isLoggedIn, login, logout} from '../../../utils/auth';
 
 export default Vue.extend({
     name: 'UserProfile',
     methods: {
         handleLogin() {
-            login();
+            this.$auth.login();
         },
         handleLogout() {
-            logout();
+            this.$auth.logout();
         },
         isLoggedIn() {
-            return isLoggedIn();
+            return this.$auth.isAuthenticated();
         },
     },
     computed: {

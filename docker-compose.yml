@@ -9,7 +9,6 @@ services:
       - ./public:/srv/app/maptracker/public
       - ./src:/srv/app/maptracker/src
       - ./types:/srv/app/maptracker/types
-      - ./.env.dev:/srv/app/maptracker/.env
       - ./babel.config.js:/srv/app/maptracker/babel.config.js
       - ./postcss.config.js:/srv/app/maptracker/postcss.config.js
       - ./tsconfig.json:/srv/app/maptracker/tsconfig.json
@@ -18,6 +17,12 @@ services:
       - 8080:8080
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - VUE_APP_URL=http://localhost:8080
+      - VUE_APP_OAUTH_CLIENT_ID=GjsboAdaiwadAAWUU5TJuwF1okG7fHRJ
+      - VUE_APP_OAUTH_CLIENT_DOMAIN=dev-puobt7a0.auth0.com
+      - VUE_APP_OAUTH_AUDIENCE=http://localhost:3000/api/
+      - VUE_APP_API_URL=http://localhost:8081
+      - VUE_APP_PUSHBOTS_APP_ID=5d5dfa16b794122f4241d1c9
 
   nats:
     image: nats-streaming:0.11.2

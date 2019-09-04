@@ -57,12 +57,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapGetters } from 'vuex';
+import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 import DeleteUserLevelDialog from './Dialogs/DeleteWatchedMap.vue';
 import AddUserLevelDialog from './Dialogs/AddWatchedMap.vue';
-import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from './../../store/actions.type';
-import { mapGetters } from 'vuex';
-import {addWatchedLevel} from './../../utils/api/levels';
-import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
+import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from '@/store/actions.type';
+import {addWatchedLevel} from '@/utils/api/levels';
 
 export default Vue.extend({
     name: 'UserLevels',

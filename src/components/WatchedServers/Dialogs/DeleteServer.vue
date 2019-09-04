@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Delete from './../../Dialogs/Delete.vue';
+import Delete from '@/components/Dialogs/Delete.vue';
 
 export default Vue.extend({
     name: 'DeleteServer',

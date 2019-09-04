@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {addNewServer} from './../../../utils/api/servers';
+import {addNewServer} from '@/utils/api/servers';
 
 export default Vue.extend({
     name: 'AddServer',

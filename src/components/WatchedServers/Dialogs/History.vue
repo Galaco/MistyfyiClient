@@ -22,7 +22,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
-import {FETCH_SERVER_HISTORY} from './../../../store/actions.type';
+import {FETCH_SERVER_HISTORY} from '@/store/actions.type';
 
 export default Vue.extend({
     name: 'History',

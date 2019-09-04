@@ -31,7 +31,7 @@ import Vue from 'vue';
 import { mapGetters } from 'vuex';
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 import Row from './TableRow.vue';
-import {SELECT_SERVER} from './../../store/actions.type';
+import {SELECT_SERVER} from '@/store/actions.type';
 
 export default Vue.extend({
     name: 'CardView',

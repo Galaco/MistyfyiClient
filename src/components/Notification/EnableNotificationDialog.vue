@@ -1,5 +1,5 @@
 <template>
-    <md-dialog :md-active.sync="show" id="enableNotificationsDialog">
+    <md-dialog :md-active="show" id="enableNotificationsDialog" @md-clicked-outside="close">
         <md-dialog-title>Enable Notifications</md-dialog-title>
         <md-dialog-content>
             Enabling notifications will allow MapTracker to send you a message whenever a map on your watch list begins on a server you are watching.
@@ -13,7 +13,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {enableNotifications} from '../../utils/notify';
 import { mapGetters } from 'vuex';
 
 export default Vue.extend({
@@ -23,7 +22,7 @@ export default Vue.extend({
     },
     methods: {
         submit() {
-            enableNotifications(this.userProfile.uuid);
+            this.$pushbots.requestNotificationsPermission();
             this.$emit('close');
         },
         close() {

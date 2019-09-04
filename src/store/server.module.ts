@@ -1,7 +1,7 @@
 import {FETCH_SERVER_HISTORY, SELECT_SERVER} from './actions.type';
 import {FETCH_SERVER_HISTORY_END, FETCH_SERVER_HISTORY_START, SELECT_SERVER_END} from './mutations.type';
-import {getServerHistory} from '../utils/server-api';
-import {reauthenticate} from '../utils/auth';
+import {getServerHistory} from './../utils/api/server';
+import {getAccessToken} from '../plugins/auth0';
 
 
 class State {
@@ -37,7 +37,7 @@ const actions = {
             }).catch((err: any) => {
                 const resp = err.response.data;
                 if (resp.code === 401) {
-                    reauthenticate();
+                    getAccessToken();
                 }
             });
     },

@@ -1,9 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '../pages/Home.vue';
-import Callback from '../pages/Callback.vue';
-import Servers from '../pages/Servers.vue';
-import { requireAuth } from '../utils/auth';
+import Home from './../views/Home.vue';
+import Callback from './../views/Callback.vue';
+import Servers from './../views/Servers.vue';
 
 Vue.use(Router);
 
@@ -40,6 +39,14 @@ const router = new Router({
     },
   ],
 });
+
+function requireAuth(to: any, from: any, next: any) {
+    if (!router.app.$auth.isAuthenticated()) {
+        router.app.$auth.login();
+    } else {
+        next();
+    }
+}
 
 router.afterEach((to) => {
   document.title = to.meta.title;

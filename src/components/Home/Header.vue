@@ -25,7 +25,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {isLoggedIn, login, logout} from '../../utils/auth';
 
 export default Vue.extend({
     name: 'Header',
@@ -36,13 +35,13 @@ export default Vue.extend({
     },
     methods: {
         handleLogin() {
-            login();
+            this.$auth.login();
         },
         handleLogout() {
-            logout();
+            this.$auth.logout();
         },
         isLoggedIn() {
-            return isLoggedIn();
+            this.$auth.isAuthenticated();
         },
     },
 });

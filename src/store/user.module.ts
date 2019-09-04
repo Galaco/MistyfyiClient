@@ -1,7 +1,7 @@
-import {FETCH_USER_PROFILE} from './actions.type';
+import {FETCH_USER_PROFILE, SET_USER_PROFILE} from './actions.type';
 import {FETCH_USER_PROFILE_END, FETCH_USER_PROFILE_START} from './mutations.type';
-import {reauthenticate} from './../utils/auth';
-import {getUserProfile} from './../utils/user-api';
+import {getAccessToken} from '../plugins/auth0';
+import {getUserProfile} from './../utils/api/user';
 
 
 class State {
@@ -29,9 +29,13 @@ const actions = {
             }).catch((err: any) => {
                 const body = err.response.data;
                 if (body.code === 401) {
-                    reauthenticate();
+                    getAccessToken();
                 }
             });
+    },
+    [SET_USER_PROFILE]({ commit }: any, params: any) {
+        commit(FETCH_USER_PROFILE_START);
+        commit(FETCH_USER_PROFILE_END, params);
     },
 };
 

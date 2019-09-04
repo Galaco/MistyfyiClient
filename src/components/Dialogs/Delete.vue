@@ -1,5 +1,5 @@
 <template>
-    <md-dialog :md-active.sync="show" :md-click-outside-to-close="false">
+    <md-dialog :md-active="show"  @md-clicked-outside="close">
         <md-dialog-title>{{ title }}</md-dialog-title>
         <md-dialog-content>
             <slot />

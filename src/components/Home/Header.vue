@@ -1,9 +1,8 @@
 <template>
     <nav class="navbar">
         <md-toolbar>
-            <router-link class="navbar-brand md-title" :to="{ name: 'home' }">
-                <i class="material-icons app-icon">devices</i>
-                <span class="navbar-brand-title">{{ $t('app_title') }}</span>
+            <router-link class="md-title" :to="{ name: 'home' }">
+                <BrandLogo/>
             </router-link>
 
             <div class="md-toolbar-section-end" style="margin-right: 32px; overflow-x: hidden;">
@@ -25,9 +24,15 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import BrandLogo from '@/components/Branding/BrandLogo.vue';
+import UserProfile from '@/components/Layout/Toolbar/UserProfile.vue';
 
 export default Vue.extend({
     name: 'Header',
+    components: {
+        BrandLogo,
+        UserProfile,
+    },
     data() {
         return {
           navCollapsed: true,
@@ -41,7 +46,7 @@ export default Vue.extend({
             this.$auth.logout();
         },
         isLoggedIn() {
-            this.$auth.isAuthenticated();
+            return this.$auth.isAuthenticated();
         },
     },
 });
@@ -57,26 +62,5 @@ export default Vue.extend({
         background: #fafbfc;
         margin-bottom: 16px;
         box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
-    }
-
-    .navbar-brand-title {
-        vertical-align: middle;
-    }
-
-    .app-icon {
-        font-size: 20px;
-        color: #fb7e14;
-        height: 36px;
-        width: 36px;
-        line-height: 36px;
-        border-radius: 50%;
-        text-align: center;
-        background-color: #292929;
-        vertical-align:middle;
-        margin-right: 16px;
-    }
-    .navbar-brand:hover .app-icon {
-        background-color: rgb(50, 50, 50);
-        color: rgb(255, 150, 24);
     }
 </style>

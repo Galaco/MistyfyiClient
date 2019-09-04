@@ -6,11 +6,7 @@
             </md-button>
             <span class="md-title">{{ title }}</span>
         </div>
-
-        <div class="md-toolbar-section-end" style="margin-right: 32px; overflow-x: hidden;">
-            <span :v-if="this.$auth.isAuthenticated()" class="md-body-2 user-email">{{ this.$auth.user.email }}</span>
-            <UserProfile/>
-        </div>
+        <UserProfile/>
     </div>
 </template>
 
@@ -29,11 +25,3 @@ export default Vue.extend({
     },
 });
 </script>
-
-<style lang="scss" scoped>
-    .user-email {
-        margin-right: 8px;
-        text-overflow: ellipsis;
-        overflow-x: hidden;
-    }
-</style>

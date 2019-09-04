@@ -22,11 +22,11 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
-import WatchedServers from '../components/WatchedServers/WatchedServers.vue';
-import EnableNotificationDialog from '../components/Notification/EnableNotificationDialog.vue';
-import WatchedMaps from '../components/WatchedMaps/WatchedMaps.vue';
-import {shouldDisplayNotificationPopup} from '../utils/notify';
-import {FETCH_USER_PROFILE} from '../store/actions.type';
+import WatchedServers from './../components/WatchedServers/WatchedServers.vue';
+import EnableNotificationDialog from './../components/Notification/EnableNotificationDialog.vue';
+import WatchedMaps from './../components/WatchedMaps/WatchedMaps.vue';
+import {FETCH_USER_PROFILE, SET_USER_PROFILE} from '@/store/actions.type';
+import {userInfo} from '@/plugins/auth0';
 
 export default Vue.extend({
     name: 'Servers',
@@ -46,9 +46,8 @@ export default Vue.extend({
         },
     },
     mounted() {
-        this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
-            this.isEnableNotificationDialogVisible = shouldDisplayNotificationPopup();
-        });
+        this.$store.dispatch(SET_USER_PROFILE, userInfo());
+        this.$store.dispatch(FETCH_USER_PROFILE);
     },
     computed: {
         ...mapGetters(['userProfile']),

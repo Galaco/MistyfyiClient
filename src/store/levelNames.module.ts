@@ -5,8 +5,8 @@ import {
     FETCH_LEVEL_NAMES_END,
     FETCH_LEVEL_NAMES_START,
 } from './mutations.type';
-import {deleteWatchedLevel, getWatchedLevels} from '../utils/levels-api';
-import {reauthenticate} from '../utils/auth';
+import {deleteWatchedLevel, getWatchedLevels} from './../utils/api/levels';
+import {getAccessToken} from '../plugins/auth0';
 
 class State {
     public loadingLevelNames: boolean = true;
@@ -37,7 +37,7 @@ const actions = {
             }).catch((err: any) => {
                 const resp = err.response.data;
                 if (resp.code === 401) {
-                    reauthenticate();
+                    getAccessToken();
                 }
                 commit(FETCH_LEVEL_NAMES_END, resp.body);
             });
@@ -50,7 +50,7 @@ const actions = {
             }).catch((err: any) => {
                 const resp = err.response.data;
                 if (resp.code === 401) {
-                    reauthenticate();
+                    getAccessToken();
                 }
                 commit(DELETE_LEVEL_NAMES_END, resp.body);
             });

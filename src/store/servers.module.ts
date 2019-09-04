@@ -1,7 +1,7 @@
 import {DELETE_SERVER, FETCH_SERVERS} from './actions.type';
 import {FETCH_SERVERS_END, FETCH_SERVERS_START, DELETE_SERVERS_START, DELETE_SERVERS_END} from './mutations.type';
-import {deleteServer, getServerStatuses} from '../utils/servers-api';
-import {reauthenticate} from '../utils/auth';
+import {deleteServer, getServerStatuses} from './../utils/api/servers';
+import {getAccessToken} from '../plugins/auth0';
 
 
 class State {
@@ -33,7 +33,7 @@ const actions = {
             }).catch((err: any) => {
                 const resp = err.response.data;
                 if (resp.code === 401) {
-                    reauthenticate();
+                    getAccessToken();
                 }
             });
     },
@@ -45,7 +45,7 @@ const actions = {
             }).catch((err: any) => {
                 const resp = err.response.data;
                 if (resp.code === 401) {
-                    reauthenticate();
+                    getAccessToken();
                 }
                 commit(DELETE_SERVERS_END, resp.body);
             });

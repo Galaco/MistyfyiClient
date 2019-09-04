@@ -7,7 +7,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {isLoggedIn} from './utils/auth';
 import App from './components/Layout/App.vue';
 
 export default Vue.extend({
@@ -16,7 +15,9 @@ export default Vue.extend({
     App,
   },
   methods: {
-    isLoggedIn,
+    isLoggedIn() {
+      return this.$auth.isAuthenticated();
+    },
   },
 });
 </script>

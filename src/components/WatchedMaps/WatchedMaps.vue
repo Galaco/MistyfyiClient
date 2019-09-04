@@ -61,7 +61,7 @@ import DeleteUserLevelDialog from './Dialogs/DeleteWatchedMap.vue';
 import AddUserLevelDialog from './Dialogs/AddWatchedMap.vue';
 import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from './../../store/actions.type';
 import { mapGetters } from 'vuex';
-import {addWatchedLevel} from '../../utils/levels-api';
+import {addWatchedLevel} from './../../utils/api/levels';
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 
 export default Vue.extend({

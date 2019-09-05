@@ -18,7 +18,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - VUE_APP_URL=http://localhost:8080
-      - VUE_APP_OAUTH_CLIENT_ID=GjsboAdaiwadAAWUU5TJuwF1okG7fHRJ
+      - VUE_APP_OAUTH_CLIENT_ID=EcaqpKbNOpK0Ho2MCSRQ6AdflHQOh7wQ
       - VUE_APP_OAUTH_CLIENT_DOMAIN=dev-puobt7a0.auth0.com
       - VUE_APP_OAUTH_AUDIENCE=http://localhost:3000/api/
       - VUE_APP_API_URL=http://localhost:8081

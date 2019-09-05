@@ -4,19 +4,21 @@
         <md-dialog-content>
             <form novalidate class="md-layout md-gutter">
                 <div class="md-layout-item md-small-size-100">
-                    <md-field>
+                    <md-field :class="(!serverIPValid)? 'md-invalid': ''">
                         <label for="addserver_ip">{{ $t('servers.servers.dialogs.add.form.ip') }}</label>
-                        <md-input name="ip" id="addserver_ip" v-model="serverIP"/>
+                        <md-input name="ip" id="addserver_ip" v-model="serverIP" required/>
+                        <span class="md-error">{{ $t('servers.servers.dialogs.add.form.ipError') }}</span>
                     </md-field>
-                    <md-field>
+                    <md-field :class="(!serverPortValid)? 'md-invalid': ''">
                         <label for="addserver_ip">{{ $t('servers.servers.dialogs.add.form.port') }}</label>
-                        <md-input name="port" id="addserver_port" v-model="serverPort"/>
+                        <md-input name="port" id="addserver_port" v-model="serverPort" required/>
+                        <span class="md-error">{{ $t('servers.servers.dialogs.add.form.portError') }}</span>
                     </md-field>
                 </div>
             </form>
         </md-dialog-content>
         <md-dialog-actions>
-            <md-button class="md-primary" @click="submit">{{ $t('dialog.buttons.save') }}</md-button>
+            <md-button class="md-primary" @click="submit" :disabled="!serverIPValid || !serverPortValid">{{ $t('dialog.buttons.save') }}</md-button>
             <md-button class="md-secondary" @click="close">{{ $t('dialog.buttons.cancel') }}</md-button>
         </md-dialog-actions>
     </md-dialog>
@@ -26,6 +28,8 @@
 import Vue from 'vue';
 import {addNewServer} from '@/utils/api/servers';
 
+const ipAddressRegex = /((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}/;
+
 export default Vue.extend({
     name: 'AddServer',
     props: {
@@ -33,10 +37,13 @@ export default Vue.extend({
     },
     data: () => ({
         serverIP: '',
+        serverIPValid: false,
         serverPort: 0,
+        serverPortValid: true,
     }),
     methods: {
         close() {
+            this.reset();
             this.$emit('close');
         },
         submit() {
@@ -55,6 +62,14 @@ export default Vue.extend({
         reset() {
             this.serverIP = '';
             this.serverPort = 0;
+        },
+    },
+    watch: {
+        serverIP(value) {
+            this.serverIPValid = ipAddressRegex.test(value);
+        },
+        serverPort(value) {
+            this.serverPortValid = value !== '' && value > -1 && value < 65536;
         },
     },
 });

@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar-brand">
+    <div class="navbar-brand" :class="light? 'light': 'dark'">
         <img src="/images/logo.svg" alt="logo" class="navbar-brand-icon"/>
         <span class="navbar-brand-title">{{ $t('app_title') }}</span>
     </div>
@@ -10,6 +10,9 @@ import Vue from 'vue';
 
 export default Vue.extend({
     name: 'BrandLogo',
+    props: {
+        light: Boolean,
+    },
 });
 </script>
 
@@ -31,6 +34,12 @@ export default Vue.extend({
             background-color: #292929;
             vertical-align:middle;
             margin-right: 16px;
+        }
+
+        &.light {
+            .navbar-brand-icon:hover {
+                color: #fff;
+            }
         }
 
         &:hover {

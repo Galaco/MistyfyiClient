@@ -2,6 +2,7 @@ import auth0 from 'auth0-js';
 import Router from 'vue-router';
 import { UserProfile, DefaultUserProfile } from './auth0/userProfile';
 
+const LOGOUT_URL = process.env.VUE_APP_URL;
 const CLIENT_ID = process.env.VUE_APP_OAUTH_CLIENT_ID;
 const CLIENT_DOMAIN = process.env.VUE_APP_OAUTH_CLIENT_DOMAIN;
 const REDIRECT = process.env.VUE_APP_URL + '/callback';
@@ -84,7 +85,7 @@ class Auth {
           localStorage.removeItem('expires_at');
           localStorage.removeItem('user');
           webAuth.logout({
-            returnTo: '/', // Allowed logout URL listed in dashboard
+            returnTo: LOGOUT_URL, // Allowed logout URL listed in dashboard
             clientID: CLIENT_ID, // Your client ID
           });
         });

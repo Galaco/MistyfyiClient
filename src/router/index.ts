@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './../views/Home.vue';
 import Callback from './../views/Callback.vue';
 import Servers from './../views/Servers.vue';
+import Help from './../views/Help.vue';
 
 Vue.use(Router);
 
@@ -34,6 +35,17 @@ const router = new Router({
       meta: {
         title: 'MapTracker - Watched Servers',
         header: 'Servers',
+        staticPage: false,
+      },
+    },
+    {
+      name: 'help',
+      path: '/help',
+      component: Help,
+      beforeEnter: requireAuth,
+      meta: {
+        title: 'MapTracker - Help',
+        header: 'Help',
         staticPage: false,
       },
     },

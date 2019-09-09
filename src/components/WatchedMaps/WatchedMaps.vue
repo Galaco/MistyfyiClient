@@ -39,7 +39,7 @@
                 </md-button>
             </md-empty-state>
             <div class="row text-center" v-if="levelNamesCount === -1">
-                <div class="col-sm-12 loading-spinner">
+                <div class="loading-spinner">
                     <MoonLoader/>
                 </div>
             </div>
@@ -132,12 +132,6 @@ export default Vue.extend({
         text-align: center;
         width: 160px;
         min-width: 160px;
-    }
-
-    .table-row-placeholder {
-        height: 5rem;
-        text-align: center;
-        padding: 15px 0;
     }
 
     .loading-spinner {

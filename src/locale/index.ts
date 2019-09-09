@@ -18,6 +18,7 @@ export default function(l: any) {
                 navigation: {
                     links: {
                         servers: 'Servers',
+                        help: 'Help',
                     },
                 },
                 home: {

@@ -1,23 +1,19 @@
 <template>
-    <div class="container list-view">
-        <div class="row">
-            <div class="col-sm-12">
-                <md-table>
-                    <md-table-row  v-if="servers.length > 0">
-                        <md-table-head>{{ $t('servers.servers.list.headers.server') }}</md-table-head>
-                        <md-table-head>{{ $t('servers.servers.list.headers.address') }}</md-table-head>
-                        <md-table-head>{{ $t('servers.servers.list.headers.map') }}</md-table-head>
-                        <md-table-head>{{ $t('servers.servers.list.headers.updated') }}</md-table-head>
-                        <md-table-head class="controls">{{ $t('table.headers.actions') }}</md-table-head>
-                    </md-table-row>
-                    <Row v-for="(server,index) in servers" :key="index"
-                         :server="server"
-                         @delete="showDelete"
-                         @history="showHistory"
-                    />
-                </md-table>
-            </div>
-        </div>
+    <div class="list-view">
+        <md-table>
+            <md-table-row  v-if="servers.length > 0">
+                <md-table-head>{{ $t('servers.servers.list.headers.server') }}</md-table-head>
+                <md-table-head>{{ $t('servers.servers.list.headers.address') }}</md-table-head>
+                <md-table-head>{{ $t('servers.servers.list.headers.map') }}</md-table-head>
+                <md-table-head>{{ $t('servers.servers.list.headers.updated') }}</md-table-head>
+                <md-table-head class="controls">{{ $t('table.headers.actions') }}</md-table-head>
+            </md-table-row>
+            <Row v-for="(server,index) in servers" :key="index"
+                 :server="server"
+                 @delete="showDelete"
+                 @history="showHistory"
+            />
+        </md-table>
         <div class="row text-center" v-if="serversCount === -1">
             <div class="col-sm-12 loading-spinner">
                 <MoonLoader/>
@@ -57,17 +53,11 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
     .list-view {
-        margin-bottom: 15px;
-
         th.controls {
             text-align: center;
             width: 160px;
             min-width: 160px;
         }
-    }
-    .table-row-placeholder {
-        text-align: center;
-        padding: 15px 0;
     }
 
     .loading-spinner {

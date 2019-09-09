@@ -1,7 +1,7 @@
 <template>
     <div class="container card-view">
         <div class="row text-center" v-if="serversCount === -1">
-            <div class="col-sm-12 loading-spinner">
+            <div class="loading-spinner">
                 <MoonLoader/>
             </div>
         </div>
@@ -57,10 +57,6 @@ export default Vue.extend({
         &:last-child {
             padding-right: 0;
         }
-    }
-    .table-row-placeholder {
-        text-align: center;
-        padding: 15px 0;
     }
 
     .loading-spinner {

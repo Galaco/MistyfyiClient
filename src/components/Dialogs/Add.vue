@@ -4,10 +4,9 @@
         @confirm="submit"
         :show="show"
         :title="title" 
-        :confirmLabel="$t('dialog.buttons.delete')"
+        :confirmLabel="$t('dialog.buttons.save')"
         :denyLabel="$t('dialog.buttons.cancel')"
         :type="type"
-        :confirmDisabled=false
         >
         <slot />
     </Dialog>
@@ -19,17 +18,18 @@ import Dialog from './Dialog.vue';
 import { DialogType } from '@/utils/dialog/constants';
 
 export default Vue.extend({
-    name: 'Delete',
+    name: 'Add',
     components: {
         Dialog,
     },
     props: {
         show: Boolean,
         title: String,
+        confirmDisabled: Boolean,
     },
     data: () => {
         return {
-            type: DialogType.Delete,
+            type: DialogType.Add,
         };
     },
     methods: {

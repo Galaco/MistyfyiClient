@@ -2,7 +2,6 @@ import Vue from 'vue';
 import VueToasted from 'vue-toasted';
 import VueCookies from 'vue-cookies';
 import VueMaterial from 'vue-material';
-import Vuelidate from 'vuelidate';
 import VueI18n from 'vue-i18n';
 import App from './App.vue';
 import router from './router';
@@ -11,7 +10,6 @@ import locale from './locale';
 import authPlugin from './plugins/auth0';
 import pushbots from './plugins/pushbots';
 
-Vue.use(Vuelidate);
 Vue.use(authPlugin);
 Vue.use(pushbots);
 Vue.use(VueMaterial);

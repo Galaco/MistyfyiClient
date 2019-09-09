@@ -9,7 +9,7 @@
         <md-list>
             <md-list-item :to="{ name: 'servers' }" exact>
                 <md-icon>view_list</md-icon>
-                <span class="md-list-item-text">Servers</span>
+                <span class="md-list-item-text">{{ $t('navigation.links.servers') }}</span>
             </md-list-item>
         </md-list>
     </span>

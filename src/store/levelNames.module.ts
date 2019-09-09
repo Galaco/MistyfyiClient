@@ -5,8 +5,9 @@ import {
     FETCH_LEVEL_NAMES_END,
     FETCH_LEVEL_NAMES_START,
 } from './mutations.type';
-import {deleteWatchedLevel, getWatchedLevels} from './../utils/api/levels';
-import {getAccessToken} from '../plugins/auth0';
+import {deleteWatchedLevel, getWatchedLevels} from '@/utils/api/levels';
+import { normalizeResponse } from '@/utils/api/transform';
+import {getAccessToken} from '@/plugins/auth0';
 
 class State {
     public loadingLevelNames: boolean = true;
@@ -35,7 +36,7 @@ const actions = {
             .then(({ data }: any) => {
                 commit(FETCH_LEVEL_NAMES_END, data.body);
             }).catch((err: any) => {
-                const resp = err.response.data;
+                const resp = normalizeResponse(err, []);
                 if (resp.code === 401) {
                     getAccessToken();
                 }
@@ -48,7 +49,7 @@ const actions = {
             .then(({ data }: any) => {
                 commit(DELETE_LEVEL_NAMES_END, data.body);
             }).catch((err: any) => {
-                const resp = err.response.data;
+                const resp = normalizeResponse(err);
                 if (resp.code === 401) {
                     getAccessToken();
                 }

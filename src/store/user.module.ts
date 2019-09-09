@@ -1,7 +1,8 @@
 import {FETCH_USER_PROFILE, SET_USER_PROFILE} from './actions.type';
 import {FETCH_USER_PROFILE_END, FETCH_USER_PROFILE_START} from './mutations.type';
-import {getAccessToken} from '../plugins/auth0';
-import {getUserProfile} from './../utils/api/user';
+import {getAccessToken} from '@/plugins/auth0';
+import { normalizeResponse } from '@/utils/api/transform';
+import {getUserProfile} from '@/utils/api/user';
 
 
 class State {
@@ -27,8 +28,8 @@ const actions = {
             .then(({ data }: any) => {
                 commit(FETCH_USER_PROFILE_END, data.body);
             }).catch((err: any) => {
-                const body = err.response.data;
-                if (body.code === 401) {
+                const resp = normalizeResponse(err);
+                if (resp.code === 401) {
                     getAccessToken();
                 }
             });

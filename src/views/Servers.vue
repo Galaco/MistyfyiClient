@@ -14,7 +14,7 @@
         <EnableNotificationDialog
                 v-bind:show="isEnableNotificationDialogVisible"
                 @confirm="closeEnableNotificationsPopup"
-                @close="closeEnableNotificationsPopup"
+                @deny="closeEnableNotificationsPopup"
         />
     </div>
 </template>

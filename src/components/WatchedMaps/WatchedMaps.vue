@@ -1,5 +1,5 @@
 <template>
-    <div class="level-list">
+    <div class="map-list">
         <md-card class="md-elevation-6">
             <md-table>
                 <md-table-toolbar>
@@ -10,15 +10,15 @@
                     </md-button>
                 </md-table-toolbar>
                 <md-table-row v-if="levelNames.length > 0">
-                    <md-table-head class="v-center">Map Name</md-table-head>
+                    <md-table-head class="v-center">{{ $t('servers.mapNames.table.headers.name') }}</md-table-head>
                     <md-table-head class="controls">{{ $t('table.headers.actions') }}</md-table-head>
                 </md-table-row>
-                <md-table-row v-for="(level,index) in levelNames" :key="index">
-                    <md-table-cell class="v-center">{{ level.name }}</md-table-cell>
+                <md-table-row v-for="(map,index) in levelNames" :key="index">
+                    <md-table-cell class="v-center">{{ map.name }}</md-table-cell>
                     <md-table-cell class="controls">
                         <div class="md-layout md-alignment-center md-gutter">
                             <div class="md-layout-item md-size-40">
-                                <md-button class="md-icon-button md-accent md-raised" @click="showDeleteDialog(level)">
+                                <md-button class="md-icon-button md-accent md-raised" @click="showDeleteDialog(map)">
                                     <md-icon>delete</md-icon>
                                     <md-tooltip md-direction="bottom">{{ $t('servers.mapNames.buttons.delete') }}</md-tooltip>
                                 </md-button>
@@ -46,12 +46,13 @@
         </md-card>
         <AddUserLevelDialog
                 v-bind:show="isAddDialogVisible"
-                @close="closeAddDialog"
-                @confirm="addLevel"/>
+                @deny="closeAddDialog"
+                @confirm="onMapAdded"/>
         <DeleteUserLevelDialog
                 v-bind:show="isDeleteDialogVisible"
-                @close="closeDeleteDialog"
-                @confirm="deleteLevel"/>
+                v-bind:model="selectedLevel"
+                @deny="closeDeleteDialog"
+                @confirm="onMapDeleted"/>
     </div>
 </template>
 
@@ -61,8 +62,7 @@ import { mapGetters } from 'vuex';
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 import DeleteUserLevelDialog from './Dialogs/DeleteWatchedMap.vue';
 import AddUserLevelDialog from './Dialogs/AddWatchedMap.vue';
-import {DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES} from '@/store/actions.type';
-import {addWatchedLevel} from '@/utils/api/levels';
+import {FETCH_LEVEL_NAMES} from '@/store/actions.type';
 
 export default Vue.extend({
     name: 'UserLevels',
@@ -85,43 +85,21 @@ export default Vue.extend({
         closeAddDialog() {
             this.isAddDialogVisible = false;
         },
-        addLevel(name: string) {
-            addWatchedLevel(name).then(() => {
-                this.$toasted.global.api_success({
-                    message: `Now watching level: ${name}`,
-                });
-                this.closeAddDialog();
-                this.getUserLevels();
-            }).catch((err) => {
-                this.$toasted.global.api_error({
-                    message: err.response.data.message,
-                });
-            });
-        },
-        showDeleteDialog(level: any) {
+        showDeleteDialog(map: any) {
+            this.selectedLevel = map;
             this.isDeleteDialogVisible = true;
-            this.selectedLevel = level;
         },
         closeDeleteDialog() {
             this.isDeleteDialogVisible = false;
             this.selectedLevel = {name: ''};
         },
-        deleteLevel() {
-            if (this.selectedLevel.name.length === 0) {
-                return;
-            }
-            const deletedName = this.selectedLevel.name;
-            this.$store.dispatch(DELETE_LEVEL_NAMES, this.selectedLevel).then(() => {
-                this.$toasted.global.api_success({
-                    message: `Successfully deleted watch name: ${deletedName}`,
-                });
-                this.closeDeleteDialog();
-                this.getUserLevels();
-            }).catch((err) => {
-                this.$toasted.global.api_error({
-                    message: err.response.data.message,
-                });
-            });
+        onMapAdded() {
+            this.closeAddDialog();
+            this.getUserLevels();
+        },
+        onMapDeleted() {
+            this.closeDeleteDialog();
+            this.getUserLevels();
         },
     },
     data() {
@@ -146,7 +124,7 @@ export default Vue.extend({
         border-bottom: 1px solid #bbb;
     }
 
-    .level-list {
+    .map-list {
         margin-bottom: 16px;
     }
 

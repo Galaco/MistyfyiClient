@@ -3,7 +3,7 @@
         id="deleteServerDialog"
         :title="$t('servers.servers.dialogs.delete.title')"
         @confirm="submit"
-        @close="close"
+        @deny="close"
         :show="show"
         >
         <span>{{ $t('servers.servers.dialogs.delete.body') }}</span>
@@ -24,7 +24,7 @@ export default Vue.extend({
     },
     methods: {
         close() {
-            this.$emit('close');
+            this.$emit('deny');
         },
         submit() {
             this.$emit('confirm');

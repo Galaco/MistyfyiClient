@@ -19,7 +19,7 @@ import Dialog from './Dialog.vue';
 import { DialogType } from '@/utils/dialog/constants';
 
 export default Vue.extend({
-    name: 'Delete',
+    name: 'Info',
     components: {
         Dialog,
     },
@@ -29,7 +29,7 @@ export default Vue.extend({
     },
     data: () => {
         return {
-            type: DialogType.Delete,
+            type: DialogType.NoAction,
         };
     },
     methods: {

@@ -15,6 +15,11 @@ export default function(l: any) {
                     description: ' is a dedicated game server map rotation tracker.',
                     owner: 'A project by ',
                 },
+                navigation: {
+                    links: {
+                        servers: 'Servers',
+                    },
+                },
                 home: {
                     about: {
                         title: 'MapTracker',
@@ -114,6 +119,11 @@ export default function(l: any) {
                             title: 'You have not added any map names yet.',
                             description: 'Once you add map names, you can start receiving notifications when your favourite servers play them.',
                         },
+                        table: {
+                            headers: {
+                                name: 'Map Name',
+                            },
+                        },
                         dialogs: {
                             add: {
                                 title: 'Add Map Name',
@@ -137,6 +147,12 @@ export default function(l: any) {
                         close: 'Close',
                         save: 'Save',
                         delete: 'Delete',
+                    },
+                    notifications: {
+                        title: 'Enable Notifications',
+                        body: 'Enabling notifications will allow MapTracker to send you a message whenever a map on your watch list begins on a server you are watching.',
+                        confirm: 'Allow',
+                        deny: 'Don\t allow',
                     },
                 },
                 table: {

@@ -1,12 +1,12 @@
 <template>
     <md-dialog :md-active="show" id="enableNotificationsDialog" @md-clicked-outside="close">
-        <md-dialog-title>Enable Notifications</md-dialog-title>
+        <md-dialog-title>{{ $t('dialog.notifications.title') }}</md-dialog-title>
         <md-dialog-content>
-            Enabling notifications will allow MapTracker to send you a message whenever a map on your watch list begins on a server you are watching.
+            {{ $t('dialog.notifications.body') }}
         </md-dialog-content>
         <md-dialog-actions>
-            <md-button class="md-primary" @click="submit">Allow</md-button>
-            <md-button class="md-secondary" @click="close">Don't Allow</md-button>
+            <md-button class="md-primary" @click="submit">{{ $t('dialog.notifications.confirm') }}</md-button>
+            <md-button class="md-secondary" @click="close">{{ $t('dialog.notifications.deny') }}</md-button>
         </md-dialog-actions>
     </md-dialog>
 </template>
@@ -24,10 +24,10 @@ export default Vue.extend({
         submit() {
             this.$pushbots.requestNotificationsPermission();
             this.$pushbots.setEmail(this.$auth.user.email);
-            this.$emit('close');
+            this.$emit('deny');
         },
         close() {
-            this.$emit('close');
+            this.$emit('deny');
         },
     },
     computed: {

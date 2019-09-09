@@ -6,7 +6,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -30,13 +29,11 @@
     "vue-router": "^3.1.3",
     "vue-spinner": "^1.0.3",
     "vue-toasted": "^1.1.27",
-    "vuelidate": "^0.7.4",
     "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
     "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-e2e-nightwatch": "^3.11.0",
     "@vue/cli-plugin-typescript": "^3.11.0",
     "@vue/cli-plugin-unit-jest": "^3.11.0",
     "@vue/cli-service": "^3.11.0",

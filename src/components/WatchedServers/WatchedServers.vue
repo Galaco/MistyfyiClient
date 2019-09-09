@@ -39,18 +39,18 @@
         </md-card>
         <AddServerDialog
                 v-bind:show="isNewServerDialogVisible"
-                @close="closeAddServerDialog"
+                @deny="closeAddServerDialog"
                 @confirm="closeAddServerDialog"
         />
         <DeleteServerDialog
                 v-bind:show="isDeleteServerDialogVisible"
-                @close="closeDeleteServerDialog"
+                @deny="closeDeleteServerDialog"
                 @confirm="deleteServer"
         />
         <ServerHistoryDialog
                 v-bind:show="isServerHistoryDialogVisible"
                 v-bind:server="serverSelected"
-                @close="closeServerHistoryDialog"
+                @deny="closeServerHistoryDialog"
         />
     </div>
 </template>

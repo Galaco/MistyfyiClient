@@ -1,31 +1,35 @@
 <template>
-    <md-dialog :md-active="show" id="serverHistoryDialog" @md-clicked-outside="close">
-        <md-dialog-title>{{ $t('servers.servers.dialogs.history.title') }}</md-dialog-title>
-        <md-dialog-content>
-            <md-table class="vh60">
-                <md-table-row>
-                    <md-table-head>{{ $t('servers.servers.dialogs.history.body.headers.date') }}</md-table-head>
-                    <md-table-head>{{ $t('servers.servers.dialogs.history.body.headers.mapName') }}</md-table-head>
-                </md-table-row>
-                <md-table-row v-for="(server,index) in history" :key="index">
-                    <md-table-cell>{{ server.date_created }}</md-table-cell>
-                    <md-table-cell>{{ server.map_name }}</md-table-cell>
-                </md-table-row>
-            </md-table>
-        </md-dialog-content>
-        <md-dialog-actions>
-            <md-button class="md-secondary" @click="close">{{ $t('dialog.buttons.close') }}</md-button>
-        </md-dialog-actions>
-    </md-dialog>
+    <Info
+        id="serverHistoryDialog"
+        :title="$t('servers.servers.dialogs.history.title')"
+        @deny="close"
+        :show="show"
+        :confirmDisabled="false"
+        >
+        <md-table class="vh60">
+            <md-table-row>
+                <md-table-head>{{ $t('servers.servers.dialogs.history.body.headers.date') }}</md-table-head>
+                <md-table-head>{{ $t('servers.servers.dialogs.history.body.headers.mapName') }}</md-table-head>
+            </md-table-row>
+            <md-table-row v-for="(server,index) in history" :key="index">
+                <md-table-cell>{{ server.date_created }}</md-table-cell>
+                <md-table-cell>{{ server.map_name }}</md-table-cell>
+            </md-table-row>
+        </md-table>
+    </Info>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
+import Info from '@/components/Dialogs/Info.vue';
 import {FETCH_SERVER_HISTORY} from '@/store/actions.type';
 
 export default Vue.extend({
     name: 'History',
+    components: {
+        Info,
+    },
     props: {
         show: Boolean,
         server: Object,
@@ -39,7 +43,7 @@ export default Vue.extend({
             });
         },
         close() {
-            this.$emit('close');
+            this.$emit('deny');
         },
     },
     watch: {

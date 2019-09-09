@@ -12,8 +12,8 @@
                 <md-menu-item v-show="isLoggedIn()">
                     {{(!userProfile || !userProfile.isSubscribed)? "Free user": "Premium user"}}
                 </md-menu-item>
-                <md-menu-item @click="handleLogin()" v-show="!isLoggedIn()" id="toolbarLoginButton">Log In</md-menu-item>
-                <md-menu-item @click="handleLogout()" v-show="isLoggedIn()" id="toolbarLogoutButton">Log Out</md-menu-item>
+                <md-menu-item @click="handleLogin()" v-show="!isLoggedIn()" id="toolbarLoginButton">{{ $t('header.links.login') }}</md-menu-item>
+                <md-menu-item @click="handleLogout()" v-show="isLoggedIn()" id="toolbarLogoutButton">{{ $t('header.links.logout') }}</md-menu-item>
             </md-menu-content>
         </md-menu>
     </div>

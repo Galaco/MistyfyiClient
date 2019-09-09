@@ -1,7 +1,8 @@
 import {DELETE_SERVER, FETCH_SERVERS} from './actions.type';
 import {FETCH_SERVERS_END, FETCH_SERVERS_START, DELETE_SERVERS_START, DELETE_SERVERS_END} from './mutations.type';
-import {deleteServer, getServerStatuses} from './../utils/api/servers';
-import {getAccessToken} from '../plugins/auth0';
+import {deleteServer, getServerStatuses} from '@/utils/api/servers';
+import { normalizeResponse } from '@/utils/api/transform';
+import {getAccessToken} from '@/plugins/auth0';
 
 
 class State {
@@ -25,30 +26,31 @@ const getters = {
 };
 
 const actions = {
-    [FETCH_SERVERS]({ commit }: any) {
+    async [FETCH_SERVERS]({ commit }: any) {
         commit(FETCH_SERVERS_START);
-        return getServerStatuses()
-            .then(({ data }: any) => {
-                commit(FETCH_SERVERS_END, data.body);
-            }).catch((err: any) => {
-                const resp = err.response.data;
-                if (resp.code === 401) {
-                    getAccessToken();
-                }
-            });
+        try {
+            const { data } = await getServerStatuses();
+            commit(FETCH_SERVERS_END, data.body);
+        } catch (err) {
+            const resp = normalizeResponse(err, []);
+            if (resp.code === 401) {
+                getAccessToken();
+            }
+            console.log(window);
+            commit(FETCH_SERVERS_END, resp.body);
+        }
     },
-    [DELETE_SERVER]({ commit }: any, params: any) {
+    async [DELETE_SERVER]({ commit }: any, params: any) {
         commit(DELETE_SERVERS_START);
-        return deleteServer(params.ip_address, params.port)
-            .then(({ data }: any) => {
-                commit(DELETE_SERVERS_END, data.body);
-            }).catch((err: any) => {
-                const resp = err.response.data;
-                if (resp.code === 401) {
-                    getAccessToken();
-                }
-                commit(DELETE_SERVERS_END, resp.body);
-            });
+        try {
+            const { data } = await deleteServer(params.ip_address, params.port);
+            commit(DELETE_SERVERS_END, data.body);
+        } catch (err) {
+            const resp = normalizeResponse(err);
+            if (resp.code === 401) {
+                getAccessToken();
+            }
+        }
     },
 };
 

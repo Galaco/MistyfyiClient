@@ -1,7 +1,8 @@
 import {FETCH_SERVER_HISTORY, SELECT_SERVER} from './actions.type';
 import {FETCH_SERVER_HISTORY_END, FETCH_SERVER_HISTORY_START, SELECT_SERVER_END} from './mutations.type';
-import {getServerHistory} from './../utils/api/server';
-import {getAccessToken} from '../plugins/auth0';
+import {getServerHistory} from '@/utils/api/server';
+import { normalizeResponse } from '@/utils/api/transform';
+import {getAccessToken} from '@/plugins/auth0';
 
 
 class State {
@@ -33,9 +34,9 @@ const actions = {
         commit(FETCH_SERVER_HISTORY_START);
         return getServerHistory(params)
             .then(({ data }: any) => {
-                commit(FETCH_SERVER_HISTORY_END, data.body);
+                commit(FETCH_SERVER_HISTORY_END, data.body, []);
             }).catch((err: any) => {
-                const resp = err.response.data;
+                const resp = normalizeResponse(err);
                 if (resp.code === 401) {
                     getAccessToken();
                 }

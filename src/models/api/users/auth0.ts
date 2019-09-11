@@ -1,5 +1,5 @@
 
-interface UserProfile {
+interface Auth0Profile {
     email: string;
     email_verified: boolean;
     iss: string;
@@ -11,7 +11,7 @@ interface UserProfile {
     nonce: string;
 }
 
-class DefaultUserProfile implements UserProfile {
+class DefaultAuth0Profile implements Auth0Profile {
     public email: string = '';
     // tslint:disable-next-line
     public email_verified: boolean = false;
@@ -26,6 +26,6 @@ class DefaultUserProfile implements UserProfile {
 }
 
 export {
-    UserProfile,
-    DefaultUserProfile,
+    Auth0Profile,
+    DefaultAuth0Profile,
 };

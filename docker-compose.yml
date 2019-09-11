@@ -23,7 +23,7 @@ services:
       - VUE_APP_OAUTH_AUDIENCE=http://localhost:3000/api/
       - VUE_APP_API_URL=http://localhost:8081
       - VUE_APP_PUSHBOTS_APP_ID=5d6e15e7b7941217b060aa53
-      - VUE_APP_RECAPTCHA_SITE_KEY=6LdFh7cUAAAAAEtATezSvcm5abBNoJ2-2aFdpjAf
+      - VUE_APP_RECAPTCHA_SITE_KEY=6Lcr0bcUAAAAAEcdci0X2j1j0BF5Bq-1Mw8jvhWW
 
   nats:
     image: nats-streaming:0.11.2

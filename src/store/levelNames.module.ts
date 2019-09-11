@@ -6,8 +6,9 @@ import {
     FETCH_LEVEL_NAMES_START,
 } from './mutations.type';
 import {deleteWatchedLevel, getWatchedLevels} from '@/utils/api/levels';
-import { normalizeResponse } from '@/utils/api/transform';
 import {getAccessToken} from '@/plugins/auth0';
+import ApiResponse from '@/models/ApiResponse';
+import { AxiosResponse } from 'axios';
 
 class State {
     public loadingLevelNames: boolean = true;
@@ -30,31 +31,26 @@ const getters = {
 };
 
 const actions = {
-    [FETCH_LEVEL_NAMES]({ commit }: any) {
+    async [FETCH_LEVEL_NAMES]({ commit }: any) {
         commit(FETCH_LEVEL_NAMES_START);
-        return getWatchedLevels()
-            .then(({ data }: any) => {
-                commit(FETCH_LEVEL_NAMES_END, data.body);
-            }).catch((err: any) => {
-                const resp = normalizeResponse(err, []);
-                if (resp.code === 401) {
-                    getAccessToken();
-                }
-                commit(FETCH_LEVEL_NAMES_END, resp.body);
-            });
+        return getWatchedLevels().then((data: AxiosResponse<ApiResponse>) => {
+            commit(FETCH_LEVEL_NAMES_END, data);
+        }).catch((err) => {
+            if (err.code === 401) {
+                getAccessToken();
+            }
+        });
     },
-    [DELETE_LEVEL_NAMES]({ commit }: any, params: any) {
+    async [DELETE_LEVEL_NAMES]({ dispatch, commit }: any, params: any) {
         commit(DELETE_LEVEL_NAMES_START);
-        return deleteWatchedLevel(params.name)
-            .then(({ data }: any) => {
-                commit(DELETE_LEVEL_NAMES_END, data.body);
-            }).catch((err: any) => {
-                const resp = normalizeResponse(err);
-                if (resp.code === 401) {
-                    getAccessToken();
-                }
-                commit(DELETE_LEVEL_NAMES_END, resp.body);
-            });
+        return deleteWatchedLevel(params.name).then((data: AxiosResponse<ApiResponse>) => {
+            commit(DELETE_LEVEL_NAMES_END, data);
+            dispatch(FETCH_LEVEL_NAMES);
+        }).catch((err) => {
+            if (err.code === 401) {
+                getAccessToken();
+            }
+        });
     },
 };
 
@@ -62,15 +58,15 @@ const mutations = {
     [FETCH_LEVEL_NAMES_START](state: State) {
         state.loadingLevelNames = true;
     },
-    [FETCH_LEVEL_NAMES_END](state: State, levelNames: any) {
-        state.levelNames = levelNames;
-        state.levelNamesCount = levelNames.length;
+    [FETCH_LEVEL_NAMES_END](state: State, resp: ApiResponse) {
+        state.levelNames = resp.body;
+        state.levelNamesCount = resp.body.length;
         state.loadingLevelNames = false;
     },
     [DELETE_LEVEL_NAMES_START](state: State) {
         state.loadingLevelNames = true;
     },
-    [DELETE_LEVEL_NAMES_END](state: State) {
+    [DELETE_LEVEL_NAMES_END](state: State, resp: ApiResponse) {
         state.loadingLevelNames = false;
     },
 };

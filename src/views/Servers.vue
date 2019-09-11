@@ -25,7 +25,7 @@ import { mapGetters } from 'vuex';
 import WatchedServers from './../components/WatchedServers/WatchedServers.vue';
 import EnableNotificationDialog from './../components/Notification/EnableNotificationDialog.vue';
 import WatchedMaps from './../components/WatchedMaps/WatchedMaps.vue';
-import {FETCH_USER_PROFILE, SET_USER_PROFILE} from '@/store/actions.type';
+import {FETCH_USER_PROFILE, CHANGE_USER_0AUTH_PROFILE} from '@/store/actions.type';
 import {userInfo} from '@/plugins/auth0';
 
 export default Vue.extend({
@@ -46,7 +46,7 @@ export default Vue.extend({
         },
     },
     mounted() {
-        this.$store.dispatch(SET_USER_PROFILE, userInfo());
+        this.$store.dispatch(CHANGE_USER_0AUTH_PROFILE, userInfo());
         this.isEnableNotificationDialogVisible = !this.$pushbots.areNotificationPermissionsGranted();
         this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
                 if (this.isEnableNotificationDialogVisible) {

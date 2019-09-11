@@ -9,7 +9,7 @@
                         <md-switch v-model="displayAsCard" class="md-primary view-toggle"></md-switch>
                         <md-icon class="view-toggle-icon">view_column</md-icon>
                     </div>
-                    <md-button class="md-primary" @click="showAddServerDialog">
+                    <md-button class="md-primary md-raised" @click="showAddServerDialog">
                         <i class="material-icons btn-icon">note_add</i>
                         <span>{{ $t('servers.servers.buttons.add') }}</span>
                     </md-button>
@@ -79,13 +79,12 @@ export default Vue.extend({
         isNewServerDialogVisible: false,
         isDeleteServerDialogVisible: false,
         isServerHistoryDialogVisible: false,
+        pollInterval: -1,
     }),
     methods: {
         getPrivateServers() {
             this.$store.dispatch(FETCH_SERVERS).catch((err) => {
-                this.$toasted.global.api_error({
-                    message : err.response.data.message,
-                });
+                this.$toasted.global.api_error({ message : err.message });
             });
         },
         showAddServerDialog() {
@@ -118,20 +117,20 @@ export default Vue.extend({
                     message : `Successfully deleted server: ${this.serverSelected.name}`,
                 });
                 this.closeDeleteServerDialog();
-                this.getPrivateServers();
             }).catch((err) => {
-                this.$toasted.global.api_error({
-                    message : err.response.data.message,
-                });
+                this.$toasted.global.api_error({ message : err.message });
             });
         },
     },
     mounted() {
         this.getPrivateServers();
         // Poll every 30 seconds to ensure server info is up to date
-        setInterval(() => {
+        this.pollInterval = setInterval(() => {
             this.getPrivateServers();
-        }, 15000);
+        }, 30000);
+    },
+    destroyed() {
+        clearInterval(this.pollInterval);
     },
     computed: {
         ...mapGetters(['servers', 'serversCount', 'serverSelected', 'userProfile']),

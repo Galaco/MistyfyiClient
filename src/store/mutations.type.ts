@@ -19,3 +19,4 @@ export const SELECT_SERVER_END = 'selectServerEnd';
 // User
 export const FETCH_USER_PROFILE_END = 'setUserProfileLoaded';
 export const FETCH_USER_PROFILE_START = 'setUserProfileLoading';
+export const SET_USER_0AUTH_PROFILE = 'setUser0AuthProfile';

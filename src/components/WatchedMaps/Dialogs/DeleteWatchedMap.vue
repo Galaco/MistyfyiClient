@@ -42,9 +42,7 @@ export default Vue.extend({
                 });
                 this.submit();
             }).catch((err) => {
-                this.$toasted.global.api_error({
-                    message: err.response.data.message,
-                });
+                this.$toasted.global.api_error({ message : err.message });
             });
         },
     },

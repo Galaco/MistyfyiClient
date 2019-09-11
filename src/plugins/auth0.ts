@@ -1,6 +1,6 @@
 import auth0 from 'auth0-js';
 import Router from 'vue-router';
-import { UserProfile, DefaultUserProfile } from './auth0/userProfile';
+import { Auth0Profile, DefaultAuth0Profile } from '@/models/api/users/auth0';
 
 const LOGOUT_URL = process.env.VUE_APP_URL;
 const CLIENT_ID = process.env.VUE_APP_OAUTH_CLIENT_ID;
@@ -23,7 +23,7 @@ class Auth {
 
     private memExpiresAt: number = -1;
 
-    private memUser: UserProfile = new DefaultUserProfile();
+    private memUser: Auth0Profile = new DefaultAuth0Profile();
 
     set token(token: string) {
         localStorage.setItem('id_token', token);
@@ -59,13 +59,13 @@ class Auth {
         localStorage.setItem('expires_at', expiresAt);
     }
 
-    get user(): UserProfile {
+    get user(): Auth0Profile {
         if (this.memUser.email === '') {
             this.memUser = JSON.parse(String(localStorage.getItem('user')));
         }
         return this.memUser;
     }
-    set user(user: UserProfile) {
+    set user(user: Auth0Profile) {
         this.memUser = user;
         localStorage.setItem('user', JSON.stringify(user));
     }

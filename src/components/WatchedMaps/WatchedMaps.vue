@@ -4,7 +4,7 @@
             <md-table>
                 <md-table-toolbar>
                     <h1 class="md-title">{{ $t('servers.mapNames.title') }}</h1>
-                    <md-button class="md-primary" @click="showAddDialog()" id="addMapNameButton">
+                    <md-button class="md-primary md-raised" @click="showAddDialog()" id="addMapNameButton">
                         <i class="material-icons btn-icon">note_add</i>
                         <span>{{ $t('servers.mapNames.buttons.add') }}</span>
                     </md-button>
@@ -63,6 +63,8 @@ import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 import DeleteUserLevelDialog from './Dialogs/DeleteWatchedMap.vue';
 import AddUserLevelDialog from './Dialogs/AddWatchedMap.vue';
 import {FETCH_LEVEL_NAMES} from '@/store/actions.type';
+import ApiResponse from '../../models/ApiResponse';
+import { FETCH_LEVEL_NAMES_END } from '../../store/mutations.type';
 
 export default Vue.extend({
     name: 'UserLevels',
@@ -73,11 +75,7 @@ export default Vue.extend({
     },
     methods: {
         getUserLevels() {
-            this.$store.dispatch(FETCH_LEVEL_NAMES).catch((err: any) => {
-                this.$toasted.global.api_error({
-                    message : err.response.data.message,
-                });
-            });
+            this.$store.dispatch(FETCH_LEVEL_NAMES);
         },
         showAddDialog() {
             this.isAddDialogVisible = true;

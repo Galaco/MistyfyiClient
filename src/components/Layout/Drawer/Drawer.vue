@@ -12,7 +12,7 @@
                 <span class="md-list-item-text">{{ $t('navigation.links.servers') }}</span>
             </md-list-item>
             <md-list-item :to="{ name: 'help' }" exact>
-                <md-icon>view_list</md-icon>
+                <md-icon>help</md-icon>
                 <span class="md-list-item-text">{{ $t('navigation.links.help') }}</span>
             </md-list-item>
         </md-list>

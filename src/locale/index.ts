@@ -18,6 +18,7 @@ export default function(l: any) {
                 navigation: {
                     links: {
                         servers: 'Servers',
+                        help: 'Help',
                     },
                 },
                 home: {
@@ -75,6 +76,12 @@ export default function(l: any) {
                                 updated: 'Updated',
                             },
                         },
+                        server: {
+                            updated: {
+                                prefix: 'Updated ',
+                                notResponding: 'Could not contact server',
+                            },
+                        },
                         noItems: {
                             add: 'Add first server',
                             title: 'You have not added any servers yet.',
@@ -109,9 +116,9 @@ export default function(l: any) {
                         },
                     },
                     mapNames: {
-                        title: 'Watched Map Names',
+                        title: 'Watched Maps',
                         buttons: {
-                            add: 'Add watch name',
+                            add: 'Add Map',
                             delete: 'Delete',
                         },
                         noItems: {
@@ -127,9 +134,15 @@ export default function(l: any) {
                         dialogs: {
                             add: {
                                 title: 'Add Map Name',
+                                description: {
+                                    paid: 'As a paid user, you can use wildcards (*) to match any map revision. (e.g. ze_illya_* will match all revisions of ze_illya).',
+                                    free: 'As a free user, you will receive notifications if the map names you add match exactly with your watched server.',
+                                },
                                 form: {
                                     name: 'Map name:',
                                     namePlaceholder: 'Map name',
+                                    nameHelperFree: 'Enter the full name of a map (e.g. de_dust2, or ze_illya_b4)',
+                                    nameHelperPaid: 'Enter the full name of a map, or end with a wildcard (e.g. ze_illya_b4, or ze_illya_*)',
                                     nameError: 'Field may contain 0-9,a-z,A-Z,-,_ and * only.',
                                 },
                             },
@@ -137,6 +150,22 @@ export default function(l: any) {
                                 title: 'Delete Map Name',
                                 body: 'Are you sure you want to delete this watched map? This action cannot be undone.',
                             },
+                        },
+                    },
+                },
+                help: {
+                    contact: {
+                        email: {
+                            label: 'Email',
+                            error: 'Please enter a valid email address.',
+                        },
+                        message: {
+                            label: 'Your message',
+                            error: 'Your message must be at least 50 characters.',
+                        },
+                        submit: 'Send',
+                        toast: {
+                            success: 'Your message has been successfully sent.',
                         },
                     },
                 },

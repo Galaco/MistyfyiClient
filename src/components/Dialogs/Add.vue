@@ -7,6 +7,7 @@
         :confirmLabel="$t('dialog.buttons.save')"
         :denyLabel="$t('dialog.buttons.cancel')"
         :type="type"
+        :confirmDisabled="confirmDisabled"
         >
         <slot />
     </Dialog>

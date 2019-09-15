@@ -1,31 +1,29 @@
-import axios from 'axios';
+import { service, BASE_URL } from './index';
 import {getAccessToken} from '../../plugins/auth0';
 
-const BASE_URL = process.env.VUE_APP_API_URL;
-
-function getWatchedLevels() {
+const getWatchedLevels = () => {
     const url = `${BASE_URL}/api/v1/levels/list`;
-    return axios.get(url, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
-}
+    return service.get(url, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
+};
 
-function addWatchedLevel(name: string) {
+const addWatchedLevel = (name: string) => {
     const url = `${BASE_URL}/api/v1/levels/add`;
     const data = {
         name,
     };
-    return axios.put(url, data, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
-}
+    return service.put(url, data, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
+};
 
-function deleteWatchedLevel(name: string) {
+const deleteWatchedLevel = (name: string) => {
     const url = `${BASE_URL}/api/v1/levels/remove`;
-    return axios.delete(url,
+    return service.delete(url,
         {
             headers: { Authorization: `Bearer ${getAccessToken()}` },
             data: {
                 name,
             },
         });
-}
+};
 
 export {
     getWatchedLevels,

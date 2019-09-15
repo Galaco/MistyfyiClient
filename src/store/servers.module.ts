@@ -3,11 +3,13 @@ import {FETCH_SERVERS_END, FETCH_SERVERS_START, DELETE_SERVERS_START, DELETE_SER
 import {deleteServer, getServerStatuses} from '@/utils/api/servers';
 import { normalizeResponse } from '@/utils/api/transform';
 import {getAccessToken} from '@/plugins/auth0';
+import ApiResponse from '@/models/ApiResponse';
+import { AxiosResponse } from 'axios';
 
 
 class State {
     public servers: any[] = [];
-    public isLoading: boolean = true;
+    public isServersLoading: boolean = true;
     public serversCount: number = -1;
 }
 
@@ -20,54 +22,49 @@ const getters = {
     serversCount(state: State) {
         return state.serversCount;
     },
-    isLoading(state: State) {
-        return state.isLoading;
+    isServersLoading(state: State) {
+        return state.isServersLoading;
     },
 };
 
 const actions = {
-    async [FETCH_SERVERS]({ commit }: any) {
+    async [FETCH_SERVERS]({ dispatch, commit }: any) {
         commit(FETCH_SERVERS_START);
-        try {
-            const { data } = await getServerStatuses();
-            commit(FETCH_SERVERS_END, data.body);
-        } catch (err) {
-            const resp = normalizeResponse(err, []);
-            if (resp.code === 401) {
+        return getServerStatuses().then((data: AxiosResponse<ApiResponse>) => {
+            commit(FETCH_SERVERS_END, data);
+        }).catch((err) => {
+            if (err.code === 401) {
                 getAccessToken();
             }
-            console.log(window);
-            commit(FETCH_SERVERS_END, resp.body);
-        }
+        });
     },
-    async [DELETE_SERVER]({ commit }: any, params: any) {
+    async [DELETE_SERVER]({ dispatch, commit }: any, params: any) {
         commit(DELETE_SERVERS_START);
-        try {
-            const { data } = await deleteServer(params.ip_address, params.port);
-            commit(DELETE_SERVERS_END, data.body);
-        } catch (err) {
-            const resp = normalizeResponse(err);
-            if (resp.code === 401) {
+        return deleteServer(params.ip_address, params.port).then((data: AxiosResponse<ApiResponse>) => {
+            commit(DELETE_SERVERS_END, data);
+            dispatch(FETCH_SERVERS);
+        }).catch((err) => {
+            if (err.code === 401) {
                 getAccessToken();
             }
-        }
+        });
     },
 };
 
 const mutations = {
     [FETCH_SERVERS_START](state: State) {
-        state.isLoading = true;
+        state.isServersLoading = true;
     },
-    [FETCH_SERVERS_END](state: State, servers: any) {
-        state.servers = servers;
-        state.serversCount = servers.length;
-        state.isLoading = false;
+    [FETCH_SERVERS_END](state: State, resp: ApiResponse) {
+        state.servers = resp.body;
+        state.serversCount = resp.body.length;
+        state.isServersLoading = false;
     },
     [DELETE_SERVERS_START](state: State) {
-        state.isLoading = true;
+        state.isServersLoading = true;
     },
-    [DELETE_SERVERS_END](state: State) {
-        state.isLoading = false;
+    [DELETE_SERVERS_END](state: State, resp: ApiResponse) {
+        state.isServersLoading = false;
     },
 };
 

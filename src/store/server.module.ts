@@ -3,6 +3,8 @@ import {FETCH_SERVER_HISTORY_END, FETCH_SERVER_HISTORY_START, SELECT_SERVER_END}
 import {getServerHistory} from '@/utils/api/server';
 import { normalizeResponse } from '@/utils/api/transform';
 import {getAccessToken} from '@/plugins/auth0';
+import ApiResponse from '@/models/ApiResponse';
+import { AxiosResponse } from 'axios';
 
 
 class State {
@@ -30,17 +32,15 @@ const getters = {
 };
 
 const actions = {
-    [FETCH_SERVER_HISTORY]({ commit }: any, params: any) {
+    async [FETCH_SERVER_HISTORY]({ commit }: any, params: any) {
         commit(FETCH_SERVER_HISTORY_START);
-        return getServerHistory(params)
-            .then(({ data }: any) => {
-                commit(FETCH_SERVER_HISTORY_END, data.body, []);
-            }).catch((err: any) => {
-                const resp = normalizeResponse(err);
-                if (resp.code === 401) {
-                    getAccessToken();
-                }
-            });
+        return getServerHistory(params).then((data: AxiosResponse) => {
+            commit(FETCH_SERVER_HISTORY_END, data);
+        }).catch((err) => {
+            if (err.code === 401) {
+                getAccessToken();
+            }
+        });
     },
     [SELECT_SERVER]({ commit }: any, params: any) {
         commit(SELECT_SERVER_END, params);
@@ -51,9 +51,9 @@ const mutations = {
     [FETCH_SERVER_HISTORY_START](state: State) {
         state.isServerHistoryLoading = true;
     },
-    [FETCH_SERVER_HISTORY_END](state: State, history: any) {
-        state.history = history;
-        state.historyCount = history.length;
+    [FETCH_SERVER_HISTORY_END](state: State, resp: ApiResponse) {
+        state.history = resp.body;
+        state.historyCount = resp.body.length;
         state.isServerHistoryLoading = false;
     },
     [SELECT_SERVER_END](state: State, server: any) {

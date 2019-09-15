@@ -51,7 +51,7 @@ import VueRecaptcha from 'vue-recaptcha';
 import { sendContactRequest } from '../../utils/api/user';
 import ApiResponse from '../../models/ApiResponse';
 
-const injectedRecaptchaSiteKey = '6Lcr0bcUAAAAAEcdci0X2j1j0BF5Bq-1Mw8jvhWW';
+const injectedRecaptchaSiteKey = process.env.VUE_APP_RECAPTCHA_SITE_KEY;
 
 const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 

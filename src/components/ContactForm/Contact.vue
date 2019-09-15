@@ -73,6 +73,7 @@ export default Vue.extend({
     methods: {
         onVerify(response: any) {
             this.recaptchaAuthKey = response;
+            this.validateForm();
         },
         onExpired() {
             this.recaptchaAuthKey = '';

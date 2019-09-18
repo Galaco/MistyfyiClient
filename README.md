@@ -1,8 +1,10 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b830d038-f771-4839-b041-86e5e6b5c191/deploy-status)](https://app.netlify.com/sites/maptracker-app/deploys)
 
-# maptracker-app
+# Maptracker App
 
-MapTracker app is the MapTracker front-end.
+> Be notified when Steam video game servers you love start playing maps you love.
+
+MapTracker-app is the MapTracker front-end.
 
 
 ## Project setup
@@ -13,6 +15,7 @@ Bring up the container by running the following command:
 ```bash
 docker-compose up -d
 ```
+**You will need to provide auth0, pushbots and recaptcha keys for all functionality to work correctly.**
 
 ##### Node.js
 Install dependencies

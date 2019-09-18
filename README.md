@@ -24,4 +24,5 @@ Run locally
 npm run serve
 ```
 
-You should find this app running at `localhost:8080`.
+You should find this app running at `localhost:8080`:
+![Server Browser](https://cdn.galaco.me/blog/projects/maptracker/server_browser.png)

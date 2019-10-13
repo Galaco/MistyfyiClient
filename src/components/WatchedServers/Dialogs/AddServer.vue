@@ -2,7 +2,7 @@
     <Add
         id="addServerDialog"
         :title="$t('servers.servers.dialogs.add.title')"
-        @confirm="submit"
+        @confirm="addServer"
         @deny="close"
         :show="show"
         :confirmDisabled="!formValid || sending"

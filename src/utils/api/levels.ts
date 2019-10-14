@@ -6,10 +6,11 @@ const getWatchedLevels = () => {
     return service.get(url, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
 };
 
-const addWatchedLevel = (name: string) => {
+const addWatchedLevel = (name: string, server: number) => {
     const url = `${BASE_URL}/api/v1/levels/add`;
     const data = {
         name,
+        server_id: server,
     };
     return service.put(url, data, { headers: { Authorization: `Bearer ${getAccessToken()}` }});
 };

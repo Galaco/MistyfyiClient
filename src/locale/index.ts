@@ -129,6 +129,12 @@ export default function(l: any) {
                         table: {
                             headers: {
                                 name: 'Map Name',
+                                server: 'Server',
+                            },
+                            body: {
+                                servers: {
+                                    all: 'All Servers',
+                                },
                             },
                         },
                         dialogs: {
@@ -141,6 +147,8 @@ export default function(l: any) {
                                 form: {
                                     name: 'Map name:',
                                     namePlaceholder: 'Map name',
+                                    server: 'All Servers',
+                                    serverHelper: 'Select a specific server to watch this map name for, or leave blank for all servers',
                                     nameHelperFree: 'Enter the full name of a map (e.g. de_dust2, or ze_illya_b4)',
                                     nameHelperPaid: 'Enter the full name of a map, or end with a wildcard (e.g. ze_illya_b4, or ze_illya_*)',
                                     nameError: 'Field may contain 0-9,a-z,A-Z,-,_ and * only.',

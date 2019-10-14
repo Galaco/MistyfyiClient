@@ -14,10 +14,14 @@ import {
   apiSuccess,
   apiSuccessConfiguration,
 } from '@/utils/toast/common';
+import VueStripeCheckout from 'vue-stripe-checkout';
 
 Vue.use(AuthPlugin);
 Vue.use(PushbotsPlugin);
 Vue.use(VueMaterial);
+Vue.use(VueStripeCheckout, {
+  publishableKey: process.env.VUE_APP_STRIPE_PUBLISHABLE_KEY,
+});
 
 Vue.use(VueToasted);
 Vue.toasted.register('api_error', apiError, apiErrorConfiguration);

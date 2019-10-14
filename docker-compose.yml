@@ -24,6 +24,8 @@ services:
       - VUE_APP_API_URL=http://localhost:8081
       - VUE_APP_PUSHBOTS_APP_ID=
       - VUE_APP_RECAPTCHA_SITE_KEY=
+      - VUE_APP_STRIPE_PUBLISHABLE_KEY=
+      - VUE_APP_STRIPE_PREMIUM_YEARLY_SKU=
 
   nats:
     image: nats-streaming:0.11.2

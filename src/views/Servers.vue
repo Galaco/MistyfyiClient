@@ -49,9 +49,7 @@ export default Vue.extend({
         this.$store.dispatch(CHANGE_USER_0AUTH_PROFILE, userInfo());
         this.isEnableNotificationDialogVisible = !this.$pushbots.areNotificationPermissionsGranted();
         this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
-                if (this.isEnableNotificationDialogVisible) {
-                    this.$pushbots.setAlias(this.userProfile.uuid);
-                }
+                 this.$pushbots.setAlias(this.userProfile.uuid);
         });
     },
     computed: {

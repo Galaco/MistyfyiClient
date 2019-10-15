@@ -24,6 +24,7 @@ const router = new Router({
       path: '/callback',
       component: Callback,
       meta: {
+        title: 'MapTracker - Logging in...',
         staticPage: false,
       },
     },

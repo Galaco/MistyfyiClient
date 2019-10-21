@@ -62,10 +62,14 @@ class Pushbots {
         this.lib.domain = APP_URL;
         this.lib.app_id = APP_ID;
         this.lib.auto_subscribe = false;
+        this.lib.overlay = true;
+        this.lib.logging_enabled = true;
     }
 
-    public requestNotificationsPermission() {
+    public requestNotificationsPermission(callback: any) {
+        this.lib.events.push(['onRegisteredOnPushBots', callback]);
         this.lib.init();
+        this.lib.register();
     }
 
     public areNotificationPermissionsGranted(): boolean {

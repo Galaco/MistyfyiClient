@@ -22,9 +22,11 @@ export default Vue.extend({
     },
     methods: {
         submit() {
-            this.$pushbots.requestNotificationsPermission();
-            this.$pushbots.setEmail(this.$auth.user.email);
-            this.$emit('deny');
+            this.$pushbots.requestNotificationsPermission((data) => {
+                this.$pushbots.setEmail(this.$auth.user.email);
+                this.$pushbots.setAlias(this.userProfile.uuid);
+            });
+            this.close();
         },
         close() {
             this.$emit('deny');

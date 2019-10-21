@@ -1,7 +1,7 @@
 <template>
     <div class="md-toolbar-section-end" style="margin-right: 32px; overflow-x: hidden;">
         <span :v-if="this.$auth.isAuthenticated()" class="md-body-2 user-email">{{ this.$auth.user.email }}</span>
-        <md-menu md-direction="bottom-end">
+        <md-menu md-direction="bottom-end" md-align-trigger>
             <md-button md-menu-trigger class="md-icon-button" id="toolbarProfileButton">
                 <md-avatar class="md-avatar-icon md-secondary">
                     <md-icon>account_circle</md-icon>
@@ -10,10 +10,16 @@
 
             <md-menu-content>
                 <md-menu-item v-show="isLoggedIn()">
-                    {{(!userProfile || !userProfile.isSubscribed)? "Free user": "Premium user"}}
+                    <md-icon>{{ (!userProfile || !userProfile.isSubscribed)? "computer": "star" }}</md-icon>
+                    <span>{{(!userProfile || !userProfile.isSubscribed)? "Free user": "Premium user"}}</span>
                 </md-menu-item>
-                <md-menu-item @click="handleLogin()" v-show="!isLoggedIn()" id="toolbarLoginButton">{{ $t('header.links.login') }}</md-menu-item>
-                <md-menu-item @click="handleLogout()" v-show="isLoggedIn()" id="toolbarLogoutButton">{{ $t('header.links.logout') }}</md-menu-item>
+                <md-menu-item @click="handleLogin()" v-show="!isLoggedIn()" id="toolbarLoginButton">
+                    <span> {{ $t('header.links.login') }}</span>
+                </md-menu-item>
+                <md-menu-item @click="handleLogout()" v-show="isLoggedIn()" id="toolbarLogoutButton">
+                    <md-icon>cancel</md-icon>
+                    <span>{{ $t('header.links.logout') }}</span>
+                </md-menu-item>
             </md-menu-content>
         </md-menu>
     </div>

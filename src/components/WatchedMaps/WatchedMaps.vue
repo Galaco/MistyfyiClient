@@ -11,10 +11,12 @@
                 </md-table-toolbar>
                 <md-table-row v-if="levelNames.length > 0">
                     <md-table-head class="v-center">{{ $t('servers.mapNames.table.headers.name') }}</md-table-head>
+                    <md-table-head class="v-center">{{ $t('servers.mapNames.table.headers.server') }}</md-table-head>
                     <md-table-head class="controls">{{ $t('table.headers.actions') }}</md-table-head>
                 </md-table-row>
                 <md-table-row v-for="(map,index) in levelNames" :key="index">
                     <md-table-cell class="v-center">{{ map.name }}</md-table-cell>
+                    <md-table-cell class="v-center">{{ serverNameForId(map.server_id) }}</md-table-cell>
                     <md-table-cell class="controls">
                         <div class="md-layout md-alignment-center md-gutter">
                             <div class="md-layout-item md-size-40">
@@ -99,6 +101,17 @@ export default Vue.extend({
             this.closeDeleteDialog();
             this.getUserLevels();
         },
+        serverNameForId(serverId) {
+            if (serverId < 1) {
+                return this.$t('servers.mapNames.table.body.servers.all');
+            }
+            for (const server of this.servers) {
+                if (server.id === serverId) {
+                    return (server.name || `${server.ip_address}:${server.port}`);
+                }
+            }
+            return '';
+        },
     },
     data() {
         return {
@@ -111,7 +124,7 @@ export default Vue.extend({
         this.getUserLevels();
     },
     computed: {
-        ...mapGetters(['levelNames', 'levelNamesCount']),
+        ...mapGetters(['servers', 'levelNames', 'levelNamesCount']),
     },
 });
 

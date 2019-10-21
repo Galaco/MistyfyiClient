@@ -75,7 +75,7 @@ export default Vue.extend({
         ListView,
     },
     data: () => ({
-        displayAsCard: true,
+        displayAsCard: false,
         isNewServerDialogVisible: false,
         isDeleteServerDialogVisible: false,
         isServerHistoryDialogVisible: false,

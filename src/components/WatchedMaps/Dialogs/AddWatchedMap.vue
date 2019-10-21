@@ -23,6 +23,14 @@
                     <span class="md-helper-text" v-show="userProfile.isSubscribed === true">{{ $t('servers.mapNames.dialogs.add.form.nameHelperPaid') }}</span>
                     <span class="md-error">{{ $t('servers.mapNames.dialogs.add.form.nameError') }}</span>
                 </md-field>
+                <md-field>
+                    <label for="movie">{{ $t('servers.mapNames.dialogs.add.form.server') }}</label>
+                    <md-select v-model="serverId" name="serverId" id="serverId">
+                        <md-option :key="-1" value="-1">{{ $t('servers.mapNames.dialogs.add.form.server') }}</md-option>
+                        <md-option v-for="(server,index) in servers" :key="index" :value="server.id">{{ server.name || `${server.ip_address}:${server.port}` }}</md-option>
+                    </md-select>
+                    <span class="md-helper-text">{{ $t('servers.mapNames.dialogs.add.form.serverHelper') }}</span>
+                </md-field>
             </div>
         </form>
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
@@ -35,7 +43,7 @@ import { mapGetters } from 'vuex';
 import Add from '@/components/Dialogs/Add.vue';
 import {addWatchedLevel} from '@/utils/api/levels';
 
-const mapNameRegex = /^[a-zA-Z0-9-_%s]+$/;
+const mapNameRegex = /^[a-zA-Z0-9-_*]+$/;
 
 export default Vue.extend({
     name: 'AddWatchedMap',
@@ -47,6 +55,7 @@ export default Vue.extend({
     },
     data: () => ({
         mapName: '',
+        serverId: -1,
         mapNameValid: true,
         sending: false,
     }),
@@ -63,10 +72,12 @@ export default Vue.extend({
             this.sending = false;
             this.mapName = '';
             this.mapNameValid = true;
+            this.serverId = -1;
         },
         addWatchedMap() {
             const name = this.mapName;
-            addWatchedLevel(name).then(() => {
+            const serverId = this.serverId;
+            addWatchedLevel(name, serverId).then(() => {
                 this.$toasted.global.api_success({
                     message: `Now watching for map: ${name}`,
                 });
@@ -84,7 +95,7 @@ export default Vue.extend({
         },
     },
     computed: {
-        ...mapGetters(['userProfile']),
+        ...mapGetters(['servers', 'userProfile']),
     },
 });
 </script>

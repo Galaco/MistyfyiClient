@@ -84,6 +84,7 @@ export default Vue.extend({
         },
         serverPort(value) {
             this.serverPortValid = value !== '' && value > -1 && value < 65536;
+            this.formValid = this.serverIPValid && this.serverPortValid;
         },
     },
 });

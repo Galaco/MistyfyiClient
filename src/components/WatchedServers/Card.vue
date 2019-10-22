@@ -69,5 +69,11 @@ export default Vue.extend({
             text-overflow: ellipsis;
             overflow: hidden;
         }
+
+        .map-name {
+            min-height: 22px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
     }
 </style>

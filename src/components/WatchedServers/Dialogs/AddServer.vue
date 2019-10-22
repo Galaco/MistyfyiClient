@@ -6,7 +6,7 @@
         @deny="close"
         :show="show"
         :confirmDisabled="!formValid || sending"
-        >
+    >
         <form novalidate class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
                 <md-field :class="(!serverIPValid)? 'md-invalid': ''">
@@ -84,6 +84,7 @@ export default Vue.extend({
         },
         serverPort(value) {
             this.serverPortValid = value !== '' && value > -1 && value < 65536;
+            this.formValid = this.serverIPValid && this.serverPortValid;
         },
     },
 });

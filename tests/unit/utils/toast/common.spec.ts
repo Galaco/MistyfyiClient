@@ -5,8 +5,8 @@ describe('apiError', () => {
     it('provides a correct error message when one is provided', () => {
         const resp = {
             code: 200,
-            message: "foo is a bar",
-            body: "egg",
+            message: 'foo is a bar',
+            body: 'egg',
         };
 
         const sut = normalizeResponse(resp);
@@ -20,8 +20,8 @@ describe('apiError', () => {
     it('provides a correct error message when none is provided', () => {
         const resp = {
             code: 200,
-            message: "",
-            body: "egg",
+            message: '',
+            body: 'egg',
         };
         const sut = normalizeResponse(resp);
 
@@ -35,8 +35,8 @@ describe('apiSuccess', () => {
     it('provides a correct message when one is provided', () => {
         const resp = {
             code: 200,
-            message: "foo is a bar",
-            body: "egg",
+            message: 'foo is a bar',
+            body: 'egg',
         };
 
         const sut = normalizeResponse(resp);

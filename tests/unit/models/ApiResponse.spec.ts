@@ -2,12 +2,12 @@ import ApiResponse from '@/models/ApiResponse';
 
 describe('ApiResponse', () => {
     it('determines if the response was successful', () => {
-        const sut = new ApiResponse(200, "", "");
+        const sut = new ApiResponse(200, '', '');
         expect(sut.wasSuccessful()).toEqual(true);
     });
 
     it('determines if the response was a failure', () => {
-        const sut = new ApiResponse(400, "", "");
+        const sut = new ApiResponse(400, '', '');
         expect(sut.wasSuccessful()).toEqual(false);
     });
 });

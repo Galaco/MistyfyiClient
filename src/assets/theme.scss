@@ -1,9 +1,17 @@
 @import "~vue-material/dist/theme/engine"; // Import the theme engine
 
 @include md-register-theme("default", (
-        primary: md-get-palette-color(deeppurple, A200),
+        primary: #3f1dcb,
         accent: md-get-palette-color(red, A200),
         theme: light
 ));
 
 @import "~vue-material/dist/theme/all"; // Apply the theme
+
+.md-drawer {
+        .md-list {
+                .router-link-active {
+                        background: #efefef;
+                }
+        }
+}

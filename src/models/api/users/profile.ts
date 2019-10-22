@@ -5,5 +5,7 @@ export default class Profile {
 
     public isSubscribed: boolean = false;
 
+    public dateExpires: number = 0;
+
     public oauthProfile: Auth0Profile = new DefaultAuth0Profile();
 }

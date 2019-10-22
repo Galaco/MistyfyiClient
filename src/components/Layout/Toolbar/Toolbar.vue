@@ -1,5 +1,5 @@
 <template>
-    <div class="md-toolbar-row .safari-fix">
+    <div class="md-toolbar-row safari-fix">
         <div class="md-toolbar-section-start">
             <md-button class="md-icon-button" @click="toggleMenu" id="toggleMenuButton">
                 <md-icon>menu</md-icon>

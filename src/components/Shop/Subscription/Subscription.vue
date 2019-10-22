@@ -16,12 +16,14 @@ import Vue from 'vue';
 import { forceCast } from '@/utils/forceCast';
 import { Stripe } from '@/plugins/stripe';
 
+const yearlyPlanSKU = process.env.VUE_APP_STRIPE_PREMIUM_YEARLY_PLAN;
+
 export default Vue.extend({
   data: () => ({
     loading: false,
     items: [
       {
-        sku: `${process.env.VUE_APP_STRIPE_PREMIUM_YEARLY_SKU}`,
+        sku: yearlyPlanSKU,
         quantity: 1,
       },
     ],

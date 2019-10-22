@@ -6,13 +6,13 @@
         :show="show"
         :confirmDisabled="false"
         >
-        <md-table class="vh60">
+        <md-table>
             <md-table-row>
                 <md-table-head>{{ $t('servers.servers.dialogs.history.body.headers.date') }}</md-table-head>
                 <md-table-head>{{ $t('servers.servers.dialogs.history.body.headers.mapName') }}</md-table-head>
             </md-table-row>
             <md-table-row v-for="(server,index) in history" :key="index">
-                <md-table-cell>{{ server.date_created }}</md-table-cell>
+                <md-table-cell>{{ timestampToLabel(server.date_created) }}</md-table-cell>
                 <md-table-cell>{{ server.map_name }}</md-table-cell>
             </md-table-row>
         </md-table>
@@ -43,6 +43,10 @@ export default Vue.extend({
         close() {
             this.$emit('deny');
         },
+        timestampToLabel(timestamp: number): string {
+            const a = new Date(timestamp * 1000);
+            return `${a.toLocaleDateString('en-US')} ${a.toLocaleTimeString('en-US')}`;
+        },
     },
     watch: {
         server(newValue: any) {
@@ -57,9 +61,3 @@ export default Vue.extend({
     },
 });
 </script>
-
-<style lang="scss" scoped>
-    .vh60 {
-        max-height: 60vh;
-    }
-</style>

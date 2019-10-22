@@ -35,6 +35,6 @@ export default Vue.extend({
     }
 
     footer a {
-        color: #B2B2FF;
+        color: #B2B2FF !important;
     }
 </style>

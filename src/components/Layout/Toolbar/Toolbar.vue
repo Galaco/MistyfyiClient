@@ -1,5 +1,5 @@
 <template>
-    <div class="md-toolbar-row">
+    <div class="md-toolbar-row .safari-fix">
         <div class="md-toolbar-section-start">
             <md-button class="md-icon-button" @click="toggleMenu" id="toggleMenuButton">
                 <md-icon>menu</md-icon>
@@ -25,3 +25,14 @@ export default Vue.extend({
     },
 });
 </script>
+
+<style lang="scss">
+.safari-fix {
+    transform: translateZ(0);
+    -moz-transform: translatez(0);
+    -ms-transform: translatez(0);
+    -o-transform: translatez(0);
+    -webkit-transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+}
+</style>

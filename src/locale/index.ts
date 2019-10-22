@@ -10,6 +10,9 @@ export default function(l: any) {
                         logout: 'Log out',
                         openApp: 'Go to app',
                     },
+                    profile: {
+                        expiresAt: 'Expires: ',
+                    },
                 },
                 footer: {
                     description: ' is a dedicated game server map rotation tracker.',
@@ -19,6 +22,12 @@ export default function(l: any) {
                     links: {
                         servers: 'Servers',
                         help: 'Help',
+                    },
+                },
+                account: {
+                    types: {
+                        free: 'Free User',
+                        paid: 'Premium User',
                     },
                 },
                 home: {

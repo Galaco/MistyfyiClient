@@ -48,6 +48,7 @@ const mutations = {
         if (resp.body !== null) {
             state.userProfile.uuid = resp.body.uuid;
             state.userProfile.isSubscribed = resp.body.isSubscribed;
+            state.userProfile.dateExpires = resp.body.dateExpires || 0;
         }
         state.isUserProfileLoading = false;
     },

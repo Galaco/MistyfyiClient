@@ -102,9 +102,11 @@ export default function(l: any) {
                                 title: 'Add Server',
                                 form: {
                                     ip: 'Server IP Address:',
+                                    ipHelper: 'Add a valid server IP address',
                                     ipPlaceholder: 'Server ip (e.g. 127.0.0.1)',
                                     ipError: 'Field must be a valid IP address.',
                                     port: 'Server port (default: 0):',
+                                    portHelper: 'Specify the port to connect to (some games do not require this)',
                                     portPlaceholder: 'Server port (e.g. 27015)',
                                     portError: 'Port must be between 0-65536.',
                                 },

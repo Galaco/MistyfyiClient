@@ -12,13 +12,13 @@
                 <md-field :class="(!serverIPValid)? 'md-invalid': ''">
                     <label for="addserver_ip">{{ $t('servers.servers.dialogs.add.form.ip') }}</label>
                     <md-input name="ip" id="addserver_ip" v-model="serverIP" required :disabled="sending"/>
-                    <span class="md-helper-text">Helper text</span>
+                    <span class="md-helper-text">{{ $t('servers.servers.dialogs.add.form.ipHelper') }}</span>
                     <span class="md-error">{{ $t('servers.servers.dialogs.add.form.ipError') }}</span>
                 </md-field>
                 <md-field :class="(!serverPortValid)? 'md-invalid': ''">
                     <label for="addserver_ip">{{ $t('servers.servers.dialogs.add.form.port') }}</label>
                     <md-input name="port" id="addserver_port" v-model="serverPort" required :disabled="sending"/>
-                    <span class="md-helper-text">Helper text</span>
+                    <span class="md-helper-text">{{ $t('servers.servers.dialogs.add.form.portHelper') }}</span>
                     <span class="md-error">{{ $t('servers.servers.dialogs.add.form.portError') }}</span>
                 </md-field>
             </div>

@@ -40,7 +40,7 @@ export default Vue.extend({
             this.$emit('history', this.server);
         },
         deleteServer() {
-            this.$emit('history', this.server);
+            this.$emit('delete', this.server);
         },
     },
 });

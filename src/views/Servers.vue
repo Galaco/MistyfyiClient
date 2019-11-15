@@ -12,9 +12,9 @@
         <WatchedServers/>
         <WatchedMaps/>
         <EnableNotificationDialog
-                v-bind:show="isEnableNotificationDialogVisible"
-                @confirm="closeEnableNotificationsPopup"
-                @deny="closeEnableNotificationsPopup"
+            v-bind:show="isEnableNotificationDialogVisible"
+            @confirm="closeEnableNotificationsPopup"
+            @deny="closeEnableNotificationsPopup"
         />
     </div>
 </template>
@@ -23,7 +23,7 @@
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
 import WatchedServers from './../components/WatchedServers/WatchedServers.vue';
-import EnableNotificationDialog from './../components/Notification/EnableNotificationDialog.vue';
+import EnableNotificationDialog, {NEVER_SHOW_DIALOG} from './../components/Notification/EnableNotificationDialog.vue';
 import WatchedMaps from './../components/WatchedMaps/WatchedMaps.vue';
 import {FETCH_USER_PROFILE, CHANGE_USER_0AUTH_PROFILE} from '@/store/actions.type';
 import {userInfo} from '@/plugins/auth0';
@@ -47,7 +47,11 @@ export default Vue.extend({
     },
     mounted() {
         this.$store.dispatch(CHANGE_USER_0AUTH_PROFILE, userInfo());
-        this.isEnableNotificationDialogVisible = !this.$pushbots.areNotificationPermissionsGranted();
+        if (this.$pushbots.areNotificationPermissionsGranted()) {
+            this.$pushbots.autoResubscribe();
+        }
+        this.isEnableNotificationDialogVisible = !this.$pushbots.areNotificationPermissionsGranted() &&
+            !this.$localStorage.get(NEVER_SHOW_DIALOG, false);
         this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
                  this.$pushbots.setAlias(this.userProfile.uuid);
         });

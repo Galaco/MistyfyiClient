@@ -38,7 +38,7 @@ export default Vue.extend({
             const deletedName = this.model.name;
             this.$store.dispatch(DELETE_LEVEL_NAMES, this.model).then(() => {
                 this.$toasted.global.api_success({
-                    message: `Successfully deleted watch name: ${deletedName}`,
+                    message: this.$t('servers.mapNames.toast.add.success', {name: deletedName}),
                 });
                 this.submit();
             }).catch((err) => {

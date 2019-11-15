@@ -66,6 +66,12 @@ class Pushbots {
         this.lib.logging_enabled = true;
     }
 
+    public autoResubscribe() {
+        this.lib.auto_subscribe = true;
+        this.lib.init();
+        this.lib.register();
+    }
+
     public requestNotificationsPermission(callback: any) {
         this.lib.events.push(['onRegisteredOnPushBots', callback]);
         this.lib.init();

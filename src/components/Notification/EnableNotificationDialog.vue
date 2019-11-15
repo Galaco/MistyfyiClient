@@ -7,6 +7,7 @@
         <md-dialog-actions>
             <md-button class="md-primary" @click="submit">{{ $t('dialog.notifications.confirm') }}</md-button>
             <md-button class="md-secondary" @click="close">{{ $t('dialog.notifications.deny') }}</md-button>
+            <md-button class="md-secondary" @click="closeForever">{{ $t('dialog.notifications.denyForever') }}</md-button>
         </md-dialog-actions>
     </md-dialog>
 </template>
@@ -14,6 +15,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
+
+export const NEVER_SHOW_DIALOG = 'hideNotificationDialog';
 
 export default Vue.extend({
     name: 'EnableNotifications',
@@ -29,6 +32,10 @@ export default Vue.extend({
             this.close();
         },
         close() {
+            this.$emit('deny');
+        },
+        closeForever() {
+            this.$localStorage.set(NEVER_SHOW_DIALOG, true);
             this.$emit('deny');
         },
     },

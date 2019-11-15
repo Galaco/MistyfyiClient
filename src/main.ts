@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueToasted from 'vue-toasted';
 import VueMaterial from 'vue-material';
 import VueI18n from 'vue-i18n';
+import VueLocalStorage from 'vue-localstorage';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -18,6 +19,7 @@ import {
 Vue.use(AuthPlugin);
 Vue.use(PushbotsPlugin);
 Vue.use(VueMaterial);
+Vue.use(VueLocalStorage);
 
 Vue.use(VueToasted);
 Vue.toasted.register('api_error', apiError, apiErrorConfiguration);

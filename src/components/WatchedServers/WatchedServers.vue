@@ -39,18 +39,18 @@
         </md-card>
         <AddServerDialog
                 v-bind:show="isNewServerDialogVisible"
-                @deny="closeAddServerDialog"
-                @confirm="closeAddServerDialog"
+                @deny="onCloseAddServerDialog"
+                @confirm="onAddServerDialog"
         />
         <DeleteServerDialog
                 v-bind:show="isDeleteServerDialogVisible"
-                @deny="closeDeleteServerDialog"
-                @confirm="deleteServer"
+                @deny="onCloseDeleteServerDialog"
+                @confirm="onDeleteServerDialog"
         />
         <ServerHistoryDialog
                 v-bind:show="isServerHistoryDialogVisible"
                 v-bind:server="serverSelected"
-                @deny="closeServerHistoryDialog"
+                @deny="onCloseServerHistoryDialog"
         />
     </div>
 </template>
@@ -82,42 +82,45 @@ export default Vue.extend({
         pollInterval: -1,
     }),
     methods: {
-        getPrivateServers() {
-            this.$store.dispatch(FETCH_SERVERS).catch((err) => {
-                this.$toasted.global.api_error({ message : err.message });
-            });
-        },
         showAddServerDialog() {
             this.isNewServerDialogVisible = true;
         },
-        closeAddServerDialog() {
+        onAddServerDialog() {
+            setTimeout(() => this.getPrivateServers(), 2500);
+        },
+        onCloseAddServerDialog() {
             this.isNewServerDialogVisible = false;
             this.$store.dispatch(SELECT_SERVER, null);
         },
         showServerHistoryDialog() {
             this.isServerHistoryDialogVisible = true;
         },
-        closeServerHistoryDialog() {
+        onCloseServerHistoryDialog() {
             this.isServerHistoryDialogVisible = false;
             this.$store.dispatch(SELECT_SERVER, null);
         },
         showDeleteServerDialog() {
             this.isDeleteServerDialogVisible = true;
         },
-        closeDeleteServerDialog() {
+        onCloseDeleteServerDialog() {
             this.isDeleteServerDialogVisible = false;
             this.$store.dispatch(SELECT_SERVER, null);
         },
-        deleteServer() {
+        onDeleteServerDialog() {
             if (this.serverSelected === null) {
                 return;
             }
             this.$store.dispatch(DELETE_SERVER, this.serverSelected).then(() => {
                 this.$toasted.global.api_success({
-                    message : `Successfully deleted server: ${this.serverSelected.name}`,
+                    message: this.$t('servers.servers.toast.delete.success', {name: this.serverSelected.name}),
                 });
                 this.closeDeleteServerDialog();
             }).catch((err) => {
+                this.$toasted.global.api_error({ message : err.message });
+            });
+        },
+        getPrivateServers() {
+            this.$store.dispatch(FETCH_SERVERS).catch((err) => {
                 this.$toasted.global.api_error({ message : err.message });
             });
         },
@@ -127,7 +130,7 @@ export default Vue.extend({
         // Poll every 30 seconds to ensure server info is up to date
         this.pollInterval = setInterval(() => {
             this.getPrivateServers();
-        }, 30000);
+        }, 15000);
     },
     destroyed() {
         clearInterval(this.pollInterval);

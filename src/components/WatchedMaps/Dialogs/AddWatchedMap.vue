@@ -79,7 +79,7 @@ export default Vue.extend({
             const serverId = this.serverId;
             addWatchedLevel(name, serverId).then(() => {
                 this.$toasted.global.api_success({
-                    message: `Now watching for map: ${name}`,
+                    message: this.$t('servers.mapNames.toast.add.success', {name}),
                 });
                 this.sending = false;
                 this.submit();

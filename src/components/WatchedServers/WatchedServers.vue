@@ -114,7 +114,7 @@ export default Vue.extend({
                 this.$toasted.global.api_success({
                     message: this.$t('servers.servers.toast.delete.success', {name: this.serverSelected.name}),
                 });
-                this.closeDeleteServerDialog();
+                this.onCloseDeleteServerDialog();
             }).catch((err) => {
                 this.$toasted.global.api_error({ message : err.message });
             });

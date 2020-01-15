@@ -51,7 +51,7 @@ export default Vue.extend({
             this.$pushbots.autoResubscribe();
         }
         this.isEnableNotificationDialogVisible = !this.$pushbots.areNotificationPermissionsGranted() &&
-            !this.$localStorage.get(NEVER_SHOW_DIALOG, false);
+            !localStorage.get(NEVER_SHOW_DIALOG, false);
         this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
                  this.$pushbots.setAlias(this.userProfile.uuid);
         });

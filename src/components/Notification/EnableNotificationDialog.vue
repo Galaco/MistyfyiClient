@@ -35,7 +35,7 @@ export default Vue.extend({
             this.$emit('deny');
         },
         closeForever() {
-            this.$localStorage.set(NEVER_SHOW_DIALOG, true);
+            localStorage.set(NEVER_SHOW_DIALOG, true);
             this.$emit('deny');
         },
     },

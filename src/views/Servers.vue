@@ -47,13 +47,16 @@ export default Vue.extend({
     },
     mounted() {
         this.$store.dispatch(CHANGE_USER_0AUTH_PROFILE, userInfo());
-        if (this.$pushbots.areNotificationPermissionsGranted()) {
-            this.$pushbots.autoResubscribe();
-        }
-        this.isEnableNotificationDialogVisible = !this.$pushbots.areNotificationPermissionsGranted() &&
-            !localStorage.get(NEVER_SHOW_DIALOG, false);
-        this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
-                 this.$pushbots.setAlias(this.userProfile.uuid);
+        this.$onesignal.areNotificationPermissionsGranted().then((valid: boolean) => {
+            if (valid) {
+                this.$onesignal.autoResubscribe();
+            }
+            this.isEnableNotificationDialogVisible = !valid && !localStorage.getItem(NEVER_SHOW_DIALOG);
+            this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
+                this.$onesignal.setAlias(this.userProfile.uuid);
+            });
+        }).catch((error) => {
+            console.log(error);
         });
     },
     computed: {

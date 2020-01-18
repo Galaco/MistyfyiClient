@@ -22,8 +22,11 @@ services:
       - VUE_APP_OAUTH_CLIENT_DOMAIN=
       - VUE_APP_OAUTH_AUDIENCE=http://localhost:3000/api/
       - VUE_APP_API_URL=http://localhost:8081
-      - VUE_APP_PUSHBOTS_APP_ID=
       - VUE_APP_RECAPTCHA_SITE_KEY=
+      - VUE_APP_STRIPE_PUBLISHABLE_KEY=
+      - VUE_APP_STRIPE_PREMIUM_YEARLY_PLAN=
+      - VUE_APP_ONESIGNAL_APP_ID=
+      - VUE_APP_ENVIRONMENT=dev
 
   nats:
     image: nats-streaming:0.11.2

@@ -25,11 +25,11 @@ export default Vue.extend({
     },
     methods: {
         submit() {
-            this.$pushbots.requestNotificationsPermission((data) => {
-                this.$pushbots.setEmail(this.$auth.user.email);
-                this.$pushbots.setAlias(this.userProfile.uuid);
+            this.$onesignal.requestNotificationsPermission((data) => {
+                this.$onesignal.setEmail(this.$auth.user.email);
+                this.$onesignal.setAlias(this.userProfile.uuid);
+                this.close();
             });
-            this.close();
         },
         close() {
             this.$emit('deny');

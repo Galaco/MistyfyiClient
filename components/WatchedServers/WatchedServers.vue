@@ -2,10 +2,10 @@
   <div class="server-list">
     <v-card>
       <v-card-title>
-        <v-row justify="left">
-          <v-header>
+        <v-row justify-content="left">
+          <v-subheader>
             {{ $t('servers.servers.title') }}
-          </v-header>
+          </v-subheader>
           <v-subheader align="right">
             <div>
               <v-icon class="view-toggle-icon">
@@ -13,7 +13,7 @@
               </v-icon>
               <v-switch v-model="displayAsCard" class="md-primary view-toggle" />
               <v-icon class="view-toggle-icon">
-                mdi-view_column
+                mdi-view-column
               </v-icon>
             </div>
             <div>

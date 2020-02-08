@@ -7,19 +7,19 @@
       class="navbar"
     >
       <v-toolbar-title>
-        <router-link :to="{ name: 'index' }">
+        <nuxt-link :to="{ name: 'index' }">
           <BrandLogo light />
-        </router-link>
+        </nuxt-link>
       </v-toolbar-title>
       <!-- -->
 
       <v-spacer />
 
-      <router-link v-show="isLoggedIn()" id="toolbarOpenAppButton" :to="{ name: 'servers' }">
+      <nuxt-link v-show="isLoggedIn()" id="toolbarOpenAppButton" :to="{ name: 'servers' }">
         <v-btn v-show="isLoggedIn()">
           <span class="text-white">{{ $t('header.links.openApp') }}</span>
         </v-btn>
-      </router-link>
+      </nuxt-link>
       <v-btn v-show="isLoggedIn()" id="toolbarLogoutButton" @click="handleLogout()">
         <span>{{ $t('header.links.logout') }}</span>
       </v-btn>
@@ -59,8 +59,8 @@ export default Vue.extend({
     handleLogout () {
       this.$auth.logout()
     },
-    isLoggedIn () {
-      return this.$auth.isAuthenticated()
+    isLoggedIn (): boolean {
+      return this.$auth.loggedIn
     }
   }
 })

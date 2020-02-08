@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios'
+import { AxiosResponse, AxiosError } from 'axios'
 import { DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES } from './actions.type'
 import {
   DELETE_LEVEL_NAMES_END,
@@ -6,8 +6,6 @@ import {
   FETCH_LEVEL_NAMES_END,
   FETCH_LEVEL_NAMES_START
 } from './mutations.type'
-import { deleteWatchedLevel, getWatchedLevels } from '@/utils/api/levels'
-import { getAccessToken } from '@/plugins/auth0'
 import ApiResponse from '@/models/ApiResponse'
 
 class State {
@@ -31,25 +29,21 @@ const getters = {
 }
 
 const actions = {
-  [FETCH_LEVEL_NAMES] ({ commit }: any) {
+  [FETCH_LEVEL_NAMES] ({ commit }: any): void {
     commit(FETCH_LEVEL_NAMES_START)
-    return getWatchedLevels().then((data: AxiosResponse<ApiResponse>) => {
+    return this.$repositories.levels().getWatchedLevels().then((data: AxiosResponse<ApiResponse>) => {
       commit(FETCH_LEVEL_NAMES_END, data)
-    }).catch((err) => {
-      if (err.code === 401) {
-        getAccessToken()
-      }
+    }).catch((err: AxiosError) => {
+      console.log(err)
     })
   },
-  [DELETE_LEVEL_NAMES] ({ dispatch, commit }: any, params: any) {
+  [DELETE_LEVEL_NAMES] ({ dispatch, commit }: any, params: any): void {
     commit(DELETE_LEVEL_NAMES_START)
-    return deleteWatchedLevel(params.name).then((data: AxiosResponse<ApiResponse>) => {
+    return this.$repositories.levels().deleteWatchedLevel(params.name).then((data: AxiosResponse<ApiResponse>) => {
       commit(DELETE_LEVEL_NAMES_END, data)
       dispatch(FETCH_LEVEL_NAMES)
-    }).catch((err) => {
-      if (err.code === 401) {
-        getAccessToken()
-      }
+    }).catch((err: AxiosError) => {
+      console.log(err)
     })
   }
 }

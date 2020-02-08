@@ -30,7 +30,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import Add from '@/components/Dialogs/Add.vue'
-import { addNewServer } from '@/utils/api/servers'
 
 const ipAddressRegex = /((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}/
 
@@ -79,7 +78,7 @@ export default Vue.extend({
     },
     addServer () {
       this.sending = true
-      addNewServer(this.serverIP, this.serverPort).then(() => {
+      this.$repository.servers.addNewServer(this.serverIP, this.serverPort).then(() => {
         this.$toasted.global.api_success({
           message: this.$t('servers.servers.toast.add.success', { ip: this.serverIP, port: this.serverPort })
         })

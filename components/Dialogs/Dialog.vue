@@ -24,7 +24,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { DialogType } from '@/utils/dialog/constants'
+
+export const enum DialogType {
+    Add = 1,
+    Delete,
+    NoAction,
+}
 
 export default Vue.extend({
   name: 'Dialog',

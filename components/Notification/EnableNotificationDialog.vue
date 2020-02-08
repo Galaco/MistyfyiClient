@@ -1,21 +1,25 @@
 <template>
-  <md-dialog id="enableNotificationsDialog" :md-active="show" @md-clicked-outside="close">
-    <md-dialog-title>{{ $t('dialog.notifications.title') }}</md-dialog-title>
-    <md-dialog-content>
-      {{ $t('dialog.notifications.body') }}
-    </md-dialog-content>
-    <md-dialog-actions>
-      <v-btn class="md-primary" @click="submit">
-        {{ $t('dialog.notifications.confirm') }}
-      </v-btn>
-      <v-btn class="md-secondary" @click="close">
-        {{ $t('dialog.notifications.deny') }}
-      </v-btn>
-      <v-btn class="md-secondary" @click="closeForever">
-        {{ $t('dialog.notifications.denyForever') }}
-      </v-btn>
-    </md-dialog-actions>
-  </md-dialog>
+  <v-dialog id="enableNotificationsDialog" v-model="show" @md-clicked-outside="close">
+    <v-card>
+      <v-card-title class="headline">
+        {{ $t('dialog.notifications.title') }}
+      </v-card-title>
+      <v-card-text>
+        {{ $t('dialog.notifications.body') }}
+      </v-card-text>
+      <v-card-actions>
+        <v-btn @click="submit">
+          {{ $t('dialog.notifications.confirm') }}
+        </v-btn>
+        <v-btn @click="close">
+          {{ $t('dialog.notifications.deny') }}
+        </v-btn>
+        <v-btn @click="closeForever">
+          {{ $t('dialog.notifications.denyForever') }}
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script lang="ts">

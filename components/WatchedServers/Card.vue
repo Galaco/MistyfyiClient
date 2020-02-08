@@ -4,10 +4,10 @@
       <img class="card-img-top" src="#" :alt="`map thumbnail`">
     </md-card-media>
     <md-card-header>
-      <div class="md-title">
+      <div>
         {{ server.name }}
       </div>
-      <div class="md-subhead">
+      <div>
         {{ server.ip_address }}:{{ server.port }}
       </div>
     </md-card-header>
@@ -18,12 +18,12 @@
       <LastUpdated :date="server.last_updated" />
     </md-card-content>
     <md-card-actions>
-      <v-btn class="md-primary" @click="history">
-        <i class="material-icons btn-icon">history</i>
+      <v-btn @click="history">
+        <v-icon>mdi-history</v-icon>
         <span>{{ $t('servers.servers.buttons.history') }}</span>
       </v-btn>
-      <v-btn class="md-accent" @click="deleteServer">
-        <i class="material-icons btn-icon">delete</i>
+      <v-btn @click="deleteServer">
+        <v-icon>mdi-delete</v-icon>
         <span>{{ $t('servers.servers.buttons.delete') }}</span>
       </v-btn>
     </md-card-actions>

@@ -1,12 +1,12 @@
 <template>
   <v-row
     align="center"
-    justify="center"
+    justify-content="center"
   >
     <div class="footer text-center">
-      <router-link class="logo-font" :to="{ name: 'index', params: {} }">
+      <nuxt-link class="logo-font" :to="{ name: 'index', params: {} }">
         {{ $t('app_title') }}
-      </router-link>{{ $t('footer.description') }}
+      </nuxt-link>{{ $t('footer.description') }}
       <span class="attribution">{{ $t('footer.owner') }}
         <a rel="noopener noreferrer" target="blank" href="https://www.galaco.me">
           Galaco</a> &copy; <span id="footer-year">{{ currentYear }}</span>.

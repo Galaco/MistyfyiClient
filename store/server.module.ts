@@ -1,8 +1,6 @@
-import { AxiosResponse } from 'axios'
+import { AxiosResponse, AxiosError } from 'axios'
 import { FETCH_SERVER_HISTORY, SELECT_SERVER } from './actions.type'
 import { FETCH_SERVER_HISTORY_END, FETCH_SERVER_HISTORY_START, SELECT_SERVER_END } from './mutations.type'
-import { getServerHistory } from '@/utils/api/server'
-import { getAccessToken } from '@/plugins/auth0'
 import ApiResponse from '@/models/ApiResponse'
 
 class State {
@@ -30,14 +28,12 @@ const getters = {
 }
 
 const actions = {
-  [FETCH_SERVER_HISTORY] ({ commit }: any, params: any) {
+  [FETCH_SERVER_HISTORY] ({ commit }: any, params: any): any {
     commit(FETCH_SERVER_HISTORY_START)
-    return getServerHistory(params).then((data: AxiosResponse) => {
+    return this.$repositories.server().getServerHistory(params).then((data: AxiosResponse) => {
       commit(FETCH_SERVER_HISTORY_END, data)
-    }).catch((err) => {
-      if (err.code === 401) {
-        getAccessToken()
-      }
+    }).catch((err: AxiosError) => {
+      console.log(err)
     })
   },
   [SELECT_SERVER] ({ commit }: any, params: any) {

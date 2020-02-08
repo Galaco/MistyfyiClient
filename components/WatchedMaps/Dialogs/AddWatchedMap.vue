@@ -46,7 +46,6 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import Add from '@/components/Dialogs/Add.vue'
-import { addWatchedLevel } from '@/utils/api/levels'
 
 const mapNameRegex = /^[a-zA-Z0-9-_*]+$/
 
@@ -93,13 +92,13 @@ export default Vue.extend({
     addWatchedMap () {
       const name = this.mapName
       const serverId = this.serverId
-      addWatchedLevel(name, serverId).then(() => {
+      this.$repository.levels.addWatchedLevel(name, serverId).then(() => {
         this.$toasted.global.api_success({
           message: this.$t('servers.mapNames.toast.add.success', { name })
         })
         this.sending = false
         this.submit()
-      }).catch((err) => {
+      }).catch((err: Error) => {
         this.sending = false
         this.$toasted.global.api_error({ message: err.message })
       })

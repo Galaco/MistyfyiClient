@@ -37,9 +37,9 @@
       <v-app-bar-nav-icon @click.stop="menuVisible = !menuVisible" />
 
       <v-toolbar-title class="md-transparent" md-elevation="0">
-        <router-link class="navbar-brand md-title" :to="{ name: 'index' }">
+        <nuxt-link class="navbar-brand md-title" :to="{ name: 'index' }">
           <BrandLogo />
-        </router-link>
+        </nuxt-link>
       </v-toolbar-title>
 
       <v-toolbar-title>
@@ -68,7 +68,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import UserProfile from '@/components/Layout/Toolbar/UserProfile.vue'
+import UserProfile from '@/components/Layout/UserProfile.vue'
 import BrandLogo from '@/components/Branding/BrandLogo.vue'
 import Footer from '@/components/Layout/Footer.vue'
 

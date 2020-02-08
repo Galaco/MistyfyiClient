@@ -69,7 +69,8 @@ export default {
   /** Plugins to load before mounting the App **/
   plugins: [
     '~/plugins/localstorage',
-    '~/plugins/i18n'
+    '~/plugins/i18n',
+    '~/plugins/repository'
   ],
   /** typescript config for nuxt */
   typescript: {
@@ -80,6 +81,19 @@ export default {
     port: 8080, // default: 3000
     host: '0.0.0.0' // default: localhostw
   },
+  modules: [
+    '@nuxtjs/onesignal',
+    '@nuxtjs/pwa',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
+  ],
+  head: {
+    titleTemplate: '%s - MapTracker',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ]
+  },
   oneSignal: {
     init: {
       appId: process.env.NUXT_ENV_ONESIGNAL_APP_ID,
@@ -89,15 +103,18 @@ export default {
       }
     }
   },
-  modules: [
-    '@nuxtjs/onesignal',
-    '@nuxtjs/pwa'
-  ],
-  head: {
-    titleTemplate: '%s - MapTracker',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    ]
+  auth: {
+    redirect: {
+      login: '/', // redirect user when not connected
+      callback: '/callback'
+    },
+    strategies: {
+      local: false,
+      auth0: {
+        domain: process.env.NUXT_ENV_OAUTH_CLIENT_DOMAIN,
+        client_id: process.env.NUXT_ENV_OAUTH_CLIENT_ID,
+        audience: process.env.NUXT_ENV_OAUTH_AUDIENCE
+      }
+    }
   }
 }

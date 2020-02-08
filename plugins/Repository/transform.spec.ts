@@ -1,4 +1,4 @@
-import { normalizeResponse } from '@/utils/api/transform'
+import { normalizeResponse } from '~/plugins/repository/transform'
 
 describe('normaliseResponse', () => {
   it('normalizes a successful api response', () => {

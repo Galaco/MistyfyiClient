@@ -1,4 +1,4 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 import auth0 from 'auth0-js'
 import { DefaultAuth0Profile } from '@/models/api/users/auth0'
 
@@ -166,12 +166,12 @@ const P = {
   }
 }
 
-Vue.use(P)
+// Vue.use(P)
 
 export default P
 
-declare module 'vue/types/vue' {
-    interface Vue {
-      $auth: Auth;
-    }
-}
+// declare module 'vue/types/vue' {
+//     interface Vue {
+//       $auth: Auth;
+//     }
+// }

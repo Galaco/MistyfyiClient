@@ -15,8 +15,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Dialog from './Dialog.vue'
-import { DialogType } from '@/utils/dialog/constants'
+import Dialog, { DialogType } from './Dialog.vue'
 
 export default Vue.extend({
   name: 'Delete',

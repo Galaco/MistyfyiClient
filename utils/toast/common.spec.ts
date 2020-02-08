@@ -1,4 +1,4 @@
-import { normalizeResponse } from '@/utils/api/transform'
+import { normalizeResponse } from '~/plugins/Repository/transform'
 import { apiError, apiSuccess } from '@/utils/toast/common'
 
 describe('apiError', () => {

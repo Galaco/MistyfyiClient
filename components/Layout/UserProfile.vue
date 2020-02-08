@@ -3,9 +3,9 @@
     <v-menu offset-y>
       <template v-slot:activator="{ on }">
         <div id="toolbarProfileButton" v-on="on">
-          <div v-if="isLoggedIn()">
-            {{ getUserEmail() }}
-          </div>
+          <span v-if="$auth.loggedIn">
+            {{ $auth.user.email }}
+          </span>
           <v-avatar>
             <v-icon>mdi-account-circle</v-icon>
           </v-avatar>
@@ -13,7 +13,7 @@
       </template>
 
       <v-list dense>
-        <v-list-item v-show="isLoggedIn()">
+        <v-list-item v-show="$auth.loggedIn">
           <v-list-item-action>
             <v-icon>{{ (!userProfile || !userProfile.isSubscribed)? "mdi-computer": "mdi-star" }}</v-icon>
           </v-list-item-action>
@@ -29,10 +29,10 @@
             {{ $t('header.profile.expiresAt') }} {{ DateToString(userProfile.dateExpires) }}
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-show="!isLoggedIn()" id="toolbarLoginButton" @click="handleLogin()">
+        <v-list-item v-show="!$auth.loggedIn" id="toolbarLoginButton" @click="handleLogin()">
           <v-list-item-title>{{ $t('header.links.login') }}</v-list-item-title>
         </v-list-item>
-        <v-list-item v-show="isLoggedIn()" id="toolbarLogoutButton" @click="handleLogout()">
+        <v-list-item v-show="$auth.loggedIn" id="toolbarLogoutButton" @click="handleLogout()">
           <v-list-item-action>
             <v-icon>mdi-cancel</v-icon>
           </v-list-item-action>
@@ -63,9 +63,6 @@ export default Vue.extend({
     },
     handleLogout () {
       this.$auth.logout()
-    },
-    isLoggedIn (): boolean {
-      return this.$auth.isAuthenticated()
     },
     getUserEmail (): string {
       return this.$auth.user.email

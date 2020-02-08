@@ -1,8 +1,6 @@
-import { AxiosResponse } from 'axios'
+import { AxiosResponse, AxiosError } from 'axios'
 import { DELETE_SERVER, FETCH_SERVERS } from './actions.type'
 import { FETCH_SERVERS_END, FETCH_SERVERS_START, DELETE_SERVERS_START, DELETE_SERVERS_END } from './mutations.type'
-import { deleteServer, getServerStatuses } from '@/utils/api/servers'
-import { getAccessToken } from '@/plugins/auth0'
 import ApiResponse from '@/models/ApiResponse'
 
 class State {
@@ -26,25 +24,23 @@ const getters = {
 }
 
 const actions = {
-  [FETCH_SERVERS] ({ commit }: any) {
+  [FETCH_SERVERS] ({ commit }: any): any {
     commit(FETCH_SERVERS_START)
-    return getServerStatuses().then((data: AxiosResponse<ApiResponse>) => {
+    return this.$repositories.servers().getServerStatuses().then((data: AxiosResponse<ApiResponse>) => {
       commit(FETCH_SERVERS_END, data)
-    }).catch((err) => {
-      if (err.code === 401) {
-        getAccessToken()
-      }
+    }).catch((err: AxiosError) => {
+      this.$toasted.global.api_error({ message: err.message })
+      console.log(err)
     })
   },
-  [DELETE_SERVER] ({ dispatch, commit }: any, params: any) {
+  [DELETE_SERVER] ({ dispatch, commit }: any, params: any): any {
     commit(DELETE_SERVERS_START)
-    return deleteServer(params.ip_address, params.port).then((data: AxiosResponse<ApiResponse>) => {
+    return this.$repositories.servers.deleteServer(params.ip_address, params.port).then((data: AxiosResponse<ApiResponse>) => {
       commit(DELETE_SERVERS_END, data)
       dispatch(FETCH_SERVERS)
-    }).catch((err) => {
-      if (err.code === 401) {
-        getAccessToken()
-      }
+    }).catch((err: AxiosError) => {
+      this.$toasted.global.api_error({ message: err.message })
+      console.log(err)
     })
   }
 }

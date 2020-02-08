@@ -1,7 +1,6 @@
+import { AxiosError } from 'axios'
 import { FETCH_USER_PROFILE, CHANGE_USER_0AUTH_PROFILE } from './actions.type'
 import { FETCH_USER_PROFILE_END, FETCH_USER_PROFILE_START, SET_USER_0AUTH_PROFILE } from './mutations.type'
-import { getAccessToken } from '@/plugins/auth0'
-import { getUserProfile } from '@/utils/api/user'
 import ApiResponse from '@/models/ApiResponse'
 import { DefaultAuth0Profile } from '@/models/api/users/auth0'
 import Profile from '@/models/api/users/profile'
@@ -23,14 +22,12 @@ const getters = {
 }
 
 const actions = {
-  [FETCH_USER_PROFILE] ({ commit }: any) {
+  [FETCH_USER_PROFILE] ({ commit }: any): any {
     commit(FETCH_USER_PROFILE_START)
-    return getUserProfile().then((data) => {
+    return this.$repositories.user().getUserProfile().then((data: any) => {
       commit(FETCH_USER_PROFILE_END, data)
-    }).catch((err) => {
-      if (err.code === 401) {
-        getAccessToken()
-      }
+    }).catch((err: AxiosError) => {
+      console.log(err)
     })
   },
   [CHANGE_USER_0AUTH_PROFILE] ({ commit }: any, params: DefaultAuth0Profile) {

@@ -69,8 +69,7 @@ export default {
   /** Plugins to load before mounting the App **/
   plugins: [
     '~/plugins/localstorage',
-    '~/plugins/i18n',
-    '~/plugins/repository'
+    '~/plugins/i18n'
   ],
   /** typescript config for nuxt */
   typescript: {
@@ -115,6 +114,9 @@ export default {
         client_id: process.env.NUXT_ENV_OAUTH_CLIENT_ID,
         audience: process.env.NUXT_ENV_OAUTH_AUDIENCE
       }
-    }
+    },
+    plugins: [
+      '~/plugins/repository'
+    ]
   }
 }

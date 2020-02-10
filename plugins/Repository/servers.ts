@@ -1,19 +1,22 @@
-import createRepository, { BASE_URL } from './index'
+import { AxiosInstance } from 'axios'
+import { BASE_URL } from './index'
 
-export default ($axios: any, $auth: any) => () => ({
+export default (axios: AxiosInstance) => ({
   getServerStatuses () {
-    return createRepository($axios, $auth).get(`${BASE_URL}/api/v1/servers/list`)
+    return axios.get(`${BASE_URL}/api/v1/servers/list`)
   },
   addNewServer (ip: string, port: number) {
-    return createRepository($axios, $auth).put(`${BASE_URL}/api/v1/servers/add`, {
+    return axios.put(`${BASE_URL}/api/v1/servers/add`, {
       ip,
       port
     })
   },
   deleteServer (ip: string, port: number) {
-    return createRepository($axios, $auth).delete(`${BASE_URL}/api/v1/servers/remove`, {
-      ip,
-      port
+    return axios.delete(`${BASE_URL}/api/v1/servers/remove`, {
+      data: {
+        ip,
+        port
+      }
     })
   }
 })

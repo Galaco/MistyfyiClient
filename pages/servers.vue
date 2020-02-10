@@ -27,6 +27,7 @@ import { CHANGE_USER_0AUTH_PROFILE } from '@/store/actions.type'
 import { userInfo } from '@/plugins/auth0'
 
 export default Vue.extend({
+  middleware: ['auth'],
   layout: 'app',
   name: 'Servers',
   components: {

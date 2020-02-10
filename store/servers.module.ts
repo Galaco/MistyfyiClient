@@ -26,7 +26,7 @@ const getters = {
 const actions = {
   [FETCH_SERVERS] ({ commit }: any): any {
     commit(FETCH_SERVERS_START)
-    return this.$repositories.servers().getServerStatuses().then((data: AxiosResponse<ApiResponse>) => {
+    return this.$repositories.servers.getServerStatuses().then((data: AxiosResponse<ApiResponse>) => {
       commit(FETCH_SERVERS_END, data)
     }).catch((err: AxiosError) => {
       this.$toasted.global.api_error({ message: err.message })

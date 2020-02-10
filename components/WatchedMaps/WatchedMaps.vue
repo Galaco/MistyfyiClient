@@ -61,7 +61,12 @@
       </md-empty-state>
       <div v-if="levelNamesCount === -1" class="row text-center">
         <div class="loading-spinner">
-          <MoonLoader />
+          <v-progress-circular
+            :size="70"
+            :width="7"
+            color="purple"
+            indeterminate
+          />
         </div>
       </div>
     </v-card>
@@ -82,7 +87,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 import DeleteUserLevelDialog from './Dialogs/DeleteWatchedMap.vue'
 import AddUserLevelDialog from './Dialogs/AddWatchedMap.vue'
 import { FETCH_LEVEL_NAMES } from '@/store/actions.type'
@@ -91,8 +95,7 @@ export default Vue.extend({
   name: 'UserLevels',
   components: {
     DeleteUserLevelDialog,
-    AddUserLevelDialog,
-    MoonLoader
+    AddUserLevelDialog
   },
   data () {
     return {

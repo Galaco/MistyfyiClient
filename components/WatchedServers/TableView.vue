@@ -22,7 +22,12 @@
     </v-simple-table>
     <div v-if="serversCount === -1" class="row text-center">
       <div class="col-sm-12 loading-spinner">
-        <MoonLoader />
+        <v-progress-circular
+          :size="70"
+          :width="7"
+          color="purple"
+          indeterminate
+        />
       </div>
     </div>
   </div>
@@ -31,14 +36,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 import Row from './TableRow.vue'
 import { SELECT_SERVER } from '@/store/actions.type'
 
 export default Vue.extend({
   name: 'CardView',
   components: {
-    MoonLoader,
     Row
   },
   computed: {

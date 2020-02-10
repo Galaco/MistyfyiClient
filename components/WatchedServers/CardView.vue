@@ -2,7 +2,12 @@
   <div class="container card-view">
     <div v-if="serversCount === -1" class="row text-center">
       <div class="loading-spinner">
-        <MoonLoader />
+        <v-progress-circular
+          :size="70"
+          :width="7"
+          color="purple"
+          indeterminate
+        />
       </div>
     </div>
     <div class="md-layout md-alignment-center">
@@ -20,14 +25,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 import Card from './Card.vue'
 import { SELECT_SERVER } from '@/store/actions.type'
 
 export default Vue.extend({
   name: 'CardView',
   components: {
-    MoonLoader,
     Card
   },
   computed: {

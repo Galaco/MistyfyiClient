@@ -1,11 +1,12 @@
-import createRepository, { BASE_URL } from './index'
+import { AxiosInstance } from 'axios'
+import { BASE_URL } from './index'
 
-export default ($axios: any, $auth: any) => () => ({
+export default ($axios: AxiosInstance) => ({
   getUserProfile () {
-    return createRepository($axios, $auth).get(`${BASE_URL}/api/v1/user/profile`)
+    return $axios.get(`${BASE_URL}/api/v1/user/profile`)
   },
   sendContactRequest (email: string, message: string, recaptcha: string) {
-    return createRepository($axios, $auth).post(`${BASE_URL}/api/v1/user/contact/request`, {
+    return $axios.post(`${BASE_URL}/api/v1/user/contact/request`, {
       email,
       message,
       recaptcha

@@ -7,6 +7,7 @@ import Vue from 'vue'
 import ContactForm from '@/components/ContactForm/Contact.vue'
 
 export default Vue.extend({
+  middleware: ['auth'],
   layout: 'app',
   name: 'Help',
   components: {

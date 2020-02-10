@@ -31,7 +31,7 @@ const getters = {
 const actions = {
   [FETCH_LEVEL_NAMES] ({ commit }: any): void {
     commit(FETCH_LEVEL_NAMES_START)
-    return this.$repositories.levels().getWatchedLevels().then((data: AxiosResponse<ApiResponse>) => {
+    return this.$repositories.levels.getWatchedLevels().then((data: AxiosResponse<ApiResponse>) => {
       commit(FETCH_LEVEL_NAMES_END, data)
     }).catch((err: AxiosError) => {
       console.log(err)
@@ -39,7 +39,7 @@ const actions = {
   },
   [DELETE_LEVEL_NAMES] ({ dispatch, commit }: any, params: any): void {
     commit(DELETE_LEVEL_NAMES_START)
-    return this.$repositories.levels().deleteWatchedLevel(params.name).then((data: AxiosResponse<ApiResponse>) => {
+    return this.$repositories.levels.deleteWatchedLevel(params.name).then((data: AxiosResponse<ApiResponse>) => {
       commit(DELETE_LEVEL_NAMES_END, data)
       dispatch(FETCH_LEVEL_NAMES)
     }).catch((err: AxiosError) => {

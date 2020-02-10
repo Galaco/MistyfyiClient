@@ -6,23 +6,32 @@
     :confirm-disabled="false"
     @deny="close"
   >
-    <MoonLoader v-if="isServerHistoryLoading" />
+    <v-progress-circular
+      v-if="isServerHistoryLoading"
+      :size="70"
+      :width="7"
+      color="purple"
+      indeterminate
+    />
     <v-table>
-      <tr>
-        <th>{{ $t('servers.servers.dialogs.history.body.headers.date') }}</th>
-        <th>{{ $t('servers.servers.dialogs.history.body.headers.mapName') }}</th>
-      </tr>
-      <tr v-for="(s,index) in history" :key="index">
-        <td>{{ timestampToLabel(s.date_created) }}</td>
-        <td>{{ s.map_name }}</td>
-      </tr>
+      <thead>
+        <tr>
+          <th>{{ $t('servers.servers.dialogs.history.body.headers.date') }}</th>
+          <th>{{ $t('servers.servers.dialogs.history.body.headers.mapName') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(s,index) in history" :key="index">
+          <td>{{ timestampToLabel(s.date_created) }}</td>
+          <td>{{ s.map_name }}</td>
+        </tr>
+      </tbody>
     </v-table>
   </Info>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 import { mapGetters } from 'vuex'
 import Info from '@/components/Dialogs/Info.vue'
 import { FETCH_SERVER_HISTORY } from '@/store/actions.type'
@@ -31,8 +40,7 @@ import { DateToDateTimeString } from '@/locale/time'
 export default Vue.extend({
   name: 'History',
   components: {
-    Info,
-    MoonLoader
+    Info
   },
   props: {
     show: {

@@ -9,9 +9,37 @@
   >
     <span v-show="userProfile.isSubscribed === true">{{ $t('servers.mapNames.dialogs.add.description.paid') }}</span>
     <span v-show="userProfile.isSubscribed === false">{{ $t('servers.mapNames.dialogs.add.description.free') }}</span>
-    <form novalidate class="md-layout md-gutter">
+    <v-form
+      ref="form"
+      v-model="formValid"
+      :lazy-validation="false"
+    >
+      <v-text-field
+        id="adduserlevel_name"
+        v-model="mapName"
+        :rules="[v => mapNameRegex.test(v) || $t('servers.mapNames.dialogs.add.form.nameError')]"
+        :label="$t('servers.mapNames.dialogs.add.form.name')"
+        required
+        :disabled="sending"
+      />
+      <v-select
+        id="serverId"
+        v-model="serverId"
+        name="serverId"
+        :item-text="v => v.name || `${v.ip_address}:${v.port}`"
+        :item-value="v => v.id"
+        :items="[{id: -1, name: $t('servers.mapNames.dialogs.add.form.server')}].concat(servers)"
+      >
+        <!-- <md-option :key="-1" value="-1">
+          {{ $t('servers.mapNames.dialogs.add.form.server') }}
+        </md-option>
+        <md-option v-for="(server,index) in servers" :key="index" :value="server.id">
+          {{ server.name || `${server.ip_address}:${server.port}` }}
+        </md-option> -->
+      </v-select>
+
       <div class="md-layout-item md-small-size-100">
-        <md-field :class="(!mapNameValid)? 'md-invalid': ''">
+        <!-- <md-field :class="(!mapNameValid)? 'md-invalid': ''">
           <label for="adduserlevel_name">{{ $t('servers.mapNames.dialogs.add.form.name') }}</label>
           <md-input
             id="adduserlevel_name"
@@ -23,7 +51,7 @@
           <span v-show="userProfile.isSubscribed === false" class="md-helper-text">{{ $t('servers.mapNames.dialogs.add.form.nameHelperFree') }}</span>
           <span v-show="userProfile.isSubscribed === true" class="md-helper-text">{{ $t('servers.mapNames.dialogs.add.form.nameHelperPaid') }}</span>
           <span class="md-error">{{ $t('servers.mapNames.dialogs.add.form.nameError') }}</span>
-        </md-field>
+        </md-field> -->
         <md-field>
           <label for="movie">{{ $t('servers.mapNames.dialogs.add.form.server') }}</label>
           <md-select id="serverId" v-model="serverId" name="serverId">
@@ -37,7 +65,7 @@
           <span class="md-helper-text">{{ $t('servers.mapNames.dialogs.add.form.serverHelper') }}</span>
         </md-field>
       </div>
-    </form>
+    </v-form>
     <md-progress-bar v-if="sending" md-mode="indeterminate" />
   </Add>
 </template>
@@ -61,10 +89,12 @@ export default Vue.extend({
     }
   },
   data: () => ({
+    formValid: false,
     mapName: '',
     serverId: -1,
     mapNameValid: true,
-    sending: false
+    sending: false,
+    mapNameRegex: /^[a-zA-Z0-9-_*]+$/
   }),
   computed: {
     ...mapGetters(['servers', 'userProfile'])

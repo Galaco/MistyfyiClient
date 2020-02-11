@@ -1,55 +1,53 @@
 <template>
-  <form novalidate class="md-layout">
-    <v-card class="md-layout-item md-size-100 md-small-size-100">
-      <v-card-title class="headline">
-        Contact
-      </v-card-title>
-      <v-card-text>
-        <div>
-          <div :class="(!emailAddressValid)? 'md-invalid': ''">
-            <v-text-field
-              id="email"
-              v-model="emailAddress"
-              name="email"
-              :disabled="sending"
-              :label="$t('help.contact.email.label')"
-              required
-            />
-            <span class="md-error">{{ $t('help.contact.email.error') }}</span>
-          </div>
-          <div :class="(!messageValid)? 'md-invalid': ''">
-            <v-text-field
-              id="email"
-              v-model="message"
-              name="email"
-              :disabled="sending"
-              :label="$t('help.contact.message.label')"
-              required
-            />
-            <span class="md-error">{{ $t('help.contact.message.error') }}</span>
-          </div>
-          <div>
-            <vue-recaptcha
-              :sitekey="recaptchaSiteKey"
-              :load-recaptcha-script="true"
-              @verify="onVerify"
-              @expired="onExpired"
-            />
-          </div>
+  <v-card>
+    <v-card-title class="headline">
+      Contact
+    </v-card-title>
+    <v-card-text>
+      <v-form>
+        <div :class="(!emailAddressValid)? 'md-invalid': ''">
+          <v-text-field
+            id="email"
+            v-model="emailAddress"
+            name="email"
+            :disabled="sending"
+            :label="$t('help.contact.email.label')"
+            required
+          />
+          <span class="md-error">{{ $t('help.contact.email.error') }}</span>
         </div>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn
-          type="button"
-          :disabled="!formValid || sending"
-          @click="send"
-        >
-          {{ $t('help.contact.submit') }}
-        </v-btn>
-      </v-card-actions>
-      <v-progress-linear v-if="sending" indeterminate />
-    </v-card>
-  </form>
+        <div :class="(!messageValid)? 'md-invalid': ''">
+          <v-text-field
+            id="email"
+            v-model="message"
+            name="email"
+            :disabled="sending"
+            :label="$t('help.contact.message.label')"
+            required
+          />
+          <span class="md-error">{{ $t('help.contact.message.error') }}</span>
+        </div>
+        <div>
+          <vue-recaptcha
+            :sitekey="recaptchaSiteKey"
+            :load-recaptcha-script="true"
+            @verify="onVerify"
+            @expired="onExpired"
+          />
+        </div>
+      </v-form>
+    </v-card-text>
+    <v-card-actions>
+      <v-btn
+        type="button"
+        :disabled="!formValid || sending"
+        @click="send"
+      >
+        {{ $t('help.contact.submit') }}
+      </v-btn>
+    </v-card-actions>
+    <v-progress-linear v-if="sending" indeterminate />
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -97,7 +95,7 @@ export default Vue.extend({
     },
     send () {
       this.sending = true
-      this.$repository.user.sendContactRequest(this.emailAddress, this.message, this.recaptchaAuthKey).then(() => {
+      this.$repositories.user.sendContactRequest(this.emailAddress, this.message, this.recaptchaAuthKey).then(() => {
         this.$toasted.global.api_success({
           message: this.$t('help.contact.toast.success')
         })

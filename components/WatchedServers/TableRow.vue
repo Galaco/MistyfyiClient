@@ -13,24 +13,38 @@
       <LastUpdated :date="server.last_updated" />
     </td>
     <td class="controls">
-      <div>
-        <div>
-          <v-btn @click="history">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn
+            class="mx-2"
+            fab
+            dark
+            small
+            color="primary"
+            v-on="on"
+            @click="history"
+          >
             <v-icon>mdi-history</v-icon>
-            <md-tooltip md-direction="bottom">
-              {{ $t('servers.servers.buttons.history') }}
-            </md-tooltip>
           </v-btn>
-        </div>
-        <div>
-          <v-btn @click="deleteServer">
+        </template>
+        <span>{{ $t('servers.servers.buttons.history') }}</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn
+            class="mx-2"
+            fab
+            dark
+            small
+            color="pink"
+            v-on="on"
+            @click="deleteServer"
+          >
             <v-icon>mdi-delete</v-icon>
-            <md-tooltip md-direction="bottom">
-              {{ $t('servers.servers.buttons.delete') }}
-            </md-tooltip>
           </v-btn>
-        </div>
-      </div>
+        </template>
+        <span>{{ $t('servers.servers.buttons.delete') }}</span>
+      </v-tooltip>
     </td>
   </tr>
 </template>

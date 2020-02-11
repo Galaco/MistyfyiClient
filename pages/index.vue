@@ -113,7 +113,7 @@
         justify="center"
       >
         <v-col cols="1">
-          <h2 class="md-title">
+          <h2>
             {{ $t('home.pricing.title') }}
           </h2>
         </v-col>

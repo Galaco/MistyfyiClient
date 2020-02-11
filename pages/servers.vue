@@ -1,20 +1,33 @@
 <template>
-  <div>
-    <v-card class="instructions">
-      <v-card-text>
-        <span v-show="userProfile.isSubscribed === false" class="md-body-2">{{ $t('servers.servers.instructions.free') }}</span>
-        <span v-show="userProfile.isSubscribed === true" class="md-body-2">{{ $t('servers.servers.instructions.paid') }}</span>
-      </v-card-text>
-    </v-card>
+  <v-row>
+    <v-col cols="12">
+      <v-card
+        single-line
+        :sticky="false"
+      >
+        <v-card-text v-show="userProfile.isSubscribed === false">
+          {{ $t('servers.servers.instructions.free') }}
+        </v-card-text>
+        <v-card-text v-show="userProfile.isSubscribed === true">
+          {{ $t('servers.servers.instructions.paid') }}
+        </v-card-text>
+      </v-card>
+    </v-col>
 
-    <WatchedServers />
-    <WatchedMaps />
+    <v-col cols="12">
+      <WatchedServers />
+    </v-col>
+
+    <v-col cols="12">
+      <WatchedMaps />
+    </v-col>
+
     <EnableNotificationDialog
       :show="isEnableNotificationDialogVisible"
       @confirm="closeEnableNotificationsPopup"
       @deny="closeEnableNotificationsPopup"
     />
-  </div>
+  </v-row>
 </template>
 
 <script lang="ts">
@@ -23,8 +36,8 @@ import { mapGetters } from 'vuex'
 import WatchedServers from './../components/WatchedServers/WatchedServers.vue'
 import EnableNotificationDialog from './../components/Notification/EnableNotificationDialog.vue'
 import WatchedMaps from './../components/WatchedMaps/WatchedMaps.vue'
-import { CHANGE_USER_0AUTH_PROFILE } from '@/store/actions.type'
-import { userInfo } from '@/plugins/auth0'
+// import { CHANGE_USER_0AUTH_PROFILE } from '@/store/actions.type'
+// import { userInfo } from '@/plugins/auth0'
 
 export default Vue.extend({
   middleware: ['auth'],
@@ -44,7 +57,7 @@ export default Vue.extend({
     ...mapGetters(['userProfile'])
   },
   mounted () {
-    this.$store.dispatch(CHANGE_USER_0AUTH_PROFILE, userInfo())
+    // this.$store.dispatch(CHANGE_USER_0AUTH_PROFILE, userInfo())
     // this.$onesignal.areNotificationPermissionsGranted().then((valid: boolean) => {
     //   if (valid) {
     //     this.$onesignal.autoResubscribe()
@@ -69,10 +82,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang='scss' scoped>
-    .instructions {
-        padding:16px;
-        margin-bottom: 16px;
-    }
-</style>

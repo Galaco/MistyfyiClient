@@ -2,12 +2,14 @@
   <div class="list-view">
     <v-simple-table>
       <thead v-if="servers.length > 0">
-        <tr>{{ $t('servers.servers.list.headers.server') }}</tr>
-        <tr>{{ $t('servers.servers.list.headers.address') }}</tr>
-        <tr>{{ $t('servers.servers.list.headers.map') }}</tr>
-        <tr>{{ $t('servers.servers.list.headers.updated') }}</tr>
-        <tr class="controls">
-          {{ $t('table.headers.actions') }}
+        <tr>
+          <th>{{ $t('servers.servers.list.headers.server') }}</th>
+          <th>{{ $t('servers.servers.list.headers.address') }}</th>
+          <th>{{ $t('servers.servers.list.headers.map') }}</th>
+          <th>{{ $t('servers.servers.list.headers.updated') }}</th>
+          <th class="controls">
+            {{ $t('table.headers.actions') }}
+          </th>
         </tr>
       </thead>
       <tbody>

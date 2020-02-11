@@ -1,74 +1,84 @@
 <template>
   <div class="map-list">
     <v-card>
-      <v-card-title>
-        <h1>
+      <v-toolbar flat>
+        <v-toolbar-title>
           {{ $t('servers.mapNames.title') }}
-        </h1>
+        </v-toolbar-title>
+        <v-spacer />
         <v-btn id="addMapNameButton" @click="showAddDialog()">
           <v-icon>mdi-note-add</v-icon>
           <span>{{ $t('servers.mapNames.buttons.add') }}</span>
         </v-btn>
-      </v-card-title>
-      <v-simple-table>
-        <thead>
-          <tr v-if="levelNames.length > 0">
-            <th class="v-center">
-              {{ $t('servers.mapNames.table.headers.name') }}
-            </th>
-            <th class="v-center">
-              {{ $t('servers.mapNames.table.headers.server') }}
-            </th>
-            <th class="controls">
-              {{ $t('table.headers.actions') }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(map,index) in levelNames" :key="index">
-            <td class="v-center">
-              {{ map.name }}
-            </td>
-            <td class="v-center">
-              {{ serverNameForId(map.server_id) }}
-            </td>
-            <td class="controls">
-              <div class="md-layout md-alignment-center md-gutter">
-                <div class="md-layout-item md-size-40">
-                  <v-btn class="md-icon-button md-accent md-raised" @click="showDeleteDialog(map)">
-                    <v-icon>mdi-delete</v-icon>
-                    <md-tooltip md-direction="bottom">
-                      {{ $t('servers.mapNames.buttons.delete') }}
-                    </md-tooltip>
-                  </v-btn>
+      </v-toolbar>
+      <v-card-text>
+        <v-simple-table>
+          <thead>
+            <tr v-if="levelNames.length > 0">
+              <th class="v-center">
+                {{ $t('servers.mapNames.table.headers.name') }}
+              </th>
+              <th class="v-center">
+                {{ $t('servers.mapNames.table.headers.server') }}
+              </th>
+              <th class="controls">
+                {{ $t('table.headers.actions') }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(map,index) in levelNames" :key="index">
+              <td class="v-center">
+                {{ map.name }}
+              </td>
+              <td class="v-center">
+                {{ serverNameForId(map.server_id) }}
+              </td>
+              <td class="controls">
+                <div class="md-layout md-alignment-center md-gutter">
+                  <div class="md-layout-item md-size-40">
+                    <v-btn class="md-icon-button md-accent md-raised" @click="showDeleteDialog(map)">
+                      <v-icon>mdi-delete</v-icon>
+                      <md-tooltip md-direction="bottom">
+                        {{ $t('servers.mapNames.buttons.delete') }}
+                      </md-tooltip>
+                    </v-btn>
+                  </div>
                 </div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </v-simple-table>
-
-      <md-empty-state
-        v-if="levelNamesCount === 0"
-        md-icon="create"
-        :md-label="$t('servers.mapNames.noItems.title')"
-        :md-description="$t('servers.mapNames.noItems.description')"
-      >
-        <v-btn id="addFirstMapNameButton" class="md-primary md-raised" @click="showAddDialog()">
-          <i class="material-icons btn-icon">note_add</i>
-          <span>{{ $t('servers.mapNames.noItems.add') }}</span>
-        </v-btn>
-      </md-empty-state>
-      <div v-if="levelNamesCount === -1" class="row text-center">
-        <div class="loading-spinner">
-          <v-progress-circular
-            :size="70"
-            :width="7"
-            color="purple"
-            indeterminate
-          />
+              </td>
+            </tr>
+          </tbody>
+        </v-simple-table>
+        <v-row
+          v-if="levelNamesCount === 0"
+          justify="center"
+          align="center"
+        >
+          <v-col cols="12">
+            <v-icon x-large>
+              mdi-pencil
+            </v-icon>
+            <h1>{{ $t('servers.mapNames.noItems.title') }}</h1>
+            <div>{{ $t('servers.mapNames.noItems.description') }}</div>
+            <v-btn id="addFirstMapNameButton" @click="showAddDialog()">
+              <v-icon>
+                mdi-file-plus
+              </v-icon>
+              <span>{{ $t('servers.mapNames.noItems.add') }}</span>
+            </v-btn>
+          </v-col>
+        </v-row>
+        <div v-if="levelNamesCount === -1" class="row text-center">
+          <div class="loading-spinner">
+            <v-progress-circular
+              :size="70"
+              :width="7"
+              color="purple"
+              indeterminate
+            />
+          </div>
         </div>
-      </div>
+      </v-card-text>
     </v-card>
     <AddUserLevelDialog
       :show="isAddDialogVisible"

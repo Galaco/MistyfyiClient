@@ -1,38 +1,31 @@
 <template>
   <div class="server-list">
     <v-card>
-      <v-card-title>
-        <v-row justify-content="left">
-          <v-subheader>
-            {{ $t('servers.servers.title') }}
-          </v-subheader>
-          <v-subheader align="right">
-            <div>
-              <v-icon class="view-toggle-icon">
-                mdi-list
-              </v-icon>
-              <v-switch v-model="displayAsCard" class="md-primary view-toggle" />
-              <v-icon class="view-toggle-icon">
-                mdi-view-column
-              </v-icon>
-            </div>
-            <div>
-              <v-btn @click="showAddServerDialog">
-                <v-icon>mdi-note-add</v-icon>
-                <span>{{ $t('servers.servers.buttons.add') }}</span>
-              </v-btn>
-            </div>
-          </v-subheader>
-        </v-row>
-      </v-card-title>
+      <v-toolbar flat>
+        <v-toolbar-title>
+          {{ $t('servers.servers.title') }}
+        </v-toolbar-title>
+        <v-spacer />
+        <div>
+          <v-switch
+            v-model="displayAsTable"
+            :label="$t('servers.servers.buttons.tableView')"
+          />
+        </div>
+        <v-spacer />
+        <v-btn @click="showAddServerDialog">
+          <v-icon>mdi-note-add</v-icon>
+          <span>{{ $t('servers.servers.buttons.add') }}</span>
+        </v-btn>
+      </v-toolbar>
       <v-card-text>
         <TableView
-          v-if="displayAsCard === false"
+          v-if="displayAsTable === true"
           @showHistory="showServerHistoryDialog"
           @showDelete="showDeleteServerDialog"
         />
         <CardView
-          v-if="displayAsCard === true"
+          v-if="displayAsTable === false"
           @showHistory="showServerHistoryDialog"
           @showDelete="showDeleteServerDialog"
         />
@@ -87,7 +80,7 @@ export default Vue.extend({
     TableView
   },
   data: () => ({
-    displayAsCard: false,
+    displayAsTable: true,
     isNewServerDialogVisible: false,
     isDeleteServerDialogVisible: false,
     isServerHistoryDialogVisible: false,

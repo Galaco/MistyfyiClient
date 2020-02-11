@@ -8,7 +8,8 @@ export default {
     buttons: {
       add: 'Add server',
       history: 'History',
-      delete: 'Delete'
+      delete: 'Delete',
+      tableView: 'Table View'
     },
     list: {
       headers: {

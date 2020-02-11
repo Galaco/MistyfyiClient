@@ -1,9 +1,8 @@
-import createRepository from '~/plugins/Repository/index'
-import levelsRepository from '~/plugins/Repository/levels'
-import serverRepository from '~/plugins/Repository/server'
-import serversRepository from '~/plugins/Repository/servers'
-import userRepository from '~/plugins/Repository/user'
-import { normalizeResponse } from '~/plugins/Repository/transform'
+import createRepository, { normalizeResponse } from './Repository/index'
+import levelsRepository from './Repository/levels'
+import serverRepository from './Repository/server'
+import serversRepository from './Repository/servers'
+import userRepository from './Repository/user'
 
 export default (ctx: any, inject: any) => {
   const success = (data: any): any => {

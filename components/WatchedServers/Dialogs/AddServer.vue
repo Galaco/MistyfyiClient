@@ -95,7 +95,7 @@ export default Vue.extend({
     },
     addServer () {
       this.sending = true
-      this.$repository.servers.addNewServer(this.serverIP, this.serverPort).then(() => {
+      this.$repositories.servers.addNewServer(this.serverIP, this.serverPort).then(() => {
         this.$toasted.global.api_success({
           message: this.$t('servers.servers.toast.add.success', { ip: this.serverIP, port: this.serverPort })
         })

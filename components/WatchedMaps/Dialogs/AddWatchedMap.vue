@@ -92,7 +92,7 @@ export default Vue.extend({
     addWatchedMap () {
       const name = this.mapName
       const serverId = this.serverId
-      this.$repository.levels.addWatchedLevel(name, serverId).then(() => {
+      this.$repositories.levels.addWatchedLevel(name, serverId).then(() => {
         this.$toasted.global.api_success({
           message: this.$t('servers.mapNames.toast.add.success', { name })
         })

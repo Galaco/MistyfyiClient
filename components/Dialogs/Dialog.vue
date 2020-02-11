@@ -1,5 +1,9 @@
 <template>
-  <v-dialog v-model="show" @md-clicked-outside="deny">
+  <v-dialog
+    v-model="show"
+    max-width="600px"
+    @md-clicked-outside="deny"
+  >
     <v-card>
       <v-card-title class="headline">
         {{ title }}
@@ -8,6 +12,7 @@
         <slot />
       </v-card-text>
       <v-card-actions>
+        <v-spacer />
         <v-btn v-if="showPrimary" :disabled="confirmDisabled" @click="confirm">
           {{ confirmLabel }}
         </v-btn>

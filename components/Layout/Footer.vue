@@ -2,16 +2,15 @@
   <v-row
     align="center"
     justify-content="center"
+    class="footer text-center"
   >
-    <div class="footer text-center">
-      <nuxt-link class="logo-font" :to="{ name: 'index', params: {} }">
-        {{ $t('app_title') }}
-      </nuxt-link>{{ $t('footer.description') }}
-      <span class="attribution">{{ $t('footer.owner') }}
-        <a rel="noopener noreferrer" target="blank" href="https://www.galaco.me">
-          Galaco</a> &copy; <span id="footer-year">{{ currentYear }}</span>.
-      </span>
-    </div>
+    <nuxt-link class="logo-font" :to="{ name: 'index', params: {} }">
+      {{ $t('app_title') }}
+    </nuxt-link>{{ $t('footer.description') }}
+    <span class="attribution">{{ $t('footer.owner') }}
+      <a rel="noopener noreferrer" target="blank" href="https://www.galaco.me">
+        Galaco</a> &copy; <span id="footer-year">{{ currentYear }}</span>.
+    </span>
   </v-row>
 </template>
 

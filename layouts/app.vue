@@ -36,10 +36,8 @@
     >
       <v-app-bar-nav-icon @click.stop="menuVisible = !menuVisible" />
 
-      <v-toolbar-title class="md-transparent" md-elevation="0">
-        <nuxt-link class="navbar-brand md-title" :to="{ name: 'index' }">
-          <BrandLogo />
-        </nuxt-link>
+      <v-toolbar-title>
+        <BrandLogo />
       </v-toolbar-title>
 
       <v-toolbar-title>
@@ -53,7 +51,7 @@
 
     <!-- Sizes your content based upon application components -->
     <v-content>
-      <v-container class="fill-height">
+      <v-container>
         <!-- Provides the application the proper gutter -->
         <nuxt />
       </v-container>

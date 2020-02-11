@@ -1,8 +1,12 @@
 <template>
-  <div class="navbar-brand" :class="light? 'light': 'dark'">
+  <nuxt-link
+    :class="light? 'light': 'dark'"
+    class="navbar-brand"
+    :to="{ name: 'index' }"
+  >
     <img src="/images/logo.svg" alt="logo" class="navbar-brand-icon">
     <span class="navbar-brand-title">{{ $t('app_title') }}</span>
-  </div>
+  </nuxt-link>
 </template>
 
 <script lang="ts">
@@ -18,6 +22,13 @@ export default Vue.extend({
 
 <style lang='scss' scoped>
     .navbar-brand {
+        color: #efefef;
+        text-decoration: none;
+
+        &:hover, &:visited {
+          color: #efefef;
+        }
+
         .navbar-brand-title {
             vertical-align: middle;
             font-family: 'Saira Semi Condensed', sans-serif;
@@ -33,7 +44,6 @@ export default Vue.extend({
             text-align: center;
             background-color: #292929;
             vertical-align:middle;
-            margin-right: 16px;
         }
 
         &.light {

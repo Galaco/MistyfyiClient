@@ -13,7 +13,7 @@
       color="purple"
       indeterminate
     />
-    <v-table>
+    <v-simple-table>
       <thead>
         <tr>
           <th>{{ $t('servers.servers.dialogs.history.body.headers.date') }}</th>
@@ -26,7 +26,7 @@
           <td>{{ s.map_name }}</td>
         </tr>
       </tbody>
-    </v-table>
+    </v-simple-table>
   </Info>
 </template>
 

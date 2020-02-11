@@ -2,7 +2,6 @@
   <v-dialog
     v-model="show"
     max-width="600px"
-    @md-clicked-outside="deny"
   >
     <v-card>
       <v-card-title class="headline">
@@ -64,6 +63,9 @@ export default Vue.extend({
       default: () => 0
     }
   },
+  // data: () => ({
+  //   show: false
+  // }),
   computed: {
     showPrimary () {
       return this.type === DialogType.Add

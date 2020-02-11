@@ -6,18 +6,25 @@
           {{ $t('servers.servers.title') }}
         </v-toolbar-title>
         <v-spacer />
-        <div>
-          <v-switch
-            v-model="displayAsTable"
-            :label="$t('servers.servers.buttons.tableView')"
-          />
-        </div>
-        <v-spacer />
         <v-btn @click="showAddServerDialog">
           <v-icon>mdi-note-add</v-icon>
           <span>{{ $t('servers.servers.buttons.add') }}</span>
         </v-btn>
       </v-toolbar>
+
+      <!-- <v-banner
+        single-line
+        :sticky="false"
+      >
+        {{ $t('servers.servers.noItems.description') }}
+        <template v-slot:actions>
+          <v-icon>mdi-view-week</v-icon>
+          <v-switch
+            v-model="displayAsTable"
+          />
+          <v-icon>mdi-view-list</v-icon>
+        </template>
+      </v-banner> -->
       <v-card-text>
         <TableView
           v-if="displayAsTable === true"

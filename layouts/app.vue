@@ -6,6 +6,14 @@
       clipped
     >
       <v-list dense>
+        <v-list-item>
+          <BrandLogo />
+        </v-list-item>
+        <v-divider
+          class="mx-4"
+          :inset="true"
+          vertical
+        />
         <v-list-item link :to="{ name: 'servers' }" exact>
           <v-list-item-action>
             <v-icon>mdi-format-list-bulleted</v-icon>
@@ -57,7 +65,12 @@
       </v-container>
     </v-content>
 
-    <v-footer app dark>
+    <v-footer
+      app
+      dark
+      absolute
+      class="font-weight-medium"
+    >
       <!-- -->
       <Footer />
     </v-footer>

@@ -1,5 +1,10 @@
 <template>
-  <v-dialog id="enableNotificationsDialog" v-model="show" @md-clicked-outside="close">
+  <v-dialog
+    id="enableNotificationsDialog"
+    v-model="show"
+    max-width="600px"
+    @md-clicked-outside="close"
+  >
     <v-card>
       <v-card-title class="headline">
         {{ $t('dialog.notifications.title') }}
@@ -25,6 +30,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
+import { FETCH_USER_PROFILE } from '@/store/actions.type'
 
 export const NEVER_SHOW_DIALOG = 'hideNotificationDialog'
 
@@ -38,17 +44,27 @@ export default Vue.extend({
   },
   methods: {
     submit () {
-      // this.$onesignal.requestNotificationsPermission(() => {
-      //   this.$onesignal.setEmail(this.$auth.user.email)
-      //   this.$onesignal.setAlias(this.userProfile.uuid)
-      //   this.close()
-      // })
+      this.$OneSignal.push(() => {
+        this.$OneSignal.on('subscriptionChange', (isSubscribed: boolean) => {
+          console.log('You have changed notification subscription status:', isSubscribed)
+          if (isSubscribed) {
+            this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
+              if (this.userProfile && this.userProfile.uuid && this.userProfile.uuid.length > 0) {
+                this.$OneSignal.setEmail(this.$auth.user.email)
+                this.$OneSignal.setExternalUserId(this.userProfile.uuid)
+                this.close()
+              }
+            })
+          }
+        })
+      })
+      this.$OneSignal.showNativePrompt()
     },
     close () {
       this.$emit('deny')
     },
     closeForever () {
-      this.$localStorage.set(NEVER_SHOW_DIALOG, true)
+      this.$localStorage.setItem(NEVER_SHOW_DIALOG, true)
       this.$emit('deny')
     }
   }

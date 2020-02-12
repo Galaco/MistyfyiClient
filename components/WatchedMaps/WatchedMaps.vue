@@ -34,17 +34,23 @@
               <td class="v-center">
                 {{ serverNameForId(map.server_id) }}
               </td>
-              <td class="controls">
-                <div class="md-layout md-alignment-center md-gutter">
-                  <div class="md-layout-item md-size-40">
-                    <v-btn class="md-icon-button md-accent md-raised" @click="showDeleteDialog(map)">
+              <td class="controls" align="center">
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      class="mx-2"
+                      fab
+                      dark
+                      small
+                      color="pink"
+                      v-on="on"
+                      @click="showDeleteDialog(map)"
+                    >
                       <v-icon>mdi-delete</v-icon>
-                      <md-tooltip md-direction="bottom">
-                        {{ $t('servers.mapNames.buttons.delete') }}
-                      </md-tooltip>
                     </v-btn>
-                  </div>
-                </div>
+                  </template>
+                  <span>{{ $t('servers.mapNames.buttons.delete') }}</span>
+                </v-tooltip>
               </td>
             </tr>
           </tbody>

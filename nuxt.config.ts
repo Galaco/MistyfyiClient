@@ -84,6 +84,7 @@ export default {
     '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
+    '@nuxtjs/toast',
     '@nuxtjs/auth'
   ],
   head: {
@@ -91,6 +92,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ],
+    link: [
+      {rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap"}
     ]
   },
   oneSignal: {
@@ -99,7 +103,8 @@ export default {
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
           disable: true
-      }
+      },
+      autoResubscribe: true
     }
   },
   auth: {
@@ -118,5 +123,12 @@ export default {
     plugins: [
       '~/plugins/repository'
     ]
+  }, 
+  toast: {
+    position: 'top-center',
+    duration: 5000,
+    fullWidth: true,
+    fitToScreen: true,
+    register: []
   }
 }

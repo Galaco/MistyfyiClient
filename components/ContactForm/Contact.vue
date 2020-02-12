@@ -96,15 +96,13 @@ export default Vue.extend({
     send () {
       this.sending = true
       this.$repositories.user.sendContactRequest(this.emailAddress, this.message, this.recaptchaAuthKey).then(() => {
-        this.$toasted.global.api_success({
-          message: this.$t('help.contact.toast.success')
-        })
+        this.$toast.success(this.$t('help.contact.toast.success'))
         this.emailAddress = ''
         this.message = ''
         this.onExpired()
         this.sending = false
       }).catch((err: any) => {
-        this.$toasted.global.api_error({ message: err.message })
+        this.$toast.error(err.message)
         this.sending = false
       })
     },

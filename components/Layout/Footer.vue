@@ -1,17 +1,13 @@
 <template>
-  <v-row
-    align="center"
-    justify-content="center"
-    class="footer text-center"
+  <v-col
+    class="text-center"
+    cols="12"
   >
-    <nuxt-link class="logo-font" :to="{ name: 'index', params: {} }">
-      {{ $t('app_title') }}
-    </nuxt-link>{{ $t('footer.description') }}
     <span class="attribution">{{ $t('footer.owner') }}
       <a rel="noopener noreferrer" target="blank" href="https://www.galaco.me">
-        Galaco</a> &copy; <span id="footer-year">{{ currentYear }}</span>.
+        Galaco</a> - <strong>&copy;2019-{{ currentYear }}</strong>
     </span>
-  </v-row>
+  </v-col>
 </template>
 
 <script lang="ts">
@@ -24,17 +20,3 @@ export default Vue.extend({
   })
 })
 </script>
-
-<style lang='scss' scoped>
-    .footer {
-        margin-top: auto !important;
-        padding-bottom: 1rem !important;
-        padding-top: 1rem !important;
-        text-align: center;
-        color: #efefef;
-    }
-
-    .footer a {
-        color: #B2B2FF !important;
-    }
-</style>

@@ -52,7 +52,7 @@
           <span v-show="userProfile.isSubscribed === true" class="md-helper-text">{{ $t('servers.mapNames.dialogs.add.form.nameHelperPaid') }}</span>
           <span class="md-error">{{ $t('servers.mapNames.dialogs.add.form.nameError') }}</span>
         </md-field> -->
-        <md-field>
+        <!-- <md-field>
           <label for="movie">{{ $t('servers.mapNames.dialogs.add.form.server') }}</label>
           <md-select id="serverId" v-model="serverId" name="serverId">
             <md-option :key="-1" value="-1">
@@ -63,7 +63,7 @@
             </md-option>
           </md-select>
           <span class="md-helper-text">{{ $t('servers.mapNames.dialogs.add.form.serverHelper') }}</span>
-        </md-field>
+        </md-field> -->
       </div>
     </v-form>
     <md-progress-bar v-if="sending" md-mode="indeterminate" />
@@ -123,14 +123,12 @@ export default Vue.extend({
       const name = this.mapName
       const serverId = this.serverId
       this.$repositories.levels.addWatchedLevel(name, serverId).then(() => {
-        this.$toasted.global.api_success({
-          message: this.$t('servers.mapNames.toast.add.success', { name })
-        })
+        this.$toast.success(this.$t('servers.mapNames.toast.add.success', { name }))
         this.sending = false
         this.submit()
       }).catch((err: Error) => {
         this.sending = false
-        this.$toasted.global.api_error({ message: err.message })
+        this.$toast.error(err.message)
       })
     }
   }

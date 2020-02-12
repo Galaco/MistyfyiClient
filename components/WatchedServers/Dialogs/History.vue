@@ -68,7 +68,7 @@ export default Vue.extend({
   methods: {
     fetchHistory (id: any) {
       this.$store.dispatch(FETCH_SERVER_HISTORY, id).catch((err) => {
-        this.$toasted.global.api_error({ message: err.message })
+        this.$toast.error(err.message)
       })
     },
     close () {

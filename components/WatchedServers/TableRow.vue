@@ -12,7 +12,7 @@
     <td class="last-updated">
       <LastUpdated :date="server.last_updated" />
     </td>
-    <td class="controls">
+    <td class="controls" align="center">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn

@@ -136,17 +136,15 @@ export default Vue.extend({
         return
       }
       this.$store.dispatch(DELETE_SERVER, this.serverSelected).then(() => {
-        this.$toasted.global.api_success({
-          message: this.$t('servers.servers.toast.delete.success', { name: this.serverSelected.name })
-        })
+        this.$toast.success(this.$t('servers.servers.toast.delete.success', { name: this.serverSelected.name }))
         this.onCloseDeleteServerDialog()
       }).catch((err) => {
-        this.$toasted.global.api_error({ message: err.message })
+        this.$toast.error(err.message)
       })
     },
     getPrivateServers () {
       this.$store.dispatch(FETCH_SERVERS).catch((err) => {
-        this.$toasted.global.api_error({ message: err.message })
+        this.$toast.error(err.message)
       })
     }
   }

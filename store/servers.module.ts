@@ -29,7 +29,7 @@ const actions = {
     return this.$repositories.servers.getServerStatuses().then((data: AxiosResponse<ApiResponse>) => {
       commit(FETCH_SERVERS_END, data)
     }).catch((err: AxiosError) => {
-      this.$toasted.global.api_error({ message: err.message })
+      this.$toast.error(err.message)
       console.log(err)
     })
   },
@@ -39,7 +39,7 @@ const actions = {
       commit(DELETE_SERVERS_END, data)
       dispatch(FETCH_SERVERS)
     }).catch((err: AxiosError) => {
-      this.$toasted.global.api_error({ message: err.message })
+      this.$toast.error(err.message)
       console.log(err)
     })
   }

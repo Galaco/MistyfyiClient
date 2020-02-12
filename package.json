@@ -18,6 +18,7 @@
     "@nuxtjs/axios": "5.9.5",
     "@nuxtjs/onesignal": "3.0.0-beta.16",
     "@nuxtjs/pwa": "3.0.0-beta.19",
+    "@nuxtjs/toast": "3.3.0",
     "@types/auth0-js": "9.12.3",
     "auth0-js": "9.12.2",
     "axios": "0.19.2",

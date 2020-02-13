@@ -3,8 +3,7 @@
     <v-app-bar
       app
       flat
-      color="rgba(0,0,0,0)"
-      class="navbar"
+      dark
     >
       <v-toolbar-title>
         <nuxt-link :to="{ name: 'index' }">
@@ -43,7 +42,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import BrandLogo from '@/components/Branding/BrandLogo.vue'
+import BrandLogo from '@/components/Layout/BrandLogo.vue'
 import Footer from '@/components/Layout/Footer.vue'
 
 export default Vue.extend({

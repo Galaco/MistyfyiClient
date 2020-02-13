@@ -6,13 +6,15 @@
     :confirm-disabled="false"
     @deny="close"
   >
-    <v-progress-circular
-      v-if="isServerHistoryLoading"
-      :size="70"
-      :width="7"
-      color="purple"
-      indeterminate
-    />
+    <div class="col-sm-12 loading-spinner">
+      <v-progress-circular
+        v-if="isServerHistoryLoading"
+        :size="70"
+        :width="7"
+        color="purple"
+        indeterminate
+      />
+    </div>
     <v-simple-table>
       <thead>
         <tr>
@@ -80,3 +82,12 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang='scss' scoped>
+    .loading-spinner {
+        height: 240px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>

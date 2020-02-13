@@ -34,7 +34,7 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import WatchedServers from './../components/WatchedServers/WatchedServers.vue'
-import EnableNotificationDialog from './../components/Notification/EnableNotificationDialog.vue'
+import EnableNotificationDialog from './../components/Dialogs/EnableNotifications.vue'
 import WatchedMaps from './../components/WatchedMaps/WatchedMaps.vue'
 
 export default Vue.extend({

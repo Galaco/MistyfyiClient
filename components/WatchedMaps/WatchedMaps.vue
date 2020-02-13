@@ -75,7 +75,7 @@
           </v-col>
         </v-row>
         <div v-if="levelNamesCount === -1" class="row text-center">
-          <div class="loading-spinner">
+          <div class="col-sm-12 loading-spinner">
             <v-progress-circular
               :size="70"
               :width="7"
@@ -154,7 +154,7 @@ export default Vue.extend({
     },
     serverNameForId (serverId: number): string {
       if (serverId < 1) {
-        return this.$t('servers.mapNames.table.body.servers.all')
+        return String(this.$t('servers.mapNames.table.body.servers.all'))
       }
       for (const server of this.servers) {
         if (server.id === serverId) {
@@ -165,18 +165,9 @@ export default Vue.extend({
     }
   }
 })
-
 </script>
 
 <style lang='scss' scoped>
-    .md-table-toolbar {
-        border-bottom: 1px solid #bbb;
-    }
-
-    .map-list {
-        margin-bottom: 16px;
-    }
-
     th.controls {
         text-align: center;
         width: 160px;

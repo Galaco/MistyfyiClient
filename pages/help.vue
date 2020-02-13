@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ContactForm from '@/components/ContactForm/Contact.vue'
+import ContactForm from '@/components/Contact/Form.vue'
 
 export default Vue.extend({
   middleware: ['auth'],

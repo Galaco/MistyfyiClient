@@ -40,7 +40,7 @@
       app
       clipped-left
       dense
-      color="red"
+      color="indigo darken-4"
     >
       <v-app-bar-nav-icon @click.stop="menuVisible = !menuVisible" />
 
@@ -80,7 +80,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import UserProfile from '@/components/Layout/UserProfile.vue'
-import BrandLogo from '@/components/Branding/BrandLogo.vue'
+import BrandLogo from '@/components/Layout/BrandLogo.vue'
 import Footer from '@/components/Layout/Footer.vue'
 
 export default Vue.extend({

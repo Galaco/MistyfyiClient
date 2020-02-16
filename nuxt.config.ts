@@ -43,7 +43,7 @@ export default {
       '@nuxtjs/onesignal',
       '@nuxtjs/pwa'
     ],
-    plugins: [new VuetifyLoaderPlugin()],
+    plugins: [],
     postcss: {
       // Add plugin names as key and arguments as value
       // Install them before as dependencies with npm or yarn
@@ -64,6 +64,7 @@ export default {
       typeCheck: false
     }
   },
+  buildDir: 'dist',
   /** @see https://typescript.nuxtjs.org/migration.html */
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
   /** Plugins to load before mounting the App **/

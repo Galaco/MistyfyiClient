@@ -15,16 +15,17 @@ Bring up the container by running the following command:
 ```bash
 docker-compose up -d
 ```
-**You will need to provide auth0, pushbots and recaptcha keys for all functionality to work correctly.**
+**You will need to provide auth0, onesignal and recaptcha keys for all functionality to work correctly.**
 
 ##### Node.js
 Install dependencies
 ```bash
-npm install
+yarn install
 ```
+
 Run locally
-```
-npm run serve
+```bash
+yarn serve
 ```
 
 You should find this app running at `localhost:8080`:

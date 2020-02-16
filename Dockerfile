@@ -8,4 +8,4 @@ COPY ./yarn.lock /srv/app/maptracker
 
 RUN yarn install
 
-CMD [ "npm", "run-script", "serve" ]
+CMD [ "yarn", "dev"]

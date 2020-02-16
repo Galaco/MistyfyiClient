@@ -63,17 +63,16 @@
         <!-- Provides the application the proper gutter -->
         <nuxt />
       </v-container>
-    </v-content>
 
-    <v-footer
-      app
-      dark
-      absolute
-      class="font-weight-medium"
-    >
-      <!-- -->
-      <Footer />
-    </v-footer>
+      <v-footer
+        app
+        dark
+        class="font-weight-medium"
+      >
+        <!-- -->
+        <Footer />
+      </v-footer>
+    </v-content>
   </v-app>
 </template>
 

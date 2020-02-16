@@ -64,10 +64,12 @@ export default {
       typeCheck: false
     }
   },
-  buildDir: 'dist',
   /** @see https://typescript.nuxtjs.org/migration.html */
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
   /** Plugins to load before mounting the App **/
+  generate: {
+    fallback: true
+  },
   plugins: [
     '~/plugins/localstorage',
     '~/plugins/i18n'

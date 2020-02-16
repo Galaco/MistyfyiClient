@@ -107,13 +107,14 @@ export default {
       welcomeNotification: {
           disable: true
       },
-      autoResubscribe: true
+      autoResubscribe: true,
+      autoRegister: false,
     }
   },
   auth: {
     redirect: {
       login: '/', // redirect user when not connected
-      callback: '/callback'
+      callback: '/callback/'
     },
     strategies: {
       local: false,

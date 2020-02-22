@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios'
 import { FETCH_USER_PROFILE, CHANGE_USER_0AUTH_PROFILE } from './actions.type'
 import { FETCH_USER_PROFILE_END, FETCH_USER_PROFILE_START, SET_USER_0AUTH_PROFILE } from './mutations.type'
-import ApiResponse from '@/models/ApiResponse'
+import ApiResponse from '@/plugins/Repository/ApiResponse'
 import { DefaultAuth0Profile } from '@/models/api/users/auth0'
 import Profile from '@/models/api/users/profile'
 
@@ -10,13 +10,13 @@ class State {
     public isUserProfileLoading: boolean = true;
 }
 
-const moduleState = new State()
+const moduleState = () => new State()
 
 const getters = {
-  userProfile (state: State) {
+  userProfile (state: State): Profile {
     return state.userProfile
   },
-  isUserProfileLoading (state: State) {
+  isUserProfileLoading (state: State): Boolean {
     return state.isUserProfileLoading
   }
 }

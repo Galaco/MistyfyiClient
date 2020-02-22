@@ -6,7 +6,7 @@ import {
   FETCH_LEVEL_NAMES_END,
   FETCH_LEVEL_NAMES_START
 } from './mutations.type'
-import ApiResponse from '@/models/ApiResponse'
+import ApiResponse from '@/plugins/Repository/ApiResponse'
 
 class State {
     public loadingLevelNames: boolean = true;
@@ -14,7 +14,7 @@ class State {
     public levelNamesCount: number = -1;
 }
 
-const moduleState = new State()
+const moduleState = () => new State()
 
 const getters = {
   loadingLevelNames (state: State) {

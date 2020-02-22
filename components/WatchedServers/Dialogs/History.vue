@@ -6,9 +6,11 @@
     :confirm-disabled="false"
     @deny="close"
   >
-    <div class="col-sm-12 loading-spinner">
+    <div
+      v-if="isServerHistoryLoading"
+      class="col-sm-12 loading-spinner"
+    >
       <v-progress-circular
-        v-if="isServerHistoryLoading"
         :size="70"
         :width="7"
         color="purple"

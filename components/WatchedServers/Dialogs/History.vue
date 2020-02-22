@@ -17,7 +17,7 @@
         indeterminate
       />
     </div>
-    <v-simple-table>
+    <v-simple-table v-if="!isServerHistoryLoading">
       <thead>
         <tr>
           <th>{{ $t('servers.servers.dialogs.history.body.headers.date') }}</th>

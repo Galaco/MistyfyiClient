@@ -3,7 +3,7 @@
     <v-app-bar
       app
       flat
-      dark
+      color="rgba(0,0,0,0)"
     >
       <v-toolbar-title>
         <nuxt-link :to="{ name: 'index' }">
@@ -13,7 +13,18 @@
       <!-- -->
 
       <v-spacer />
-
+      <v-btn
+        text
+        @click="$vuetify.goTo('#section-features', options)"
+      >
+        Features
+      </v-btn>
+      <v-btn
+        text
+        @click="$vuetify.goTo('#section-pricing', options)"
+      >
+        Pricing
+      </v-btn>
       <nuxt-link v-show="isLoggedIn()" id="toolbarOpenAppButton" :to="{ name: 'servers' }">
         <v-btn v-show="isLoggedIn()">
           <span class="text-white">{{ $t('header.links.openApp') }}</span>
@@ -33,7 +44,11 @@
       <nuxt />
     </v-content>
 
-    <v-footer app dark>
+    <v-footer
+      app
+      dark
+      absolute
+    >
       <!-- -->
       <Footer />
     </v-footer>
@@ -50,6 +65,15 @@ export default Vue.extend({
   components: {
     BrandLogo,
     Footer
+  },
+  data () {
+    return {
+      options: {
+        duration: 300,
+        offset: 0,
+        easing: 'easeInOutCubic'
+      }
+    }
   },
   methods: {
     handleLogin () {

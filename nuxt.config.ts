@@ -108,7 +108,7 @@ export default {
           disable: true
       },
       autoResubscribe: true,
-      autoRegister: false,
+      autoRegister: false
     }
   },
   auth: {

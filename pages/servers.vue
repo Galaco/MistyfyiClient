@@ -70,7 +70,6 @@ export default Vue.extend({
         this.showNotificationDialog()
       }
     })
-    console.log(this.userProfile)
   },
   methods: {
     closeEnableNotificationsPopup () {
@@ -80,7 +79,6 @@ export default Vue.extend({
       this.$OneSignal.push(() => {
         console.log('OneSignal ready')
         this.$OneSignal.isPushNotificationsEnabled((isEnabled: boolean) => {
-          console.log('Notifications enabled ', isEnabled)
           this.isEnableNotificationDialogVisible = !isEnabled
         })
       })

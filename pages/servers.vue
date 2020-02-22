@@ -33,9 +33,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import WatchedServers from './../components/WatchedServers/WatchedServers.vue'
-import EnableNotificationDialog from './../components/Dialogs/EnableNotifications.vue'
-import WatchedMaps from './../components/WatchedMaps/WatchedMaps.vue'
+import WatchedServers from '@/components/WatchedServers/WatchedServers.vue'
+import EnableNotificationDialog from '@/components/Dialogs/EnableNotifications.vue'
+import WatchedMaps from '@/components/WatchedMaps/WatchedMaps.vue'
+import { FETCH_USER_PROFILE_END } from '@/store/mutations.type'
 
 export default Vue.extend({
   middleware: ['auth'],
@@ -54,16 +55,35 @@ export default Vue.extend({
   computed: {
     ...mapGetters(['userProfile'])
   },
+  watch: {
+    userProfile () {
+      console.log('change')
+      this.showNotificationDialog()
+    }
+  },
   mounted () {
-    this.$OneSignal.push(() => {
-      this.$OneSignal.isPushNotificationsEnabled((isEnabled: boolean) => {
-        this.isEnableNotificationDialogVisible = !isEnabled
-      })
+    this.$store.subscribe((mutation: any) => {
+      if (mutation.type !== FETCH_USER_PROFILE_END) {
+        return
+      }
+      if (this.userProfile && this.userProfile.uuid.length > 0) {
+        this.showNotificationDialog()
+      }
     })
+    console.log(this.userProfile)
   },
   methods: {
     closeEnableNotificationsPopup () {
       this.isEnableNotificationDialogVisible = false
+    },
+    showNotificationDialog () {
+      this.$OneSignal.push(() => {
+        console.log('OneSignal ready')
+        this.$OneSignal.isPushNotificationsEnabled((isEnabled: boolean) => {
+          console.log('Notifications enabled ', isEnabled)
+          this.isEnableNotificationDialogVisible = !isEnabled
+        })
+      })
     }
   },
   head () {

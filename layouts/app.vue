@@ -73,6 +73,7 @@ import Vue from 'vue'
 import UserProfile from '@/components/Layout/UserProfile.vue'
 import BrandLogo from '@/components/Layout/BrandLogo.vue'
 import Footer from '@/components/Layout/Footer.vue'
+import { FETCH_USER_PROFILE } from '@/store/actions.type'
 
 export default Vue.extend({
   name: 'App',
@@ -86,6 +87,13 @@ export default Vue.extend({
   }),
   created () {
     this.$vuetify.theme.dark = true
+  },
+  mounted () {
+    this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
+      console.log('User profile obtained')
+    }).catch((err: Error) => {
+      this.$toast.error(err.message)
+    })
   },
   methods: {
     toggleMenu () {

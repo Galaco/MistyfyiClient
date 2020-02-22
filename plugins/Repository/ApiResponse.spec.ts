@@ -1,4 +1,4 @@
-import ApiResponse from '@/models/ApiResponse'
+import ApiResponse from '@/plugins/Repository/ApiResponse'
 
 describe('ApiResponse', () => {
   it('determines if the response was successful', () => {

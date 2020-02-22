@@ -1,7 +1,7 @@
 import { AxiosResponse, AxiosError } from 'axios'
 import { DELETE_SERVER, FETCH_SERVERS } from './actions.type'
 import { FETCH_SERVERS_END, FETCH_SERVERS_START, DELETE_SERVERS_START, DELETE_SERVERS_END } from './mutations.type'
-import ApiResponse from '@/models/ApiResponse'
+import ApiResponse from '@/plugins/Repository/ApiResponse'
 
 class State {
     public servers: any[] = [];
@@ -9,7 +9,7 @@ class State {
     public serversCount: number = -1;
 }
 
-const moduleState = new State()
+const moduleState = () => new State()
 
 const getters = {
   servers (state: State) {

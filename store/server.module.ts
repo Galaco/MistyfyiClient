@@ -1,7 +1,7 @@
 import { AxiosResponse, AxiosError } from 'axios'
 import { FETCH_SERVER_HISTORY, SELECT_SERVER } from './actions.type'
 import { FETCH_SERVER_HISTORY_END, FETCH_SERVER_HISTORY_START, SELECT_SERVER_END } from './mutations.type'
-import ApiResponse from '@/models/ApiResponse'
+import ApiResponse from '@/plugins/Repository/ApiResponse'
 
 class State {
     public serverSelected: any = null;
@@ -10,7 +10,7 @@ class State {
     public historyCount: number = -1;
 }
 
-const moduleState = new State()
+const moduleState = () => new State()
 
 const getters = {
   serverSelected (state: State) {

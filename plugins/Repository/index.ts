@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosStatic } from 'axios'
-import ApiResponse from '@/models/ApiResponse'
+import ApiResponse from '@/plugins/Repository/ApiResponse'
 
 export const BASE_URL = process.env.NUXT_ENV_API_URL
 

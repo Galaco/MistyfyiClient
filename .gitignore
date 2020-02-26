@@ -12,3 +12,4 @@ yarn-error.log
 # temp files
 test/e2e/screenshots
 static/sw.js
+OneSignalSDK*

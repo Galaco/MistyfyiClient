@@ -1,4 +1,5 @@
 import { AxiosResponse, AxiosError } from 'axios'
+import ApiResponse from '@/plugins/Repository/ApiResponse'
 import { DELETE_LEVEL_NAMES, FETCH_LEVEL_NAMES } from './actions.type'
 import {
   DELETE_LEVEL_NAMES_END,
@@ -6,7 +7,6 @@ import {
   FETCH_LEVEL_NAMES_END,
   FETCH_LEVEL_NAMES_START
 } from './mutations.type'
-import ApiResponse from '@/plugins/Repository/ApiResponse'
 
 class State {
     public loadingLevelNames: boolean = true;

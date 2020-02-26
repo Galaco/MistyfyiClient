@@ -38,8 +38,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import Row from './TableRow.vue'
 import { SELECT_SERVER } from '@/store/actions.type'
+import Row from './TableRow.vue'
 
 export default Vue.extend({
   name: 'CardView',

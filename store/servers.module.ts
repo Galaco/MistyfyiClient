@@ -1,7 +1,7 @@
 import { AxiosResponse, AxiosError } from 'axios'
+import ApiResponse from '@/plugins/Repository/ApiResponse'
 import { DELETE_SERVER, FETCH_SERVERS } from './actions.type'
 import { FETCH_SERVERS_END, FETCH_SERVERS_START, DELETE_SERVERS_START, DELETE_SERVERS_END } from './mutations.type'
-import ApiResponse from '@/plugins/Repository/ApiResponse'
 
 class State {
     public servers: any[] = [];

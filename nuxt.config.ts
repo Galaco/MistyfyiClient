@@ -80,15 +80,47 @@ export default {
     ignoreNotFoundWarnings: true
   },
   server: {
-    port: 8080, // default: 3000
+    port: process.env.NUXT_ENV_PORT, // default: 3000
     host: '0.0.0.0' // default: localhostw
   },
   modules: [
-    '@nuxtjs/onesignal',
+    ['@nuxtjs/onesignal', {
+      init: {
+        appId: process.env.NUXT_ENV_ONESIGNAL_APP_ID,
+        allowLocalhostAsSecureOrigin: true,
+        welcomeNotification: {
+            disable: true
+        },
+        autoResubscribe: true,
+        autoRegister: false
+      }
+    }],
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
-    '@nuxtjs/toast',
-    '@nuxtjs/auth'
+    ['@nuxtjs/toast', {
+      position: 'top-center',
+      duration: 5000,
+      fullWidth: true,
+      fitToScreen: true,
+      register: []
+    }],
+    ['@nuxtjs/auth', {
+      redirect: {
+        login: '/', // redirect user when not connected
+        callback: '/callback/'
+      },
+      strategies: {
+        local: false,
+        auth0: {
+          domain: process.env.NUXT_ENV_OAUTH_CLIENT_DOMAIN,
+          client_id: process.env.NUXT_ENV_OAUTH_CLIENT_ID,
+          audience: process.env.NUXT_ENV_OAUTH_AUDIENCE
+        }
+      },
+      plugins: [
+        '~/plugins/repository'
+      ]
+    }]
   ],
   head: {
     titleTemplate: '%s - MapTracker',
@@ -99,40 +131,5 @@ export default {
     link: [
       {rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap"}
     ]
-  },
-  oneSignal: {
-    init: {
-      appId: process.env.NUXT_ENV_ONESIGNAL_APP_ID,
-      allowLocalhostAsSecureOrigin: true,
-      welcomeNotification: {
-          disable: true
-      },
-      autoResubscribe: true,
-      autoRegister: false
-    }
-  },
-  auth: {
-    redirect: {
-      login: '/', // redirect user when not connected
-      callback: '/callback/'
-    },
-    strategies: {
-      local: false,
-      auth0: {
-        domain: process.env.NUXT_ENV_OAUTH_CLIENT_DOMAIN,
-        client_id: process.env.NUXT_ENV_OAUTH_CLIENT_ID,
-        audience: process.env.NUXT_ENV_OAUTH_AUDIENCE
-      }
-    },
-    plugins: [
-      '~/plugins/repository'
-    ]
-  }, 
-  toast: {
-    position: 'top-center',
-    duration: 5000,
-    fullWidth: true,
-    fitToScreen: true,
-    register: []
   }
 }

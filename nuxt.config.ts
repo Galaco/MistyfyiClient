@@ -81,7 +81,7 @@ export default {
   },
   server: {
     port: process.env.NUXT_ENV_PORT, // default: 3000
-    host: '0.0.0.0' // default: localhostw
+    host: '0.0.0.0' // default: localhost
   },
   modules: [
     ['@nuxtjs/onesignal', {

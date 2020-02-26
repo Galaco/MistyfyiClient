@@ -85,6 +85,7 @@ export default {
   },
   modules: [
     ['@nuxtjs/onesignal', {
+      cdn: true,
       init: {
         appId: process.env.NUXT_ENV_ONESIGNAL_APP_ID,
         allowLocalhostAsSecureOrigin: true,

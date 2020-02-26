@@ -5,7 +5,7 @@
       align="center"
       justify="center"
     >
-      <v-col cols="3" class="strapline">
+      <v-col xs="10" sm="3" class="strapline">
         <div>
           <h3>
             {{ $t('home.about.tagline1') }}
@@ -15,7 +15,7 @@
           </div>
         </div>
       </v-col>
-      <v-col cols="7">
+      <v-col xs="10" sm="7">
         <MockInterface />
       </v-col>
     </v-row>
@@ -32,7 +32,7 @@
       </v-col>
       <v-col cols="12" align="center">
         <v-row justify="center">
-          <v-col cols="4" class="feature" align="center">
+          <v-col xs="10" sm="4" class="feature" align="center">
             <v-icon x-large color="#ff607a">
               mdi-heart
             </v-icon>
@@ -46,7 +46,7 @@
               {{ $t('home.features.feature1.paragraph3') }}
             </p>
           </v-col>
-          <v-col cols="4" class="feature" align="center">
+          <v-col xs="10" sm="4" class="feature" align="center">
             <v-icon x-large color="#8a62ff">
               mdi-gamepad
             </v-icon>
@@ -84,7 +84,7 @@
 
         <v-col cols="12" align="center">
           <v-row justify="center">
-            <v-col class="tier-free" cols="4">
+            <v-col class="tier-free" :xs="10" :sm="4">
               <h4 class="tier-header">
                 <v-icon large color="#8fbc8f">
                   mdi-account
@@ -96,7 +96,7 @@
                 <li>{{ $t('home.pricing.free.feature2') }}</li>
               </ul>
             </v-col>
-            <v-col class="tier-donator" cols="4">
+            <v-col class="tier-donator" :xs="10" :sm="4">
               <h4 class="tier-header">
                 <v-icon large color="#ffcb56">
                   mdi-star-outline

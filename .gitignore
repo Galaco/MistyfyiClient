@@ -4,6 +4,7 @@ node_modules
 # build
 .nuxt
 dist
+docker-compose.yml
 
 # yarn
 yarn-error.log

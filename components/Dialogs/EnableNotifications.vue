@@ -50,8 +50,13 @@ export default Vue.extend({
           if (isSubscribed) {
             this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
               if (this.userProfile && this.userProfile.uuid && this.userProfile.uuid.length > 0) {
-                this.$OneSignal.setEmail(this.$auth.user.email)
-                this.$OneSignal.setExternalUserId(this.userProfile.uuid)
+                this.$OneSignal.push(() => {
+                  this.$OneSignal.setExternalUserId(this.userProfile.uuid)
+                })
+                this.$OneSignal.push(() => {
+                  this.$OneSignal.setEmail(this.$auth.user.email)
+                })
+
                 this.close()
               }
             })

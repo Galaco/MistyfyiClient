@@ -1,7 +1,7 @@
 import { AxiosResponse, AxiosError } from 'axios'
+import ApiResponse from '@/plugins/Repository/ApiResponse'
 import { FETCH_SERVER_HISTORY, SELECT_SERVER } from './actions.type'
 import { FETCH_SERVER_HISTORY_END, FETCH_SERVER_HISTORY_START, SELECT_SERVER_END } from './mutations.type'
-import ApiResponse from '@/plugins/Repository/ApiResponse'
 
 class State {
     public serverSelected: any = null;

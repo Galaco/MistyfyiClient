@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios'
-import { FETCH_USER_PROFILE, CHANGE_USER_0AUTH_PROFILE } from './actions.type'
-import { FETCH_USER_PROFILE_END, FETCH_USER_PROFILE_START, SET_USER_0AUTH_PROFILE } from './mutations.type'
 import ApiResponse from '@/plugins/Repository/ApiResponse'
 import { DefaultAuth0Profile } from '@/models/api/users/auth0'
 import Profile from '@/models/api/users/profile'
+import { FETCH_USER_PROFILE, CHANGE_USER_0AUTH_PROFILE } from './actions.type'
+import { FETCH_USER_PROFILE_END, FETCH_USER_PROFILE_START, SET_USER_0AUTH_PROFILE } from './mutations.type'
 
 class State {
     public userProfile: Profile = new Profile();

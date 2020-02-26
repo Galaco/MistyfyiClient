@@ -25,8 +25,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import Card from './Card.vue'
 import { SELECT_SERVER } from '@/store/actions.type'
+import Card from './Card.vue'
 
 export default Vue.extend({
   name: 'CardView',

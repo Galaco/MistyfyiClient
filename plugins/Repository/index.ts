@@ -10,6 +10,10 @@ export default ($axios: AxiosStatic): AxiosInstance => {
     return Promise.resolve(normalizeResponse(data))
   }
   const failure = (data: any): any => {
+    // Waiting for refresh support on auth0 lib
+    if (data.code === 401) {
+      window.location.href = '/'
+    }
     return Promise.reject(normalizeResponse(data))
   }
 

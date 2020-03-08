@@ -67,6 +67,7 @@ export default Vue.extend({
         return
       }
       if (this.userProfile && this.userProfile.uuid.length > 0) {
+        console.log(`User: ${this.userProfile.uuid}`)
         this.showNotificationDialog()
       }
     })
@@ -76,9 +77,11 @@ export default Vue.extend({
       this.isEnableNotificationDialogVisible = false
     },
     showNotificationDialog () {
+      console.log(this.$OneSignal)
       this.$OneSignal.push(() => {
-        console.log('OneSignal ready')
+        console.log('OneSignal: ready')
         this.$OneSignal.isPushNotificationsEnabled((isEnabled: boolean) => {
+          console.log('Show: dialog-notification-request')
           this.isEnableNotificationDialogVisible = !isEnabled
         })
       })

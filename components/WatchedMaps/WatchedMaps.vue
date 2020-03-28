@@ -60,10 +60,7 @@
           justify="center"
           align="center"
         >
-          <v-col cols="12">
-            <v-icon x-large>
-              mdi-pencil
-            </v-icon>
+          <v-col cols="12" align="center">
             <h1>{{ $t('servers.mapNames.noItems.title') }}</h1>
             <div>{{ $t('servers.mapNames.noItems.description') }}</div>
             <v-btn id="addFirstMapNameButton" @click="showAddDialog()">

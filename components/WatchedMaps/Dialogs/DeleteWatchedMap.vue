@@ -43,7 +43,7 @@ export default Vue.extend({
       }
       const deletedName = this.model.name
       this.$store.dispatch(DELETE_LEVEL_NAMES, this.model).then(() => {
-        this.$toast.success(this.$t('servers.mapNames.toast.add.success', { name: deletedName }))
+        this.$toast.success(this.$t('servers.mapNames.toast.delete.success', { name: deletedName }))
         this.submit()
       }).catch((err) => {
         this.$toast.error(err.message)

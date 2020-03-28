@@ -36,17 +36,25 @@
           @showHistory="showServerHistoryDialog"
           @showDelete="showDeleteServerDialog"
         />
-        <md-empty-state
+        <v-row
           v-if="serversCount === 0"
-          md-icon="important_devices"
-          :md-label="$t('servers.servers.noItems.title')"
-          :md-description="$t('servers.servers.noItems.description')"
+          justify="center"
+          align="center"
         >
-          <v-btn class="md-primary md-raised" @click="showAddServerDialog">
-            <v-icon>mdi-note-add</v-icon>
-            <span>{{ $t('servers.servers.noItems.add') }}</span>
-          </v-btn>
-        </md-empty-state>
+          <v-col cols="12" align="center">
+            <v-icon x-large>
+              mdi-important-devices
+            </v-icon>
+            <h1>{{ $t('servers.servers.noItems.title') }}</h1>
+            <div>{{ $t('servers.servers.noItems.description') }}</div>
+            <v-btn id="addFirstServerButton" @click="showAddServerDialog">
+              <v-icon>
+                mdi-note-add
+              </v-icon>
+              <span>{{ $t('servers.servers.noItems.add') }}</span>
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-card-text>
     </v-card>
     <AddServerDialog

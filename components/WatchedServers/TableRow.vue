@@ -54,7 +54,7 @@ import Vue from 'vue'
 import LastUpdated from './LastUpdated.vue'
 
 export default Vue.extend({
-  name: 'ServerRow',
+  name: 'TableRow',
   components: {
     LastUpdated
   },

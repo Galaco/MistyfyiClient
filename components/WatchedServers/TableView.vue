@@ -42,7 +42,7 @@ import { SELECT_SERVER } from '@/store/actions.type'
 import Row from './TableRow.vue'
 
 export default Vue.extend({
-  name: 'CardView',
+  name: 'TableView',
   components: {
     Row
   },

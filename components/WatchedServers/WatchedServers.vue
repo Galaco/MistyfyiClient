@@ -160,9 +160,6 @@ export default Vue.extend({
 </script>
 
 <style lang='scss' scoped>
-    .md-table-toolbar {
-        border-bottom: 1px solid #bbb;
-    }
     .server-list {
         margin-bottom: 16px;
     }

@@ -117,7 +117,7 @@ export default {
         success: 'Now watching for map: {name}'
       },
       delete: {
-        success: 'Successfully deleted watch name: {name}'
+        success: 'Successfully deleted watched map: {name}'
       }
     }
   }

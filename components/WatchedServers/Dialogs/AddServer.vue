@@ -28,21 +28,6 @@
         required
         :disabled="sending"
       />
-
-      <!-- <div class="md-layout-item md-small-size-100">
-        <md-field :class="(!serverIPValid)? 'md-invalid': ''">
-          <label for="addserver_ip">{{ $t('servers.servers.dialogs.add.form.ip') }}</label>
-          <md-input id="addserver_ip" v-model="serverIP" name="ip" required :disabled="sending" />
-          <span class="md-helper-text">{{ $t('servers.servers.dialogs.add.form.ipHelper') }}</span>
-          <span class="md-error">{{ $t('servers.servers.dialogs.add.form.ipError') }}</span>
-        </md-field>
-        <md-field :class="(!serverPortValid)? 'md-invalid': ''">
-          <label for="addserver_ip">{{ $t('servers.servers.dialogs.add.form.port') }}</label>
-          <md-input id="addserver_port" v-model="serverPort" name="port" required :disabled="sending" />
-          <span class="md-helper-text">{{ $t('servers.servers.dialogs.add.form.portHelper') }}</span>
-          <span class="md-error">{{ $t('servers.servers.dialogs.add.form.portError') }}</span>
-        </md-field>
-      </div> -->
     </v-form>
     <v-progress-linear
       v-if="sending"

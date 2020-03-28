@@ -29,42 +29,7 @@
         :item-text="v => v.name || `${v.ip_address}:${v.port}`"
         :item-value="v => v.id"
         :items="[{id: -1, name: $t('servers.mapNames.dialogs.add.form.server')}].concat(servers)"
-      >
-        <!-- <md-option :key="-1" value="-1">
-          {{ $t('servers.mapNames.dialogs.add.form.server') }}
-        </md-option>
-        <md-option v-for="(server,index) in servers" :key="index" :value="server.id">
-          {{ server.name || `${server.ip_address}:${server.port}` }}
-        </md-option> -->
-      </v-select>
-
-      <div class="md-layout-item md-small-size-100">
-        <!-- <md-field :class="(!mapNameValid)? 'md-invalid': ''">
-          <label for="adduserlevel_name">{{ $t('servers.mapNames.dialogs.add.form.name') }}</label>
-          <md-input
-            id="adduserlevel_name"
-            v-model="mapName"
-            name="name"
-            required
-            :disabled="sending"
-          />
-          <span v-show="userProfile.isSubscribed === false" class="md-helper-text">{{ $t('servers.mapNames.dialogs.add.form.nameHelperFree') }}</span>
-          <span v-show="userProfile.isSubscribed === true" class="md-helper-text">{{ $t('servers.mapNames.dialogs.add.form.nameHelperPaid') }}</span>
-          <span class="md-error">{{ $t('servers.mapNames.dialogs.add.form.nameError') }}</span>
-        </md-field> -->
-        <!-- <md-field>
-          <label for="movie">{{ $t('servers.mapNames.dialogs.add.form.server') }}</label>
-          <md-select id="serverId" v-model="serverId" name="serverId">
-            <md-option :key="-1" value="-1">
-              {{ $t('servers.mapNames.dialogs.add.form.server') }}
-            </md-option>
-            <md-option v-for="(server,index) in servers" :key="index" :value="server.id">
-              {{ server.name || `${server.ip_address}:${server.port}` }}
-            </md-option>
-          </md-select>
-          <span class="md-helper-text">{{ $t('servers.mapNames.dialogs.add.form.serverHelper') }}</span>
-        </md-field> -->
-      </div>
+      />
     </v-form>
     <md-progress-bar v-if="sending" md-mode="indeterminate" />
   </Add>

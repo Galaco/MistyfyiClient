@@ -73,11 +73,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang='scss' scoped>
-    .user-email {
-        margin-right: 8px;
-        text-overflow: ellipsis;
-        overflow-x: hidden;
-    }
-</style>

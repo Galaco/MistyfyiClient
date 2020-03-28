@@ -19,13 +19,14 @@ export default Vue.extend({
   }),
   watch: {
     date () {
-      this.formatted = format(new Date(this.date * 1000), 'en_US')
+      this.formatted = this.$t('servers.servers.server.updated.prefix').toString() +
+        format(new Date(this.date * 1000), 'en_US')
     }
   },
   mounted () {
     if (this.date > 0) {
       this.formatted = this.$t('servers.servers.server.updated.prefix').toString() +
-                format(new Date(this.date * 1000), 'en_US').toString()
+        format(new Date(this.date * 1000), 'en_US').toString()
     } else {
       this.formatted = this.$t('servers.servers.server.updated.notResponding').toString()
     }

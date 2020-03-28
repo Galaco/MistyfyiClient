@@ -63,9 +63,6 @@ export default Vue.extend({
       default: () => 0
     }
   },
-  // data: () => ({
-  //   show: false
-  // }),
   computed: {
     showPrimary () {
       return this.type === DialogType.Add

@@ -35,7 +35,7 @@ import Vue from 'vue'
 import LastUpdated from './LastUpdated.vue'
 
 export default Vue.extend({
-  name: 'ServerCard',
+  name: 'Card',
   components: {
     LastUpdated
   },

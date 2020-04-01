@@ -5,11 +5,14 @@ node_modules
 .nuxt
 dist
 OneSignalSDK*
-docker-compose.yml
+sw.*
+static/sw.js
 
 # yarn
 yarn-error.log
 
 # temp files
 test/e2e/screenshots
-static/sw.js
+
+# config
+docker-compose.yml

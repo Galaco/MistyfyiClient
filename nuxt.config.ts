@@ -85,7 +85,6 @@ export default {
   },
   modules: [
     ['@nuxtjs/onesignal', {
-      cdn: true,
       init: {
         appId: process.env.NUXT_ENV_ONESIGNAL_APP_ID,
         allowLocalhostAsSecureOrigin: true,
@@ -96,8 +95,8 @@ export default {
         autoRegister: false
       }
     }],
-    '@nuxtjs/pwa',
-    '@nuxtjs/axios',
+    ['@nuxtjs/pwa', {}],
+    ['@nuxtjs/axios', {}],
     ['@nuxtjs/toast', {
       position: 'top-center',
       duration: 5000,
@@ -108,7 +107,8 @@ export default {
     ['@nuxtjs/auth', {
       redirect: {
         login: '/', // redirect user when not connected
-        callback: '/callback/'
+        callback: '/callback/',
+        home: '/servers'
       },
       strategies: {
         local: false,

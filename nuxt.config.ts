@@ -33,16 +33,7 @@ export default {
         implementation: require('sass')
       }
     },
-    modules: [
-      'nuxt-i18n',
-      {
-        locales: ['en'],
-        defaultLocale: 'en',
-        vueI18n: locale,
-      },
-      '@nuxtjs/onesignal',
-      '@nuxtjs/pwa'
-    ],
+    modules: [],
     plugins: [],
     postcss: {
       // Add plugin names as key and arguments as value
@@ -84,6 +75,12 @@ export default {
     host: '0.0.0.0' // default: localhost
   },
   modules: [
+    ['nuxt-i18n', 
+    {
+      locales: ['en'],
+      defaultLocale: 'en',
+      vueI18n: locale,
+    }],
     ['@nuxtjs/onesignal', {
       init: {
         appId: process.env.NUXT_ENV_ONESIGNAL_APP_ID,

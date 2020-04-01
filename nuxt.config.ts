@@ -63,7 +63,6 @@ export default {
   },
   plugins: [
     '~/plugins/localstorage',
-    '~/plugins/i18n'
   ],
   /** typescript config for nuxt */
   typescript: {
@@ -75,8 +74,7 @@ export default {
     host: '0.0.0.0' // default: localhost
   },
   modules: [
-    ['nuxt-i18n', 
-    {
+    ['nuxt-i18n', {
       locales: ['en'],
       defaultLocale: 'en',
       vueI18n: locale,

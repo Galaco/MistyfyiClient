@@ -20,3 +20,6 @@ export const SELECT_SERVER_END = 'selectServerEnd'
 export const FETCH_USER_PROFILE_END = 'setUserProfileLoaded'
 export const FETCH_USER_PROFILE_START = 'setUserProfileLoading'
 export const SET_USER_0AUTH_PROFILE = 'setUser0AuthProfile'
+
+export const DISABLE_MAP_NAME_END = 'setMapNameDisabled'
+export const DISABLE_MAP_NAME_START = 'setMapNameDisabling'

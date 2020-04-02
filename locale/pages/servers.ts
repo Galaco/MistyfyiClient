@@ -64,7 +64,7 @@ export default {
         success: 'Now watching server: {ip}:{port}'
       },
       delete: {
-        success: 'Successfully deleted server: {name}'
+        success: 'Deleted server: {name}'
       }
     }
   },
@@ -82,7 +82,8 @@ export default {
     table: {
       headers: {
         name: 'Map Name',
-        server: 'Server'
+        server: 'Server',
+        enabled: 'Enabled'
       },
       body: {
         servers: {
@@ -114,10 +115,16 @@ export default {
     },
     toast: {
       add: {
-        success: 'Now watching for map: {name}'
+        success: 'Now watching map: {name}'
+      },
+      enable: {
+        success: 'Enabled watched map: {name}'
+      },
+      disable: {
+        success: 'Disabled watched map: {name}'
       },
       delete: {
-        success: 'Successfully deleted watched map: {name}'
+        success: 'Dleted watched map: {name}'
       }
     }
   }

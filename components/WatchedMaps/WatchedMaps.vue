@@ -21,38 +21,22 @@
               <th class="v-center">
                 {{ $t('servers.mapNames.table.headers.server') }}
               </th>
+              <th class="v-center">
+                {{ $t('servers.mapNames.table.headers.enabled') }}
+              </th>
               <th class="controls">
                 {{ $t('table.headers.actions') }}
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(map,index) in levelNames" :key="index">
-              <td class="v-center">
-                {{ map.name }}
-              </td>
-              <td class="v-center">
-                {{ serverNameForId(map.server_id) }}
-              </td>
-              <td class="controls" align="center">
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      class="mx-2"
-                      fab
-                      dark
-                      small
-                      color="pink"
-                      v-on="on"
-                      @click="showDeleteDialog(map)"
-                    >
-                      <v-icon>mdi-delete</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>{{ $t('servers.mapNames.buttons.delete') }}</span>
-                </v-tooltip>
-              </td>
-            </tr>
+            <MapRow
+              v-for="(map,index) in levelNames"
+              :key="index"
+              :model="map"
+              :get-server-name-from-id="serverNameForId"
+              :on-delete="showDeleteDialog"
+            />
           </tbody>
         </v-simple-table>
         <v-row
@@ -102,13 +86,15 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import DeleteUserLevelDialog from './Dialogs/DeleteWatchedMap.vue'
 import AddUserLevelDialog from './Dialogs/AddWatchedMap.vue'
+import MapRow from './MapRow.vue'
 import { FETCH_LEVEL_NAMES } from '@/store/actions.type'
 
 export default Vue.extend({
-  name: 'UserLevels',
+  name: 'WatchedMaps',
   components: {
     DeleteUserLevelDialog,
-    AddUserLevelDialog
+    AddUserLevelDialog,
+    MapRow
   },
   data () {
     return {

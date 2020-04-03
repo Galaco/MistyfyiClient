@@ -68,9 +68,9 @@ export default Vue.extend({
         this.model.disabled = !value
         this.isEnabled = value
         if (value === true) {
-          this.$toast.success(this.$t('servers.mapNames.toast.enable.success', { name }))
+          this.$toast.success(this.$t('servers.mapNames.toast.enable.success', { name: this.model.name }))
         } else {
-          this.$toast.success(this.$t('servers.mapNames.toast.disable.success', { name }))
+          this.$toast.success(this.$t('servers.mapNames.toast.disable.success', { name: this.model.name }))
         }
       }).catch((err) => {
         this.$toast.error(err.message)

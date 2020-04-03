@@ -42,6 +42,9 @@ export default Vue.extend({
   middleware: ['auth'],
   layout: 'app',
   name: 'Servers',
+  transition: {
+    css: true
+  },
   components: {
     EnableNotificationDialog,
     WatchedServers,

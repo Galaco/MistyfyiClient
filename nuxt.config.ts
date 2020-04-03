@@ -1,10 +1,7 @@
 import { Context } from 'vm'
 import locale from './locale'
 
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-
 export default {
-  /** Build configuration */
   build: {
     extend (config: any, context: Context) {
       if (context.isDev && !process.client) {
@@ -27,7 +24,6 @@ export default {
       })
     },
     loaders: {
-      // we want to use sass instead of node-sass
       sass: {
         import: ['~assets/style/app.sass'],
         implementation: require('sass')
@@ -36,14 +32,10 @@ export default {
     modules: [],
     plugins: [],
     postcss: {
-      // Add plugin names as key and arguments as value
-      // Install them before as dependencies with npm or yarn
       plugins: {
-        // Disable a plugin by passing false as value
         autoprefixer: {}
       },
       preset: {
-        // Change the postcss-preset-env settings
         autoprefixer: {
           grid: true
         }
@@ -51,40 +43,36 @@ export default {
     },
     transpile: ['vuetify/lib'],
     typescript: {
-      // this is required - if set to true the HMR in dev will time out
       typeCheck: false
     }
   },
-  /** @see https://typescript.nuxtjs.org/migration.html */
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
-  /** Plugins to load before mounting the App **/
   generate: {
     fallback: true
   },
-  plugins: [
-    '~/plugins/localstorage',
-  ],
-  /** typescript config for nuxt */
-  typescript: {
-    typeCheck: false,
-    ignoreNotFoundWarnings: true
-  },
-  server: {
-    port: process.env.NUXT_ENV_PORT, // default: 3000
-    host: '0.0.0.0' // default: localhost
+  head: {
+    titleTemplate: '%s - MapTracker',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ],
+    link: [
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap' }
+    ]
   },
   modules: [
     ['nuxt-i18n', {
       locales: ['en'],
       defaultLocale: 'en',
       vueI18n: locale,
+      strategy: 'no_prefix'
     }],
     ['@nuxtjs/onesignal', {
       init: {
         appId: process.env.NUXT_ENV_ONESIGNAL_APP_ID,
         allowLocalhostAsSecureOrigin: true,
         welcomeNotification: {
-            disable: true
+          disable: true
         },
         autoResubscribe: true,
         autoRegister: false
@@ -101,7 +89,7 @@ export default {
     }],
     ['@nuxtjs/auth', {
       redirect: {
-        login: '/', // redirect user when not connected
+        login: '/',
         callback: '/callback/',
         home: '/servers'
       },
@@ -118,14 +106,16 @@ export default {
       ]
     }]
   ],
-  head: {
-    titleTemplate: '%s - MapTracker',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    ],
-    link: [
-      {rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap"}
-    ]
+  plugins: [
+    '~/plugins/localstorage'
+  ],
+  server: {
+    port: process.env.NUXT_ENV_PORT,
+    host: '0.0.0.0'
+  },
+  /** typescript config for nuxt */
+  typescript: {
+    typeCheck: false,
+    ignoreNotFoundWarnings: true
   }
 }

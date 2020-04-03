@@ -10,6 +10,9 @@ export default Vue.extend({
   middleware: ['auth'],
   layout: 'app',
   name: 'Help',
+  transition: {
+    css: true
+  },
   components: {
     ContactForm
   },

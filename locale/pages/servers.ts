@@ -124,7 +124,7 @@ export default {
         success: 'Disabled watched map: {name}'
       },
       delete: {
-        success: 'Dleted watched map: {name}'
+        success: 'Deleted watched map: {name}'
       }
     }
   }

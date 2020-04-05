@@ -65,6 +65,11 @@ export default Vue.extend({
     }
   },
   mounted () {
+    this.$OneSignal.push(() => {
+      this.$OneSignal.on('notificationDisplay', (event: any) => {
+        console.warn('OneSignal notification displayed:', event)
+      })
+    })
     this.$store.subscribe((mutation: any) => {
       if (mutation.type !== FETCH_USER_PROFILE_END) {
         return
@@ -80,11 +85,10 @@ export default Vue.extend({
       this.isEnableNotificationDialogVisible = false
     },
     showNotificationDialog () {
-      console.log(this.$OneSignal)
       this.$OneSignal.push(() => {
         console.log('OneSignal: ready')
         this.$OneSignal.isPushNotificationsEnabled((isEnabled: boolean) => {
-          console.log('Show: dialog-notification-request')
+          console.log('Show: dialog-notification-request: ', !isEnabled)
           this.isEnableNotificationDialogVisible = !isEnabled
         })
       })

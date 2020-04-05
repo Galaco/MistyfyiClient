@@ -76,7 +76,7 @@ const mutations = {
     const servers = [...state.servers]
     servers[idx].name = model.name
     servers[idx].current_map = model.current_map
-    servers[idx].last_updated = Math.floor(Date.now() / 1000)
+    servers[idx].last_updated = model.last_updated
     state.servers = servers
     console.log(servers)
     state.isServersLoading = false

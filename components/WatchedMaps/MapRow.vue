@@ -4,7 +4,7 @@
       {{ model.name }}
     </td>
     <td class="v-center">
-      {{ getServerNameFromId(model.server_id) }}
+      {{ getServerNameFromId(model.serverId) }}
     </td>
     <td class="v-center">
       <v-switch
@@ -36,14 +36,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import { DISABLE_MAP_NAME } from '@/store/actions.type'
-import Map from '@/models/api/levels/map'
+import WatchedMap from '@/models/api/maps/WatchedMap'
 
 export default Vue.extend({
   name: 'MapRow',
   props: {
     model: {
-      type: Object,
-      default: new Map()
+      type: WatchedMap,
+      default: new WatchedMap('')
     },
     getServerNameFromId: {
       type: Function,

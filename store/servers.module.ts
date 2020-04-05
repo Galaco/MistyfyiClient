@@ -1,15 +1,17 @@
 import { AxiosResponse, AxiosError } from 'axios'
-import { DELETE_SERVER, FETCH_SERVERS } from './actions.type'
+import { DELETE_SERVER, FETCH_SERVERS, SERVER_UPDATED } from './actions.type'
 import {
   FETCH_SERVERS_END,
   FETCH_SERVERS_START,
   DELETE_SERVERS_START,
-  DELETE_SERVERS_END
+  DELETE_SERVERS_END,
+  SERVER_MAP_CHANGED
 } from './mutations.type'
 import ApiResponse from '@/plugins/Repository/ApiResponse'
+import Server from '@/models/api/servers/Server'
 
 class State {
-    public servers: any[] = [];
+    public servers: Server[] = [];
     public isServersLoading: boolean = true;
     public serversCount: number = -1;
 }
@@ -47,6 +49,9 @@ const actions = {
       this.$toast.error(err.message)
       console.log(err)
     })
+  },
+  [SERVER_UPDATED] ({ commit }: any, model: Server): any {
+    commit(SERVER_MAP_CHANGED, model)
   }
 }
 
@@ -55,7 +60,7 @@ const mutations = {
     state.isServersLoading = true
   },
   [FETCH_SERVERS_END] (state: State, resp: ApiResponse) {
-    state.servers = resp.body
+    state.servers = resp.body.map((item: any) => new Server(item.id, item.ip_address, item.port, item.name, item.current_map, item.last_updated))
     state.serversCount = resp.body.length
     state.isServersLoading = false
   },
@@ -63,6 +68,17 @@ const mutations = {
     state.isServersLoading = true
   },
   [DELETE_SERVERS_END] (state: State) {
+    state.isServersLoading = false
+  },
+  [SERVER_MAP_CHANGED] (state: State, model: Server) {
+    console.log(model)
+    const idx = state.servers.findIndex(server => server.id === model.id)
+    const servers = [...state.servers]
+    servers[idx].name = model.name
+    servers[idx].current_map = model.current_map
+    servers[idx].last_updated = Math.floor(Date.now() / 1000)
+    state.servers = servers
+    console.log(servers)
     state.isServersLoading = false
   }
 }

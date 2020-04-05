@@ -37,6 +37,8 @@ import WatchedServers from '@/components/WatchedServers/WatchedServers.vue'
 import EnableNotificationDialog from '@/components/Dialogs/EnableNotifications.vue'
 import WatchedMaps from '@/components/WatchedMaps/WatchedMaps.vue'
 import { FETCH_USER_PROFILE_END } from '@/store/mutations.type'
+import Server from '@/models/api/servers/Server'
+import { SERVER_UPDATED } from '@/store/actions.type'
 
 export default Vue.extend({
   middleware: ['auth'],
@@ -68,6 +70,7 @@ export default Vue.extend({
     this.$OneSignal.push(() => {
       this.$OneSignal.on('notificationDisplay', (event: any) => {
         console.warn('OneSignal notification displayed:', event)
+        this.$store.dispatch(SERVER_UPDATED, new Server(event.data.id, event.data.name, event.data.current_map))
       })
     })
     this.$store.subscribe((mutation: any) => {
@@ -86,7 +89,6 @@ export default Vue.extend({
     },
     showNotificationDialog () {
       this.$OneSignal.push(() => {
-        console.log('OneSignal: ready')
         this.$OneSignal.isPushNotificationsEnabled((isEnabled: boolean) => {
           console.log('Show: dialog-notification-request: ', !isEnabled)
           this.isEnableNotificationDialogVisible = !isEnabled

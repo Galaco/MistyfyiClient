@@ -40,6 +40,7 @@ import { mapGetters } from 'vuex'
 import Info from '@/components/Dialogs/Info.vue'
 import { FETCH_SERVER_HISTORY } from '@/store/actions.type'
 import { DateToDateTimeString } from '@/locale/time'
+import Server from '@/models/api/servers/Server'
 
 export default Vue.extend({
   name: 'History',
@@ -53,8 +54,8 @@ export default Vue.extend({
     },
     // eslint-disable-next-line
     server: {
-      type: Object,
-      default: () => {}
+      type: Server,
+      default: () => new Server(-1, '')
     }
   },
   computed: {

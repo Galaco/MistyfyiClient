@@ -52,6 +52,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import LastUpdated from './LastUpdated.vue'
+import Server from '@/models/api/servers/Server'
 
 export default Vue.extend({
   name: 'TableRow',
@@ -60,8 +61,8 @@ export default Vue.extend({
   },
   props: {
     server: {
-      type: Object,
-      default: () => {}
+      type: Server,
+      default: () => new Server(-1, '')
     }
   },
   methods: {

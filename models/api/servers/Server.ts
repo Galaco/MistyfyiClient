@@ -13,4 +13,13 @@ export default class Server {
 
     // eslint-disable-next-line
     public last_updated: number = 0;
+
+    constructor (id: number, ipAddress: string, port: number = 0, name: string = '', currentMap: string = '', lastUpdated: number = 0) {
+      this.id = id
+      this.ip_address = ipAddress
+      this.port = port
+      this.name = name
+      this.current_map = currentMap
+      this.last_updated = lastUpdated
+    }
 }

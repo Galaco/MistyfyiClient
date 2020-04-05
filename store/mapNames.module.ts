@@ -7,10 +7,11 @@ import {
   FETCH_LEVEL_NAMES_START
 } from './mutations.type'
 import ApiResponse from '@/plugins/Repository/ApiResponse'
+import WatchedMap from '~/models/api/maps/WatchedMap'
 
 class State {
     public loadingLevelNames: boolean = true;
-    public levelNames: string[] = [];
+    public levelNames: WatchedMap[] = [];
     public levelNamesCount: number = -1;
 }
 
@@ -53,7 +54,7 @@ const mutations = {
     state.loadingLevelNames = true
   },
   [FETCH_LEVEL_NAMES_END] (state: State, resp: ApiResponse) {
-    state.levelNames = resp.body
+    state.levelNames = resp.body.map((item: any) => new WatchedMap(item.name, item.server_id, item.disabled))
     state.levelNamesCount = resp.body.length
     state.loadingLevelNames = false
   },

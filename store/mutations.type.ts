@@ -15,6 +15,7 @@ export const DELETE_LEVEL_NAMES_START = 'setLevelNamesDeleting'
 export const FETCH_SERVER_HISTORY_END = 'setServerHistoryLoaded'
 export const FETCH_SERVER_HISTORY_START = 'setServerHistoryLoading'
 export const SELECT_SERVER_END = 'selectServerEnd'
+export const SERVER_MAP_CHANGED = 'serverMapChanged'
 
 // User
 export const FETCH_USER_PROFILE_END = 'setUserProfileLoaded'

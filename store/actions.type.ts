@@ -1,5 +1,6 @@
 export const FETCH_SERVERS = 'serversFetch'
 export const DELETE_SERVER = 'deleteServer'
+export const SERVER_UPDATED = 'serverUpdated'
 
 export const FETCH_SERVER_HISTORY = 'serverHistoryFetch'
 export const SELECT_SERVER = 'selectServer'

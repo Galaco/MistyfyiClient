@@ -6,6 +6,9 @@
           {{ $t('servers.servers.title') }}
         </v-toolbar-title>
         <v-spacer />
+        <v-btn v-if="serversCount > 0" @click="getPrivateServers">
+          <v-icon>mdi-refresh</v-icon>
+        </v-btn>
         <v-btn @click="showAddServerDialog">
           <v-icon>mdi-note-add</v-icon>
           <span>{{ $t('servers.servers.buttons.add') }}</span>
@@ -94,6 +97,12 @@ export default Vue.extend({
     CardView,
     TableView
   },
+  props: {
+    usePolling: {
+      type: Boolean,
+      default: true
+    }
+  },
   data: () => ({
     displayAsTable: true,
     isNewServerDialogVisible: false,
@@ -106,10 +115,19 @@ export default Vue.extend({
   },
   mounted () {
     this.getPrivateServers()
-    // Poll every 30 seconds to ensure server info is up to date
-    this.pollInterval = setInterval(() => {
-      this.getPrivateServers()
-    }, 15000)
+
+    // Only polls if notifications are disabled, otherwise new data is pulled from received
+    // notification payloads
+    if (this.usePolling === true) {
+      // Poll every 15 seconds to ensure server info is up to date
+      this.pollInterval = setInterval(() => {
+        if (!this.usePolling) {
+          clearInterval(this.pollInterval)
+          return
+        }
+        this.getPrivateServers()
+      }, 15000)
+    }
   },
   destroyed () {
     clearInterval(this.pollInterval)

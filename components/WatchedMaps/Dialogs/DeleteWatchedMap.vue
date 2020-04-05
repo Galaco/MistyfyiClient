@@ -14,6 +14,7 @@
 import Vue from 'vue'
 import { DELETE_LEVEL_NAMES } from '@/store/actions.type'
 import Delete from '@/components/Dialogs/Delete.vue'
+import WatchedMap from '@/models/api/maps/WatchedMap'
 
 export default Vue.extend({
   name: 'DeleteWatchedMap',
@@ -26,8 +27,8 @@ export default Vue.extend({
       default: () => false
     },
     model: {
-      type: Object,
-      default: () => {}
+      type: WatchedMap,
+      default: () => new WatchedMap('')
     }
   },
   methods: {

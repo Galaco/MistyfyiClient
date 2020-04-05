@@ -7,7 +7,7 @@
         </v-toolbar-title>
         <v-spacer />
         <v-btn
-          disabled="serversCount === 0 || isServersLoading"
+          disabled="serversCount === 0 || isServersLoading === true"
           @click="getPrivateServers"
         >
           <v-icon v-if="isServersLoading === false">
@@ -131,9 +131,11 @@ export default Vue.extend({
     // Only polls if notifications are disabled, otherwise new data is pulled from received
     // notification payloads
     if (this.usePolling === true) {
+      console.warn('Watched Servers: Falling back to polling')
       // Poll every 15 seconds to ensure server info is up to date
       this.pollInterval = setInterval(() => {
         if (!this.usePolling) {
+          console.log('Watched Servers: Polling disabled')
           clearInterval(this.pollInterval)
           return
         }

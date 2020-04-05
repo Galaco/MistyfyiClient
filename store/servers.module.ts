@@ -78,7 +78,6 @@ const mutations = {
     servers[idx].current_map = model.current_map
     servers[idx].last_updated = model.last_updated
     state.servers = servers
-    console.log(servers)
     state.isServersLoading = false
   }
 }

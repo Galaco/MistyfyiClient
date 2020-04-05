@@ -6,8 +6,20 @@
           {{ $t('servers.servers.title') }}
         </v-toolbar-title>
         <v-spacer />
-        <v-btn v-if="serversCount > 0" @click="getPrivateServers">
-          <v-icon>mdi-refresh</v-icon>
+        <v-btn
+          disabled="serversCount === 0 || isServersLoading"
+          @click="getPrivateServers"
+        >
+          <v-icon v-if="isServersLoading === false">
+            mdi-refresh
+          </v-icon>
+          <v-progress-circular
+            v-if="isServersLoading === true"
+            :size="16"
+            :width="2"
+            color="purple"
+            indeterminate
+          />
         </v-btn>
         <v-btn @click="showAddServerDialog">
           <v-icon>mdi-note-add</v-icon>
@@ -111,7 +123,7 @@ export default Vue.extend({
     pollInterval: -1
   }),
   computed: {
-    ...mapGetters(['servers', 'serversCount', 'serverSelected', 'userProfile'])
+    ...mapGetters(['servers', 'serversCount', 'isServersLoading', 'serverSelected', 'userProfile'])
   },
   mounted () {
     this.getPrivateServers()

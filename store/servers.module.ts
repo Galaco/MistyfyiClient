@@ -71,7 +71,6 @@ const mutations = {
     state.isServersLoading = false
   },
   [SERVER_MAP_CHANGED] (state: State, model: Server) {
-    console.log(model)
     const idx = state.servers.findIndex(server => server.id === model.id)
     const servers = [...state.servers]
     servers[idx].name = model.name

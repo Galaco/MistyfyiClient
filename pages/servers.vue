@@ -15,7 +15,9 @@
     </v-col>
 
     <v-col cols="12">
-      <WatchedServers />
+      <WatchedServers
+        usePolling="!areNotificationsEnabled"
+      />
     </v-col>
 
     <v-col cols="12">
@@ -54,7 +56,8 @@ export default Vue.extend({
   },
   data () {
     return {
-      isEnableNotificationDialogVisible: false
+      isEnableNotificationDialogVisible: false,
+      areNotificationsEnabled: false,
     }
   },
   computed: {
@@ -69,7 +72,6 @@ export default Vue.extend({
   mounted () {
     this.$OneSignal.push(() => {
       this.$OneSignal.on('notificationDisplay', (event: any) => {
-        console.warn('OneSignal notification displayed:', event)
         this.$store.dispatch(SERVER_UPDATED, new Server(event.data.id, '', 0, event.data.name, event.data.current_map, Math.floor(Date.now() / 1000)))
       })
     })
@@ -91,6 +93,7 @@ export default Vue.extend({
       this.$OneSignal.push(() => {
         this.$OneSignal.isPushNotificationsEnabled((isEnabled: boolean) => {
           console.log('Show: dialog-notification-request: ', !isEnabled)
+          this.areNotificationsEnabled = isEnabled
           this.isEnableNotificationDialogVisible = !isEnabled
         })
       })

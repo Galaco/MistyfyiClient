@@ -125,6 +125,14 @@ export default Vue.extend({
   computed: {
     ...mapGetters(['servers', 'serversCount', 'isServersLoading', 'serverSelected', 'userProfile'])
   },
+  watch: {
+    usePolling (value) {
+      if (!value) {
+        console.log('Watched Servers: Polling disabled')
+        clearInterval(this.pollInterval)
+      }
+    }
+  },
   mounted () {
     this.getPrivateServers()
 
@@ -132,15 +140,8 @@ export default Vue.extend({
     // notification payloads
     if (this.usePolling === true) {
       console.warn('Watched Servers: Falling back to polling')
-      // Poll every 15 seconds to ensure server info is up to date
-      this.pollInterval = setInterval(() => {
-        if (!this.usePolling) {
-          console.log('Watched Servers: Polling disabled')
-          clearInterval(this.pollInterval)
-          return
-        }
-        this.getPrivateServers()
-      }, 15000)
+      // Poll every 30 seconds to ensure server info is up to date
+      this.pollInterval = setInterval(this.getPrivateServers, 30000)
     }
   },
   destroyed () {

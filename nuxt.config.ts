@@ -60,6 +60,7 @@ export default {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap' }
     ]
   },
+  mode: 'spa',
   modules: [
     ['nuxt-i18n', {
       locales: ['en'],

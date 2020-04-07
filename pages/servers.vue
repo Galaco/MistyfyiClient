@@ -15,9 +15,7 @@
     </v-col>
 
     <v-col cols="12">
-      <WatchedServers
-        usePolling="!areNotificationsEnabled"
-      />
+      <WatchedServers />
     </v-col>
 
     <v-col cols="12">
@@ -57,7 +55,7 @@ export default Vue.extend({
   data () {
     return {
       isEnableNotificationDialogVisible: false,
-      areNotificationsEnabled: false,
+      areNotificationsEnabled: false
     }
   },
   computed: {

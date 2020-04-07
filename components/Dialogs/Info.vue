@@ -3,7 +3,7 @@
     :show="show"
     :title="title"
     :confirm-label="$t('dialog.buttons.delete')"
-    :deny-label="$t('dialog.buttons.cancel')"
+    :deny-label="$t('dialog.buttons.close')"
     :type="type"
     :confirm-disabled="false"
     @deny="close"

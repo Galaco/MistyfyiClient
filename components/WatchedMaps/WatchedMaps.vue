@@ -87,6 +87,7 @@ import { mapGetters } from 'vuex'
 import DeleteUserLevelDialog from './Dialogs/DeleteWatchedMap.vue'
 import AddUserLevelDialog from './Dialogs/AddWatchedMap.vue'
 import MapRow from './MapRow.vue'
+import WatchedMap from '@/models/api/maps/WatchedMap'
 import { FETCH_LEVEL_NAMES } from '@/store/actions.type'
 
 export default Vue.extend({
@@ -99,7 +100,7 @@ export default Vue.extend({
   data () {
     return {
       isAddDialogVisible: false,
-      selectedLevel: { name: '' },
+      selectedLevel: new WatchedMap(''),
       isDeleteDialogVisible: false
     }
   },
@@ -119,13 +120,13 @@ export default Vue.extend({
     closeAddDialog () {
       this.isAddDialogVisible = false
     },
-    showDeleteDialog (map: any) {
+    showDeleteDialog (map: WatchedMap) {
       this.selectedLevel = map
       this.isDeleteDialogVisible = true
     },
     closeDeleteDialog () {
       this.isDeleteDialogVisible = false
-      this.selectedLevel = { name: '' }
+      this.selectedLevel = new WatchedMap('')
     },
     onMapAdded () {
       this.closeAddDialog()

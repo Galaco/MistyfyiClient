@@ -1,4 +1,5 @@
 import createRepository, { normalizeResponse } from './Repository/index'
+import feedRepository from './Repository/feed'
 import levelsRepository from './Repository/levels'
 import mapNameRepository from './Repository/mapName'
 import serverRepository from './Repository/server'
@@ -17,6 +18,7 @@ export default (ctx: any, inject: any) => {
   ctx.$axios.setToken(ctx.$auth.getToken('auth0'))
 
   const repositories = {
+    feed: feedRepository(createRepository(ctx.$axios)),
     levels: levelsRepository(createRepository(ctx.$axios)),
     mapName: mapNameRepository(createRepository(ctx.$axios)),
     server: serverRepository(createRepository(ctx.$axios)),

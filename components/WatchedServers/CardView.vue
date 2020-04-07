@@ -27,6 +27,7 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import Card from './Card.vue'
 import { SELECT_SERVER } from '@/store/actions.type'
+import Server from '@/models/api/servers/Server'
 
 export default Vue.extend({
   name: 'CardView',
@@ -37,11 +38,11 @@ export default Vue.extend({
     ...mapGetters(['servers', 'serversCount', 'serverSelected'])
   },
   methods: {
-    showHistory (server: any) {
+    showHistory (server: Server) {
       this.$store.dispatch(SELECT_SERVER, server)
       this.$emit('showHistory')
     },
-    showDelete (server: any) {
+    showDelete (server: Server) {
       this.$store.dispatch(SELECT_SERVER, server)
       this.$emit('showDelete')
     }

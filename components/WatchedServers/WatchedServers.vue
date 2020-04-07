@@ -7,7 +7,7 @@
         </v-toolbar-title>
         <v-spacer />
         <v-btn
-          disabled="serversCount === 0 || isServersLoading === true"
+          :disabled="serversCount === 0 || isServersLoading === true"
           @click="getPrivateServers"
         >
           <v-icon v-if="isServersLoading === false">
@@ -26,20 +26,6 @@
           <span>{{ $t('servers.servers.buttons.add') }}</span>
         </v-btn>
       </v-toolbar>
-
-      <!-- <v-banner
-        single-line
-        :sticky="false"
-      >
-        {{ $t('servers.servers.noItems.description') }}
-        <template v-slot:actions>
-          <v-icon>mdi-view-week</v-icon>
-          <v-switch
-            v-model="displayAsTable"
-          />
-          <v-icon>mdi-view-list</v-icon>
-        </template>
-      </v-banner> -->
       <v-card-text>
         <TableView
           v-if="displayAsTable === true"
@@ -109,12 +95,6 @@ export default Vue.extend({
     CardView,
     TableView
   },
-  props: {
-    usePolling: {
-      type: Boolean,
-      default: true
-    }
-  },
   data: () => ({
     displayAsTable: true,
     isNewServerDialogVisible: false,
@@ -125,24 +105,10 @@ export default Vue.extend({
   computed: {
     ...mapGetters(['servers', 'serversCount', 'isServersLoading', 'serverSelected', 'userProfile'])
   },
-  watch: {
-    usePolling (value) {
-      if (!value) {
-        console.log('Watched Servers: Polling disabled')
-        clearInterval(this.pollInterval)
-      }
-    }
-  },
   mounted () {
     this.getPrivateServers()
 
-    // Only polls if notifications are disabled, otherwise new data is pulled from received
-    // notification payloads
-    if (this.usePolling === true) {
-      console.warn('Watched Servers: Falling back to polling')
-      // Poll every 30 seconds to ensure server info is up to date
-      this.pollInterval = setInterval(this.getPrivateServers, 30000)
-    }
+    this.pollInterval = setInterval(this.getPrivateServers, 30000)
   },
   destroyed () {
     clearInterval(this.pollInterval)

@@ -63,7 +63,7 @@ export default Vue.extend({
   },
   watch: {
     // eslint-disable-next-line
-    server (newValue: any) {
+    server (newValue: Server) {
       if (newValue == null) {
         return
       }
@@ -71,7 +71,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    fetchHistory (id: any) {
+    fetchHistory (id: number) {
       this.$store.dispatch(FETCH_SERVER_HISTORY, id).catch((err) => {
         this.$toast.error(err.message)
       })

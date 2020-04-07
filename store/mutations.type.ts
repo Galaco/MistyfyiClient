@@ -24,3 +24,7 @@ export const SET_USER_0AUTH_PROFILE = 'setUser0AuthProfile'
 
 export const DISABLE_MAP_NAME_END = 'setMapNameDisabled'
 export const DISABLE_MAP_NAME_START = 'setMapNameDisabling'
+
+// Feed
+export const FETCH_FEED_END = 'setFeedLoaded'
+export const FETCH_FEED_START = 'setFeedLoading'

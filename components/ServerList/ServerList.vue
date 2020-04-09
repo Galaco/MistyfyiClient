@@ -1,8 +1,10 @@
 <template>
   <v-navigation-drawer
+    id="compactServerList"
     width="320px"
+    height="calc(100% - 64px)"
     right="right"
-    absolute
+    fixed
     dark
   >
     <v-list v-if="servers.length > 0">
@@ -43,5 +45,7 @@ export default Vue.extend({
 </script>
 
 <style lang='scss' scoped>
-
+#compactServerList {
+  top: 64px !important;
+}
 </style>

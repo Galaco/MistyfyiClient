@@ -40,7 +40,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .feedRoot {
-  height: calc(100vh - 64px);
+  height: calc(100vh - 88px);
   overflow-y: auto;
 }
 </style>

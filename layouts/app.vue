@@ -64,9 +64,12 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
+      <template v-slot:append>
+        <Footer />
+      </template>
     </v-navigation-drawer>
     <v-app-bar
-      absolute
       app
       flat
       color="indigo darken-4"
@@ -88,14 +91,6 @@
         <!-- Provides the application the proper gutter -->
         <nuxt />
       </v-container>
-
-      <v-footer
-        dark
-        class="font-weight-medium"
-      >
-        <!-- -->
-        <Footer />
-      </v-footer>
     </v-content>
 
     <EnableNotificationDialog

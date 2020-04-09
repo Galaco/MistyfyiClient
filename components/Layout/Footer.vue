@@ -1,11 +1,11 @@
 <template>
   <v-col
-    class="text-center"
+    class="text-center font-weight-medium"
     cols="12"
   >
-    <span class="attribution">{{ $t('footer.owner') }}
+    <span class="attribution">
       <a rel="noopener noreferrer" target="blank" href="https://www.galaco.me">
-        Galaco</a> - <strong>&copy;2019-{{ currentYear }}</strong>
+        Galaco</a> - <strong>&copy;{{ currentYear }}</strong>
     </span>
   </v-col>
 </template>

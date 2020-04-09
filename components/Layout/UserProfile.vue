@@ -73,3 +73,21 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.feedRoot {
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  margin-right: 320px;
+}
+
+.container {
+  max-width: 880px;
+}
+
+@media only screen and (max-width: 600px) {
+  #toolbarProfileButton > span {
+    display: none;
+  }
+}
+</style>

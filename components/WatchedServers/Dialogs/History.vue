@@ -26,8 +26,8 @@
       </thead>
       <tbody>
         <tr v-for="(s,index) in history" :key="index">
-          <td>{{ timestampToLabel(s.date_created) }}</td>
-          <td>{{ s.map_name }}</td>
+          <td>{{ timestampToLabel(s.dateCreated) }}</td>
+          <td>{{ s.mapName }}</td>
         </tr>
       </tbody>
     </v-simple-table>

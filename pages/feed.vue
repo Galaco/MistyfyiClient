@@ -1,6 +1,8 @@
 <template>
   <div class="feedRoot">
-    <FeedList />
+    <v-container>
+      <FeedList />
+    </v-container>
     <ServerList />
   </div>
 </template>
@@ -40,7 +42,18 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .feedRoot {
-  height: calc(100vh - 88px);
+  height: calc(100vh - 64px);
   overflow-y: auto;
+  margin-right: 320px;
+}
+
+.container {
+  max-width: 880px;
+}
+
+@media only screen and (max-width: 960px) {
+  .feedRoot {
+    margin-right: 0;
+  }
 }
 </style>

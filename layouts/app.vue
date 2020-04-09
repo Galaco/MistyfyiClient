@@ -87,10 +87,8 @@
 
     <!-- Sizes your content based upon application components -->
     <v-content>
-      <v-container>
-        <!-- Provides the application the proper gutter -->
-        <nuxt />
-      </v-container>
+      <!-- Provides the application the proper gutter -->
+      <nuxt />
     </v-content>
 
     <EnableNotificationDialog

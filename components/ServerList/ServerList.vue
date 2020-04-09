@@ -6,6 +6,8 @@
     right="right"
     fixed
     dark
+    permanent="true"
+    mobile-break-point="960"
   >
     <v-list v-if="servers.length > 0">
       <v-subheader>{{ $t('feed.serverList.title') }} </v-subheader>
@@ -47,5 +49,11 @@ export default Vue.extend({
 <style lang='scss' scoped>
 #compactServerList {
   top: 64px !important;
+}
+
+@media only screen and (max-width: 960px) {
+  #compactServerList {
+    display: none;
+  }
 }
 </style>

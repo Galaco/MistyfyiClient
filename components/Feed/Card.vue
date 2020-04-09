@@ -68,4 +68,10 @@ export default Vue.extend({
 .cardContent {
   flex-grow: 1;
 }
+
+@media only screen and (max-width: 600px) {
+  .v-avatar {
+    display: none;
+  }
+}
 </style>

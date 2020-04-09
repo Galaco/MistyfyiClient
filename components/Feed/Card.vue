@@ -23,8 +23,7 @@
           <a :href="`steam://connect/${model.serverIP}:${model.serverPort}`">
             <v-btn
               color="primary"
-              text
-              outlined
+              small
             >
               Join Server
             </v-btn>

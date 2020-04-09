@@ -108,7 +108,8 @@ export default {
     }]
   ],
   plugins: [
-    '~/plugins/localstorage'
+    '~/plugins/localstorage',
+    '~/plugins/vuebar'
   ],
   server: {
     port: process.env.NUXT_ENV_PORT,

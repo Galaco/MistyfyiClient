@@ -5,10 +5,10 @@
         <v-simple-table>
           <thead>
             <tr>
-              <th>{{ $t('servers.servers.list.headers.server') }}</th>
-              <th>{{ $t('servers.servers.list.headers.address') }}</th>
-              <th>{{ $t('servers.servers.list.headers.map') }}</th>
-              <th>{{ $t('servers.servers.list.headers.updated') }}</th>
+              <th>{{ $t('servers.list.headers.server') }}</th>
+              <th>{{ $t('servers.list.headers.address') }}</th>
+              <th>{{ $t('servers.list.headers.map') }}</th>
+              <th>{{ $t('servers.list.headers.updated') }}</th>
               <th />
             </tr>
           </thead>

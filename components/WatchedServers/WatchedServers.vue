@@ -3,7 +3,7 @@
     <v-card>
       <v-toolbar flat>
         <v-toolbar-title>
-          {{ $t('servers.servers.title') }}
+          {{ $t('servers.title') }}
         </v-toolbar-title>
         <v-spacer />
         <v-btn
@@ -23,7 +23,7 @@
         </v-btn>
         <v-btn @click="showAddServerDialog">
           <v-icon>mdi-note-add</v-icon>
-          <span>{{ $t('servers.servers.buttons.add') }}</span>
+          <span>{{ $t('servers.buttons.add') }}</span>
         </v-btn>
       </v-toolbar>
       <v-card-text>
@@ -46,13 +46,13 @@
             <v-icon x-large>
               mdi-important-devices
             </v-icon>
-            <h1>{{ $t('servers.servers.noItems.title') }}</h1>
-            <div>{{ $t('servers.servers.noItems.description') }}</div>
+            <h1>{{ $t('servers.noItems.title') }}</h1>
+            <div>{{ $t('servers.noItems.description') }}</div>
             <v-btn id="addFirstServerButton" @click="showAddServerDialog">
               <v-icon>
                 mdi-note-add
               </v-icon>
-              <span>{{ $t('servers.servers.noItems.add') }}</span>
+              <span>{{ $t('servers.noItems.add') }}</span>
             </v-btn>
           </v-col>
         </v-row>
@@ -99,19 +99,13 @@ export default Vue.extend({
     displayAsTable: true,
     isNewServerDialogVisible: false,
     isDeleteServerDialogVisible: false,
-    isServerHistoryDialogVisible: false,
-    pollInterval: -1
+    isServerHistoryDialogVisible: false
   }),
   computed: {
     ...mapGetters(['servers', 'serversCount', 'isServersLoading', 'serverSelected', 'userProfile'])
   },
   mounted () {
     this.getPrivateServers()
-
-    this.pollInterval = setInterval(this.getPrivateServers, 30000)
-  },
-  destroyed () {
-    clearInterval(this.pollInterval)
   },
   methods: {
     showAddServerDialog () {
@@ -143,7 +137,7 @@ export default Vue.extend({
         return
       }
       this.$store.dispatch(DELETE_SERVER, this.serverSelected).then(() => {
-        this.$toast.success(this.$t('servers.servers.toast.delete.success', { name: this.serverSelected.name }))
+        this.$toast.success(this.$t('servers.toast.delete.success', { name: this.serverSelected.name }))
         this.onCloseDeleteServerDialog()
       }).catch((err) => {
         this.$toast.error(err.message)

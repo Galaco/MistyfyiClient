@@ -27,7 +27,7 @@
             <v-icon>mdi-history</v-icon>
           </v-btn>
         </template>
-        <span>{{ $t('servers.servers.buttons.history') }}</span>
+        <span>{{ $t('servers.buttons.history') }}</span>
       </v-tooltip>
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -43,7 +43,7 @@
             <v-icon>mdi-delete</v-icon>
           </v-btn>
         </template>
-        <span>{{ $t('servers.servers.buttons.delete') }}</span>
+        <span>{{ $t('servers.buttons.delete') }}</span>
       </v-tooltip>
     </td>
   </tr>

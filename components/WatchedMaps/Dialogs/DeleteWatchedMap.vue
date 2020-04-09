@@ -1,12 +1,12 @@
 <template>
   <Delete
     id="deleteWatchedMapDialog"
-    :title="$t('servers.mapNames.dialogs.delete.title')"
+    :title="$t('notifications.dialogs.delete.title')"
     :show="show"
     @confirm="deleteLevel"
     @deny="close"
   >
-    <span>{{ $t('servers.mapNames.dialogs.delete.body') }}</span>
+    <span>{{ $t('notifications.dialogs.delete.body') }}</span>
   </Delete>
 </template>
 
@@ -44,7 +44,7 @@ export default Vue.extend({
       }
       const deletedName = this.model.name
       this.$store.dispatch(DELETE_LEVEL_NAMES, this.model).then(() => {
-        this.$toast.success(this.$t('servers.mapNames.toast.delete.success', { name: deletedName }))
+        this.$toast.success(this.$t('notifications.toast.delete.success', { name: deletedName }))
         this.submit()
       }).catch((err) => {
         this.$toast.error(err.message)

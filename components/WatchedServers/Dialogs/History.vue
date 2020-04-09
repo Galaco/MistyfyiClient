@@ -1,7 +1,7 @@
 <template>
   <Info
     id="serverHistoryDialog"
-    :title="$t('servers.servers.dialogs.history.title')"
+    :title="$t('servers.dialogs.history.title')"
     :show="show"
     :confirm-disabled="false"
     @deny="close"
@@ -20,8 +20,8 @@
     <v-simple-table v-if="!isServerHistoryLoading">
       <thead>
         <tr>
-          <th>{{ $t('servers.servers.dialogs.history.body.headers.date') }}</th>
-          <th>{{ $t('servers.servers.dialogs.history.body.headers.mapName') }}</th>
+          <th>{{ $t('servers.dialogs.history.body.headers.date') }}</th>
+          <th>{{ $t('servers.dialogs.history.body.headers.mapName') }}</th>
         </tr>
       </thead>
       <tbody>

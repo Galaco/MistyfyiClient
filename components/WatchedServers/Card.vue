@@ -20,11 +20,11 @@
     <md-card-actions>
       <v-btn @click="history">
         <v-icon>mdi-history</v-icon>
-        <span>{{ $t('servers.servers.buttons.history') }}</span>
+        <span>{{ $t('servers.buttons.history') }}</span>
       </v-btn>
       <v-btn @click="deleteServer">
         <v-icon>mdi-delete</v-icon>
-        <span>{{ $t('servers.servers.buttons.delete') }}</span>
+        <span>{{ $t('servers.buttons.delete') }}</span>
       </v-btn>
     </md-card-actions>
   </md-card>

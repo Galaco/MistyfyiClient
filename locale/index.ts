@@ -1,5 +1,6 @@
 import home from './pages/home'
 import servers from './pages/servers'
+import notifications from './pages/notifications'
 import help from './pages/help'
 import tables from './forms/tables'
 import dialogs from './forms/dialogs'
@@ -25,7 +26,9 @@ export default {
       },
       navigation: {
         links: {
+          feed: 'Home',
           servers: 'Servers',
+          notifications: 'Map Notifications',
           help: 'Help'
         }
       },
@@ -37,6 +40,7 @@ export default {
       },
       home,
       servers,
+      notifications,
       help,
       dialog: dialogs,
       table: tables

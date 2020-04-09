@@ -51,7 +51,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import LastUpdated from './LastUpdated.vue'
+import LastUpdated from '@/components/Time/LastUpdated.vue'
 import Server from '@/models/api/servers/Server'
 
 export default Vue.extend({

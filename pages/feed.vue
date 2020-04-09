@@ -18,15 +18,13 @@ export default Vue.extend({
     css: true
   },
   mounted () {
-    this.$store.dispatch(FETCH_FEED).then((data) => {
-      console.log(data)
-    }).catch((err) => {
+    this.$store.dispatch(FETCH_FEED).catch((err) => {
       this.$toast.error(err.message)
     })
   },
   head () {
     return {
-      title: 'Latest'
+      title: 'Home'
     }
   }
 })

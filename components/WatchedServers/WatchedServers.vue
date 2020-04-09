@@ -28,12 +28,6 @@
       </v-toolbar>
       <v-card-text>
         <TableView
-          v-if="displayAsTable === true"
-          @showHistory="showServerHistoryDialog"
-          @showDelete="showDeleteServerDialog"
-        />
-        <CardView
-          v-if="displayAsTable === false"
           @showHistory="showServerHistoryDialog"
           @showDelete="showDeleteServerDialog"
         />
@@ -82,7 +76,6 @@ import { mapGetters } from 'vuex'
 import AddServerDialog from './Dialogs/AddServer.vue'
 import DeleteServerDialog from './Dialogs/DeleteServer.vue'
 import ServerHistoryDialog from './Dialogs/History.vue'
-import CardView from './CardView.vue'
 import TableView from './TableView.vue'
 import { DELETE_SERVER, FETCH_SERVERS, SELECT_SERVER } from '@/store/actions.type'
 
@@ -92,11 +85,9 @@ export default Vue.extend({
     AddServerDialog,
     DeleteServerDialog,
     ServerHistoryDialog,
-    CardView,
     TableView
   },
   data: () => ({
-    displayAsTable: true,
     isNewServerDialogVisible: false,
     isDeleteServerDialogVisible: false,
     isServerHistoryDialogVisible: false

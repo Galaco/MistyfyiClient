@@ -25,11 +25,17 @@ export default Vue.extend({
   layout: 'empty',
   name: 'Login',
   mounted () {
+    if (this.isLoggedIn() === true) {
+      this.$router.push({name: 'feed'})
+    }
     if (String(this.$route.query.passthrough) === '1') {
       this.login()
     }
   },
   methods: {
+    isLoggedIn (): boolean {
+      return this.$auth.isLoggedIn()
+    },
     login () {
       this.$auth.login()
     }

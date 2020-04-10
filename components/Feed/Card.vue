@@ -8,7 +8,7 @@
         size="150"
         tile
       >
-        <v-img class="mapThumbnail" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" />
+        <v-img class="mapThumbnail" :src="`${thumbnailPath}${model.mapName}.jpg`" />
       </v-avatar>
       <div class="cardContent">
         <v-card-title>{{ model.mapName }}</v-card-title>
@@ -43,6 +43,11 @@ export default Vue.extend({
   name: 'Card',
   components: {
     LastUpdated
+  },
+  data () {
+    return {
+      thumbnailPath: `${process.env.NUXT_ENV_CDN_URL}/images/map/thumb/`
+    }
   },
   props: {
     model: {

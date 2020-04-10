@@ -10,7 +10,7 @@ export default {
   locale: 'en',
   messages: {
     en: {
-      app_title: 'MapTracker',
+      app_title: 'Ikamu',
       header: {
         links: {
           login: 'Log in/Register',

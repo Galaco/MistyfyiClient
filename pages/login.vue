@@ -25,7 +25,7 @@ export default Vue.extend({
   layout: 'empty',
   name: 'Login',
   mounted () {
-    if (this.$route.query.passthrough === 1) {
+    if (String(this.$route.query.passthrough) === '1') {
       this.login()
     }
   },

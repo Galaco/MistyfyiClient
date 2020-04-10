@@ -1,8 +1,8 @@
 export default {
   about: {
-    title: 'MapTracker',
+    title: 'Ikamu',
     tagline1: 'It\'s time to scrap the Steam server browser!',
-    tagline2: 'Do your favourite online games have maps you love? MapTracker will notify you when your favourite online communities play your favourite maps!',
+    tagline2: 'Do your favourite online games have maps you love? Ikamu will notify you when your favourite online communities play your favourite maps!',
     taglineImageFallback: 'How does it work?',
     preview: {
       nameTooltip: 'Easily identify your servers via their ingame title!',
@@ -28,7 +28,7 @@ export default {
   },
   pricing: {
     title: 'Pricing',
-    strapline: 'You can enjoy MapTracker\'s features for free, but if you\'d like to support the project directly please consider becoming a Donator. You\'ll receive plenty of benefits.',
+    strapline: 'You can enjoy Ikamu\'s features for free, but if you\'d like to support the project directly please consider becoming a Donator. You\'ll receive plenty of benefits.',
     notice: 'All money received will go towards improving this service.',
     free: {
       title: 'Free',

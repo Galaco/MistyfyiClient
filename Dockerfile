@@ -1,10 +1,10 @@
 FROM node:12-alpine
 
-RUN mkdir -p /srv/app/maptracker
-WORKDIR /srv/app/maptracker
+RUN mkdir -p /srv/app/ikamu
+WORKDIR /srv/app/ikamu
 
-COPY ./package.json /srv/app/maptracker
-COPY ./yarn.lock /srv/app/maptracker
+COPY ./package.json /srv/app/ikamu
+COPY ./yarn.lock /srv/app/ikamu
 
 RUN yarn install
 

@@ -51,7 +51,7 @@ export default {
     fallback: true
   },
   head: {
-    titleTemplate: '%s - MapTracker',
+    titleTemplate: '%s - Ikamu.io',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }

@@ -1,5 +1,7 @@
 <template>
-  <ContactForm />
+  <v-container>
+    <ContactForm />
+  </v-container>
 </template>
 
 <script lang="ts">

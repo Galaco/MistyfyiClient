@@ -1,14 +1,14 @@
 <template>
   <Add
     id="addMapNameDialog"
-    :title="$t('servers.mapNames.dialogs.add.title')"
+    :title="$t('notifications.dialogs.add.title')"
     :show="show"
     :confirm-disabled="(!mapNameValid) || (mapNameValid && mapName === '') || sending"
     @confirm="addWatchedMap"
     @deny="close"
   >
-    <span v-show="userProfile.isSubscribed === true">{{ $t('servers.mapNames.dialogs.add.description.paid') }}</span>
-    <span v-show="userProfile.isSubscribed === false">{{ $t('servers.mapNames.dialogs.add.description.free') }}</span>
+    <span v-show="userProfile.isSubscribed === true">{{ $t('notifications.dialogs.add.description.paid') }}</span>
+    <span v-show="userProfile.isSubscribed === false">{{ $t('notifications.dialogs.add.description.free') }}</span>
     <v-form
       ref="form"
       v-model="formValid"
@@ -17,8 +17,8 @@
       <v-text-field
         id="adduserlevel_name"
         v-model="mapName"
-        :rules="[v => mapNameRegex.test(v) || $t('servers.mapNames.dialogs.add.form.nameError')]"
-        :label="$t('servers.mapNames.dialogs.add.form.name')"
+        :rules="[v => mapNameRegex.test(v) || $t('notifications.dialogs.add.form.nameError')]"
+        :label="$t('notifications.dialogs.add.form.name')"
         required
         :disabled="sending"
       />
@@ -28,7 +28,7 @@
         name="serverId"
         :item-text="v => v.name || `${v.ip_address}:${v.port}`"
         :item-value="v => v.id"
-        :items="[{id: -1, name: $t('servers.mapNames.dialogs.add.form.server')}].concat(servers)"
+        :items="[{id: -1, name: $t('notifications.dialogs.add.form.server')}].concat(servers)"
       />
     </v-form>
     <md-progress-bar v-if="sending" md-mode="indeterminate" />
@@ -88,7 +88,7 @@ export default Vue.extend({
       const name = this.mapName
       const serverId = this.serverId
       this.$repositories.levels.addWatchedLevel(name, serverId).then(() => {
-        this.$toast.success(this.$t('servers.mapNames.toast.add.success', { name }))
+        this.$toast.success(this.$t('notifications.toast.add.success', { name }))
         this.sending = false
         this.submit()
       }).catch((err: Error) => {

@@ -3,12 +3,12 @@
     <v-card>
       <v-toolbar flat>
         <v-toolbar-title>
-          {{ $t('servers.mapNames.title') }}
+          {{ $t('notifications.title') }}
         </v-toolbar-title>
         <v-spacer />
         <v-btn id="addMapNameButton" @click="showAddDialog()">
           <v-icon>mdi-note-add</v-icon>
-          <span>{{ $t('servers.mapNames.buttons.add') }}</span>
+          <span>{{ $t('notifications.buttons.add') }}</span>
         </v-btn>
       </v-toolbar>
       <v-card-text>
@@ -16,13 +16,13 @@
           <thead>
             <tr v-if="levelNames.length > 0">
               <th class="v-center">
-                {{ $t('servers.mapNames.table.headers.name') }}
+                {{ $t('notifications.table.headers.name') }}
               </th>
               <th class="v-center">
-                {{ $t('servers.mapNames.table.headers.server') }}
+                {{ $t('notifications.table.headers.server') }}
               </th>
               <th class="v-center">
-                {{ $t('servers.mapNames.table.headers.enabled') }}
+                {{ $t('notifications.table.headers.enabled') }}
               </th>
               <th class="controls">
                 {{ $t('table.headers.actions') }}
@@ -45,13 +45,13 @@
           align="center"
         >
           <v-col cols="12" align="center">
-            <h1>{{ $t('servers.mapNames.noItems.title') }}</h1>
-            <div>{{ $t('servers.mapNames.noItems.description') }}</div>
+            <h1>{{ $t('notifications.noItems.title') }}</h1>
+            <div>{{ $t('notifications.noItems.description') }}</div>
             <v-btn id="addFirstMapNameButton" @click="showAddDialog()">
               <v-icon>
                 mdi-file-plus
               </v-icon>
-              <span>{{ $t('servers.mapNames.noItems.add') }}</span>
+              <span>{{ $t('notifications.noItems.add') }}</span>
             </v-btn>
           </v-col>
         </v-row>
@@ -138,7 +138,7 @@ export default Vue.extend({
     },
     serverNameForId (serverId: number): string {
       if (serverId < 1) {
-        return String(this.$t('servers.mapNames.table.body.servers.all'))
+        return String(this.$t('notifications.table.body.servers.all'))
       }
       for (const server of this.servers) {
         if (server.id === serverId) {

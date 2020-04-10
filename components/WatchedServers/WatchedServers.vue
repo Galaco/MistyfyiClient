@@ -3,7 +3,7 @@
     <v-card>
       <v-toolbar flat>
         <v-toolbar-title>
-          {{ $t('servers.servers.title') }}
+          {{ $t('servers.title') }}
         </v-toolbar-title>
         <v-spacer />
         <v-btn
@@ -23,17 +23,11 @@
         </v-btn>
         <v-btn @click="showAddServerDialog">
           <v-icon>mdi-note-add</v-icon>
-          <span>{{ $t('servers.servers.buttons.add') }}</span>
+          <span>{{ $t('servers.buttons.add') }}</span>
         </v-btn>
       </v-toolbar>
       <v-card-text>
         <TableView
-          v-if="displayAsTable === true"
-          @showHistory="showServerHistoryDialog"
-          @showDelete="showDeleteServerDialog"
-        />
-        <CardView
-          v-if="displayAsTable === false"
           @showHistory="showServerHistoryDialog"
           @showDelete="showDeleteServerDialog"
         />
@@ -46,13 +40,13 @@
             <v-icon x-large>
               mdi-important-devices
             </v-icon>
-            <h1>{{ $t('servers.servers.noItems.title') }}</h1>
-            <div>{{ $t('servers.servers.noItems.description') }}</div>
+            <h1>{{ $t('servers.noItems.title') }}</h1>
+            <div>{{ $t('servers.noItems.description') }}</div>
             <v-btn id="addFirstServerButton" @click="showAddServerDialog">
               <v-icon>
                 mdi-note-add
               </v-icon>
-              <span>{{ $t('servers.servers.noItems.add') }}</span>
+              <span>{{ $t('servers.noItems.add') }}</span>
             </v-btn>
           </v-col>
         </v-row>
@@ -82,7 +76,6 @@ import { mapGetters } from 'vuex'
 import AddServerDialog from './Dialogs/AddServer.vue'
 import DeleteServerDialog from './Dialogs/DeleteServer.vue'
 import ServerHistoryDialog from './Dialogs/History.vue'
-import CardView from './CardView.vue'
 import TableView from './TableView.vue'
 import { DELETE_SERVER, FETCH_SERVERS, SELECT_SERVER } from '@/store/actions.type'
 
@@ -92,26 +85,18 @@ export default Vue.extend({
     AddServerDialog,
     DeleteServerDialog,
     ServerHistoryDialog,
-    CardView,
     TableView
   },
   data: () => ({
-    displayAsTable: true,
     isNewServerDialogVisible: false,
     isDeleteServerDialogVisible: false,
-    isServerHistoryDialogVisible: false,
-    pollInterval: -1
+    isServerHistoryDialogVisible: false
   }),
   computed: {
     ...mapGetters(['servers', 'serversCount', 'isServersLoading', 'serverSelected', 'userProfile'])
   },
   mounted () {
     this.getPrivateServers()
-
-    this.pollInterval = setInterval(this.getPrivateServers, 30000)
-  },
-  destroyed () {
-    clearInterval(this.pollInterval)
   },
   methods: {
     showAddServerDialog () {
@@ -143,7 +128,7 @@ export default Vue.extend({
         return
       }
       this.$store.dispatch(DELETE_SERVER, this.serverSelected).then(() => {
-        this.$toast.success(this.$t('servers.servers.toast.delete.success', { name: this.serverSelected.name }))
+        this.$toast.success(this.$t('servers.toast.delete.success', { name: this.serverSelected.name }))
         this.onCloseDeleteServerDialog()
       }).catch((err) => {
         this.$toast.error(err.message)

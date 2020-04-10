@@ -1,7 +1,7 @@
 <template>
   <Add
     id="addServerDialog"
-    :title="$t('servers.servers.dialogs.add.title')"
+    :title="$t('servers.dialogs.add.title')"
     :show="show"
     :confirm-disabled="!formValid || sending"
     @confirm="addServer"
@@ -15,16 +15,16 @@
       <v-text-field
         id="addserver_ip"
         v-model="serverIP"
-        :rules="[v => ipAddressRegex.test(v) || $t('servers.servers.dialogs.add.form.ipError')]"
-        :label="$t('servers.servers.dialogs.add.form.ip')"
+        :rules="[v => ipAddressRegex.test(v) || $t('servers.dialogs.add.form.ipError')]"
+        :label="$t('servers.dialogs.add.form.ip')"
         required
         :disabled="sending"
       />
       <v-text-field
         id="addserver_port"
         v-model="serverPort"
-        :rules="[v => v !== undefined && v > -1 && v < 65536 || $t('servers.servers.dialogs.add.form.portError')]"
-        :label="$t('servers.servers.dialogs.add.form.port')"
+        :rules="[v => v !== undefined && v > -1 && v < 65536 || $t('servers.dialogs.add.form.portError')]"
+        :label="$t('servers.dialogs.add.form.port')"
         required
         :disabled="sending"
       />
@@ -81,7 +81,7 @@ export default Vue.extend({
     addServer () {
       this.sending = true
       this.$repositories.servers.addNewServer(this.serverIP, this.serverPort).then(() => {
-        this.$toast.success(this.$t('servers.servers.toast.add.success', { ip: this.serverIP, port: this.serverPort }))
+        this.$toast.success(this.$t('servers.toast.add.success', { ip: this.serverIP, port: this.serverPort }))
         this.submit()
       }).catch((err) => {
         this.$toast.error(err.message)

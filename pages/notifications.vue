@@ -7,16 +7,16 @@
           :sticky="false"
         >
           <v-card-text v-show="userProfile.isSubscribed === false">
-            {{ $t('servers.instructions.free') }}
+            {{ $t('notifications.instructions.free') }}
           </v-card-text>
           <v-card-text v-show="userProfile.isSubscribed === true">
-            {{ $t('servers.instructions.paid') }}
+            {{ $t('notifications.instructions.paid') }}
           </v-card-text>
         </v-card>
       </v-col>
 
       <v-col cols="12">
-        <WatchedServers />
+        <WatchedMaps />
       </v-col>
     </v-row>
   </v-container>
@@ -25,24 +25,30 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import WatchedServers from '@/components/WatchedServers/WatchedServers.vue'
+import WatchedMaps from '@/components/WatchedMaps/WatchedMaps.vue'
+import { FETCH_SERVERS } from '@/store/actions.type'
 
 export default Vue.extend({
   middleware: ['auth'],
   layout: 'app',
-  name: 'Servers',
+  name: 'Notifications',
   transition: {
     css: true
   },
   components: {
-    WatchedServers
+    WatchedMaps
   },
   computed: {
     ...mapGetters(['userProfile'])
   },
+  mounted () {
+    this.$store.dispatch(FETCH_SERVERS).catch((err) => {
+      this.$toast.error(err.message)
+    })
+  },
   head () {
     return {
-      title: 'Servers'
+      title: 'Map Notifications'
     }
   }
 })

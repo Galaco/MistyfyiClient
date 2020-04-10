@@ -1,12 +1,12 @@
 <template>
   <Delete
     id="deleteServerDialog"
-    :title="$t('servers.servers.dialogs.delete.title')"
+    :title="$t('servers.dialogs.delete.title')"
     :show="show"
     @confirm="submit"
     @deny="close"
   >
-    <span>{{ $t('servers.servers.dialogs.delete.body') }}</span>
+    <span>{{ $t('servers.dialogs.delete.body') }}</span>
   </Delete>
 </template>
 

@@ -28,6 +28,7 @@ export default Vue.extend({
     if (this.isLoggedIn() === true) {
       this.$router.push({name: 'feed'})
     }
+    console.log(this.$route.query.passthrough)
     if (String(this.$route.query.passthrough) === '1') {
       this.login()
     }
@@ -42,7 +43,7 @@ export default Vue.extend({
   },
   head () {
     return {
-      title: 'Logging you in...'
+      title: 'Login'
     }
   }
 })

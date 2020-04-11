@@ -1,4 +1,3 @@
-import home from './pages/home'
 import feed from './pages/feed'
 import servers from './pages/servers'
 import notifications from './pages/notifications'
@@ -13,9 +12,7 @@ export default {
       app_title: 'Ikamu',
       header: {
         links: {
-          login: 'Log in/Register',
           logout: 'Log out',
-          openApp: 'Go to app'
         },
         profile: {
           expiresAt: 'Expires: '
@@ -39,7 +36,6 @@ export default {
           paid: 'Premium User'
         }
       },
-      home,
       feed,
       servers,
       notifications,

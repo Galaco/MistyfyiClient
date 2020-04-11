@@ -90,7 +90,7 @@ export default {
     }],
     ['@nuxtjs/auth', {
       redirect: {
-        login: '/login',
+        login: '/',
         callback: '/callback/',
         home: '/feed'
       },

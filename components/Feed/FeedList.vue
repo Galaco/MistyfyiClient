@@ -5,6 +5,16 @@
       :key="index"
       :model="feedItem"
     />
+    <div v-if="feedItemsCount === -1 && isFeedItemsLoading === true" class="row text-center loadingContainer">
+      <div class="col-sm-12 loading-spinner">
+        <v-progress-circular
+          :size="70"
+          :width="7"
+          color="purple"
+          indeterminate
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,3 +35,15 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang='scss' scoped>
+  .loadingContainer {
+    min-height: calc( 100vh - 96px);
+
+    .loading-spinner {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+  }
+</style>

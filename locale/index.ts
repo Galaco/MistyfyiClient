@@ -9,7 +9,7 @@ export default {
   locale: 'en',
   messages: {
     en: {
-      app_title: 'Ikamu',
+      app_title: 'Ikamu.io',
       header: {
         links: {
           logout: 'Log out',

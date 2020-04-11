@@ -6,7 +6,7 @@
     >
       <v-col cols="4">
         <v-card>
-          <v-card-title>Ikamu</v-card-title>
+          <v-card-title>{{ $t('app_title') }}</v-card-title>
           <v-card-text class="text-center">
             <v-btn color="primary" @click="login">
               Login
@@ -26,9 +26,9 @@ export default Vue.extend({
   name: 'Login',
   mounted () {
     if (this.isLoggedIn() === true) {
-      this.$router.push({name: 'feed'})
+      this.$router.push({ name: 'feed' })
     }
-    console.log(this.$route.query.passthrough)
+    console.log(this.$route.query)
     if (String(this.$route.query.passthrough) === '1') {
       this.login()
     }

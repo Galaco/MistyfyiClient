@@ -6,7 +6,7 @@
     >
       <v-col cols="4">
         <v-card>
-          <v-card-title>Ikamu</v-card-title>
+          <v-card-title>{{ $t('app_title') }}</v-card-title>
           <v-card-text class="text-center">
             Logging you in...
           </v-card-text>

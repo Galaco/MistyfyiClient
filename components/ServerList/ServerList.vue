@@ -17,7 +17,7 @@
         :server="server"
       />
     </v-list>
-    <div v-if="serversCount === -1" class="row text-center">
+    <div v-if="serversCount === -1" class="row text-center loadingContainer">
       <div class="col-sm-12 loading-spinner">
         <v-progress-circular
           :size="70"
@@ -49,6 +49,16 @@ export default Vue.extend({
 <style lang='scss' scoped>
 #compactServerList {
   top: 64px !important;
+
+  .loadingContainer {
+    height: 100%;
+
+    .loading-spinner {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+  }
 }
 
 @media only screen and (max-width: 960px) {

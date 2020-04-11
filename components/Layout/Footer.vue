@@ -1,6 +1,6 @@
 <template>
   <v-col
-    class="text-center font-weight-medium"
+    class="text-center font-weight-medium footerRoot"
     cols="12"
   >
     <span class="attribution">
@@ -20,3 +20,9 @@ export default Vue.extend({
   })
 })
 </script>
+
+<style lang="scss" scoped>
+  .footerRoot {
+    background-color: #2b2b2b;
+  }
+</style>

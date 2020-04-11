@@ -44,15 +44,15 @@ export default Vue.extend({
   components: {
     LastUpdated
   },
-  data () {
-    return {
-      thumbnailPath: `${process.env.NUXT_ENV_CDN_URL}/images/map/thumb/`
-    }
-  },
   props: {
     model: {
       type: Item,
       default: () => new Item('', 0, '', '', 0)
+    }
+  },
+  data () {
+    return {
+      thumbnailPath: `${process.env.NUXT_ENV_CDN_URL}/images/map/thumb/`
     }
   }
 })

@@ -20,7 +20,7 @@
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "@nuxtjs/toast": "^3.3.0",
     "@types/auth0-js": "^9.12.4",
-    "auth0-js": "9.13.1",
+    "auth0-js": "9.13.2",
     "axios": "0.19.2",
     "deepmerge": "4.2.2",
     "fibers": "4.0.2",

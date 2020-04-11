@@ -35,7 +35,7 @@ export default Vue.extend({
   },
   methods: {
     isLoggedIn (): boolean {
-      return this.$auth.isLoggedIn()
+      return this.$auth.isLoggedIn
     },
     login () {
       this.$auth.login()

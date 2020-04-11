@@ -2,7 +2,7 @@
   <nuxt-link
     :class="light? 'light': 'dark'"
     class="navbar-brand"
-    :to="{ name: 'index' }"
+    :to="{ name: 'login' }"
   >
     <img src="/images/logo.svg" alt="logo" class="navbar-brand-icon">
     <span class="navbar-brand-title">{{ $t('app_title') }}</span>

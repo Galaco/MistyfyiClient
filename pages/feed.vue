@@ -24,13 +24,27 @@ export default Vue.extend({
   transition: {
     css: true
   },
+  // data () {
+  //   return {
+  //     feedPollTimeout: -1
+  //   }
+  // },
   mounted () {
-    this.$store.dispatch(FETCH_FEED).catch((err) => {
-      this.$toast.error(err.message)
-    })
-    this.$store.dispatch(FETCH_SERVERS).catch((err) => {
-      this.$toast.error(err.message)
-    })
+    this.refreshFeed()
+    this.refreshServers()
+    // this.feedPollTimeout = setTimeout(this.refreshFeed, 120)
+  },
+  methods: {
+    refreshFeed () {
+      this.$store.dispatch(FETCH_FEED).catch((err: Error) => {
+        this.$toast.error(err.message)
+      })
+    },
+    refreshServers () {
+      this.$store.dispatch(FETCH_SERVERS).catch((err: Error) => {
+        this.$toast.error(err.message)
+      })
+    }
   },
   head () {
     return {

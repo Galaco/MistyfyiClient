@@ -4,11 +4,19 @@
       align="center"
       justify="center"
     >
-      <v-col cols="4">
-        <v-card>
-          <v-card-title>{{ $t('app_title') }}</v-card-title>
+      <v-col cols="10" sm="4">
+        <v-card class="theme--dark">
+          <v-card-title>
+            <BrandLogo />
+          </v-card-title>
           <v-card-text class="text-center">
-            Logging you in...
+            <span>{{ $t('header.links.redirecting') }}</span>
+            <v-progress-circular
+              :size="16"
+              :width="2"
+              color="purple"
+              indeterminate
+            />
           </v-card-text>
         </v-card>
       </v-col>

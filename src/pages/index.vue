@@ -4,7 +4,7 @@
       align="center"
       justify="center"
     >
-      <v-col cols="4">
+      <v-col cols="10" sm="4">
         <v-card class="theme--dark">
           <v-card-title>
             <BrandLogo />

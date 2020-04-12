@@ -5,11 +5,25 @@
       justify="center"
     >
       <v-col cols="4">
-        <v-card>
-          <v-card-title>{{ $t('app_title') }}</v-card-title>
+        <v-card class="theme--dark">
+          <v-card-title>
+            <BrandLogo />
+          </v-card-title>
           <v-card-text class="text-center">
+            <p>
+              {{ $t('app_title') }}{{ $t('footer.description') }}
+            </p>
             <v-btn color="primary" @click="login">
-              Login
+              <span v-if="!autoRedirect"> {{ $t('header.links.login') }}</span>
+              <span v-if="autoRedirect">
+                {{ $t('header.links.redirecting') }}
+                <v-progress-circular
+                  :size="16"
+                  :width="2"
+                  color="purple"
+                  indeterminate
+                />
+              </span>
             </v-btn>
           </v-card-text>
         </v-card>
@@ -20,16 +34,23 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import BrandLogo from '@/components/Layout/BrandLogo.vue'
 
 export default Vue.extend({
   layout: 'empty',
   name: 'Login',
+  components: {
+    BrandLogo
+  },
+  data: () => ({
+    autoRedirect: false
+  }),
   mounted () {
     if (this.isLoggedIn() === true) {
       this.$router.push({ name: 'feed' })
     }
-    console.log(this.$route.query)
     if (String(this.$route.query.passthrough) === '1') {
+      this.autoRedirect = true
       this.login()
     }
   },
@@ -38,6 +59,9 @@ export default Vue.extend({
       return this.$auth.isLoggedIn
     },
     login () {
+      if (this.autoRedirect) {
+        return
+      }
       this.$auth.login()
     }
   },

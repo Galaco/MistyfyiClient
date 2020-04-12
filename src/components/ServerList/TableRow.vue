@@ -48,7 +48,7 @@ export default Vue.extend({
   props: {
     server: {
       type: Server,
-      default: () => new Server(-1, '')
+      default: () => new Server('', '')
     }
   },
   methods: {

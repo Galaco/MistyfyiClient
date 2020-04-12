@@ -17,15 +17,16 @@
     "baseUrl": ".",
     "paths": {
       "~/*": [
-        "./*"
+        "./src/*"
       ],
       "@/*": [
-        "./*"
+        "./src/*"
       ]
     },
     "types": [
       "@types/node",
       "@nuxt/types",
+      "@types/jest",
       "nuxt-i18n",
       "vuetify"
     ]

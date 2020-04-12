@@ -1,9 +1,14 @@
 <template>
   <tr class="server">
-    <td>
-      {{ server.name }}
+    <td v-if="server.name">
+      <v-tooltip top>
+        <template v-slot:activator="{ on }">
+          <span v-on="on">{{ server.name }}</span>
+        </template>
+        <span>{{ server.ip_address }}:{{ server.port }}</span>
+      </v-tooltip>
     </td>
-    <td>
+    <td v-if="!server.name">
       {{ server.ip_address }}:{{ server.port }}
     </td>
     <td class="map-name">
@@ -13,7 +18,7 @@
       <LastUpdated :date="server.last_updated" />
     </td>
     <td class="controls" align="center">
-      <v-tooltip bottom>
+      <v-tooltip top>
         <template v-slot:activator="{ on }">
           <v-btn
             class="mx-2"
@@ -29,7 +34,7 @@
         </template>
         <span>{{ $t('servers.buttons.history') }}</span>
       </v-tooltip>
-      <v-tooltip bottom>
+      <v-tooltip top>
         <template v-slot:activator="{ on }">
           <v-btn
             class="mx-2"
@@ -62,7 +67,7 @@ export default Vue.extend({
   props: {
     server: {
       type: Server,
-      default: () => new Server(-1, '')
+      default: () => new Server('', '')
     }
   },
   methods: {

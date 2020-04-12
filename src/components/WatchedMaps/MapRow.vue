@@ -13,7 +13,7 @@
       />
     </td>
     <td class="controls" align="center">
-      <v-tooltip bottom>
+      <v-tooltip top>
         <template v-slot:activator="{ on }">
           <v-btn
             class="mx-2"

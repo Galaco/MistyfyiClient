@@ -1,7 +1,8 @@
 import { Context } from 'vm'
-import locale from './locale'
+import locale from './src/locale'
 
 export default {
+  srcDir: 'src/',
   build: {
     extend (config: any, context: Context) {
       if (context.isDev && !process.client) {

@@ -28,7 +28,7 @@
         name="serverId"
         :item-text="v => v.name || `${v.ip_address}:${v.port}`"
         :item-value="v => v.id"
-        :items="[{id: -1, name: $t('notifications.dialogs.add.form.server')}].concat(servers)"
+        :items="[{id: '', name: $t('notifications.dialogs.add.form.server')}].concat(servers)"
       />
     </v-form>
     <md-progress-bar v-if="sending" md-mode="indeterminate" />
@@ -56,7 +56,7 @@ export default Vue.extend({
   data: () => ({
     formValid: false,
     mapName: '',
-    serverId: -1,
+    serverId: '',
     mapNameValid: true,
     sending: false,
     mapNameRegex: /^[a-zA-Z0-9-_*]+$/
@@ -82,7 +82,7 @@ export default Vue.extend({
       this.sending = false
       this.mapName = ''
       this.mapNameValid = true
-      this.serverId = -1
+      this.serverId = ''
     },
     addWatchedMap () {
       const name = this.mapName

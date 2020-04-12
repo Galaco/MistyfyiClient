@@ -4,7 +4,6 @@
       <thead v-if="servers.length > 0">
         <tr>
           <th>{{ $t('servers.list.headers.server') }}</th>
-          <th>{{ $t('servers.list.headers.address') }}</th>
           <th>{{ $t('servers.list.headers.map') }}</th>
           <th>{{ $t('servers.list.headers.updated') }}</th>
           <th class="controls">

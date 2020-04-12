@@ -136,8 +136,8 @@ export default Vue.extend({
       this.closeDeleteDialog()
       this.getUserLevels()
     },
-    serverNameForId (serverId: number): string {
-      if (serverId < 1) {
+    serverNameForId (serverId: string): string {
+      if (serverId === '') {
         return String(this.$t('notifications.table.body.servers.all'))
       }
       for (const server of this.servers) {

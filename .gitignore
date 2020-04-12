@@ -8,6 +8,9 @@ OneSignalSDK*
 sw.*
 static/sw.js
 
+# test
+coverage/
+
 # yarn
 yarn-error.log
 

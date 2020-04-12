@@ -1,5 +1,5 @@
 import { AxiosResponse, AxiosError } from 'axios'
-import { FETCH_FEED, SERVER_UPDATED } from './actions.type'
+import { FETCH_FEED } from './actions.type'
 import {
   FETCH_FEED_END,
   FETCH_FEED_START,
@@ -38,9 +38,6 @@ const actions = {
       this.$toast.error(err.message)
       console.log(err)
     })
-  },
-  [SERVER_UPDATED] ({ commit }: any, model: Server): any {
-    commit(SERVER_MAP_CHANGED, model)
   }
 }
 

@@ -11,10 +11,10 @@ export default ($axios: AxiosInstance) => ({
       server_id: server
     })
   },
-  deleteWatchedLevel (name: string) {
+  deleteWatchedLevel (id: string) {
     return $axios.delete(`${BASE_URL}/api/v1/levels/remove`, {
       data: {
-        name
+        id
       }
     })
   }

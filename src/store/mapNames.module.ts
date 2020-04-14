@@ -40,7 +40,7 @@ const actions = {
   },
   [DELETE_LEVEL_NAMES] ({ dispatch, commit }: any, params: any): void {
     commit(DELETE_LEVEL_NAMES_START)
-    return this.$repositories.levels.deleteWatchedLevel(params.name).then((data: AxiosResponse<ApiResponse>) => {
+    return this.$repositories.levels.deleteWatchedLevel(params.id).then((data: AxiosResponse<ApiResponse>) => {
       commit(DELETE_LEVEL_NAMES_END, data)
       dispatch(FETCH_LEVEL_NAMES)
     }).catch((err: AxiosError) => {
@@ -54,7 +54,7 @@ const mutations = {
     state.loadingLevelNames = true
   },
   [FETCH_LEVEL_NAMES_END] (state: State, resp: ApiResponse) {
-    state.levelNames = resp.body.map((item: any) => new WatchedMap(item.name, item.server_id, item.disabled))
+    state.levelNames = resp.body.map((item: any) => new WatchedMap(item.id, item.name, item.server_id, item.disabled))
     state.levelNamesCount = resp.body.length
     state.loadingLevelNames = false
   },

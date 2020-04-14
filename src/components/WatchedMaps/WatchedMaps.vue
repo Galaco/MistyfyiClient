@@ -100,7 +100,7 @@ export default Vue.extend({
   data () {
     return {
       isAddDialogVisible: false,
-      selectedLevel: new WatchedMap(''),
+      selectedLevel: new WatchedMap('', ''),
       isDeleteDialogVisible: false
     }
   },
@@ -126,7 +126,7 @@ export default Vue.extend({
     },
     closeDeleteDialog () {
       this.isDeleteDialogVisible = false
-      this.selectedLevel = new WatchedMap('')
+      this.selectedLevel = new WatchedMap('', '')
     },
     onMapAdded () {
       this.closeAddDialog()

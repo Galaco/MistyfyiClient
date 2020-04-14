@@ -46,7 +46,7 @@ const mutations = {
     state.popularItems = new Popular(
       resp.body.servers.map((item: any) => new Server(item.id, item.ip_address, item.port, item.name, item.current_map, item.last_updated)),
       resp.body.maps.map((item: any) => new HistoryItem(item.map_name, item.date_created)),
-      resp.body.mapNames.map((item: any) => new WatchedMap(item.name, item.server_id, item.disabled))
+      resp.body.mapNames.map((item: any) => new WatchedMap(item.id, item.name, item.server_id, item.disabled))
     )
     state.isPopularItemsLoading = false
   }

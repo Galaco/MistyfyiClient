@@ -28,7 +28,7 @@ export default Vue.extend({
     },
     model: {
       type: WatchedMap,
-      default: () => new WatchedMap('')
+      default: () => new WatchedMap('', '')
     }
   },
   methods: {

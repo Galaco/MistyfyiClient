@@ -43,7 +43,7 @@ export default Vue.extend({
   props: {
     model: {
       type: WatchedMap,
-      default: new WatchedMap('')
+      default: new WatchedMap('', '')
     },
     getServerNameFromId: {
       type: Function,

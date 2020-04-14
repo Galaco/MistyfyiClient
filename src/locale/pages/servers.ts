@@ -2,7 +2,7 @@ export default {
   title: 'Watched Servers',
   instructions: {
     free: 'As a free user, you may watch up to 3 servers. By upgrading, you may watch up to 20 servers.',
-    paid: 'As a premium user, you may watch up to 20 servers. Increased limits are available upon request.'
+    paid: 'As a paid user, you may watch up to 20 servers. Increased limits are available upon request.'
   },
   buttons: {
     add: 'Add server',

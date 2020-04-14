@@ -48,7 +48,6 @@ const mutations = {
       resp.body.maps.map((item: any) => new HistoryItem(item.map_name, item.date_created)),
       resp.body.mapNames.map((item: any) => new WatchedMap(item.name, item.server_id, item.disabled))
     )
-    console.log(state.popularItems)
     state.isPopularItemsLoading = false
   }
 }

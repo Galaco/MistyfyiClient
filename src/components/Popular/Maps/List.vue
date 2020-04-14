@@ -6,7 +6,11 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-card-text>
-      <v-row v-if="popularItems.maps.length > 0">
+      <v-row
+        v-if="popularItems.maps.length > 0"
+        justify="center"
+        align="center"
+      >
         <v-col
           v-for="(mapName,index) in popularItems.maps"
           :key="index"
@@ -14,7 +18,6 @@
           align="bottom"
           cols="10"
           sm="3"
-          :can-user-add="levelNames.find(s => s.name === mapName.name) === null"
         >
           <Item
             :model="mapName"
@@ -46,7 +49,7 @@ export default Vue.extend({
     Item
   },
   computed: {
-    ...mapGetters(['popularItems', 'isPopularItemsLoading', 'levelNames'])
+    ...mapGetters(['popularItems', 'isPopularItemsLoading'])
   }
 })
 </script>

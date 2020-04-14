@@ -15,11 +15,12 @@
             </th>
           </tr>
         </thead>
-        <tbody v-if="popularItems.watchedMaps.length > 0">
+        <tbody v-if="popularItems.watchedMaps.length > 0 && levelNamesCount > -1">
           <Item
-            v-for="(mapName,index) in popularItems.watchedMaps"
+            v-for="(map,index) in popularItems.watchedMaps"
             :key="index"
-            :model="mapName"
+            :model="map"
+            :can-user-add="!levelNames.find(s => s.name === map.name)"
           />
         </tbody>
       </v-simple-table>
@@ -48,7 +49,7 @@ export default Vue.extend({
     Item
   },
   computed: {
-    ...mapGetters(['popularItems', 'isPopularItemsLoading'])
+    ...mapGetters(['popularItems', 'isPopularItemsLoading', 'levelNames', 'levelNamesCount'])
   }
 })
 </script>

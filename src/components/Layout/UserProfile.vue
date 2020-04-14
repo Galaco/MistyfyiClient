@@ -7,7 +7,13 @@
             {{ $auth.user.email }}
           </span>
           <v-avatar>
-            <v-icon>mdi-account-circle</v-icon>
+            <v-img
+              v-if="$auth.user.picture"
+              :src="$auth.user.picture"
+            />
+            <v-icon v-if="!$auth.user.picture">
+              mdi-account-circle
+            </v-icon>
           </v-avatar>
         </div>
       </template>
@@ -29,10 +35,7 @@
             {{ $t('header.profile.expiresAt') }} {{ DateToString(userProfile.dateExpires) }}
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-show="!$auth.loggedIn" id="toolbarLoginButton" @click="handleLogin()">
-          <v-list-item-title>{{ $t('header.links.login') }}</v-list-item-title>
-        </v-list-item>
-        <v-list-item v-show="$auth.loggedIn" id="toolbarLogoutButton" @click="handleLogout()">
+        <v-list-item id="toolbarLogoutButton" @click="handleLogout()">
           <v-list-item-action>
             <v-icon>mdi-cancel</v-icon>
           </v-list-item-action>
@@ -58,14 +61,8 @@ export default Vue.extend({
     ...mapGetters(['userProfile'])
   },
   methods: {
-    handleLogin () {
-      this.$auth.login()
-    },
     handleLogout () {
       this.$auth.logout()
-    },
-    getUserEmail (): string {
-      return this.$auth.user.email
     },
     DateToString (date: number): string {
       return DateToDateString(new Date(date * 1000))

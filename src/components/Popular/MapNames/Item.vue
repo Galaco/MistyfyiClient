@@ -6,13 +6,13 @@
     <td class="controls" align="center">
       <v-btn
         v-if="model.name.indexOf('*') === -1 || userProfile.isSubscribed"
-        :disabled="!canUserAdd || saving"
+        :disabled="!canUserAdd || saving || added"
         @click="onAdd"
       >
-        <span v-if="canUserAdd && !saving">
+        <span v-if="canUserAdd && !saving && !added">
           {{ $t('popular.mapNames.actions.add.button') }}
         </span>
-        <span v-if="canUserAdd && saving">
+        <span v-if="canUserAdd && saving && !added">
           {{ $t('popular.mapNames.actions.add.saving') }}
           <v-progress-circular
             :size="16"
@@ -57,16 +57,18 @@ export default Vue.extend({
       default: () => false
     }
   },
-  data: () => ({
-    saving: false,
-    added: false
-  }),
+  data: () => {
+    return {
+      saving: false,
+      added: false
+    }
+  },
   computed: {
     ...mapGetters(['userProfile'])
   },
   methods: {
     onAdd () {
-      if (!this.canUserAdd) {
+      if (!this.canUserAdd && !this.saving && !this.added) {
         return
       }
       this.addWatchName()

@@ -26,11 +26,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import BrandLogo from '@/components/Layout/BrandLogo.vue'
 
 export default Vue.extend({
   middleware: ['auth'],
   layout: 'empty',
   name: 'Callback',
+  components: {
+    BrandLogo
+  },
   head () {
     return {
       title: 'Logging you in...'

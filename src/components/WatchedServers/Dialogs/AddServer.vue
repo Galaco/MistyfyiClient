@@ -80,7 +80,7 @@ export default Vue.extend({
     },
     addServer () {
       this.sending = true
-      this.$repositories.servers.addNewServer(this.serverIP, this.serverPort).then(() => {
+      this.$repositories.servers.addNewServer(this.serverIP, Number(this.serverPort)).then(() => {
         this.$toast.success(this.$t('servers.toast.add.success', { ip: this.serverIP, port: this.serverPort }))
         this.submit()
       }).catch((err) => {

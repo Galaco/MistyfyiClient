@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="10" sm="12">
+      <v-col cols="12">
         <v-card
           single-line
           :sticky="false"
@@ -13,17 +13,17 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="10" sm="12">
+      <v-col cols="12">
         <PopularServers />
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="10" sm="12">
+      <v-col cols="12">
         <PopularMaps />
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="10" sm="12">
+      <v-col cols="12">
         <PopularMapNames />
       </v-col>
     </v-row>

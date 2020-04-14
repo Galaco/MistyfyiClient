@@ -15,12 +15,12 @@
             </th>
           </tr>
         </thead>
-        <tbody v-if="popularItems.servers.length > 0">
+        <tbody v-if="popularItems.servers.length > 0 && serversCount > -1">
           <Item
             v-for="(server,index) in popularItems.servers"
             :key="index"
             :server="server"
-            :can-user-add="servers.find(s => s.id === server.id) === null"
+            :can-user-add="!servers.find(s => s.id === server.id)"
           />
         </tbody>
       </v-simple-table>
@@ -49,7 +49,7 @@ export default Vue.extend({
     Item
   },
   computed: {
-    ...mapGetters(['popularItems', 'isPopularItemsLoading', 'servers'])
+    ...mapGetters(['popularItems', 'isPopularItemsLoading', 'servers', 'serversCount'])
   }
 })
 </script>

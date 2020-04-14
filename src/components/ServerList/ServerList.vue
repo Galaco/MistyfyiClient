@@ -6,7 +6,7 @@
     right="right"
     fixed
     dark
-    permanent="true"
+    :permanent="true"
     mobile-break-point="960"
   >
     <v-list v-if="servers.length > 0">

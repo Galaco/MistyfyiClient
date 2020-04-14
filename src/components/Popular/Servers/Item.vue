@@ -4,11 +4,11 @@
       {{ server.name }}
     </td>
     <td class="controls" align="center">
-      <v-btn :disabled="!canUserAdd || saving" @click="onAdd">
-        <span v-if="canUserAdd && !saving">
+      <v-btn :disabled="!canUserAdd || saving || added" @click="onAdd">
+        <span v-if="canUserAdd && !saving && !added">
           {{ $t('popular.servers.actions.add.button') }}
         </span>
-        <span v-if="canUserAdd && saving">
+        <span v-if="canUserAdd && saving && added">
           {{ $t('popular.servers.actions.add.saving') }}
           <v-progress-circular
             :size="16"
@@ -47,7 +47,7 @@ export default Vue.extend({
   }),
   methods: {
     onAdd () {
-      if (!this.canUserAdd) {
+      if (!this.canUserAdd && !this.saving && !this.added) {
         return
       }
       this.addServer()

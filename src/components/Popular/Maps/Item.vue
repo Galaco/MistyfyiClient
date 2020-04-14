@@ -7,14 +7,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import WatchedMap from '@/models/api/maps/WatchedMap'
+import HistoryItem from '@/models/api/servers/Historyitem'
 
 export default Vue.extend({
   name: 'Item',
   props: {
     model: {
-      type: WatchedMap,
-      default: () => new WatchedMap('', '')
+      type: HistoryItem,
+      default: () => new HistoryItem('', 0)
     }
   },
   data () {

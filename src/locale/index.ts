@@ -1,4 +1,5 @@
 import feed from './pages/feed'
+import popular from './pages/popular'
 import servers from './pages/servers'
 import notifications from './pages/notifications'
 import help from './pages/help'
@@ -27,6 +28,7 @@ export default {
       navigation: {
         links: {
           feed: 'Home',
+          popular: 'Popular',
           servers: 'Servers',
           notifications: 'Map Notifications',
           help: 'Help'
@@ -35,13 +37,14 @@ export default {
       account: {
         types: {
           free: 'Free User',
-          paid: 'Premium User'
+          paid: 'Paid User'
         }
       },
       feed,
-      servers,
-      notifications,
       help,
+      notifications,
+      popular,
+      servers,
       dialog: dialogs,
       table: tables
     }

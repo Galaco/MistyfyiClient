@@ -19,7 +19,7 @@ class LocalStorage {
 const plugin = new LocalStorage()
 
 const P = {
-  install: (vue) => {
+  install: (vue: any) => {
     vue.prototype.$localStorage = plugin
   }
 }

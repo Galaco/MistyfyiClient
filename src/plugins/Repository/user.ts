@@ -1,6 +1,11 @@
 import { AxiosInstance } from 'axios'
 import { BASE_URL } from './index'
 
+export interface User {
+  getUserProfile(): Promise<any>
+  sendContactRequest(email: string, message: string, recaptcha: string): Promise<any>
+}
+
 export default ($axios: AxiosInstance) => ({
   getUserProfile () {
     return $axios.get(`${BASE_URL}/api/v1/user/profile`)

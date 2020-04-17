@@ -1,6 +1,12 @@
 import { AxiosInstance } from 'axios'
 import { BASE_URL } from './index'
 
+export interface Servers {
+  getServerStatuses(): Promise<any>
+  addNewServer(ip: string, port: number): Promise<any>
+  deleteServer(ip: string, port: number): Promise<any>
+}
+
 export default (axios: AxiosInstance) => ({
   getServerStatuses () {
     return axios.get(`${BASE_URL}/api/v1/servers/list`)

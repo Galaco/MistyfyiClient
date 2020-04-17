@@ -8,7 +8,7 @@ export default ($axios: AxiosInstance) => ({
   addWatchedLevel (name: string, server: number) {
     return $axios.put(`${BASE_URL}/api/v1/levels/add`, {
       name,
-      server_id: server
+      serverId: server
     })
   },
   deleteWatchedLevel (id: string) {

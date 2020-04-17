@@ -17,20 +17,21 @@ export default {
       map: 'Current Map',
       game: 'Game',
       players: 'Players',
-      updated: 'Started'
+      updated: 'Changed Map'
     }
   },
   server: {
     name: {
-      tooltip: 'Servers\'s reported name'
+      tooltip: 'Server\'s reported name'
     },
     game: {
-      tooltip: 'Servers\'s reported game name'
+      tooltip: 'Server\'s reported game name'
     },
     players: {
       tooltip: 'Active players when this server changed map (current player count may differ)'
     },
     updated: {
+      tooltip: 'Time elapsed since the current map started',
       notResponding: 'Could not contact server'
     }
   },

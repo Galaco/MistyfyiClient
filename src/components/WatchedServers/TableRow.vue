@@ -31,7 +31,14 @@
       </v-tooltip>
     </td>
     <td>
-      <LastUpdated :date="server.lastUpdated" />
+      <v-tooltip top>
+        <template v-slot:activator="{ on }">
+          <span v-on="on">
+            <LastUpdated :date="server.lastUpdated" />
+          </span>
+        </template>
+        <span>{{ $t('servers.server.updated.tooltip') }}</span>
+      </v-tooltip>
     </td>
     <td class="controls" align="center">
       <v-tooltip top>

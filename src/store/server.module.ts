@@ -52,7 +52,7 @@ const mutations = {
     state.isServerHistoryLoading = true
   },
   [FETCH_SERVER_HISTORY_END] (state: State, resp: ApiResponse) {
-    state.history = resp.body.map((item: any) => new HistoryItem(item.map_name, item.date_created))
+    state.history = resp.body.map((item: any) => new HistoryItem(item.map_name, item.dateCreated))
     state.historyCount = resp.body.length
     state.isServerHistoryLoading = false
   },

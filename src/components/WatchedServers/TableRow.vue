@@ -5,17 +5,17 @@
         <template v-slot:activator="{ on }">
           <span v-on="on">{{ server.name }}</span>
         </template>
-        <span>{{ server.ip_address }}:{{ server.port }}</span>
+        <span>{{ server.ipAddress }}:{{ server.port }}</span>
       </v-tooltip>
     </td>
     <td v-if="!server.name">
-      {{ server.ip_address }}:{{ server.port }}
+      {{ server.ipAddress }}:{{ server.port }}
     </td>
     <td class="map-name">
-      {{ server.current_map }}
+      {{ server.currentMap }}
     </td>
     <td class="last-updated">
-      <LastUpdated :date="server.last_updated" />
+      <LastUpdated :date="server.lastUpdated" />
     </td>
     <td class="controls" align="center">
       <v-tooltip top>

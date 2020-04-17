@@ -42,7 +42,7 @@ const actions = {
   },
   [DELETE_SERVER] ({ dispatch, commit }: any, params: any): any {
     commit(DELETE_SERVERS_START)
-    return this.$repositories.servers.deleteServer(params.ip_address, params.port).then((data: AxiosResponse<ApiResponse>) => {
+    return this.$repositories.servers.deleteServer(params.ipAddress, params.port).then((data: AxiosResponse<ApiResponse>) => {
       commit(DELETE_SERVERS_END, data)
       dispatch(FETCH_SERVERS)
     }).catch((err: AxiosError) => {
@@ -60,7 +60,7 @@ const mutations = {
     state.isServersLoading = true
   },
   [FETCH_SERVERS_END] (state: State, resp: ApiResponse) {
-    state.servers = resp.body.map((item: any) => new Server(item.id, item.ip_address, item.port, item.name, item.current_map, item.last_updated))
+    state.servers = resp.body.map((item: any) => new Server(item.id, item.ipAddress, item.port, item.name, item.currentMap, item.lastUpdated))
     state.serversCount = resp.body.length
     state.isServersLoading = false
   },
@@ -74,8 +74,8 @@ const mutations = {
     const idx = state.servers.findIndex(server => server.id === model.id)
     const servers = [...state.servers]
     servers[idx].name = model.name
-    servers[idx].current_map = model.current_map
-    servers[idx].last_updated = model.last_updated
+    servers[idx].currentMap = model.currentMap
+    servers[idx].lastUpdated = model.lastUpdated
     state.servers = servers
     state.isServersLoading = false
   }

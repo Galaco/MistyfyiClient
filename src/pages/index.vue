@@ -59,9 +59,6 @@ export default Vue.extend({
       return this.$auth.isLoggedIn
     },
     login () {
-      if (this.autoRedirect) {
-        return
-      }
       this.$auth.login()
     }
   },

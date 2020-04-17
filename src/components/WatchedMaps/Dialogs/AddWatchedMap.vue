@@ -26,7 +26,7 @@
         id="serverId"
         v-model="serverId"
         name="serverId"
-        :item-text="v => v.name || `${v.ip_address}:${v.port}`"
+        :item-text="v => v.name || `${v.ipAddress}:${v.port}`"
         :item-value="v => v.id"
         :items="[{id: '', name: $t('notifications.dialogs.add.form.server')}].concat(servers)"
       />

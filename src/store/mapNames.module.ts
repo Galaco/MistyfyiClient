@@ -54,7 +54,7 @@ const mutations = {
     state.loadingLevelNames = true
   },
   [FETCH_LEVEL_NAMES_END] (state: State, resp: ApiResponse) {
-    state.levelNames = resp.body.map((item: any) => new WatchedMap(item.id, item.name, item.server_id, item.disabled))
+    state.levelNames = resp.body.map((item: any) => new WatchedMap(item.id, item.name, item.serverId, item.disabled))
     state.levelNamesCount = resp.body.length
     state.loadingLevelNames = false
   },

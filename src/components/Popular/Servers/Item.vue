@@ -54,7 +54,7 @@ export default Vue.extend({
     },
     addServer () {
       this.saving = true
-      this.$repositories.servers.addNewServer(this.server.ip_address, this.server.port).then(() => {
+      this.$repositories.servers.addNewServer(this.server.ipAddress, this.server.port).then(() => {
         this.$toast.success(this.$t('servers.toast.add.success', { ip: this.server.name }))
         this.saving = false
         this.added = true

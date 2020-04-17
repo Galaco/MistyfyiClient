@@ -142,7 +142,7 @@ export default Vue.extend({
       }
       for (const server of this.servers) {
         if (server.id === serverId) {
-          return (server.name || `${server.ip_address}:${server.port}`)
+          return (server.name || `${server.ipAddress}:${server.port}`)
         }
       }
       return ''

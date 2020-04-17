@@ -51,7 +51,7 @@ const mutations = {
     state.isFeedItemsLoading = false
   },
   [SERVER_MAP_CHANGED] (state: State, server: Server) {
-    const newItem = new Item(server.ip_address, server.port, server.name, server.current_map, server.last_updated)
+    const newItem = new Item(server.ipAddress, server.port, server.name, server.currentMap, server.lastUpdated)
     state.feedItems = [newItem, ...state.feedItems]
     state.feedItemsCount = state.feedItemsCount + 1
   }

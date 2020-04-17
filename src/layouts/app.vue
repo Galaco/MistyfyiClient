@@ -153,7 +153,7 @@ export default Vue.extend({
 
     this.$OneSignal.push(() => {
       this.$OneSignal.on('notificationDisplay', (event: any) => {
-        this.$store.dispatch(SERVER_UPDATED, new Server(event.data.id, '', 0, event.data.name, event.data.current_map, Math.floor(Date.now() / 1000)))
+        this.$store.dispatch(SERVER_UPDATED, new Server(event.data.id, '', 0, event.data.name, event.data.currentMap, Math.floor(Date.now() / 1000)))
       })
     })
     this.$store.subscribe((mutation: any) => {

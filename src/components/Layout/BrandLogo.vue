@@ -41,7 +41,7 @@ export default Vue.extend({
 
         .navbar-brand-icon {
             font-size: 20px;
-            color: #fb7e14;
+            color: #797979;
             height: 40px;
             width: 40px;
             border-radius: 5px;
@@ -63,7 +63,7 @@ export default Vue.extend({
         &:hover {
             .navbar-brand-icon {
                 background-color: #4d4d4d;
-                color: rgb(255, 150, 24);
+                color: #797979;
             }
 
             .navbar-brand-title {

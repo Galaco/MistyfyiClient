@@ -25,14 +25,14 @@
       <span
         v-if="server.name.length === 0"
         class="text-uppercase font-weight-regular caption"
-        v-text="`${server.ip_address}:${server.port}`"
+        v-text="`${server.ipAddress}:${server.port}`"
       />
       <div
-        v-if="server.current_map.length > 0"
-        v-text="server.current_map"
+        v-if="server.currentMap.length > 0"
+        v-text="server.currentMap"
       />
       <div
-        v-if="server.current_map.length === 0"
+        v-if="server.currentMap.length === 0"
         v-text="$t('feed.serverList.serverUnreachable')"
       />
     </v-list-item-content>

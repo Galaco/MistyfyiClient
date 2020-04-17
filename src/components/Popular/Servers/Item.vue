@@ -3,6 +3,9 @@
     <td>
       {{ server.name }}
     </td>
+    <td>
+      {{ server.game }}
+    </td>
     <td class="controls" align="center">
       <v-btn :disabled="!canUserAdd || saving || added" @click="onAdd">
         <span v-if="canUserAdd && !saving && !added">

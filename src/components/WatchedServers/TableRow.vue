@@ -1,5 +1,5 @@
 <template>
-  <tr class="server">
+  <tr>
     <td v-if="server.name">
       <v-tooltip top>
         <template v-slot:activator="{ on }">
@@ -11,10 +11,16 @@
     <td v-if="!server.name">
       {{ server.ipAddress }}:{{ server.port }}
     </td>
-    <td class="map-name">
+    <td>
       {{ server.currentMap }}
     </td>
-    <td class="last-updated">
+    <td>
+      {{ server.game }}
+    </td>
+    <td>
+      {{ server.playerCount }}/{{ server.maxPlayers }}
+    </td>
+    <td>
       <LastUpdated :date="server.lastUpdated" />
     </td>
     <td class="controls" align="center">

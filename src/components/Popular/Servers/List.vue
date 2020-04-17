@@ -10,6 +10,7 @@
         <thead v-if="popularItems.servers.length > 0">
           <tr>
             <th>{{ $t('servers.list.headers.server') }}</th>
+            <th>{{ $t('servers.list.headers.game') }}</th>
             <th class="controls">
               {{ $t('table.headers.actions') }}
             </th>

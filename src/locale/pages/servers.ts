@@ -15,6 +15,8 @@ export default {
       server: 'Server',
       address: 'Address',
       map: 'Current Map',
+      game: 'Game',
+      players: 'Players',
       updated: 'Updated'
     }
   },

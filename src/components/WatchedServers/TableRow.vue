@@ -15,10 +15,20 @@
       {{ server.currentMap }}
     </td>
     <td>
-      {{ server.game }}
+      <v-tooltip top>
+        <template v-slot:activator="{ on }">
+          <span v-on="on">{{ server.game}}</span>
+        </template>
+        <span>{{ $t('servers.server.game.tooltip') }}</span>
+      </v-tooltip>
     </td>
     <td>
-      {{ server.playerCount }}/{{ server.maxPlayers }}
+      <v-tooltip top>
+        <template v-slot:activator="{ on }">
+          <span v-on="on">{{ server.playerCount }}/{{ server.maxPlayers }}</span>
+        </template>
+        <span>{{ $t('servers.server.players.tooltip') }}</span>
+      </v-tooltip>
     </td>
     <td>
       <LastUpdated :date="server.lastUpdated" />

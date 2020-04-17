@@ -1,10 +1,20 @@
 <template>
   <tr>
     <td>
-      {{ server.name }}
+      <v-tooltip top>
+        <template v-slot:activator="{ on }">
+          <span v-on="on">{{ server.name}}</span>
+        </template>
+        <span>{{ $t('servers.server.name.tooltip') }}</span>
+      </v-tooltip>
     </td>
     <td>
-      {{ server.game }}
+      <v-tooltip top>
+        <template v-slot:activator="{ on }">
+          <span v-on="on">{{ server.game}}</span>
+        </template>
+        <span>{{ $t('servers.server.game.tooltip') }}</span>
+      </v-tooltip>
     </td>
     <td class="controls" align="center">
       <v-btn :disabled="!canUserAdd || saving || added" @click="onAdd">

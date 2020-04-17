@@ -20,8 +20,7 @@ export default Vue.extend({
   }),
   watch: {
     date () {
-      this.formatted = this.$t('servers.server.updated.prefix').toString() +
-        format(new Date(this.date * 1000), 'en_US')
+      this.formatted = format(new Date(this.date * 1000), 'en_US')
     }
   },
   destroyed () {
@@ -35,8 +34,7 @@ export default Vue.extend({
   methods: {
     refresh () {
       if (this.date > 0) {
-        this.formatted = this.$t('servers.server.updated.prefix').toString() +
-          format(new Date(this.date * 1000), 'en_US').toString()
+        this.formatted = format(new Date(this.date * 1000), 'en_US').toString()
       } else {
         this.formatted = this.$t('servers.server.updated.notResponding').toString()
       }

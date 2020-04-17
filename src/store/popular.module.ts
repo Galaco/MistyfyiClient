@@ -44,7 +44,7 @@ const mutations = {
   },
   [FETCH_POPULAR_END] (state: State, resp: ApiResponse) {
     state.popularItems = new Popular(
-      resp.body.servers.map((item: any) => new Server(item.id, item.ipAddress, item.port, item.name, item.currentMap, item.lastUpdated)),
+      resp.body.servers.map((item: any) => new Server(item.id, item.ipAddress, item.port, item.name, item.currentMap, item.game, item.playerCount, item.maxPlayers, item.lastUpdated)),
       resp.body.maps.map((item: any) => new HistoryItem(item.map_name, item.dateCreated)),
       resp.body.mapNames.map((item: any) => new WatchedMap(item.id, item.name, item.serverId, item.disabled))
     )

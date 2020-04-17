@@ -60,7 +60,7 @@ const mutations = {
     state.isServersLoading = true
   },
   [FETCH_SERVERS_END] (state: State, resp: ApiResponse) {
-    state.servers = resp.body.map((item: any) => new Server(item.id, item.ipAddress, item.port, item.name, item.currentMap, item.lastUpdated))
+    state.servers = resp.body.map((item: any) => new Server(item.id, item.ipAddress, item.port, item.name, item.currentMap, item.game, item.playerCount, item.maxPlayers, item.lastUpdated))
     state.serversCount = resp.body.length
     state.isServersLoading = false
   },

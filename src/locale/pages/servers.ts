@@ -12,7 +12,7 @@ export default {
   },
   list: {
     headers: {
-      server: 'Server',
+      server: 'Server Name',
       address: 'Address',
       map: 'Current Map',
       game: 'Game',

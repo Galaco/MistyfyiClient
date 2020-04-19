@@ -82,7 +82,7 @@
     <v-app-bar
       app
       flat
-      color="indigo darken-4"
+      color="#4588d2"
     >
       <v-app-bar-nav-icon @click.stop="menuVisible = !menuVisible" />
 
@@ -208,7 +208,7 @@ export default Vue.extend({
 
       &--active {
         &:before {
-          background-color: pink;
+          background-color: #45a6ff;
         }
       }
     }

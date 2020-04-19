@@ -25,7 +25,7 @@
         </v-col>
       </v-row>
       <div v-if="isPopularItemsLoading === true" class="row text-center">
-        <div class="loading-spinner">
+        <div class="col-sm-12 loading-spinner">
           <v-progress-circular
             :size="70"
             :width="7"
@@ -53,3 +53,12 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang='scss' scoped>
+  .loading-spinner {
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

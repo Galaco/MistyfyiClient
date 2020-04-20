@@ -28,7 +28,7 @@ const getters = {
 const actions = {
   [FETCH_USER_PROFILE] ({ commit }: any): any {
     commit(FETCH_USER_PROFILE_START)
-    return this.$repositories.user.getUserProfile().then((data: any) => {
+    return this.$repositories.user.getUserProfile().then((data: ApiResponse) => {
       commit(FETCH_USER_PROFILE_END, data)
     }).catch((err: AxiosError) => {
       console.log(err)

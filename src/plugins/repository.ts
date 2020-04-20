@@ -6,6 +6,8 @@ import popularRepository, { Popular } from './Repository/popular'
 import serverRepository, { Server } from './Repository/server'
 import serversRepository, { Servers } from './Repository/servers'
 import userRepository, { User } from './Repository/user'
+import { AxiosResponse } from 'axios'
+import ApiResponse from './Repository/ApiResponse'
 
 class Repository {
   feed: Feed;
@@ -28,10 +30,10 @@ class Repository {
 }
 
 export default (ctx: any, inject: any) => {
-  const success = (data: any): any => {
+  const success = (data: AxiosResponse): Promise<ApiResponse> => {
     return Promise.resolve(normalizeResponse(data))
   }
-  const failure = (data: any): any => {
+  const failure = (data: AxiosResponse): Promise<ApiResponse> => {
     return Promise.reject(normalizeResponse(data))
   }
 

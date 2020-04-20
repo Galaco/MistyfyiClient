@@ -5,6 +5,7 @@ import {
   DISABLE_MAP_NAME_START
 } from './mutations.type'
 import ApiResponse from '@/plugins/Repository/ApiResponse'
+import WatchedMap from '~/models/api/maps/WatchedMap';
 
 class State {
     public loadingMapNameDisable: boolean = true;
@@ -19,9 +20,9 @@ const getters = {
 }
 
 const actions = {
-  [DISABLE_MAP_NAME] ({ commit }: any, { model, isDisabled }: any): void {
+  [DISABLE_MAP_NAME] ({ commit }: any, { model, isDisabled }: {model: WatchedMap, isDisabled: boolean}): void {
     commit(DISABLE_MAP_NAME_START)
-    return this.$repositories.mapName.disableMapName(model.name, isDisabled).then((data: AxiosResponse<ApiResponse>) => {
+    return this.$repositories.mapName.disableMapName(model.id, isDisabled).then((data: AxiosResponse<ApiResponse>) => {
       commit(DISABLE_MAP_NAME_END, data)
     }).catch((err: AxiosError) => {
       console.log(err)

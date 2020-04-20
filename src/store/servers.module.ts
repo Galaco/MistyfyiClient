@@ -40,7 +40,7 @@ const actions = {
       console.log(err)
     })
   },
-  [DELETE_SERVER] ({ dispatch, commit }: any, params: any): any {
+  [DELETE_SERVER] ({ dispatch, commit }: any, params: any): Promise<ApiResponse> {
     commit(DELETE_SERVERS_START)
     return this.$repositories.servers.deleteServer(params.ipAddress, params.port).then((data: AxiosResponse<ApiResponse>) => {
       commit(DELETE_SERVERS_END, data)
@@ -50,7 +50,7 @@ const actions = {
       console.log(err)
     })
   },
-  [SERVER_UPDATED] ({ commit }: any, model: Server): any {
+  [SERVER_UPDATED] ({ commit }: any, model: Server): void {
     commit(SERVER_MAP_CHANGED, model)
   }
 }

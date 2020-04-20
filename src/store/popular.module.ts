@@ -27,7 +27,7 @@ const getters = {
 }
 
 const actions = {
-  [FETCH_POPULAR] ({ commit }: any): any {
+  [FETCH_POPULAR] ({ commit }: any): Promise<ApiResponse> {
     commit(FETCH_POPULAR_START)
     return this.$repositories.popular.getPopular().then((data: AxiosResponse<ApiResponse>) => {
       commit(FETCH_POPULAR_END, data)

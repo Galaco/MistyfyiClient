@@ -30,7 +30,7 @@ const getters = {
 }
 
 const actions = {
-  [FETCH_FEED] ({ commit }: any): any {
+  [FETCH_FEED] ({ commit }: any): Promise<ApiResponse> {
     commit(FETCH_FEED_START)
     return this.$repositories.feed.getFeedLatest().then((data: AxiosResponse<ApiResponse>) => {
       commit(FETCH_FEED_END, data)

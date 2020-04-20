@@ -1,4 +1,4 @@
-import { AxiosInstance, AxiosStatic } from 'axios'
+import { AxiosInstance, AxiosStatic, AxiosResponse, AxiosError } from 'axios'
 import ApiResponse from '@/plugins/Repository/ApiResponse'
 
 export const BASE_URL = process.env.NUXT_ENV_API_URL
@@ -6,15 +6,15 @@ export const BASE_URL = process.env.NUXT_ENV_API_URL
 export default ($axios: AxiosStatic): AxiosInstance => {
   const service = $axios.create()
 
-  const success = (data: any): any => {
+  const success = (data: any): Promise<any> => {
     return Promise.resolve(normalizeResponse(data))
   }
-  const failure = (data: any): any => {
+  const failure = (error: any): Promise<ApiResponse> => {
     // Waiting for refresh support on auth0 lib
-    if (data.code === 401) {
+    if (error.code === 401) {
       window.location.href = '/'
     }
-    return Promise.reject(normalizeResponse(data))
+    return Promise.reject(normalizeResponse(error))
   }
 
   service.interceptors.response.use(success, failure)

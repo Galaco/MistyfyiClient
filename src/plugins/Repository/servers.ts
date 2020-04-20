@@ -1,23 +1,24 @@
 import { AxiosInstance } from 'axios'
 import { BASE_URL } from './index'
+import ApiResponse from './ApiResponse'
 
 export interface Servers {
-  getServerStatuses(): Promise<any>
-  addNewServer(ip: string, port: number): Promise<any>
-  deleteServer(ip: string, port: number): Promise<any>
+  getServerStatuses(): Promise<ApiResponse>
+  addNewServer(ip: string, port: number): Promise<ApiResponse>
+  deleteServer(ip: string, port: number): Promise<ApiResponse>
 }
 
 export default (axios: AxiosInstance) => ({
-  getServerStatuses () {
+  getServerStatuses (): Promise<ApiResponse> {
     return axios.get(`${BASE_URL}/api/v1/servers/list`)
   },
-  addNewServer (ip: string, port: number) {
+  addNewServer (ip: string, port: number): Promise<ApiResponse> {
     return axios.put(`${BASE_URL}/api/v1/servers/add`, {
       ip,
       port
     })
   },
-  deleteServer (ip: string, port: number) {
+  deleteServer (ip: string, port: number): Promise<ApiResponse> {
     return axios.delete(`${BASE_URL}/api/v1/servers/remove`, {
       data: {
         ip,

@@ -34,7 +34,7 @@ const getters = {
 }
 
 const actions = {
-  [FETCH_SERVER_HISTORY] ({ commit }: any, params: any): any {
+  [FETCH_SERVER_HISTORY] ({ commit }: any, params: any): Promise<ApiResponse> {
     commit(FETCH_SERVER_HISTORY_START)
     return this.$repositories.server.getServerHistory(params).then((data: AxiosResponse) => {
       commit(FETCH_SERVER_HISTORY_END, data)

@@ -1,8 +1,8 @@
+import { Configuration } from "@nuxt/types";
 import { Context } from 'vm'
 import locale from './src/locale'
 
-export default {
-  srcDir: 'src/',
+const config: Configuration = {
   build: {
     extend (config: any, context: Context) {
       if (context.isDev && !process.client) {
@@ -30,22 +30,7 @@ export default {
         implementation: require('sass')
       }
     },
-    modules: [],
-    plugins: [],
-    postcss: {
-      plugins: {
-        autoprefixer: {}
-      },
-      preset: {
-        autoprefixer: {
-          grid: true
-        }
-      }
-    },
-    transpile: ['vuetify/lib'],
-    typescript: {
-      typeCheck: false
-    }
+    transpile: ['vuetify/lib']
   },
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
   generate: {
@@ -112,13 +97,15 @@ export default {
     '~/plugins/localstorage',
     '~/plugins/vuebar'
   ],
+  srcDir: 'src/',
   server: {
     port: process.env.NUXT_ENV_PORT,
     host: '0.0.0.0'
   },
-  /** typescript config for nuxt */
   typescript: {
     typeCheck: false,
     ignoreNotFoundWarnings: true
   }
 }
+
+export default config

@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios'
 import createRepository, { normalizeResponse } from './Repository/index'
 import feedRepository, { Feed } from './Repository/feed'
 import levelsRepository, { Levels } from './Repository/levels'
@@ -6,7 +7,6 @@ import popularRepository, { Popular } from './Repository/popular'
 import serverRepository, { Server } from './Repository/server'
 import serversRepository, { Servers } from './Repository/servers'
 import userRepository, { User } from './Repository/user'
-import { AxiosResponse } from 'axios'
 import ApiResponse from './Repository/ApiResponse'
 
 class Repository {

@@ -46,7 +46,7 @@
         {{ $t('help.contact.submit') }}
       </v-btn>
     </v-card-actions>
-    <v-progress-linear v-if="sending" indeterminate />
+    <v-progress-linear v-if="sending" indeterminate color="#4588d2" />
   </v-card>
 </template>
 

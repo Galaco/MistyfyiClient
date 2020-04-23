@@ -10,12 +10,7 @@
       v-if="isServerHistoryLoading"
       class="col-sm-12 loading-spinner"
     >
-      <v-progress-circular
-        :size="70"
-        :width="7"
-        color="purple"
-        indeterminate
-      />
+      <Spinner />
     </div>
     <v-simple-table v-if="!isServerHistoryLoading">
       <thead>
@@ -38,6 +33,7 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import Info from '@/components/Dialogs/Info.vue'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 import { FETCH_SERVER_HISTORY } from '@/store/actions.type'
 import { DateToDateTimeString } from '@/locale/time'
 import Server from '@/models/api/servers/Server'
@@ -45,7 +41,8 @@ import Server from '@/models/api/servers/Server'
 export default Vue.extend({
   name: 'History',
   components: {
-    Info
+    Info,
+    Spinner
   },
   props: {
     show: {

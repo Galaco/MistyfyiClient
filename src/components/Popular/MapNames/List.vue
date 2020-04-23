@@ -26,12 +26,7 @@
       </v-simple-table>
       <div v-if="isPopularItemsLoading === true" class="row text-center">
         <div class="col-sm-12 loading-spinner">
-          <v-progress-circular
-            :size="70"
-            :width="7"
-            color="purple"
-            indeterminate
-          />
+          <Spinner />
         </div>
       </div>
     </v-card-text>
@@ -42,11 +37,13 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import Item from './Item.vue'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 
 export default Vue.extend({
   name: 'PopularMapNames',
   components: {
-    Item
+    Item,
+    Spinner
   },
   computed: {
     ...mapGetters(['popularItems', 'isPopularItemsLoading', 'levelNames', 'levelNamesCount'])

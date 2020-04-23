@@ -57,12 +57,7 @@
         </v-row>
         <div v-if="levelNamesCount === -1" class="row text-center">
           <div class="col-sm-12 loading-spinner">
-            <v-progress-circular
-              :size="70"
-              :width="7"
-              color="purple"
-              indeterminate
-            />
+            <Spinner />
           </div>
         </div>
       </v-card-text>
@@ -89,13 +84,15 @@ import AddUserLevelDialog from './Dialogs/AddWatchedMap.vue'
 import MapRow from './MapRow.vue'
 import WatchedMap from '@/models/api/maps/WatchedMap'
 import { FETCH_LEVEL_NAMES } from '@/store/actions.type'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 
 export default Vue.extend({
   name: 'WatchedMaps',
   components: {
     DeleteUserLevelDialog,
     AddUserLevelDialog,
-    MapRow
+    MapRow,
+    Spinner
   },
   data () {
     return {

@@ -32,7 +32,7 @@
     <v-progress-linear
       v-if="sending"
       indeterminate
-      color="cyan"
+      color="#4588d2"
     />
   </Add>
 </template>

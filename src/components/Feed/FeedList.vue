@@ -7,12 +7,7 @@
     />
     <div v-if="feedItemsCount === -1 && isFeedItemsLoading === true" class="row text-center loadingContainer">
       <div class="col-sm-12 loading-spinner">
-        <v-progress-circular
-          :size="70"
-          :width="7"
-          color="purple"
-          indeterminate
-        />
+        <Spinner />
       </div>
     </div>
   </div>
@@ -22,16 +17,16 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import Card from './Card.vue'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 
 export default Vue.extend({
   name: 'Feed',
   components: {
-    Card
+    Card,
+    Spinner
   },
   computed: {
     ...mapGetters(['feedItems', 'feedItemsCount', 'isFeedItemsLoading'])
-  },
-  mounted () {
   }
 })
 </script>

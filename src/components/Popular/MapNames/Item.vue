@@ -14,11 +14,9 @@
         </span>
         <span v-if="canUserAdd && saving && !added">
           {{ $t('popular.mapNames.actions.add.saving') }}
-          <v-progress-circular
+          <Spinner
             :size="16"
             :width="2"
-            color="purple"
-            indeterminate
           />
         </span>
         <span v-if="!canUserAdd || added">
@@ -44,9 +42,13 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import WatchedMap from '@/models/api/maps/WatchedMap'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 
 export default Vue.extend({
   name: 'Item',
+  components: {
+    Spinner
+  },
   props: {
     model: {
       type: WatchedMap,

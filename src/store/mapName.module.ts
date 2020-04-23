@@ -5,7 +5,7 @@ import {
   DISABLE_MAP_NAME_START
 } from './mutations.type'
 import ApiResponse from '@/plugins/Repository/ApiResponse'
-import WatchedMap from '~/models/api/maps/WatchedMap';
+import WatchedMap from '~/models/api/maps/WatchedMap'
 
 class State {
     public loadingMapNameDisable: boolean = true;

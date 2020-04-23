@@ -3,7 +3,7 @@
     <td>
       <v-tooltip top>
         <template v-slot:activator="{ on }">
-          <span v-on="on">{{ server.name}}</span>
+          <span v-on="on">{{ server.name }}</span>
         </template>
         <span>{{ $t('servers.server.name.tooltip') }}</span>
       </v-tooltip>
@@ -11,7 +11,7 @@
     <td>
       <v-tooltip top>
         <template v-slot:activator="{ on }">
-          <span v-on="on">{{ server.game}}</span>
+          <span v-on="on">{{ server.game }}</span>
         </template>
         <span>{{ $t('servers.server.game.tooltip') }}</span>
       </v-tooltip>
@@ -23,11 +23,9 @@
         </span>
         <span v-if="canUserAdd && saving && added">
           {{ $t('popular.servers.actions.add.saving') }}
-          <v-progress-circular
+          <Spinner
             :size="16"
             :width="2"
-            color="purple"
-            indeterminate
           />
         </span>
         <span v-if="!canUserAdd || added">
@@ -41,9 +39,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import Server from '@/models/api/servers/Server'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 
 export default Vue.extend({
   name: 'Item',
+  components: {
+    Spinner
+  },
   props: {
     server: {
       type: Server,

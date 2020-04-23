@@ -25,12 +25,7 @@
     </v-simple-table>
     <div v-if="serversCount === -1" class="row text-center">
       <div class="col-sm-12 loading-spinner">
-        <v-progress-circular
-          :size="70"
-          :width="7"
-          color="purple"
-          indeterminate
-        />
+        <Spinner />
       </div>
     </div>
   </div>
@@ -40,13 +35,15 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import Row from './TableRow.vue'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 import { SELECT_SERVER } from '@/store/actions.type'
 import Server from '@/models/api/servers/Server'
 
 export default Vue.extend({
   name: 'TableView',
   components: {
-    Row
+    Row,
+    Spinner
   },
   computed: {
     ...mapGetters(['servers', 'serversCount', 'serverSelected'])

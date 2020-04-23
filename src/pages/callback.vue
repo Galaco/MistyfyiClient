@@ -11,11 +11,9 @@
           </v-card-title>
           <v-card-text class="text-center">
             <span>{{ $t('header.links.redirecting') }}</span>
-            <v-progress-circular
+            <Spinner
               :size="16"
               :width="2"
-              color="purple"
-              indeterminate
             />
           </v-card-text>
         </v-card>
@@ -27,13 +25,15 @@
 <script lang="ts">
 import Vue from 'vue'
 import BrandLogo from '@/components/Layout/BrandLogo.vue'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 
 export default Vue.extend({
   middleware: ['auth'],
   layout: 'empty',
   name: 'Callback',
   components: {
-    BrandLogo
+    BrandLogo,
+    Spinner
   },
   head () {
     return {

@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios'
-import { BASE_URL } from './index'
 import ApiResponse from './ApiResponse'
+import { BASE_URL } from './index'
 
 export interface Servers {
   getServerStatuses(): Promise<ApiResponse>

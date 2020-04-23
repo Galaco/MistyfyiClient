@@ -17,7 +17,7 @@
     <td>
       <v-tooltip top>
         <template v-slot:activator="{ on }">
-          <span v-on="on">{{ server.game}}</span>
+          <span v-on="on">{{ server.game }}</span>
         </template>
         <span>{{ $t('servers.server.game.tooltip') }}</span>
       </v-tooltip>

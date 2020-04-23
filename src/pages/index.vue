@@ -17,12 +17,7 @@
               <span v-if="!autoRedirect"> {{ $t('header.links.login') }}</span>
               <span v-if="autoRedirect">
                 {{ $t('header.links.redirecting') }}
-                <v-progress-circular
-                  :size="16"
-                  :width="2"
-                  color="purple"
-                  indeterminate
-                />
+                <Spinner size="16" width="2" />
               </span>
             </v-btn>
           </v-card-text>
@@ -35,12 +30,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import BrandLogo from '@/components/Layout/BrandLogo.vue'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 
 export default Vue.extend({
   layout: 'empty',
   name: 'Login',
   components: {
-    BrandLogo
+    BrandLogo,
+    Spinner
   },
   data: () => ({
     autoRedirect: false

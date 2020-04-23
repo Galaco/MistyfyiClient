@@ -19,12 +19,7 @@
     </v-list>
     <div v-if="serversCount === -1" class="row text-center loadingContainer">
       <div class="col-sm-12 loading-spinner">
-        <v-progress-circular
-          :size="70"
-          :width="7"
-          color="purple"
-          indeterminate
-        />
+        <Spinner />
       </div>
     </div>
   </v-navigation-drawer>
@@ -34,11 +29,13 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import Row from './TableRow.vue'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 
 export default Vue.extend({
   name: 'ServerList',
   components: {
-    Row
+    Row,
+    Spinner
   },
   computed: {
     ...mapGetters(['servers', 'serversCount', 'isServersLoading'])

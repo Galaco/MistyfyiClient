@@ -1,4 +1,4 @@
-import { AxiosInstance, AxiosStatic, AxiosResponse, AxiosError } from 'axios'
+import { AxiosInstance, AxiosStatic } from 'axios'
 import ApiResponse from '@/plugins/Repository/ApiResponse'
 
 export const BASE_URL = process.env.NUXT_ENV_API_URL

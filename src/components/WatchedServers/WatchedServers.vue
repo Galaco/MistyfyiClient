@@ -13,12 +13,10 @@
           <v-icon v-if="isServersLoading === false">
             mdi-refresh
           </v-icon>
-          <v-progress-circular
+          <Spinner
             v-if="isServersLoading === true"
             :size="16"
             :width="2"
-            color="purple"
-            indeterminate
           />
         </v-btn>
         <v-btn @click="showAddServerDialog">
@@ -77,17 +75,20 @@ import AddServerDialog from './Dialogs/AddServer.vue'
 import DeleteServerDialog from './Dialogs/DeleteServer.vue'
 import ServerHistoryDialog from './Dialogs/History.vue'
 import TableView from './TableView.vue'
+import Spinner from '@/components/LoadingIndicator/Spinner.vue'
 import { DELETE_SERVER, FETCH_SERVERS, SELECT_SERVER } from '@/store/actions.type'
 
 export default Vue.extend({
-  name: 'ServerList',
+  name: 'WatchedServers',
   components: {
     AddServerDialog,
     DeleteServerDialog,
     ServerHistoryDialog,
-    TableView
+    TableView,
+    Spinner
   },
   data: () => ({
+    refreshTimeout: -1,
     isNewServerDialogVisible: false,
     isDeleteServerDialogVisible: false,
     isServerHistoryDialogVisible: false
@@ -95,15 +96,19 @@ export default Vue.extend({
   computed: {
     ...mapGetters(['servers', 'serversCount', 'isServersLoading', 'serverSelected', 'userProfile'])
   },
+  destroyed () {
+    clearInterval(this.refreshTimeout)
+  },
   mounted () {
     this.getPrivateServers()
+    this.refreshTimeout = setInterval(this.getPrivateServers, 120000)
   },
   methods: {
     showAddServerDialog () {
       this.isNewServerDialogVisible = true
     },
     onAddServerDialog () {
-      setTimeout(() => this.getPrivateServers(), 2500)
+      setTimeout(this.getPrivateServers, 2500)
     },
     onCloseAddServerDialog () {
       this.isNewServerDialogVisible = false

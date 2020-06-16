@@ -91,7 +91,25 @@ const config: Configuration = {
       plugins: [
         '~/plugins/repository'
       ]
-    }]
+    }],
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: process.env.NUXT_ENV_FIREBASE_APIKEY,
+          authDomain: process.env.NUXT_ENV_FIREBASE_AUTHDOMAIN,
+          databaseURL: process.env.NUXT_ENV_FIREBASE_DATABASEURL,
+          projectId: process.env.NUXT_ENV_FIREBASE_PROJECTID,
+          storageBucket: process.env.NUXT_ENV_FIREBASE_STORAGEBUCKET,
+          messagingSenderId: process.env.NUXT_ENV_FIREBASE_MESSAGINGSENDERID,
+          appId: process.env.NUXT_ENV_FIREBASE_APPID,
+          measurementId: process.env.NUXT_ENV_FIREBASE_MEASUREMENTID
+        },
+        services: {
+          auth: true // Just as example. Can be any other service.
+        }
+      }
+    ]
   ],
   plugins: [
     '~/plugins/localstorage',

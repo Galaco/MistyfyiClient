@@ -14,40 +14,40 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Dialog, { DialogType } from './Dialog.vue'
+import Vue from "vue"
+import Dialog, { DialogType } from "./Dialog.vue"
 
 export default Vue.extend({
-  name: 'Add',
+  name: "Add",
   components: {
-    Dialog
+    Dialog,
   },
   props: {
     show: {
       type: Boolean,
-      default: () => false
+      default: () => false,
     },
     title: {
       type: String,
-      default: () => ''
+      default: () => "",
     },
     confirmDisabled: {
       type: Boolean,
-      default: () => false
-    }
+      default: () => false,
+    },
   },
   data: () => {
     return {
-      type: DialogType.Add
+      type: DialogType.Add,
     }
   },
   methods: {
-    close () {
-      this.$emit('deny')
+    close() {
+      this.$emit("deny")
     },
-    submit () {
-      this.$emit('confirm')
-    }
-  }
+    submit() {
+      this.$emit("confirm")
+    },
+  },
 })
 </script>

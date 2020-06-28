@@ -10,27 +10,20 @@
         @click="onAdd"
       >
         <span v-if="canUserAdd && !saving && !added">
-          {{ $t('popular.mapNames.actions.add.button') }}
+          {{ $t("popular.mapNames.actions.add.button") }}
         </span>
         <span v-if="canUserAdd && saving && !added">
-          {{ $t('popular.mapNames.actions.add.saving') }}
-          <Spinner
-            :size="16"
-            :width="2"
-          />
+          {{ $t("popular.mapNames.actions.add.saving") }}
+          <Spinner :size="16" :width="2" />
         </span>
         <span v-if="!canUserAdd || added">
-          {{ $t('popular.mapNames.actions.add.watched') }}
+          {{ $t("popular.mapNames.actions.add.watched") }}
         </span>
       </v-btn>
 
       <span v-if="model.name.indexOf('*') !== -1 && !userProfile.isSubscribed">
-        <v-chip
-          class="ma-2"
-          color="orange"
-          text-color="white"
-        >
-          {{ $t('popular.mapNames.item.paidOnly') }}
+        <v-chip class="ma-2" color="orange" text-color="white">
+          {{ $t("popular.mapNames.item.paidOnly") }}
           <v-icon right>mdi-star</v-icon>
         </v-chip>
       </span>
@@ -39,60 +32,65 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
-import WatchedMap from '@/models/api/maps/WatchedMap'
-import Spinner from '@/components/LoadingIndicator/Spinner.vue'
+import Vue from "vue"
+import { mapGetters } from "vuex"
+import WatchedMap from "@/models/api/maps/WatchedMap"
+import Spinner from "@/components/LoadingIndicator/Spinner.vue"
 
 export default Vue.extend({
-  name: 'Item',
+  name: "Item",
   components: {
-    Spinner
+    Spinner,
   },
   props: {
     model: {
       type: WatchedMap,
-      default: () => new WatchedMap('', '')
+      default: () => new WatchedMap("", ""),
     },
     canUserAdd: {
       type: Boolean,
-      default: () => false
-    }
+      default: () => false,
+    },
   },
   data: () => {
     return {
       saving: false,
-      added: false
+      added: false,
     }
   },
   computed: {
-    ...mapGetters(['userProfile'])
+    ...mapGetters(["userProfile"]),
   },
   methods: {
-    onAdd () {
+    onAdd() {
       if (!this.canUserAdd && !this.saving && !this.added) {
         return
       }
       this.addWatchName()
     },
-    addWatchName () {
+    addWatchName() {
       this.saving = true
-      this.$repositories.levels.addWatchedLevel(this.model.name, '').then(() => {
-        this.$toast.success(this.$t('notifications.toast.add.success', { name }))
-        this.saving = false
-        this.added = true
-      }).catch((err: Error) => {
-        this.$toast.error(err.message)
-        this.saving = false
-      })
-    }
-  }
+      this.$repositories.levels
+        .addWatchedLevel(this.model.name, "")
+        .then(() => {
+          this.$toast.success(
+            this.$t("notifications.toast.add.success", { name })
+          )
+          this.saving = false
+          this.added = true
+        })
+        .catch((err: Error) => {
+          this.$toast.error(err.message)
+          this.saving = false
+        })
+    },
+  },
 })
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .controls {
-    width: 160px;
-    min-width: 160px;
-  }
+  width: 160px;
+  min-width: 160px;
+}
 </style>

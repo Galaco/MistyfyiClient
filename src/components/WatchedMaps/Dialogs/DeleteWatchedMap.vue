@@ -6,50 +6,55 @@
     @confirm="deleteLevel"
     @deny="close"
   >
-    <span>{{ $t('notifications.dialogs.delete.body') }}</span>
+    <span>{{ $t("notifications.dialogs.delete.body") }}</span>
   </Delete>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { DELETE_LEVEL_NAMES } from '@/store/actions.type'
-import Delete from '@/components/Dialogs/Delete.vue'
-import WatchedMap from '@/models/api/maps/WatchedMap'
+import Vue from "vue"
+import { DELETE_LEVEL_NAMES } from "@/store/actions.type"
+import Delete from "@/components/Dialogs/Delete.vue"
+import WatchedMap from "@/models/api/maps/WatchedMap"
 
 export default Vue.extend({
-  name: 'DeleteWatchedMap',
+  name: "DeleteWatchedMap",
   components: {
-    Delete
+    Delete,
   },
   props: {
     show: {
       type: Boolean,
-      default: () => false
+      default: () => false,
     },
     model: {
       type: WatchedMap,
-      default: () => new WatchedMap('', '')
-    }
+      default: () => new WatchedMap("", ""),
+    },
   },
   methods: {
-    close () {
-      this.$emit('deny')
+    close() {
+      this.$emit("deny")
     },
-    submit () {
-      this.$emit('confirm')
+    submit() {
+      this.$emit("confirm")
     },
-    deleteLevel () {
+    deleteLevel() {
       if (this.model.name.length === 0) {
         return
       }
       const deletedName = this.model.name
-      this.$store.dispatch(DELETE_LEVEL_NAMES, this.model).then(() => {
-        this.$toast.success(this.$t('notifications.toast.delete.success', { name: deletedName }))
-        this.submit()
-      }).catch((err) => {
-        this.$toast.error(err.message)
-      })
-    }
-  }
+      this.$store
+        .dispatch(DELETE_LEVEL_NAMES, this.model)
+        .then(() => {
+          this.$toast.success(
+            this.$t("notifications.toast.delete.success", { name: deletedName })
+          )
+          this.submit()
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+        })
+    },
+  },
 })
 </script>

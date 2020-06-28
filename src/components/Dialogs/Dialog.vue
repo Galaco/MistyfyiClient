@@ -1,8 +1,5 @@
 <template>
-  <v-dialog
-    v-model="show"
-    max-width="600px"
-  >
+  <v-dialog v-model="show" max-width="600px">
     <v-card>
       <v-card-title class="headline">
         {{ title }}
@@ -27,64 +24,64 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue"
 
 export const enum DialogType {
-    Add = 1,
-    Delete,
-    NoAction,
+  Add = 1,
+  Delete,
+  NoAction,
 }
 
 export default Vue.extend({
-  name: 'Dialog',
+  name: "Dialog",
   props: {
     show: {
       type: Boolean,
-      default: () => false
+      default: () => false,
     },
     title: {
       type: String,
-      default: () => ''
+      default: () => "",
     },
     confirmLabel: {
       type: String,
-      default: () => ''
+      default: () => "",
     },
     denyLabel: {
       type: String,
-      default: () => ''
+      default: () => "",
     },
     confirmDisabled: {
       type: Boolean,
-      default: () => false
+      default: () => false,
     },
     type: {
       type: Number,
-      default: () => 0
-    }
+      default: () => 0,
+    },
   },
   computed: {
-    showPrimary () {
+    showPrimary() {
       return this.type === DialogType.Add
     },
-    showAccent () {
+    showAccent() {
       return this.type === DialogType.Delete
-    }
+    },
   },
   watch: {
-    show (val) {
+    show(val) {
       if (!val) {
         this.deny()
       }
-    }
+    },
   },
   methods: {
-    deny () {
-      this.$emit('deny')
+    deny() {
+      this.$emit("deny")
     },
-    confirm () {
-      this.$emit('confirm')
-    }
-  }
+    confirm() {
+      this.$emit("confirm")
+    },
+  },
 })
 </script>

@@ -8,19 +8,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue"
 
 export default Vue.extend({
-  name: 'Spinner',
+  name: "Spinner",
   props: {
     size: {
       type: Number,
-      default: () => 70
+      default: () => 70,
     },
     width: {
       type: Number,
-      default: () => 7
-    }
-  }
+      default: () => 7,
+    },
+  },
 })
 </script>

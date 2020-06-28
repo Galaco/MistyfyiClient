@@ -6,23 +6,21 @@
       <nuxt />
     </v-content>
 
-    <v-footer
-      dark
-    >
+    <v-footer dark>
       <Footer />
     </v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Footer from '@/components/Layout/Footer.vue'
+import Vue from "vue"
+import Footer from "@/components/Layout/Footer.vue"
 
 export default Vue.extend({
-  name: 'Empty',
+  name: "Empty",
   components: {
-    Footer
-  }
+    Footer,
+  },
 })
 </script>
 

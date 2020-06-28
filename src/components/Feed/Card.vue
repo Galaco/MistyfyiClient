@@ -1,19 +1,17 @@
 <template>
-  <v-card
-    dark
-  >
+  <v-card dark>
     <div class="d-flex flex-no-wrap">
-      <v-avatar
-        class="ma-3"
-        size="150"
-        tile
-      >
-        <v-img class="mapThumbnail" :src="`${thumbnailPath}${model.mapName}.jpg`" />
+      <v-avatar class="ma-3" size="150" tile>
+        <v-img
+          class="mapThumbnail"
+          :src="`${thumbnailPath}${model.mapName}.jpg`"
+        />
       </v-avatar>
       <div class="cardContent">
         <v-card-title>{{ model.mapName }}</v-card-title>
         <v-card-subtitle>
-          <span class="font-weight-bold">{{ model.serverName }}</span> is now playing <span class="font-weight-bold">{{ model.mapName }}</span>
+          <span class="font-weight-bold">{{ model.serverName }}</span> is now
+          playing <span class="font-weight-bold">{{ model.mapName }}</span>
         </v-card-subtitle>
         <v-card-text>
           <LastUpdated :date="model.lastUpdated" />
@@ -21,10 +19,7 @@
         <v-card-actions>
           <v-spacer />
           <a :href="`steam://connect/${model.serverIP}:${model.serverPort}`">
-            <v-btn
-              color="primary"
-              small
-            >
+            <v-btn color="primary" small>
               Join Server
             </v-btn>
           </a>
@@ -35,26 +30,26 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Item from '@/models/api/feed/Item'
-import LastUpdated from '@/components/Time/LastUpdated.vue'
+import Vue from "vue"
+import Item from "@/models/api/feed/Item"
+import LastUpdated from "@/components/Time/LastUpdated.vue"
 
 export default Vue.extend({
-  name: 'Card',
+  name: "Card",
   components: {
-    LastUpdated
+    LastUpdated,
   },
   props: {
     model: {
       type: Item,
-      default: () => new Item('', 0, '', '', 0)
+      default: () => new Item("", 0, "", "", 0),
+    },
+  },
+  data() {
+    return {
+      thumbnailPath: `${process.env.NUXT_ENV_CDN_URL}/images/map/thumb/`,
     }
   },
-  data () {
-    return {
-      thumbnailPath: `${process.env.NUXT_ENV_CDN_URL}/images/map/thumb/`
-    }
-  }
 })
 </script>
 

@@ -3,35 +3,35 @@
     <v-card>
       <v-toolbar flat>
         <v-toolbar-title>
-          {{ $t('notifications.title') }}
+          {{ $t("notifications.title") }}
         </v-toolbar-title>
         <v-spacer />
         <v-btn id="addMapNameButton" @click="showAddDialog()">
           <v-icon>mdi-note-add</v-icon>
-          <span>{{ $t('notifications.buttons.add') }}</span>
+          <span>{{ $t("notifications.buttons.add") }}</span>
         </v-btn>
       </v-toolbar>
       <v-card-text>
-        <v-simple-table>
+        <v-simple-table v-if="levelNamesCount > 0">
           <thead>
-            <tr v-if="levelNames.length > 0">
+            <tr>
               <th class="v-center">
-                {{ $t('notifications.table.headers.name') }}
+                {{ $t("notifications.table.headers.name") }}
               </th>
               <th class="v-center">
-                {{ $t('notifications.table.headers.server') }}
+                {{ $t("notifications.table.headers.server") }}
               </th>
               <th class="v-center">
-                {{ $t('notifications.table.headers.enabled') }}
+                {{ $t("notifications.table.headers.enabled") }}
               </th>
               <th class="controls">
-                {{ $t('table.headers.actions') }}
+                {{ $t("table.headers.actions") }}
               </th>
             </tr>
           </thead>
           <tbody>
             <MapRow
-              v-for="(map,index) in levelNames"
+              v-for="(map, index) in levelNames"
               :key="index"
               :model="map"
               :get-server-name-from-id="serverNameForId"
@@ -39,27 +39,15 @@
             />
           </tbody>
         </v-simple-table>
-        <v-row
+        <NoItems
           v-if="levelNamesCount === 0"
-          justify="center"
-          align="center"
-        >
-          <v-col cols="12" align="center">
-            <h1>{{ $t('notifications.noItems.title') }}</h1>
-            <div>{{ $t('notifications.noItems.description') }}</div>
-            <v-btn id="addFirstMapNameButton" @click="showAddDialog()">
-              <v-icon>
-                mdi-file-plus
-              </v-icon>
-              <span>{{ $t('notifications.noItems.add') }}</span>
-            </v-btn>
-          </v-col>
-        </v-row>
-        <div v-if="levelNamesCount === -1" class="row text-center">
-          <div class="col-sm-12 loading-spinner">
-            <Spinner />
-          </div>
-        </div>
+          :title="$t('notifications.noItems.title')"
+          :description="$t('notifications.noItems.description')"
+          button-id="addFirstMapNameButton"
+          :on-button-click="showAddDialog"
+          :button-text="$t('notifications.noItems.add')"
+        />
+        <Loading v-if="levelNamesCount === -1" />
       </v-card-text>
     </v-card>
     <AddUserLevelDialog
@@ -77,88 +65,83 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
-import DeleteUserLevelDialog from './Dialogs/DeleteWatchedMap.vue'
-import AddUserLevelDialog from './Dialogs/AddWatchedMap.vue'
-import MapRow from './MapRow.vue'
-import WatchedMap from '@/models/api/maps/WatchedMap'
-import { FETCH_LEVEL_NAMES } from '@/store/actions.type'
-import Spinner from '@/components/LoadingIndicator/Spinner.vue'
+import Vue from "vue"
+import { mapGetters } from "vuex"
+import DeleteUserLevelDialog from "./Dialogs/DeleteWatchedMap.vue"
+import AddUserLevelDialog from "./Dialogs/AddWatchedMap.vue"
+import MapRow from "./MapRow.vue"
+import WatchedMap from "@/models/api/maps/WatchedMap"
+import { FETCH_LEVEL_NAMES } from "@/store/actions.type"
+import NoItems from "@/components/Common/Table/NoItems.vue"
+import Loading from "@/components/Common/Table/Loading.vue"
 
 export default Vue.extend({
-  name: 'WatchedMaps',
+  name: "WatchedMaps",
   components: {
     DeleteUserLevelDialog,
     AddUserLevelDialog,
     MapRow,
-    Spinner
+    NoItems,
+    Loading,
   },
-  data () {
+  data() {
     return {
       isAddDialogVisible: false,
-      selectedLevel: new WatchedMap('', ''),
-      isDeleteDialogVisible: false
+      selectedLevel: new WatchedMap("", ""),
+      isDeleteDialogVisible: false,
     }
   },
   computed: {
-    ...mapGetters(['servers', 'levelNames', 'levelNamesCount'])
+    ...mapGetters(["servers", "levelNames", "levelNamesCount"]),
   },
-  mounted () {
+  mounted() {
     this.getUserLevels()
   },
   methods: {
-    getUserLevels () {
+    getUserLevels() {
       this.$store.dispatch(FETCH_LEVEL_NAMES)
     },
-    showAddDialog () {
+    showAddDialog() {
       this.isAddDialogVisible = true
     },
-    closeAddDialog () {
+    closeAddDialog() {
       this.isAddDialogVisible = false
     },
-    showDeleteDialog (map: WatchedMap) {
+    showDeleteDialog(map: WatchedMap) {
       this.selectedLevel = map
       this.isDeleteDialogVisible = true
     },
-    closeDeleteDialog () {
+    closeDeleteDialog() {
       this.isDeleteDialogVisible = false
-      this.selectedLevel = new WatchedMap('', '')
+      this.selectedLevel = new WatchedMap("", "")
     },
-    onMapAdded () {
+    onMapAdded() {
       this.closeAddDialog()
       this.getUserLevels()
     },
-    onMapDeleted () {
+    onMapDeleted() {
       this.closeDeleteDialog()
       this.getUserLevels()
     },
-    serverNameForId (serverId: string): string {
-      if (serverId === '') {
-        return String(this.$t('notifications.table.body.servers.all'))
+    serverNameForId(serverId: string): string {
+      if (serverId === "") {
+        return String(this.$t("notifications.table.body.servers.all"))
       }
       for (const server of this.servers) {
         if (server.id === serverId) {
-          return (server.name || `${server.ipAddress}:${server.port}`)
+          return server.name || `${server.ipAddress}:${server.port}`
         }
       }
-      return ''
-    }
-  }
+      return ""
+    },
+  },
 })
 </script>
 
-<style lang='scss' scoped>
-    th.controls {
-        text-align: center;
-        width: 160px;
-        min-width: 160px;
-    }
-
-    .loading-spinner {
-        height: 240px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+<style lang="scss" scoped>
+th.controls {
+  text-align: center;
+  width: 160px;
+  min-width: 160px;
+}
 </style>

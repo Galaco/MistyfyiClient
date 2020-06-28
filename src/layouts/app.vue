@@ -1,14 +1,7 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      id="rootNavigationDrawer"
-      v-model="menuVisible"
-      app
-    >
-      <v-list
-        dense
-        nav
-      >
+    <v-navigation-drawer id="rootNavigationDrawer" v-model="menuVisible" app>
+      <v-list dense nav>
         <v-list-item class="brand-logo">
           <BrandLogo />
         </v-list-item>
@@ -17,36 +10,36 @@
       <v-divider class="mb-2" />
 
       <v-list dense>
-        <v-list-item link :to="{ name: 'feed' }" exact>
-          <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ $t('navigation.links.feed') }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
         <v-list-item link :to="{ name: 'popular' }" exact>
           <v-list-item-action>
             <v-icon>mdi-star</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
-              {{ $t('navigation.links.popular') }}
+              {{ $t("navigation.links.popular") }}
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
         <v-divider class="mb-2" />
 
+        <v-list-item link :to="{ name: 'feed' }" exact>
+          <v-list-item-action>
+            <v-icon>mdi-newspaper</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ $t("navigation.links.feed") }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item link :to="{ name: 'servers' }" exact>
           <v-list-item-action>
             <v-icon>mdi-playlist-star</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
-              {{ $t('navigation.links.servers') }}
+              {{ $t("navigation.links.servers") }}
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -56,7 +49,7 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
-              {{ $t('navigation.links.notifications') }}
+              {{ $t("navigation.links.notifications") }}
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -69,7 +62,7 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
-              {{ $t('navigation.links.help') }}
+              {{ $t("navigation.links.help") }}
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -79,11 +72,7 @@
         <Footer />
       </template>
     </v-navigation-drawer>
-    <v-app-bar
-      app
-      flat
-      color="#4588d2"
-    >
+    <v-app-bar app flat color="#4588d2">
       <v-app-bar-nav-icon @click.stop="menuVisible = !menuVisible" />
 
       <v-toolbar-title>
@@ -110,50 +99,66 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
-import EnableNotificationDialog from '@/components/Dialogs/EnableNotifications.vue'
-import UserProfile from '@/components/Layout/UserProfile.vue'
-import BrandLogo from '@/components/Layout/BrandLogo.vue'
-import Footer from '@/components/Layout/Footer.vue'
-import Server from '@/models/api/servers/Server'
-import { FETCH_USER_PROFILE, SERVER_UPDATED } from '@/store/actions.type'
-import { FETCH_USER_PROFILE_END } from '@/store/mutations.type'
+import Vue from "vue"
+import { mapGetters } from "vuex"
+import EnableNotificationDialog from "@/components/Dialogs/EnableNotifications.vue"
+import UserProfile from "@/components/Layout/UserProfile.vue"
+import BrandLogo from "@/components/Layout/BrandLogo.vue"
+import Footer from "@/components/Layout/Footer.vue"
+import Server from "@/models/api/servers/Server"
+import { FETCH_USER_PROFILE, SERVER_UPDATED } from "@/store/actions.type"
+import { FETCH_USER_PROFILE_END } from "@/store/mutations.type"
 
 export default Vue.extend({
-  name: 'App',
+  name: "App",
   components: {
     UserProfile,
     BrandLogo,
     Footer,
-    EnableNotificationDialog
+    EnableNotificationDialog,
   },
   data: () => ({
     menuVisible: true,
     isEnableNotificationDialogVisible: false,
-    areNotificationsEnabled: false
+    areNotificationsEnabled: false,
   }),
   computed: {
-    ...mapGetters(['userProfile'])
+    ...mapGetters(["userProfile"]),
   },
   watch: {
-    userProfile () {
+    userProfile() {
       this.showNotificationDialog()
-    }
+    },
   },
-  created () {
+  created() {
     this.$vuetify.theme.dark = true
   },
-  mounted () {
-    this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
-      console.log('User profile obtained')
-    }).catch((err: Error) => {
-      this.$toast.error(err.message)
-    })
+  mounted() {
+    this.$store
+      .dispatch(FETCH_USER_PROFILE)
+      .then(() => {
+        console.log("User profile obtained")
+      })
+      .catch((err: Error) => {
+        this.$toast.error(err.message)
+      })
 
     this.$OneSignal.push(() => {
-      this.$OneSignal.on('notificationDisplay', (event: any) => {
-        this.$store.dispatch(SERVER_UPDATED, new Server(event.data.id, '', 0, event.data.name, event.data.currentMap, event.data.game, event.data.playerCount, event.data.maxPlayers, Math.floor(Date.now() / 1000)))
+      this.$OneSignal.on("notificationDisplay", (event: any) => {
+        this.$store.dispatch(
+          SERVER_UPDATED,
+          new Server(
+            event.data.id,
+            "",
+            0,
+            event.data.name,
+            event.data.currentMap,
+            event.data.game,
+            event.data.playerCount,
+            event.data.maxPlayers,
+            Math.floor(Date.now() / 1000)
+          )
+        )
       })
     })
     this.$store.subscribe((mutation: any) => {
@@ -167,22 +172,22 @@ export default Vue.extend({
     })
   },
   methods: {
-    toggleMenu () {
+    toggleMenu() {
       this.menuVisible = !this.menuVisible
     },
-    closeEnableNotificationsPopup () {
+    closeEnableNotificationsPopup() {
       this.isEnableNotificationDialogVisible = false
     },
-    showNotificationDialog () {
+    showNotificationDialog() {
       this.$OneSignal.push(() => {
         this.$OneSignal.isPushNotificationsEnabled((isEnabled: boolean) => {
-          console.log('Show: dialog-notification-request: ', !isEnabled)
+          console.log("Show: dialog-notification-request: ", !isEnabled)
           this.areNotificationsEnabled = isEnabled
           this.isEnableNotificationDialogVisible = !isEnabled
         })
       })
-    }
-  }
+    },
+  },
 })
 </script>
 

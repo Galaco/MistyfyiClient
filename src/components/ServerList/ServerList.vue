@@ -10,40 +10,44 @@
     mobile-break-point="960"
   >
     <v-list v-if="servers.length > 0">
-      <v-subheader>{{ $t('feed.serverList.title') }} </v-subheader>
-      <Row
-        v-for="(server,index) in servers"
-        :key="index"
-        :server="server"
-      />
+      <v-subheader>{{ $t("feed.serverList.title") }} </v-subheader>
+      <Row v-for="(server, index) in servers" :key="index" :server="server" />
     </v-list>
     <div v-if="serversCount === -1" class="row text-center loadingContainer">
       <div class="col-sm-12 loading-spinner">
         <Spinner />
       </div>
     </div>
+    <div
+      v-if="serversCount < 1 && !isServersLoading"
+      class="row text-center loadingContainer"
+    >
+      <div class="col-sm-12 loading-spinner">
+        {{ $t("feed.serverList.noItems") }}
+      </div>
+    </div>
   </v-navigation-drawer>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
-import Row from './TableRow.vue'
-import Spinner from '@/components/LoadingIndicator/Spinner.vue'
+import Vue from "vue"
+import { mapGetters } from "vuex"
+import Row from "./TableRow.vue"
+import Spinner from "@/components/LoadingIndicator/Spinner.vue"
 
 export default Vue.extend({
-  name: 'ServerList',
+  name: "ServerList",
   components: {
     Row,
-    Spinner
+    Spinner,
   },
   computed: {
-    ...mapGetters(['servers', 'serversCount', 'isServersLoading'])
-  }
+    ...mapGetters(["servers", "serversCount", "isServersLoading"]),
+  },
 })
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #compactServerList {
   top: 64px !important;
 

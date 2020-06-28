@@ -3,7 +3,7 @@
     <v-card>
       <v-toolbar flat>
         <v-toolbar-title>
-          {{ $t('servers.title') }}
+          {{ $t("servers.title") }}
         </v-toolbar-title>
         <v-spacer />
         <v-btn
@@ -13,41 +13,28 @@
           <v-icon v-if="isServersLoading === false">
             mdi-refresh
           </v-icon>
-          <Spinner
-            v-if="isServersLoading === true"
-            :size="16"
-            :width="2"
-          />
+          <Spinner v-if="isServersLoading === true" :size="16" :width="2" />
         </v-btn>
         <v-btn @click="showAddServerDialog">
           <v-icon>mdi-note-add</v-icon>
-          <span>{{ $t('servers.buttons.add') }}</span>
+          <span>{{ $t("servers.buttons.add") }}</span>
         </v-btn>
       </v-toolbar>
       <v-card-text>
         <TableView
+          v-if="serversCount > 0"
           @showHistory="showServerHistoryDialog"
           @showDelete="showDeleteServerDialog"
         />
-        <v-row
-          v-if="serversCount === 0"
-          justify="center"
-          align="center"
-        >
-          <v-col cols="12" align="center">
-            <v-icon x-large>
-              mdi-important-devices
-            </v-icon>
-            <h1>{{ $t('servers.noItems.title') }}</h1>
-            <div>{{ $t('servers.noItems.description') }}</div>
-            <v-btn id="addFirstServerButton" @click="showAddServerDialog">
-              <v-icon>
-                mdi-note-add
-              </v-icon>
-              <span>{{ $t('servers.noItems.add') }}</span>
-            </v-btn>
-          </v-col>
-        </v-row>
+        <NoItems
+          v-if="serversCount < 1 && !isServersLoading"
+          :title="$t('servers.noItems.title')"
+          :description="$t('servers.noItems.description')"
+          button-id="addFirstServerButton"
+          :on-button-click="showAddServerDialog"
+          :button-text="$t('servers.noItems.add')"
+        />
+        <Loading v-if="serversCount === -1" />
       </v-card-text>
     </v-card>
     <AddServerDialog
@@ -69,94 +56,115 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
-import AddServerDialog from './Dialogs/AddServer.vue'
-import DeleteServerDialog from './Dialogs/DeleteServer.vue'
-import ServerHistoryDialog from './Dialogs/History.vue'
-import TableView from './TableView.vue'
-import Spinner from '@/components/LoadingIndicator/Spinner.vue'
-import { DELETE_SERVER, FETCH_SERVERS, SELECT_SERVER } from '@/store/actions.type'
+import Vue from "vue"
+import { mapGetters } from "vuex"
+import AddServerDialog from "./Dialogs/AddServer.vue"
+import DeleteServerDialog from "./Dialogs/DeleteServer.vue"
+import ServerHistoryDialog from "./Dialogs/History.vue"
+import TableView from "./TableView.vue"
+import Spinner from "@/components/LoadingIndicator/Spinner.vue"
+import NoItems from "@/components/Common/Table/NoItems.vue"
+import Loading from "@/components/Common/Table/Loading.vue"
+import {
+  DELETE_SERVER,
+  FETCH_SERVERS,
+  SELECT_SERVER,
+} from "@/store/actions.type"
 
 export default Vue.extend({
-  name: 'WatchedServers',
+  name: "WatchedServers",
   components: {
     AddServerDialog,
     DeleteServerDialog,
     ServerHistoryDialog,
     TableView,
-    Spinner
+    NoItems,
+    Loading,
+    Spinner,
   },
   data: () => ({
     refreshTimeout: -1,
     isNewServerDialogVisible: false,
     isDeleteServerDialogVisible: false,
-    isServerHistoryDialogVisible: false
+    isServerHistoryDialogVisible: false,
   }),
   computed: {
-    ...mapGetters(['servers', 'serversCount', 'isServersLoading', 'serverSelected', 'userProfile'])
+    ...mapGetters([
+      "servers",
+      "serversCount",
+      "isServersLoading",
+      "serverSelected",
+      "userProfile",
+    ]),
   },
-  destroyed () {
+  destroyed() {
     clearInterval(this.refreshTimeout)
   },
-  mounted () {
+  mounted() {
     this.getPrivateServers()
     this.refreshTimeout = setInterval(this.getPrivateServers, 120000)
   },
   methods: {
-    showAddServerDialog () {
+    showAddServerDialog() {
       this.isNewServerDialogVisible = true
     },
-    onAddServerDialog () {
+    onAddServerDialog() {
       setTimeout(this.getPrivateServers, 2500)
     },
-    onCloseAddServerDialog () {
+    onCloseAddServerDialog() {
       this.isNewServerDialogVisible = false
       this.$store.dispatch(SELECT_SERVER, null)
     },
-    showServerHistoryDialog () {
+    showServerHistoryDialog() {
       this.isServerHistoryDialogVisible = true
     },
-    onCloseServerHistoryDialog () {
+    onCloseServerHistoryDialog() {
       this.isServerHistoryDialogVisible = false
       this.$store.dispatch(SELECT_SERVER, null)
     },
-    showDeleteServerDialog () {
+    showDeleteServerDialog() {
       this.isDeleteServerDialogVisible = true
     },
-    onCloseDeleteServerDialog () {
+    onCloseDeleteServerDialog() {
       this.isDeleteServerDialogVisible = false
       this.$store.dispatch(SELECT_SERVER, null)
     },
-    onDeleteServerDialog () {
+    onDeleteServerDialog() {
       if (this.serverSelected === null) {
         return
       }
-      this.$store.dispatch(DELETE_SERVER, this.serverSelected).then(() => {
-        this.$toast.success(this.$t('servers.toast.delete.success', { name: this.serverSelected.name }))
-        this.onCloseDeleteServerDialog()
-      }).catch((err) => {
+      this.$store
+        .dispatch(DELETE_SERVER, this.serverSelected)
+        .then(() => {
+          this.$toast.success(
+            this.$t("servers.toast.delete.success", {
+              name: this.serverSelected.name,
+            })
+          )
+          this.onCloseDeleteServerDialog()
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+        })
+    },
+    getPrivateServers() {
+      this.$store.dispatch(FETCH_SERVERS).catch(err => {
         this.$toast.error(err.message)
       })
     },
-    getPrivateServers () {
-      this.$store.dispatch(FETCH_SERVERS).catch((err) => {
-        this.$toast.error(err.message)
-      })
-    }
-  }
+  },
 })
 </script>
 
-<style lang='scss' scoped>
-    .server-list {
-        margin-bottom: 16px;
-    }
-    .view-toggle {
-        margin-right: 0;
-    }
-    .view-toggle-icon {
-        padding: 16px;
-        margin-top: -12px;
-    }
+<style lang="scss" scoped>
+.server-list {
+  margin-bottom: 16px;
+}
+.view-toggle {
+  margin-right: 0;
+}
+.view-toggle-icon {
+  padding: 16px;
+  margin-top: -12px;
+}
 </style>

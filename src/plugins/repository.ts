@@ -1,24 +1,32 @@
-import { AxiosResponse } from 'axios'
-import createRepository, { normalizeResponse } from './Repository/index'
-import feedRepository, { Feed } from './Repository/feed'
-import levelsRepository, { Levels } from './Repository/levels'
-import mapNameRepository, { MapName } from './Repository/mapName'
-import popularRepository, { Popular } from './Repository/popular'
-import serverRepository, { Server } from './Repository/server'
-import serversRepository, { Servers } from './Repository/servers'
-import userRepository, { User } from './Repository/user'
-import ApiResponse from './Repository/ApiResponse'
+import { AxiosResponse } from "axios"
+import createRepository, { normalizeResponse } from "./Repository/index"
+import feedRepository, { Feed } from "./Repository/feed"
+import levelsRepository, { Levels } from "./Repository/levels"
+import mapNameRepository, { MapName } from "./Repository/mapName"
+import popularRepository, { Popular } from "./Repository/popular"
+import serverRepository, { Server } from "./Repository/server"
+import serversRepository, { Servers } from "./Repository/servers"
+import userRepository, { User } from "./Repository/user"
+import ApiResponse from "./Repository/ApiResponse"
 
 class Repository {
-  feed: Feed;
-  levels: Levels;
-  mapName: MapName;
-  popular: Popular;
-  server: Server;
-  servers: Servers;
-  user: User;
+  feed: Feed
+  levels: Levels
+  mapName: MapName
+  popular: Popular
+  server: Server
+  servers: Servers
+  user: User
 
-  constructor (feed: Feed, levels: Levels, mapName: MapName, popular: Popular, server: Server, servers: Servers, user: User) {
+  constructor(
+    feed: Feed,
+    levels: Levels,
+    mapName: MapName,
+    popular: Popular,
+    server: Server,
+    servers: Servers,
+    user: User
+  ) {
     this.feed = feed
     this.levels = levels
     this.mapName = mapName
@@ -38,7 +46,7 @@ export default (ctx: any, inject: any) => {
   }
 
   ctx.$axios.interceptors.response.use(success, failure)
-  ctx.$axios.setToken(ctx.$auth.getToken('auth0'))
+  ctx.$axios.setToken(ctx.$auth.getToken("auth0"))
 
   const plugin = new Repository(
     feedRepository(createRepository(ctx.$axios)),
@@ -49,11 +57,11 @@ export default (ctx: any, inject: any) => {
     serversRepository(ctx.$axios),
     userRepository(createRepository(ctx.$axios))
   )
-  inject('repositories', plugin)
+  inject("repositories", plugin)
 }
 
-declare module 'vue/types/vue' {
+declare module "vue/types/vue" {
   interface Vue {
-    $repositories: Repository;
+    $repositories: Repository
   }
 }

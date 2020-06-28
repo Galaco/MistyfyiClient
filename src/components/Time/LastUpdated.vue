@@ -3,42 +3,44 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { format } from 'timeago.js'
+import Vue from "vue"
+import { format } from "timeago.js"
 
 export default Vue.extend({
-  name: 'LastUpdated',
+  name: "LastUpdated",
   props: {
     date: {
       type: Number,
-      default: () => 0
-    }
+      default: () => 0,
+    },
   },
   data: () => ({
-    formatted: '',
-    refreshTimeout: -1
+    formatted: "",
+    refreshTimeout: -1,
   }),
   watch: {
-    date () {
-      this.formatted = format(new Date(this.date * 1000), 'en_US')
-    }
+    date() {
+      this.formatted = format(new Date(this.date * 1000), "en_US")
+    },
   },
-  destroyed () {
+  destroyed() {
     clearInterval(this.refreshTimeout)
   },
-  mounted () {
+  mounted() {
     this.refresh()
 
     this.refreshTimeout = setInterval(this.refresh, 30000)
   },
   methods: {
-    refresh () {
+    refresh() {
       if (this.date > 0) {
-        this.formatted = format(new Date(this.date * 1000), 'en_US').toString()
+        this.formatted = format(new Date(this.date * 1000), "en_US").toString()
       } else {
-        this.formatted = this.$t('servers.server.updated.notResponding').toString()
+        this.formatted = this.$t(
+          "servers.server.updated.notResponding"
+        ).toString()
       }
-    }
-  }
+    },
+  },
 })
 </script>

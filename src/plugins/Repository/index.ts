@@ -1,5 +1,5 @@
-import { AxiosInstance, AxiosStatic } from 'axios'
-import ApiResponse from '@/plugins/Repository/ApiResponse'
+import { AxiosInstance, AxiosStatic } from "axios"
+import ApiResponse from "@/plugins/Repository/ApiResponse"
 
 export const BASE_URL = process.env.NUXT_ENV_API_URL
 
@@ -12,7 +12,7 @@ export default ($axios: AxiosStatic): AxiosInstance => {
   const failure = (error: any): Promise<ApiResponse> => {
     // Waiting for refresh support on auth0 lib
     if (error.code === 401) {
-      window.location.href = '/'
+      window.location.href = "/"
     }
     return Promise.reject(normalizeResponse(error))
   }
@@ -22,15 +22,26 @@ export default ($axios: AxiosStatic): AxiosInstance => {
   return service
 }
 
-export const normalizeResponse = (resp: any, defaultBody: any = null): ApiResponse => {
+export const normalizeResponse = (
+  resp: any,
+  defaultBody: any = null
+): ApiResponse => {
   // Axios response
   if (resp.data && !isNaN(resp.status)) {
-    return new ApiResponse(resp.data.code, resp.data.message, (resp.data.body && resp.data.body) || defaultBody)
+    return new ApiResponse(
+      resp.data.code,
+      resp.data.message,
+      (resp.data.body && resp.data.body) || defaultBody
+    )
   }
 
   // Response body
   if (!isNaN(resp.code)) {
-    return new ApiResponse(resp.code, resp.message, (resp.body && resp.body) || defaultBody)
+    return new ApiResponse(
+      resp.code,
+      resp.message,
+      (resp.body && resp.body) || defaultBody
+    )
   }
 
   // Error response
@@ -38,9 +49,14 @@ export const normalizeResponse = (resp: any, defaultBody: any = null): ApiRespon
     return new ApiResponse(
       resp.response.data.code,
       resp.response.data.message,
-      (resp.response.data.body && resp.response.data.body) || defaultBody)
+      (resp.response.data.body && resp.response.data.body) || defaultBody
+    )
   }
 
   // No response
-  return new ApiResponse(500, 'Unable to communicate with the server', defaultBody)
+  return new ApiResponse(
+    500,
+    "Unable to communicate with the server",
+    defaultBody
+  )
 }

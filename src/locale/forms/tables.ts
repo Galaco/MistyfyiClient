@@ -1,5 +1,5 @@
 export default {
   headers: {
-    actions: 'Actions'
-  }
+    actions: "Actions",
+  },
 }

@@ -1,19 +1,8 @@
 <template>
-  <v-list-item
-    ripple
-    @click="onClick"
-  >
+  <v-list-item ripple @click="onClick">
     <div class="status-indicator">
-      <v-badge
-        v-if="server.name.length > 0"
-        color="green"
-        dot
-      />
-      <v-badge
-        v-if="server.name.length === 0"
-        color="red"
-        dot
-      />
+      <v-badge v-if="server.name.length > 0" color="green" dot />
+      <v-badge v-if="server.name.length === 0" color="red" dot />
     </div>
 
     <v-list-item-content>
@@ -27,10 +16,7 @@
         class="text-uppercase font-weight-regular caption"
         v-text="`${server.ipAddress}:${server.port}`"
       />
-      <div
-        v-if="server.currentMap.length > 0"
-        v-text="server.currentMap"
-      />
+      <div v-if="server.currentMap.length > 0" v-text="server.currentMap" />
       <div
         v-if="server.currentMap.length === 0"
         v-text="$t('feed.serverList.serverUnreachable')"
@@ -40,22 +26,22 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Server from '@/models/api/servers/Server'
+import Vue from "vue"
+import Server from "@/models/api/servers/Server"
 
 export default Vue.extend({
-  name: 'TableRow',
+  name: "TableRow",
   props: {
     server: {
       type: Server,
-      default: () => new Server('', '')
-    }
+      default: () => new Server("", ""),
+    },
   },
   methods: {
-    onClick () {
+    onClick() {
       console.log(this.server)
-    }
-  }
+    },
+  },
 })
 </script>
 

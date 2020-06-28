@@ -14,36 +14,36 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Dialog, { DialogType } from './Dialog.vue'
+import Vue from "vue"
+import Dialog, { DialogType } from "./Dialog.vue"
 
 export default Vue.extend({
-  name: 'Delete',
+  name: "Delete",
   components: {
-    Dialog
+    Dialog,
   },
   props: {
     show: {
       type: Boolean,
-      default: () => false
+      default: () => false,
     },
     title: {
       type: String,
-      default: () => ''
-    }
+      default: () => "",
+    },
   },
   data: () => {
     return {
-      type: DialogType.Delete
+      type: DialogType.Delete,
     }
   },
   methods: {
-    close () {
-      this.$emit('deny')
+    close() {
+      this.$emit("deny")
     },
-    submit () {
-      this.$emit('confirm')
-    }
-  }
+    submit() {
+      this.$emit("confirm")
+    },
+  },
 })
 </script>

@@ -7,20 +7,20 @@
   >
     <v-card>
       <v-card-title class="headline">
-        {{ $t('dialog.notifications.title') }}
+        {{ $t("dialog.notifications.title") }}
       </v-card-title>
       <v-card-text>
-        {{ $t('dialog.notifications.body') }}
+        {{ $t("dialog.notifications.body") }}
       </v-card-text>
       <v-card-actions>
         <v-btn @click="submit">
-          {{ $t('dialog.notifications.confirm') }}
+          {{ $t("dialog.notifications.confirm") }}
         </v-btn>
         <v-btn @click="close">
-          {{ $t('dialog.notifications.deny') }}
+          {{ $t("dialog.notifications.deny") }}
         </v-btn>
         <v-btn @click="closeForever">
-          {{ $t('dialog.notifications.denyForever') }}
+          {{ $t("dialog.notifications.denyForever") }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -28,28 +28,35 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
-import { FETCH_USER_PROFILE } from '@/store/actions.type'
+import Vue from "vue"
+import { mapGetters } from "vuex"
+import { FETCH_USER_PROFILE } from "@/store/actions.type"
 
-export const NEVER_SHOW_DIALOG = 'hideNotificationDialog'
+export const NEVER_SHOW_DIALOG = "hideNotificationDialog"
 
 export default Vue.extend({
-  name: 'EnableNotifications',
+  name: "EnableNotifications",
   props: {
-    show: Boolean
+    show: Boolean,
   },
   computed: {
-    ...mapGetters(['userProfile'])
+    ...mapGetters(["userProfile"]),
   },
   methods: {
-    submit () {
+    submit() {
       this.$OneSignal.push(() => {
-        this.$OneSignal.on('subscriptionChange', (isSubscribed: boolean) => {
-          console.log('You have changed notification subscription status:', isSubscribed)
+        this.$OneSignal.on("subscriptionChange", (isSubscribed: boolean) => {
+          console.log(
+            "You have changed notification subscription status:",
+            isSubscribed
+          )
           if (isSubscribed) {
             this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
-              if (this.userProfile && this.userProfile.uuid && this.userProfile.uuid.length > 0) {
+              if (
+                this.userProfile &&
+                this.userProfile.uuid &&
+                this.userProfile.uuid.length > 0
+              ) {
                 this.$OneSignal.push(() => {
                   this.$OneSignal.setExternalUserId(this.userProfile.uuid)
                 })
@@ -65,13 +72,13 @@ export default Vue.extend({
       })
       this.$OneSignal.showNativePrompt()
     },
-    close () {
-      this.$emit('deny')
+    close() {
+      this.$emit("deny")
     },
-    closeForever () {
+    closeForever() {
       this.$localStorage.setItem(NEVER_SHOW_DIALOG, true)
-      this.$emit('deny')
-    }
-  }
+      this.$emit("deny")
+    },
+  },
 })
 </script>

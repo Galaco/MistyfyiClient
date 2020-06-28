@@ -5,7 +5,7 @@
     </v-card-title>
     <v-card-text>
       <v-form>
-        <div :class="(!emailAddressValid)? 'md-invalid': ''">
+        <div :class="!emailAddressValid ? 'md-invalid' : ''">
           <v-text-field
             id="email"
             v-model="emailAddress"
@@ -14,9 +14,9 @@
             :label="$t('help.contact.email.label')"
             required
           />
-          <span class="md-error">{{ $t('help.contact.email.error') }}</span>
+          <span class="md-error">{{ $t("help.contact.email.error") }}</span>
         </div>
-        <div :class="(!messageValid)? 'md-invalid': ''">
+        <div :class="!messageValid ? 'md-invalid' : ''">
           <v-text-field
             id="email"
             v-model="message"
@@ -25,7 +25,7 @@
             :label="$t('help.contact.message.label')"
             required
           />
-          <span class="md-error">{{ $t('help.contact.message.error') }}</span>
+          <span class="md-error">{{ $t("help.contact.message.error") }}</span>
         </div>
         <div>
           <vue-recaptcha
@@ -38,12 +38,8 @@
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <v-btn
-        type="button"
-        :disabled="!formValid || sending"
-        @click="send"
-      >
-        {{ $t('help.contact.submit') }}
+      <v-btn type="button" :disabled="!formValid || sending" @click="send">
+        {{ $t("help.contact.submit") }}
       </v-btn>
     </v-card-actions>
     <v-progress-linear v-if="sending" indeterminate color="#4588d2" />
@@ -51,8 +47,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import VueRecaptcha from 'vue-recaptcha'
+import Vue from "vue"
+import VueRecaptcha from "vue-recaptcha"
 
 const injectedRecaptchaSiteKey = process.env.NUXT_ENV_RECAPTCHA_SITE_KEY
 
@@ -60,61 +56,71 @@ const injectedRecaptchaSiteKey = process.env.NUXT_ENV_RECAPTCHA_SITE_KEY
 const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 
 export default Vue.extend({
-  name: 'ContactForm',
+  name: "ContactForm",
   components: {
-    VueRecaptcha
+    VueRecaptcha,
   },
   data: () => ({
-    emailAddress: '',
+    emailAddress: "",
     emailAddressValid: false,
-    message: '',
+    message: "",
     messageValid: false,
     formValid: false,
     sending: false,
     recaptchaSiteKey: injectedRecaptchaSiteKey,
-    recaptchaAuthKey: ''
+    recaptchaAuthKey: "",
   }),
   watch: {
-    emailAddress (value) {
+    emailAddress(value) {
       this.emailAddressValid = emailRegex.test(value)
       this.validateForm()
     },
-    message (value) {
-      this.messageValid = (value.length >= 50)
+    message(value) {
+      this.messageValid = value.length >= 50
       this.validateForm()
-    }
+    },
   },
   methods: {
-    onVerify (response: any) {
+    onVerify(response: any) {
       this.recaptchaAuthKey = response
       this.validateForm()
     },
-    onExpired () {
-      this.recaptchaAuthKey = ''
+    onExpired() {
+      this.recaptchaAuthKey = ""
       this.validateForm()
     },
-    send () {
+    send() {
       this.sending = true
-      this.$repositories.user.sendContactRequest(this.emailAddress, this.message, this.recaptchaAuthKey).then(() => {
-        this.$toast.success(this.$t('help.contact.toast.success'))
-        this.emailAddress = ''
-        this.message = ''
-        this.onExpired()
-        this.sending = false
-      }).catch((err: any) => {
-        this.$toast.error(err.message)
-        this.sending = false
-      })
+      this.$repositories.user
+        .sendContactRequest(
+          this.emailAddress,
+          this.message,
+          this.recaptchaAuthKey
+        )
+        .then(() => {
+          this.$toast.success(this.$t("help.contact.toast.success"))
+          this.emailAddress = ""
+          this.message = ""
+          this.onExpired()
+          this.sending = false
+        })
+        .catch((err: any) => {
+          this.$toast.error(err.message)
+          this.sending = false
+        })
     },
-    validateForm () {
-      this.formValid = this.emailAddressValid && this.messageValid && this.recaptchaAuthKey !== ''
-    }
-  }
+    validateForm() {
+      this.formValid =
+        this.emailAddressValid &&
+        this.messageValid &&
+        this.recaptchaAuthKey !== ""
+    },
+  },
 })
 </script>
 
-<style lang='scss' scoped>
-    .grecaptcha-badge {
-        display: none !important;
-    }
+<style lang="scss" scoped>
+.grecaptcha-badge {
+  display: none !important;
+}
 </style>

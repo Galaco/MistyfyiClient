@@ -1,74 +1,75 @@
 <template>
   <nuxt-link
-    :class="light? 'light': 'dark'"
+    :class="light ? 'light' : 'dark'"
     class="navbar-brand"
     :to="{ name: 'index' }"
   >
-    <img src="/images/logo.svg" alt="logo" class="navbar-brand-icon">
-    <span class="navbar-brand-title">{{ $t('app_title') }}</span>
+    <img src="/images/logo.svg" alt="logo" class="navbar-brand-icon" />
+    <span class="navbar-brand-title">{{ $t("app_title") }}</span>
   </nuxt-link>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue"
 
 export default Vue.extend({
-  name: 'BrandLogo',
+  name: "BrandLogo",
   props: {
-    light: Boolean
-  }
+    light: Boolean,
+  },
 })
 </script>
 
-<style lang='scss' scoped>
-    .navbar-brand {
-        color: #efefef;
-        text-decoration: none;
+<style lang="scss" scoped>
+.navbar-brand {
+  color: #efefef;
+  text-decoration: none;
 
-        &:hover, &:visited {
-          color: #efefef;
-        }
+  &:hover,
+  &:visited {
+    color: #efefef;
+  }
 
-        .navbar-brand-title {
-            vertical-align: middle;
-            font-family: 'Saira Semi Condensed', sans-serif;
-            font-size: 24px;
-            margin-left: 16px;
-            transition-duration: .28s;
-            transition-property: color;
-            transition-timing-function: cubic-bezier(.4,0,.2,1);
-        }
+  .navbar-brand-title {
+    vertical-align: middle;
+    font-family: "Saira Semi Condensed", sans-serif;
+    font-size: 24px;
+    margin-left: 16px;
+    transition-duration: 0.28s;
+    transition-property: color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-        .navbar-brand-icon {
-            font-size: 20px;
-            color: #797979;
-            height: 40px;
-            width: 40px;
-            border-radius: 5px;
-            text-align: center;
-            background-color: #797979;
-            vertical-align: middle;
-            transition-duration: .28s;
-            transition-property: background-color;
-            transition-timing-function: cubic-bezier(.4,0,.2,1);
-            border: 1px solid #aaa;
-        }
+  .navbar-brand-icon {
+    font-size: 20px;
+    color: #797979;
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #797979;
+    vertical-align: middle;
+    transition-duration: 0.28s;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #aaa;
+  }
 
-        &.light {
-            .navbar-brand-icon:hover {
-                color: #fff;
-            }
-        }
-
-        &:hover {
-            .navbar-brand-icon {
-                background-color: #4d4d4d;
-                color: #797979;
-            }
-
-            .navbar-brand-title {
-                color: #797979;
-            }
-        }
+  &.light {
+    .navbar-brand-icon:hover {
+      color: #fff;
     }
+  }
+
+  &:hover {
+    .navbar-brand-icon {
+      background-color: #4d4d4d;
+      color: #797979;
+    }
+
+    .navbar-brand-title {
+      color: #797979;
+    }
+  }
+}
 </style>

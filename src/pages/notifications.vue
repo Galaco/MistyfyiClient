@@ -2,15 +2,12 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card
-          single-line
-          :sticky="false"
-        >
+        <v-card single-line :sticky="false">
           <v-card-text v-show="userProfile.isSubscribed === false">
-            {{ $t('notifications.instructions.free') }}
+            {{ $t("notifications.instructions.free") }}
           </v-card-text>
           <v-card-text v-show="userProfile.isSubscribed === true">
-            {{ $t('notifications.instructions.paid') }}
+            {{ $t("notifications.instructions.paid") }}
           </v-card-text>
         </v-card>
       </v-col>
@@ -23,33 +20,33 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
-import WatchedMaps from '@/components/WatchedMaps/WatchedMaps.vue'
-import { FETCH_SERVERS } from '@/store/actions.type'
+import Vue from "vue"
+import { mapGetters } from "vuex"
+import WatchedMaps from "@/components/WatchedMaps/WatchedMaps.vue"
+import { FETCH_SERVERS } from "@/store/actions.type"
 
 export default Vue.extend({
-  middleware: ['auth'],
-  layout: 'app',
-  name: 'Notifications',
+  middleware: ["auth"],
+  layout: "app",
+  name: "Notifications",
   transition: {
-    css: true
+    css: true,
   },
   components: {
-    WatchedMaps
+    WatchedMaps,
   },
   computed: {
-    ...mapGetters(['userProfile'])
+    ...mapGetters(["userProfile"]),
   },
-  mounted () {
-    this.$store.dispatch(FETCH_SERVERS).catch((err) => {
+  mounted() {
+    this.$store.dispatch(FETCH_SERVERS).catch(err => {
       this.$toast.error(err.message)
     })
   },
-  head () {
+  head() {
     return {
-      title: 'Map Notifications'
+      title: "Map Notifications",
     }
-  }
+  },
 })
 </script>

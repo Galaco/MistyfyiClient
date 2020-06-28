@@ -1,22 +1,17 @@
 <template>
   <v-container fill-height>
-    <v-row
-      align="center"
-      justify="center"
-    >
+    <v-row align="center" justify="center">
       <v-col cols="10" sm="4">
         <v-card class="theme--dark">
           <v-card-title>
             <BrandLogo />
           </v-card-title>
           <v-card-text class="text-center">
-            <p>
-              {{ $t('app_title') }}{{ $t('footer.description') }}
-            </p>
+            <p>{{ $t("app_title") }}{{ $t("footer.description") }}</p>
             <v-btn color="primary" @click="login">
-              <span v-if="!autoRedirect"> {{ $t('header.links.login') }}</span>
+              <span v-if="!autoRedirect"> {{ $t("header.links.login") }}</span>
               <span v-if="autoRedirect">
-                {{ $t('header.links.redirecting') }}
+                {{ $t("header.links.redirecting") }}
                 <Spinner size="16" width="2" />
               </span>
             </v-btn>
@@ -28,41 +23,41 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import BrandLogo from '@/components/Layout/BrandLogo.vue'
-import Spinner from '@/components/LoadingIndicator/Spinner.vue'
+import Vue from "vue"
+import BrandLogo from "@/components/Layout/BrandLogo.vue"
+import Spinner from "@/components/LoadingIndicator/Spinner.vue"
 
 export default Vue.extend({
-  layout: 'empty',
-  name: 'Login',
+  layout: "empty",
+  name: "Login",
   components: {
     BrandLogo,
-    Spinner
+    Spinner,
   },
   data: () => ({
-    autoRedirect: false
+    autoRedirect: false,
   }),
-  mounted () {
+  mounted() {
     if (this.isLoggedIn() === true) {
-      this.$router.push({ name: 'feed' })
+      this.$router.push({ name: "feed" })
     }
-    if (String(this.$route.query.passthrough) === '1') {
+    if (String(this.$route.query.passthrough) === "1") {
       this.autoRedirect = true
       this.login()
     }
   },
   methods: {
-    isLoggedIn (): boolean {
+    isLoggedIn(): boolean {
       return this.$auth.isLoggedIn
     },
-    login () {
+    login() {
       this.$auth.login()
+    },
+  },
+  head() {
+    return {
+      title: "Login",
     }
   },
-  head () {
-    return {
-      title: 'Login'
-    }
-  }
 })
 </script>

@@ -1,11 +1,11 @@
-import { normalizeResponse } from '~/plugins/Repository/index'
+import { normalizeResponse } from "~/plugins/Repository/index"
 
-describe('normaliseResponse', () => {
-  it('normalizes a successful api response', () => {
+describe("normaliseResponse", () => {
+  it("normalizes a successful api response", () => {
     const resp = {
       code: 200,
-      message: 'foo',
-      body: 'bar'
+      message: "foo",
+      body: "bar",
     }
 
     const sut = normalizeResponse(resp)

@@ -1,0 +1,5 @@
+.nuxt
+coverage
+package.json
+package-lock.json
+public

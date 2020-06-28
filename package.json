@@ -9,9 +9,10 @@
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",
     "start": "nuxt-ts start",
-    "lint": "eslint --ext .ts,.js,.vue .",
+    "lint": "prettier --write \"**/*.{js,jsx,ts,tsx,json,vue}\"",
     "post-update": "yarn upgrade --latest",
-    "now-build": "nuxt-ts build --spa"
+    "now-build": "nuxt-ts build --spa",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "0.4.1",
@@ -27,7 +28,6 @@
     "deepmerge": "4.2.2",
     "fibers": "4.0.2",
     "firebase": "7.15.1",
-    "jest": "25.2.6",
     "material-design-icons-iconfont": "5.0.1",
     "nuxt": "^2.12.2",
     "nuxt-i18n": "^6.7.2",
@@ -55,8 +55,12 @@
     "babel-jest": "25.4.0",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "eslint": "6.8.0",
+    "eslint-plugin-prettier": "3.1.4",
     "eslint-loader": "3.0.3",
+    "jest": "25.2.6",
+    "prettier": "2.0.5",
     "ts-jest": "^25.3.0",
+    "tslint-config-prettier": "1.18.0",
     "tslint-config-standard": "9.0.0"
   },
   "engines": {

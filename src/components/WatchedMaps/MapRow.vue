@@ -7,10 +7,7 @@
       {{ getServerNameFromId(model.serverId) }}
     </td>
     <td class="v-center">
-      <v-switch
-        v-model="isEnabled"
-        @change="onDisable"
-      />
+      <v-switch v-model="isEnabled" @change="onDisable" />
     </td>
     <td class="controls" align="center">
       <v-tooltip top>
@@ -27,63 +24,74 @@
             <v-icon>mdi-delete</v-icon>
           </v-btn>
         </template>
-        <span>{{ $t('notifications.buttons.delete') }}</span>
+        <span>{{ $t("notifications.buttons.delete") }}</span>
       </v-tooltip>
     </td>
   </tr>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { DISABLE_MAP_NAME } from '@/store/actions.type'
-import WatchedMap from '@/models/api/maps/WatchedMap'
+import Vue from "vue"
+import { DISABLE_MAP_NAME } from "@/store/actions.type"
+import WatchedMap from "@/models/api/maps/WatchedMap"
 
 export default Vue.extend({
-  name: 'MapRow',
+  name: "MapRow",
   props: {
     model: {
       type: WatchedMap,
-      default: new WatchedMap('', '')
+      default: new WatchedMap("", ""),
     },
     getServerNameFromId: {
       type: Function,
-      default: () => ''
+      default: () => "",
     },
     onDelete: {
       type: Function,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
-  data () {
+  data() {
     return {
-      isEnabled: true
+      isEnabled: true,
     }
   },
-  mounted () {
+  mounted() {
     this.isEnabled = !this.model.disabled
   },
   methods: {
-    onDisable (value: boolean) {
-      this.$store.dispatch(DISABLE_MAP_NAME, { model: this.model, isDisabled: !value }).then(() => {
-        this.model.disabled = !value
-        this.isEnabled = value
-        if (value === true) {
-          this.$toast.success(this.$t('notifications.toast.enable.success', { name: this.model.name }))
-        } else {
-          this.$toast.success(this.$t('notifications.toast.disable.success', { name: this.model.name }))
-        }
-      }).catch((err) => {
-        this.$toast.error(err.message)
-      })
-    }
-  }
+    onDisable(value: boolean) {
+      this.$store
+        .dispatch(DISABLE_MAP_NAME, { model: this.model, isDisabled: !value })
+        .then(() => {
+          this.model.disabled = !value
+          this.isEnabled = value
+          if (value === true) {
+            this.$toast.success(
+              this.$t("notifications.toast.enable.success", {
+                name: this.model.name,
+              })
+            )
+          } else {
+            this.$toast.success(
+              this.$t("notifications.toast.disable.success", {
+                name: this.model.name,
+              })
+            )
+          }
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+        })
+    },
+  },
 })
 </script>
 
-<style lang='scss' scoped>
-    th.controls {
-        text-align: center;
-        width: 160px;
-        min-width: 160px;
-    }
+<style lang="scss" scoped>
+th.controls {
+  text-align: center;
+  width: 160px;
+  min-width: 160px;
+}
 </style>

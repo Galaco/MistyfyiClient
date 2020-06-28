@@ -8,54 +8,54 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import FeedList from '@/components/Feed/FeedList.vue'
-import ServerList from '@/components/ServerList/ServerList.vue'
-import { FETCH_FEED, FETCH_SERVERS } from '@/store/actions.type'
+import Vue from "vue"
+import FeedList from "@/components/Feed/FeedList.vue"
+import ServerList from "@/components/ServerList/ServerList.vue"
+import { FETCH_FEED, FETCH_SERVERS } from "@/store/actions.type"
 
 export default Vue.extend({
-  middleware: ['auth'],
-  layout: 'app',
-  name: 'Feed',
+  middleware: ["auth"],
+  layout: "app",
+  name: "Feed",
   components: {
     FeedList,
-    ServerList
+    ServerList,
   },
   transition: {
-    css: true
+    css: true,
   },
   data: () => ({
-    refreshTimeout: -1
+    refreshTimeout: -1,
   }),
-  destroyed () {
+  destroyed() {
     clearInterval(this.refreshTimeout)
   },
-  mounted () {
+  mounted() {
     this.refresh()
 
     this.refreshTimeout = setInterval(this.refresh, 60000)
   },
   methods: {
-    refresh () {
+    refresh() {
       this.refreshFeed()
       this.refreshServers()
     },
-    refreshFeed () {
+    refreshFeed() {
       this.$store.dispatch(FETCH_FEED).catch((err: Error) => {
         this.$toast.error(err.message)
       })
     },
-    refreshServers () {
+    refreshServers() {
       this.$store.dispatch(FETCH_SERVERS).catch((err: Error) => {
         this.$toast.error(err.message)
       })
+    },
+  },
+  head() {
+    return {
+      title: "Home",
     }
   },
-  head () {
-    return {
-      title: 'Home'
-    }
-  }
 })
 </script>
 

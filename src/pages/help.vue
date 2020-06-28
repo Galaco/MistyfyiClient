@@ -5,23 +5,23 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import ContactForm from '@/components/Contact/Form.vue'
+import Vue from "vue"
+import ContactForm from "@/components/Contact/Form.vue"
 
 export default Vue.extend({
-  middleware: ['auth'],
-  layout: 'app',
-  name: 'Help',
+  middleware: ["auth"],
+  layout: "app",
+  name: "Help",
   transition: {
-    css: true
+    css: true,
   },
   components: {
-    ContactForm
+    ContactForm,
   },
-  head () {
+  head() {
     return {
-      title: 'Help'
+      title: "Help",
     }
-  }
+  },
 })
 </script>

@@ -6,28 +6,28 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import HistoryItem from '@/models/api/servers/Historyitem'
+import Vue from "vue"
+import HistoryItem from "@/models/api/servers/Historyitem"
 
 export default Vue.extend({
-  name: 'Item',
+  name: "Item",
   props: {
     model: {
       type: HistoryItem,
-      default: () => new HistoryItem('', 0)
+      default: () => new HistoryItem("", 0),
+    },
+  },
+  data() {
+    return {
+      thumbnailPath: `${process.env.NUXT_ENV_CDN_URL}/images/map/thumb/`,
     }
   },
-  data () {
-    return {
-      thumbnailPath: `${process.env.NUXT_ENV_CDN_URL}/images/map/thumb/`
-    }
-  }
 })
 </script>
 
-<style lang='scss' scoped>
-  .controls {
-    width: 160px;
-    min-width: 160px;
-  }
+<style lang="scss" scoped>
+.controls {
+  width: 160px;
+  min-width: 160px;
+}
 </style>

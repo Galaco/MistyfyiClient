@@ -6,32 +6,32 @@
     @confirm="submit"
     @deny="close"
   >
-    <span>{{ $t('servers.dialogs.delete.body') }}</span>
+    <span>{{ $t("servers.dialogs.delete.body") }}</span>
   </Delete>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Delete from '@/components/Dialogs/Delete.vue'
+import Vue from "vue"
+import Delete from "@/components/Dialogs/Delete.vue"
 
 export default Vue.extend({
-  name: 'DeleteServer',
+  name: "DeleteServer",
   components: {
-    Delete
+    Delete,
   },
   props: {
     show: {
       type: Boolean,
-      default: () => false
-    }
+      default: () => false,
+    },
   },
   methods: {
-    close () {
-      this.$emit('deny')
+    close() {
+      this.$emit("deny")
     },
-    submit () {
-      this.$emit('confirm')
-    }
-  }
+    submit() {
+      this.$emit("confirm")
+    },
+  },
 })
 </script>

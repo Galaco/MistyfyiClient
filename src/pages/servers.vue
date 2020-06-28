@@ -2,15 +2,12 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card
-          single-line
-          :sticky="false"
-        >
+        <v-card single-line :sticky="false">
           <v-card-text v-show="userProfile.isSubscribed === false">
-            {{ $t('servers.instructions.free') }}
+            {{ $t("servers.instructions.free") }}
           </v-card-text>
           <v-card-text v-show="userProfile.isSubscribed === true">
-            {{ $t('servers.instructions.paid') }}
+            {{ $t("servers.instructions.paid") }}
           </v-card-text>
         </v-card>
       </v-col>
@@ -23,27 +20,27 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
-import WatchedServers from '@/components/WatchedServers/WatchedServers.vue'
+import Vue from "vue"
+import { mapGetters } from "vuex"
+import WatchedServers from "@/components/WatchedServers/WatchedServers.vue"
 
 export default Vue.extend({
-  middleware: ['auth'],
-  layout: 'app',
-  name: 'Servers',
+  middleware: ["auth"],
+  layout: "app",
+  name: "Servers",
   transition: {
-    css: true
+    css: true,
   },
   components: {
-    WatchedServers
+    WatchedServers,
   },
   computed: {
-    ...mapGetters(['userProfile'])
+    ...mapGetters(["userProfile"]),
   },
-  head () {
+  head() {
     return {
-      title: 'Servers'
+      title: "Servers",
     }
-  }
+  },
 })
 </script>

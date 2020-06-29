@@ -31,7 +31,7 @@
           :title="$t('servers.noItems.title')"
           :description="$t('servers.noItems.description')"
           button-id="addFirstServerButton"
-          :on-button-click="showAddServerDialog"
+          :button-on-click="showAddServerDialog"
           :button-text="$t('servers.noItems.add')"
         />
         <Loading v-if="serversCount === -1" />
@@ -109,6 +109,7 @@ export default Vue.extend({
       this.isNewServerDialogVisible = true
     },
     onAddServerDialog() {
+      this.onCloseAddServerDialog();
       setTimeout(this.getPrivateServers, 2500)
     },
     onCloseAddServerDialog() {

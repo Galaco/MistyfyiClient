@@ -39,7 +39,7 @@
         class="row text-center"
       >
         <div class="col-sm-12 loading-spinner">
-          {{ $t("popular.watchedMaps.insufficientData") }}
+          {{ $t("popular.mapNames.insufficientData") }}
         </div>
       </div>
     </v-card-text>

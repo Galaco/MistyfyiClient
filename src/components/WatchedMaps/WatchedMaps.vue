@@ -44,7 +44,7 @@
           :title="$t('notifications.noItems.title')"
           :description="$t('notifications.noItems.description')"
           button-id="addFirstMapNameButton"
-          :on-button-click="showAddDialog"
+          :button-on-click="showAddDialog"
           :button-text="$t('notifications.noItems.add')"
         />
         <Loading v-if="levelNamesCount === -1" />

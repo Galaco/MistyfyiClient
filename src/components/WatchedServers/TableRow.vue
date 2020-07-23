@@ -109,4 +109,32 @@ export default Vue.extend({
   width: 160px;
   min-width: 160px;
 }
+
+@media only screen and (max-width: 585px) {
+  th {
+    display: none;
+  }
+
+  tr:hover {
+    background-color: none;
+  }
+
+  td {
+    display: block;
+    height: auto;
+    padding: 0;
+  }
+
+  td:first-child {
+    font-weight: bold;
+  }
+
+  td:last-child {
+    display: none;
+  }
+
+  td:not(:last-child) {
+    display: block;
+  }
+}
 </style>

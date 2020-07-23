@@ -86,7 +86,35 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .controls {
-  width: 160px;
-  min-width: 160px;
+  width: 120px;
+  min-width: 120px;
+}
+
+@media only screen and (max-width: 585px) {
+  th {
+    display: none;
+  }
+
+  tr:hover {
+    background-color: none;
+  }
+
+  td {
+    display: block;
+    height: auto;
+    padding: 0;
+  }
+
+  td:first-child {
+    font-weight: bold;
+  }
+
+  td:last-child {
+    display: none;
+  }
+
+  td:not(:last-child) {
+    display: block;
+  }
 }
 </style>

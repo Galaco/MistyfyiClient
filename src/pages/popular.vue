@@ -1,13 +1,10 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
-        <v-card single-line :sticky="false">
-          <v-card-text>
-            {{ $t("popular.header") }}
-          </v-card-text>
-        </v-card>
-      </v-col>
+      <PageInfoBox
+        :subscribedText="$t('popular.header')"
+        :unsubscribedText="$t('popular.header')"
+      />
     </v-row>
     <v-row>
       <v-col cols="12">
@@ -29,6 +26,7 @@
 
 <script lang="ts">
 import Vue from "vue"
+import PageInfoBox from "@/components/Layout/PageInfoBox.vue"
 import PopularServers from "@/components/Popular/Servers/List.vue"
 import PopularMaps from "@/components/Popular/Maps/List.vue"
 import PopularMapNames from "@/components/Popular/MapNames/List.vue"
@@ -43,6 +41,7 @@ export default Vue.extend({
   layout: "app",
   name: "Popular",
   components: {
+    PageInfoBox,
     PopularServers,
     PopularMaps,
     PopularMapNames,

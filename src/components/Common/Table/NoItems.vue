@@ -48,11 +48,4 @@ export default Vue.extend({
 .section {
   margin-bottom: 1rem;
 }
-
-.loading-spinner {
-  height: 240px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 </style>

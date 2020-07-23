@@ -11,8 +11,7 @@
     "start": "nuxt-ts start",
     "lint": "prettier --write \"**/*.{js,jsx,ts,tsx,json,vue}\"",
     "post-update": "yarn upgrade --latest",
-    "now-build": "nuxt-ts build --spa",
-    "tslint-check": "tslint-config-prettier-check ./tslint.json"
+    "now-build": "nuxt-ts build --spa"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "0.4.1",

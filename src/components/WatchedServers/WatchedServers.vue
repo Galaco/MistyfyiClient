@@ -7,6 +7,7 @@
         </v-toolbar-title>
         <v-spacer />
         <v-btn
+          id="serverListRefreshButton"
           :disabled="serversCount === 0 || isServersLoading === true"
           @click="getPrivateServers"
         >
@@ -102,14 +103,14 @@ export default Vue.extend({
   },
   mounted() {
     this.getPrivateServers()
-    this.refreshTimeout = setInterval(this.getPrivateServers, 120000)
+    this.refreshTimeout = window.setInterval(this.getPrivateServers, 120000)
   },
   methods: {
     showAddServerDialog() {
       this.isNewServerDialogVisible = true
     },
     onAddServerDialog() {
-      this.onCloseAddServerDialog();
+      this.onCloseAddServerDialog()
       setTimeout(this.getPrivateServers, 2500)
     },
     onCloseAddServerDialog() {
@@ -167,5 +168,11 @@ export default Vue.extend({
 .view-toggle-icon {
   padding: 16px;
   margin-top: -12px;
+}
+
+@media only screen and (max-width: 585px) {
+  #serverListRefreshButton {
+    display: none;
+  }
 }
 </style>

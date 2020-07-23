@@ -1,17 +1,10 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
-        <v-card single-line :sticky="false">
-          <v-card-text v-show="userProfile.isSubscribed === false">
-            {{ $t("notifications.instructions.free") }}
-          </v-card-text>
-          <v-card-text v-show="userProfile.isSubscribed === true">
-            {{ $t("notifications.instructions.paid") }}
-          </v-card-text>
-        </v-card>
-      </v-col>
-
+      <PageInfoBox
+        :subscribedText="$t('notifications.instructions.paid')"
+        :unsubscribedText="$t('notifications.instructions.free')"
+      />
       <v-col cols="12">
         <WatchedMaps />
       </v-col>
@@ -21,7 +14,7 @@
 
 <script lang="ts">
 import Vue from "vue"
-import { mapGetters } from "vuex"
+import PageInfoBox from "@/components/Layout/PageInfoBox.vue"
 import WatchedMaps from "@/components/WatchedMaps/WatchedMaps.vue"
 import { FETCH_SERVERS } from "@/store/actions.type"
 
@@ -33,10 +26,8 @@ export default Vue.extend({
     css: true,
   },
   components: {
+    PageInfoBox,
     WatchedMaps,
-  },
-  computed: {
-    ...mapGetters(["userProfile"]),
   },
   mounted() {
     this.$store.dispatch(FETCH_SERVERS).catch(err => {

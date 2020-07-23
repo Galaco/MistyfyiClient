@@ -64,4 +64,12 @@ export default Vue.extend({
   align-items: center;
   justify-content: center;
 }
+
+@media only screen and (max-width: 585px) {
+  .col-10 {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+}
 </style>

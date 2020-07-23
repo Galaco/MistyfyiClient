@@ -63,10 +63,9 @@ export default Vue.extend({
   }
 }
 
-.loading-spinner {
-  height: 240px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media only screen and (max-width: 585px) {
+  thead th {
+    display: none;
+  }
 }
 </style>

@@ -8,13 +8,12 @@
         <div :class="!emailAddressValid ? 'md-invalid' : ''">
           <v-text-field
             id="email"
-            v-model="emailAddress"
+            v-model="$auth.user.email"
             name="email"
-            :disabled="sending"
+            :disabled="sending || $auth.user.email"
             :label="$t('help.contact.email.label')"
             required
           />
-          <span class="md-error">{{ $t("help.contact.email.error") }}</span>
         </div>
         <div :class="!messageValid ? 'md-invalid' : ''">
           <v-text-field
@@ -48,6 +47,7 @@
 
 <script lang="ts">
 import Vue from "vue"
+import { mapGetters } from "vuex"
 import VueRecaptcha from "vue-recaptcha"
 
 const injectedRecaptchaSiteKey = process.env.NUXT_ENV_RECAPTCHA_SITE_KEY
@@ -59,6 +59,9 @@ export default Vue.extend({
   name: "ContactForm",
   components: {
     VueRecaptcha,
+  },
+  computed: {
+    ...mapGetters(["userProfile"]),
   },
   data: () => ({
     emailAddress: "",

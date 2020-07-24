@@ -4,8 +4,8 @@
       <thead>
         <tr>
           <th>{{ $t("servers.list.headers.server") }}</th>
-          <th>{{ $t("servers.list.headers.map") }}</th>
           <th>{{ $t("servers.list.headers.game") }}</th>
+          <th>{{ $t("servers.list.headers.map") }}</th>
           <th>{{ $t("servers.list.headers.players") }}</th>
           <th>{{ $t("servers.list.headers.updated") }}</th>
           <th class="controls">

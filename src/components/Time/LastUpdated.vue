@@ -44,3 +44,9 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.text-muted {
+  text-transform: capitalize;
+}
+</style>

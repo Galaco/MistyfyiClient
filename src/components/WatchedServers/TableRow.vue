@@ -1,5 +1,7 @@
 <template>
-  <tr>
+  <tr
+    @click="history"
+  >
     <td v-if="server.name">
       <v-tooltip top>
         <template v-slot:activator="{ on }">
@@ -10,15 +12,15 @@
     </td>
     <td v-if="!server.name">{{ server.ipAddress }}:{{ server.port }}</td>
     <td>
-      {{ server.currentMap }}
-    </td>
-    <td>
       <v-tooltip top>
         <template v-slot:activator="{ on }">
           <span v-on="on">{{ server.game }}</span>
         </template>
         <span>{{ $t("servers.server.game.tooltip") }}</span>
       </v-tooltip>
+    </td>
+    <td>
+      {{ server.currentMap }}
     </td>
     <td>
       <v-tooltip top>
@@ -41,22 +43,6 @@
       </v-tooltip>
     </td>
     <td class="controls" align="center">
-      <v-tooltip top>
-        <template v-slot:activator="{ on }">
-          <v-btn
-            class="mx-2"
-            fab
-            dark
-            small
-            color="primary"
-            v-on="on"
-            @click="history"
-          >
-            <v-icon>mdi-history</v-icon>
-          </v-btn>
-        </template>
-        <span>{{ $t("servers.buttons.history") }}</span>
-      </v-tooltip>
       <v-tooltip top>
         <template v-slot:activator="{ on }">
           <v-btn
@@ -115,26 +101,39 @@ export default Vue.extend({
     display: none;
   }
 
-  tr:hover {
-    background-color: none;
+  tr {
+    cursor: pointer;
+
+    &:hover {
+      background-color: none;
+    }
   }
 
   td {
     display: block;
     height: auto;
     padding: 0;
-  }
 
-  td:first-child {
-    font-weight: bold;
-  }
+    &:nth-child(3) {
+      float: left;
+    }
 
-  td:last-child {
-    display: none;
-  }
+    &:nth-child(4) {
+      float: right;
+    }
 
-  td:not(:last-child) {
-    display: block;
+    &:first-child {
+      font-weight: bold;
+    }
+
+    &:last-child {
+      display: none;
+    }
+
+    &:not(:last-child) {
+      display: block;
+      border-bottom: none;
+    }
   }
 }
 </style>

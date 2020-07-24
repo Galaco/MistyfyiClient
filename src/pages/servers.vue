@@ -5,7 +5,7 @@
         :subscribedText="$t('servers.instructions.paid')"
         :unsubscribedText="$t('servers.instructions.free')"
       />
-      <v-col cols="12">
+      <v-col cols="12" class="cols--server-list">
         <WatchedServers />
       </v-col>
     </v-row>
@@ -35,3 +35,15 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+@media only screen and (max-width: 585px) {
+  .container {
+    padding-top: 0;
+  }
+
+  .cols--server-list {
+    padding: 0;
+  }
+}
+</style>

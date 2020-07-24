@@ -5,7 +5,7 @@
         :subscribedText="$t('notifications.instructions.paid')"
         :unsubscribedText="$t('notifications.instructions.free')"
       />
-      <v-col cols="12">
+      <v-col cols="12" class="cols--notification-list">
         <WatchedMaps />
       </v-col>
     </v-row>
@@ -41,3 +41,16 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+@media only screen and (max-width: 585px) {
+  .container {
+    padding-top: 0;
+  }
+
+  .cols--notification-list {
+    padding: 0;
+  }
+}
+</style>
+

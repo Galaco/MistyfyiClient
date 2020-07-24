@@ -6,7 +6,7 @@
           {{ $t("notifications.title") }}
         </v-toolbar-title>
         <v-spacer />
-        <v-btn id="addMapNameButton" @click="showAddDialog()">
+        <v-btn id="addMapNameButton" @click="showAddDialog">
           <v-icon>mdi-note-add</v-icon>
           <span>{{ $t("notifications.buttons.add") }}</span>
         </v-btn>
@@ -50,6 +50,20 @@
         <Loading v-if="levelNamesCount === -1" />
       </v-card-text>
     </v-card>
+    <v-btn
+      key="share"
+      color="success"
+      fab
+      large
+      dark
+      bottom
+      right
+      fixed
+      class="v-btn--mobile-add"
+      @click="showAddDialog"
+    >
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
     <AddUserLevelDialog
       :show="isAddDialogVisible"
       @deny="closeAddDialog"
@@ -143,5 +157,19 @@ th.controls {
   text-align: center;
   width: 160px;
   min-width: 160px;
+}
+
+.v-btn--mobile-add {
+  display: none;
+}
+
+@media only screen and (max-width: 585px) {
+  .v-toolbar {
+    display: none;
+  }
+
+  .v-btn--mobile-add {
+    display: block;
+  }
 }
 </style>

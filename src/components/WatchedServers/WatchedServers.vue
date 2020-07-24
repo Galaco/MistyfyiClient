@@ -38,6 +38,20 @@
         <Loading v-if="serversCount === -1" />
       </v-card-text>
     </v-card>
+    <v-btn
+      key="share"
+      color="success"
+      fab
+      large
+      dark
+      bottom
+      right
+      fixed
+      class="v-btn--mobile-add"
+      @click="showAddServerDialog"
+    >
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
     <AddServerDialog
       :show="isNewServerDialogVisible"
       @deny="onCloseAddServerDialog"
@@ -159,9 +173,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.server-list {
-  margin-bottom: 16px;
-}
 .view-toggle {
   margin-right: 0;
 }
@@ -170,9 +181,21 @@ export default Vue.extend({
   margin-top: -12px;
 }
 
+.v-btn--mobile-add {
+  display: none;
+}
+
 @media only screen and (max-width: 585px) {
   #serverListRefreshButton {
     display: none;
+  }
+
+  .v-toolbar {
+    display: none;
+  }
+
+  .v-btn--mobile-add {
+    display: block;
   }
 }
 </style>

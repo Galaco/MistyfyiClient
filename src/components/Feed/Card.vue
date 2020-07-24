@@ -73,7 +73,7 @@ export default Vue.extend({
     display: none;
   }
 
-  .v-card-actions {
+  .v-card__actions {
     display: none;
   }
 }

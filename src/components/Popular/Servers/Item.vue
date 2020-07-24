@@ -115,6 +115,7 @@ export default Vue.extend({
 
   td:not(:last-child) {
     display: block;
+    border-bottom: none;
   }
 }
 </style>

@@ -103,19 +103,20 @@ export default Vue.extend({
     display: block;
     height: auto;
     padding: 0;
-  }
 
-  td:first-child {
-    font-weight: bold;
-  }
+    &:first-child {
+      display: block;
+      border-bottom: none !important;
+      font-weight: bold;
+    }
 
-  td:last-child {
-    display: none;
-  }
+    &:nth-child(2) {
+      display: block;
+    }
 
-  td:not(:last-child) {
-    display: block;
-    border-bottom: none;
+    &:last-child {
+      display: none;
+    }
   }
 }
 </style>

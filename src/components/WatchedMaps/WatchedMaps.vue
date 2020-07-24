@@ -171,5 +171,9 @@ th.controls {
   .v-btn--mobile-add {
     display: block;
   }
+
+  thead tr {
+    display: none;
+  }
 }
 </style>

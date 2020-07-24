@@ -116,10 +116,11 @@ export default Vue.extend({
 
     &:nth-child(3) {
       float: left;
+      font-weight: bold;
     }
 
     &:nth-child(4) {
-      float: right;
+      text-align: right;
     }
 
     &:first-child {
@@ -130,9 +131,13 @@ export default Vue.extend({
       display: none;
     }
 
-    &:not(:last-child) {
+    &:not(:nth-child(5)) {
       display: block;
-      border-bottom: none;
+      border-bottom: none !important;
+    }
+
+    &:last-child {
+      display: none;
     }
   }
 }

@@ -94,4 +94,30 @@ th.controls {
   width: 160px;
   min-width: 160px;
 }
+
+
+@media only screen and (max-width: 585px) {
+  td {
+    height: 32px;
+    
+    &:first-child {
+      display: block;
+      border-bottom: 0 !important;
+      line-height: 36px;
+      font-weight: bold;
+      height: 36px;
+      font-size: 16px;
+    }
+
+    &:nth-child(2) {
+      display: block;
+      float: left;
+      width: 100%;
+    }
+
+    &:last-child {
+      display: none;
+    }
+  }
+}
 </style>

@@ -83,8 +83,9 @@ export default Vue.extend({
     history() {
       this.$emit("history", this.server)
     },
-    deleteServer() {
+    deleteServer(event: any) {
       this.$emit("delete", this.server)
+      event.disablePropagation();
     },
   },
 })
@@ -96,14 +97,16 @@ export default Vue.extend({
   min-width: 160px;
 }
 
+tr {
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 585px) {
   th {
     display: none;
   }
 
   tr {
-    cursor: pointer;
-
     &:hover {
       background-color: none;
     }

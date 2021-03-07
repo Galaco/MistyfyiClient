@@ -85,7 +85,7 @@ export default Vue.extend({
     },
     deleteServer(event: any) {
       this.$emit("delete", this.server)
-      event.disablePropagation();
+      event.stopPropagation();
     },
   },
 })

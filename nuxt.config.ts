@@ -24,7 +24,7 @@ const config: Configuration = {
     },
     transpile: ["vuetify/lib"],
   },
-  buildModules: ["@nuxt/typescript-build", "@nuxtjs/vuetify"],
+  buildModules: ["@nuxt/typescript-build", "@nuxtjs/vuetify", "@nuxtjs/dotenv"],
   generate: {
     fallback: true,
   },

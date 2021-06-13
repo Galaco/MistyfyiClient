@@ -23,6 +23,7 @@
     "@nuxt/typescript-runtime": "0.4.1",
     "@nuxtjs/auth": "^4.9.0",
     "@nuxtjs/axios": "^5.9.7",
+    "@nuxtjs/dotenv": "1.4.1",
     "@nuxtjs/onesignal": "^3.0.0-beta.16",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "@nuxtjs/toast": "^3.3.0",

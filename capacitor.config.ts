@@ -6,7 +6,7 @@ const config: CapacitorConfig = {
   webDir: 'dist',
   bundledWebRuntime: false,
   server: {
-    iosScheme: 'nuxtmobile'
+    iosScheme: 'ikamu'
 },
 };
 

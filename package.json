@@ -11,9 +11,15 @@
     "start": "nuxt-ts start",
     "lint": "prettier --write \"**/*.{js,jsx,ts,tsx,json,vue}\"",
     "post-update": "yarn upgrade --latest",
-    "now-build": "nuxt-ts build --spa"
+    "now-build": "nuxt-ts build --spa",
+    "build-ios": "yarn generate && npx cap copy && npx cap run ios",
+    "build-android": "yarn generate && npx cap copy && npx cap run android"
   },
   "dependencies": {
+    "@capacitor/android": "3.0.1",
+    "@capacitor/cli": "3.0.1",
+    "@capacitor/core": "3.0.1",
+    "@capacitor/ios": "3.0.1",
     "@nuxt/typescript-runtime": "0.4.1",
     "@nuxtjs/auth": "^4.9.0",
     "@nuxtjs/axios": "^5.9.7",

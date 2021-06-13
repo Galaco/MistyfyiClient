@@ -1,3 +1,6 @@
+# platform
+*.DS_Store
+
 # dependencies
 node_modules
 
@@ -7,6 +10,8 @@ dist
 OneSignalSDK*
 sw.*
 static/sw.js
+.env.local
+.env.ios
 
 # test
 coverage/
@@ -19,3 +24,9 @@ test/e2e/screenshots
 
 # config
 docker-compose.yml
+
+
+# ios
+ios/App/App/public
+ios/App/Pods
+ios/DerivedData

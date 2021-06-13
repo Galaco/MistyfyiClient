@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ikamu Server Tracker</string>
+    <string name="title_activity_main">Ikamu Server Tracker</string>
+    <string name="package_name">io.ikamu.app</string>
+    <string name="custom_url_scheme">io.ikamu.app</string>
+</resources>

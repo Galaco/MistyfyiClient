@@ -3,15 +3,17 @@
     <v-menu offset-y>
       <template v-slot:activator="{ on }">
         <div id="toolbarProfileButton" v-on="on">
-          <span v-if="$auth.loggedIn">
-            {{ $auth.user.email }}
-          </span>
-          <v-avatar>
+          <v-list>
+          <v-list-item v-if="$auth.loggedIn">
+            <v-list-item-title class="email-address">{{ $auth.user.email }}</v-list-item-title>
+            <v-avatar size="32">
             <v-img v-if="$auth.user.picture" :src="$auth.user.picture" />
             <v-icon v-if="!$auth.user.picture">
               mdi-account-circle
             </v-icon>
           </v-avatar>
+          </v-list-item>
+          </v-list>
         </div>
       </template>
 
@@ -74,19 +76,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.feedRoot {
-  height: calc(100vh - 64px);
-  overflow-y: auto;
-  margin-right: 320px;
-}
-
-.container {
-  max-width: 880px;
-}
-
-@media only screen and (max-width: 600px) {
-  #toolbarProfileButton > span {
-    display: none;
-  }
+.email-address {
+  font-size: 14px;
 }
 </style>

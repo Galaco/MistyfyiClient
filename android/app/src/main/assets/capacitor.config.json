@@ -1,9 +1,0 @@
-{
-	"appId": "io.ikamu.app",
-	"appName": "Ikamu Server Tracker",
-	"webDir": "dist",
-	"bundledWebRuntime": false,
-	"server": {
-		"iosScheme": "nuxtmobile"
-	}
-}

@@ -9,6 +9,7 @@ import {
 } from "./mutations.type"
 import ApiResponse from "@/plugins/Repository/ApiResponse"
 import Server from "@/models/api/servers/Server"
+import { ActionTree } from 'vuex';
 
 class State {
   public servers: Server[] = []
@@ -30,15 +31,17 @@ const getters = {
   },
 }
 
-const actions = {
+const actions: ActionTree<State, State> = {
   [FETCH_SERVERS]({ commit }: any): any {
     commit(FETCH_SERVERS_START)
+    // @ts-ignore this isn't undefined, but don't know how to type it.
     return this.$repositories.servers
       .getServerStatuses()
       .then((data: AxiosResponse<ApiResponse>) => {
         commit(FETCH_SERVERS_END, data)
       })
       .catch((err: AxiosError) => {
+        // @ts-ignore this isn't undefined, but don't know how to type it.
         this.$toast.error(err.message)
         console.log(err)
       })
@@ -48,6 +51,7 @@ const actions = {
     params: any
   ): Promise<ApiResponse> {
     commit(DELETE_SERVERS_START)
+    // @ts-ignore this isn't undefined, but don't know how to type it.
     return this.$repositories.servers
       .deleteServer(params.ipAddress, params.port)
       .then((data: AxiosResponse<ApiResponse>) => {
@@ -55,6 +59,7 @@ const actions = {
         dispatch(FETCH_SERVERS)
       })
       .catch((err: AxiosError) => {
+        // @ts-ignore this isn't undefined, but don't know how to type it.
         this.$toast.error(err.message)
         console.log(err)
       })

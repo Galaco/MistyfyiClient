@@ -44,33 +44,33 @@ export default Vue.extend({
   },
   methods: {
     submit() {
-      this.$OneSignal.push(() => {
-        this.$OneSignal.on("subscriptionChange", (isSubscribed: boolean) => {
-          console.log(
-            "You have changed notification subscription status:",
-            isSubscribed
-          )
-          if (isSubscribed) {
-            this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
-              if (
-                this.userProfile &&
-                this.userProfile.uuid &&
-                this.userProfile.uuid.length > 0
-              ) {
-                this.$OneSignal.push(() => {
-                  this.$OneSignal.setExternalUserId(this.userProfile.uuid)
-                })
-                this.$OneSignal.push(() => {
-                  this.$OneSignal.setEmail(this.$auth.user.email)
-                })
-
-                this.close()
-              }
-            })
-          }
-        })
-      })
-      this.$OneSignal.showNativePrompt()
+      // this.$OneSignal.push(() => {
+      //   this.$OneSignal.on("subscriptionChange", (isSubscribed: boolean) => {
+      //     console.log(
+      //       "You have changed notification subscription status:",
+      //       isSubscribed
+      //     )
+      //     if (isSubscribed) {
+      //       this.$store.dispatch(FETCH_USER_PROFILE).then(() => {
+      //         if (
+      //           this.userProfile &&
+      //           this.userProfile.uuid &&
+      //           this.userProfile.uuid.length > 0
+      //         ) {
+      //           this.$OneSignal.push(() => {
+      //             this.$OneSignal.setExternalUserId(this.userProfile.uuid)
+      //           })
+      //           this.$OneSignal.push(() => {
+      //             this.$OneSignal.setEmail(this.$auth.user.email)
+      //           })
+      //
+      //           this.close()
+      //         }
+      //       })
+      //     }
+      //   })
+      // })
+      // this.$OneSignal.showNativePrompt()
     },
     close() {
       this.$emit("deny")

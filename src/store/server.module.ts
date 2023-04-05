@@ -36,6 +36,7 @@ const getters = {
 const actions = {
   [FETCH_SERVER_HISTORY]({ commit }: any, params: any): Promise<ApiResponse> {
     commit(FETCH_SERVER_HISTORY_START)
+    // @ts-ignore this isn't undefined, but don't know how to type it.
     return this.$repositories.server
       .getServerHistory(params)
       .then((data: AxiosResponse) => {

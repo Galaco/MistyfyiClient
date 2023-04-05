@@ -29,6 +29,7 @@ export default Vue.extend({
   mounted() {
     this.refresh()
 
+    // @ts-ignore
     this.refreshTimeout = setInterval(this.refresh, 30000)
   },
   methods: {

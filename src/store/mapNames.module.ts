@@ -32,6 +32,7 @@ const getters = {
 const actions = {
   [FETCH_LEVEL_NAMES]({ commit }: any): Promise<ApiResponse> {
     commit(FETCH_LEVEL_NAMES_START)
+    // @ts-ignore this isn't undefined, but don't know how to type it.
     return this.$repositories.levels
       .getWatchedLevels()
       .then((data: AxiosResponse<ApiResponse>) => {
@@ -46,6 +47,7 @@ const actions = {
     params: WatchedMap
   ): Promise<ApiResponse> {
     commit(DELETE_LEVEL_NAMES_START)
+    // @ts-ignore this isn't undefined, but don't know how to type it.
     return this.$repositories.levels
       .deleteWatchedLevel(params.id)
       .then((data: AxiosResponse<ApiResponse>) => {

@@ -8,6 +8,10 @@ import serverRepository, { Server } from "./Repository/server"
 import serversRepository, { Servers } from "./Repository/servers"
 import userRepository, { User } from "./Repository/user"
 import ApiResponse from "./Repository/ApiResponse"
+import Vue from "vue";
+import {Nuxt} from "@nuxt/types/nuxt";
+import {NuxtApp} from "@nuxt/types/app";
+import {PluginObject} from "vue/types/plugin";
 
 class Repository {
   feed: Feed
@@ -46,7 +50,7 @@ export default (ctx: any, inject: any) => {
   }
 
   ctx.$axios.interceptors.response.use(success, failure)
-  ctx.$axios.setToken(ctx.$auth.getToken("auth0"))
+  ctx.$axios.setToken(ctx.$auth.strategy.token)
 
   const plugin = new Repository(
     feedRepository(createRepository(ctx.$axios)),
@@ -57,6 +61,14 @@ export default (ctx: any, inject: any) => {
     serversRepository(ctx.$axios),
     userRepository(createRepository(ctx.$axios))
   )
+  const P: PluginObject<Repository> = {
+    install: (vue: any) => {
+      vue.prototype.$repositories = plugin
+    },
+  }
+
+  Vue.use(P)
+
   inject("repositories", plugin)
 }
 

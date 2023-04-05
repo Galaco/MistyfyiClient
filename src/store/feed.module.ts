@@ -32,12 +32,14 @@ const getters = {
 const actions = {
   [FETCH_FEED]({ commit }: any): Promise<ApiResponse> {
     commit(FETCH_FEED_START)
+    // @ts-ignore this isn't undefined, but don't know how to type it.
     return this.$repositories.feed
       .getFeedLatest()
       .then((data: AxiosResponse<ApiResponse>) => {
         commit(FETCH_FEED_END, data)
       })
       .catch((err: AxiosError) => {
+        // @ts-ignore this isn't undefined, but don't know how to type it.
         this.$toast.error(err.message)
         console.log(err)
       })

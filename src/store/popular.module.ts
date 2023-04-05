@@ -26,12 +26,14 @@ const getters = {
 const actions = {
   [FETCH_POPULAR]({ commit }: any): Promise<ApiResponse> {
     commit(FETCH_POPULAR_START)
+    // @ts-ignore this isn't undefined, but don't know how to type it.
     return this.$repositories.popular
       .getPopular()
       .then((data: AxiosResponse<ApiResponse>) => {
         commit(FETCH_POPULAR_END, data)
       })
       .catch((err: AxiosError) => {
+        // @ts-ignore this isn't undefined, but don't know how to type it.
         this.$toast.error(err.message)
         console.log(err)
       })

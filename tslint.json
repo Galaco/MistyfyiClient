@@ -1,7 +1,0 @@
-{
-  "defaultSeverity": "error",
-  "extends": ["tslint-config-standard", "tslint-config-prettier"],
-  "rules": {
-    "prefer-const": true
-  }
-}

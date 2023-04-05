@@ -28,6 +28,7 @@ const getters = {
 const actions = {
   [FETCH_USER_PROFILE]({ commit }: any): any {
     commit(FETCH_USER_PROFILE_START)
+    // @ts-ignore this isn't undefined, but don't know how to type it.
     return this.$repositories.user
       .getUserProfile()
       .then((data: ApiResponse) => {

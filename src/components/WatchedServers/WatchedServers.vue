@@ -117,7 +117,9 @@ export default Vue.extend({
   },
   mounted() {
     this.getPrivateServers()
-    this.refreshTimeout = window.setInterval(this.getPrivateServers, 120000)
+
+    // @ts-ignore
+    this.refreshTimeout = setInterval(this.getPrivateServers, 120000)
   },
   methods: {
     showAddServerDialog() {

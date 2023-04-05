@@ -22,6 +22,7 @@ const actions = {
     { model, isDisabled }: { model: WatchedMap; isDisabled: boolean }
   ): void {
     commit(DISABLE_MAP_NAME_START)
+    // @ts-ignore this isn't undefined, but don't know how to type it.
     return this.$repositories.mapName
       .disableMapName(model.id, isDisabled)
       .then((data: AxiosResponse<ApiResponse>) => {

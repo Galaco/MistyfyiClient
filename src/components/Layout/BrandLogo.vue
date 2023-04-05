@@ -25,6 +25,7 @@ export default Vue.extend({
   color: #efefef;
   text-decoration: none;
 
+
   &:hover,
   &:visited {
     color: #efefef;
@@ -32,27 +33,24 @@ export default Vue.extend({
 
   .navbar-brand-title {
     vertical-align: middle;
-    font-family: "Saira Semi Condensed", sans-serif;
-    font-size: 24px;
-    margin-left: 16px;
+    font-size: 16px;
+    margin-left: 8px;
     transition-duration: 0.28s;
     transition-property: color;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .navbar-brand-icon {
-    font-size: 20px;
+    font-size: 16px;
     color: #797979;
-    height: 40px;
-    width: 40px;
+    height: 32px;
+    width: 32px;
     border-radius: 5px;
     text-align: center;
-    background-color: #797979;
     vertical-align: middle;
     transition-duration: 0.28s;
     transition-property: background-color;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid #aaa;
   }
 
   &.light {

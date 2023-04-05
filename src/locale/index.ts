@@ -5,15 +5,17 @@ import notifications from "./pages/notifications"
 import help from "./pages/help"
 import tables from "./forms/tables"
 import dialogs from "./forms/dialogs"
+import home from "./pages/home"
 
 export default {
   locale: "en",
   messages: {
     en: {
-      app_title: "Ikamu.io",
+      app_title: "Misty.fyi",
       header: {
         links: {
-          login: "Login",
+          login: "Sign in",
+          signup: "Sign up",
           redirecting: "Redirecting...",
           logout: "Log out",
         },
@@ -40,6 +42,7 @@ export default {
           paid: "Paid User",
         },
       },
+      home,
       feed,
       help,
       notifications,

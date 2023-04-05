@@ -1,14 +1,12 @@
 <template>
-  <v-app dark>
+  <v-app>
     <!-- Sizes your content based upon application components -->
-    <v-content>
+    <v-main>
       <!-- Provides the application the proper gutter -->
       <nuxt />
-    </v-content>
+    </v-main>
 
-    <v-footer dark>
-      <Footer />
-    </v-footer>
+    <Footer />
   </v-app>
 </template>
 
@@ -27,7 +25,12 @@ export default Vue.extend({
 <style lang="scss" scoped>
 body {
   .theme--light.v-application {
-    background-color: #121212;
+    background: rgb(2,0,36);
+    background: linear-gradient(124deg, rgba(2,0,36,1) 0%, rgba(121,9,116,1) 35%, rgba(0,212,255,1) 100%);
+  }
+  .theme--dark.v-application {
+    background: rgb(2,0,36);
+    background: linear-gradient(124deg, rgba(2,0,36,1) 0%, rgba(121,9,116,1) 35%, rgba(0,212,255,1) 100%);
   }
 }
 </style>

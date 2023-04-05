@@ -27,12 +27,12 @@
           <span class="md-error">{{ $t("help.contact.message.error") }}</span>
         </div>
         <div>
-          <vue-recaptcha
-            :sitekey="recaptchaSiteKey"
-            :load-recaptcha-script="true"
-            @verify="onVerify"
-            @expired="onExpired"
-          />
+<!--          <vue-recaptcha-->
+<!--            :sitekey="recaptchaSiteKey"-->
+<!--            :load-recaptcha-script="true"-->
+<!--            @verify="onVerify"-->
+<!--            @expired="onExpired"-->
+<!--          />-->
         </div>
       </v-form>
     </v-card-text>
@@ -48,9 +48,9 @@
 <script lang="ts">
 import Vue from "vue"
 import { mapGetters } from "vuex"
-import VueRecaptcha from "vue-recaptcha"
+// import VueRecaptcha from "vue-recaptcha"
 
-const injectedRecaptchaSiteKey = process.env.NUXT_ENV_RECAPTCHA_SITE_KEY
+//const injectedRecaptchaSiteKey = process.env.NUXT_ENV_RECAPTCHA_SITE_KEY
 
 // eslint-disable-next-line
 const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
@@ -58,7 +58,7 @@ const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\
 export default Vue.extend({
   name: "ContactForm",
   components: {
-    VueRecaptcha,
+//    VueRecaptcha,
   },
   computed: {
     ...mapGetters(["userProfile"]),
@@ -70,7 +70,7 @@ export default Vue.extend({
     messageValid: false,
     formValid: false,
     sending: false,
-    recaptchaSiteKey: injectedRecaptchaSiteKey,
+//    recaptchaSiteKey: injectedRecaptchaSiteKey,
     recaptchaAuthKey: "",
   }),
   watch: {

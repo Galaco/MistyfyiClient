@@ -7,7 +7,7 @@
     fixed
     dark
     :permanent="true"
-    mobile-break-point="960"
+    mobile-breakpoint="960"
   >
     <v-list v-if="servers.length > 0">
       <v-subheader>{{ $t("feed.serverList.title") }} </v-subheader>

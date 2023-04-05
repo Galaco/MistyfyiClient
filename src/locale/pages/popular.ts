@@ -1,7 +1,7 @@
 export default {
   pageTitle: "Popular",
   header:
-    "Ikamu.io exists to make interacting with community game servers as enjoyable as possible. The most popular content we track is freely available here to help you discover what our users like the most",
+    "Misty.fyi exists to make interacting with community game servers as enjoyable as possible. The most popular content we track is freely available here to help you discover what our users like the most",
   servers: {
     title: "Most User-Favourited Servers",
     insufficientData: "Insufficient data available",

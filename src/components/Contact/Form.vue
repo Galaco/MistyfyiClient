@@ -8,9 +8,9 @@
         <div :class="!emailAddressValid ? 'md-invalid' : ''">
           <v-text-field
             id="email"
-            v-model="$auth.user.email"
+            v-model="$fire.auth.currentUser.email"
             name="email"
-            :disabled="sending || $auth.user.email"
+            :disabled="sending || $fire.auth.currentUser.email"
             :label="$t('help.contact.email.label')"
             required
           />

@@ -28,7 +28,7 @@
             />
           </v-card-text>
           <v-card-actions>
-            <v-btn @click="signInUser">Log in</v-btn>
+            <v-btn @click="createUser">Sign up</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -44,7 +44,7 @@ import Spinner from "@/components/LoadingIndicator/Spinner.vue"
 
 export default Vue.extend({
   layout: "empty",
-  name: "auth/login",
+  name: "auth/signup",
   components: {
     BrandLogo,
     Spinner,
@@ -64,9 +64,9 @@ export default Vue.extend({
     },
   }),
   methods: {
-    async signInUser() {
+    async createUser() {
       try {
-        await this.$fire.auth.signInWithEmailAndPassword(
+        await this.$fire.auth.createUserWithEmailAndPassword(
           this.formData.email,
           this.formData.password
         )

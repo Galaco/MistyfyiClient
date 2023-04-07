@@ -4,11 +4,11 @@
       <template v-slot:activator="{ on }">
         <div id="toolbarProfileButton" v-on="on">
           <v-list>
-          <v-list-item v-if="$auth.loggedIn">
-            <v-list-item-title class="email-address">{{ $auth.user.email }}</v-list-item-title>
+          <v-list-item v-if="$fire.auth.currentUser != null">
+            <v-list-item-title class="email-address">{{ $fire.auth.currentUser.email }}</v-list-item-title>
             <v-avatar size="32">
-            <v-img v-if="$auth.user.picture" :src="$auth.user.picture" />
-            <v-icon v-if="!$auth.user.picture">
+            <v-img v-if="$fire.auth.currentUser.photoURL" :src="$fire.auth.currentUser.photoURL" />
+            <v-icon v-if="!$fire.auth.currentUser.photoURL">
               mdi-account-circle
             </v-icon>
           </v-avatar>
@@ -18,7 +18,7 @@
       </template>
 
       <v-list dense>
-        <v-list-item v-show="$auth.loggedIn">
+        <v-list-item v-show="$fire.auth.currentUser != null">
           <v-list-item-action>
             <v-icon>{{
               !userProfile || !userProfile.isSubscribed
@@ -66,7 +66,7 @@ export default Vue.extend({
   },
   methods: {
     handleLogout() {
-      this.$auth.logout()
+      this.$fire.auth.signOut()
     },
     DateToString(date: number): string {
       return DateToDateString(new Date(date * 1000))

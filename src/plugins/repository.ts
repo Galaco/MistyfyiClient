@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios"
+import {Axios, AxiosInstance, AxiosResponse} from "axios"
 import createRepository, { normalizeResponse } from "./Repository/index"
 import feedRepository, { Feed } from "./Repository/feed"
 import levelsRepository, { Levels } from "./Repository/levels"
@@ -9,11 +9,11 @@ import serversRepository, { Servers } from "./Repository/servers"
 import userRepository, { User } from "./Repository/user"
 import ApiResponse from "./Repository/ApiResponse"
 import Vue from "vue";
-import {Nuxt} from "@nuxt/types/nuxt";
-import {NuxtApp} from "@nuxt/types/app";
 import {PluginObject} from "vue/types/plugin";
+import {NuxtAxiosInstance} from "@nuxtjs/axios";
 
 class Repository {
+  axios: NuxtAxiosInstance
   feed: Feed
   levels: Levels
   mapName: MapName
@@ -23,6 +23,7 @@ class Repository {
   user: User
 
   constructor(
+    axios: NuxtAxiosInstance,
     feed: Feed,
     levels: Levels,
     mapName: MapName,
@@ -31,6 +32,7 @@ class Repository {
     servers: Servers,
     user: User
   ) {
+    this.axios = axios
     this.feed = feed
     this.levels = levels
     this.mapName = mapName
@@ -38,6 +40,10 @@ class Repository {
     this.server = server
     this.servers = servers
     this.user = user
+  }
+
+  setBearerToken(token: string) {
+    this.axios.setToken(token)
   }
 }
 
@@ -50,9 +56,13 @@ export default (ctx: any, inject: any) => {
   }
 
   ctx.$axios.interceptors.response.use(success, failure)
-  ctx.$axios.setToken(ctx.$auth.strategy.token)
+
+  if (ctx.$fire.auth.currentUser?.token) {
+    ctx.$axios.setToken(ctx.$fire.auth.currentUser.token)
+  }
 
   const plugin = new Repository(
+    ctx.$axios,
     feedRepository(createRepository(ctx.$axios)),
     levelsRepository(createRepository(ctx.$axios)),
     mapNameRepository(createRepository(ctx.$axios)),
@@ -61,13 +71,11 @@ export default (ctx: any, inject: any) => {
     serversRepository(ctx.$axios),
     userRepository(createRepository(ctx.$axios))
   )
-  const P: PluginObject<Repository> = {
-    install: (vue: any) => {
-      vue.prototype.$repositories = plugin
-    },
-  }
-
-  Vue.use(P)
+  // const P: PluginObject<Repository> = {
+  //   install: (vue: any) => {
+  //     vue.prototype.$repositories = plugin
+  //   },
+  // }
 
   inject("repositories", plugin)
 }

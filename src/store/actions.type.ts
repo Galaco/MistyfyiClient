@@ -9,7 +9,9 @@ export const FETCH_LEVEL_NAMES = "levelNamesFetch"
 export const DELETE_LEVEL_NAMES = "deleteLevelNames"
 
 export const CHANGE_USER_0AUTH_PROFILE = "userProfileChange"
+export const AUTH_STATE_CHANGED_ACTION = "authStateChanged"
 export const FETCH_USER_PROFILE = "userProfileFetch"
+export const INIT_USER = "initUser";
 
 export const DISABLE_MAP_NAME = "levelNameDisable"
 

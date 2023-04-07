@@ -29,7 +29,7 @@
       "@types/jest",
       "@nuxtjs/toast",
       "@nuxtjs/i18n",
-      "@nuxtjs/auth-next"
+      "@nuxtjs/firebase"
     ]
   },
   "exclude": [

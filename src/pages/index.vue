@@ -6,15 +6,11 @@
       </v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-btn variant="outlined" @click="signup">
-        <span v-if="!autoRedirect"> {{ $t("header.links.signup") }}</span>
-        <span v-if="autoRedirect">
-                {{ $t("header.links.redirecting") }}
-                <Spinner size="16" width="2"/>
-              </span>
+        <span> {{ $t("header.links.signup") }}</span>
       </v-btn>
       <v-btn variant="plain" @click="login">
-        <span v-if="!autoRedirect"> {{ $t("header.links.login") }}</span>
-        <span v-if="autoRedirect">
+        <span> {{ $t("header.links.login") }}</span>
+        <span>
                 {{ $t("header.links.redirecting") }}
                 <Spinner size="16" width="2"/>
               </span>
@@ -185,20 +181,16 @@ export default Vue.extend({
     if (this.isLoggedIn()) {
       this.$router.push({name: "feed"})
     }
-    if (String(this.$route.query.passthrough) === "1") {
-      this.autoRedirect = true
-      this.login()
-    }
   },
   methods: {
     isLoggedIn(): boolean {
-      return this.$auth.loggedIn
+      return this.$fire.auth.currentUser != null
     },
     login() {
-      this.$auth.loginWith('auth0')
+      this.$router.push({ name: "Auth/Login" })
     },
     signup() {
-      this.$auth.loginWith('auth0')
+      this.$router.push('/auth/signup')
     },
   },
   head() {

@@ -21,6 +21,8 @@ export const SERVER_MAP_CHANGED = "serverMapChanged"
 export const FETCH_USER_PROFILE_END = "setUserProfileLoaded"
 export const FETCH_USER_PROFILE_START = "setUserProfileLoading"
 export const SET_USER_0AUTH_PROFILE = "setUser0AuthProfile"
+export const SET_USER = "setUser"
+export const AUTH_STATE_CHANGED_END = "setAuthStateChange"
 
 export const DISABLE_MAP_NAME_END = "setMapNameDisabled"
 export const DISABLE_MAP_NAME_START = "setMapNameDisabling"

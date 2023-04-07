@@ -31,7 +31,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    "~/plugins/localstorage", "~/plugins/vuebar"
+    "~/plugins/localstorage",
+    "~/plugins/vuebar",
+    "~/plugins/repository",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -82,26 +84,17 @@ export default {
       },
     ],
     [
-      "@nuxtjs/auth-next",
+      "@nuxtjs/firebase",
     ]
   ],
-  auth: {
-    redirect: {
-      login: "/login",
-      callback: "/auth/callback/",
-      home: "/admin/feed"
-    },
-    strategies: {
-      local: true,
-      auth0: {
-        domain: process.env.NUXT_ENV_OAUTH_CLIENT_DOMAIN || "",
-        clientId: process.env.NUXT_ENV_OAUTH_CLIENT_ID || "",
-        audience: process.env.NUXT_ENV_OAUTH_AUDIENCE || ""
-      },
-    },
-    plugins: ["~/plugins/repository"]
-  },
 
+  firebase: {
+      config: JSON.parse(process.env.NUXT_ENV_FIREBASE_CONFIG),
+      services: {
+        auth: true // Just as example. Can be any other service.
+      },
+      plugins: ["~/plugins/repository"]
+    },
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],

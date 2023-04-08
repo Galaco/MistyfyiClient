@@ -1,4 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
+import {AUTH_STATE_CHANGED_ACTION,
+  ID_TOKEN_CHANGED_ACTION,
+} from "./src/store/actions.type"
+import {
+  AUTH_STATE_CHANGED_END,
+} from "./src/store/mutations.type"
 import locale from "./src/locale"
 
 export default {
@@ -89,12 +95,19 @@ export default {
   ],
 
   firebase: {
-      config: JSON.parse(process.env.NUXT_ENV_FIREBASE_CONFIG),
-      services: {
-        auth: true // Just as example. Can be any other service.
-      },
-      plugins: ["~/plugins/repository"]
+    config: JSON.parse(process.env.NUXT_ENV_FIREBASE_CONFIG),
+    services: {
+      auth: {
+        initialize: {
+          onAuthStateChangedMutation: AUTH_STATE_CHANGED_END,
+          onAuthStateChangedAction: AUTH_STATE_CHANGED_ACTION,
+          onIdTokenChangedAction: ID_TOKEN_CHANGED_ACTION,
+          subscribeManually: false
+        }
+      }
     },
+    plugins: ["~/plugins/repository"]
+  },
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],

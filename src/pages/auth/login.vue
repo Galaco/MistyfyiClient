@@ -44,7 +44,7 @@ import Spinner from "@/components/LoadingIndicator/Spinner.vue"
 
 export default Vue.extend({
   layout: "empty",
-  name: "auth/login",
+  name: "auth-login",
   components: {
     BrandLogo,
     Spinner,
@@ -66,7 +66,7 @@ export default Vue.extend({
   methods: {
     async signInUser() {
       try {
-        await this.$fire.auth.signInWithEmailAndPassword(
+        const result = await this.$fire.auth.signInWithEmailAndPassword(
           this.formData.email,
           this.formData.password
         )

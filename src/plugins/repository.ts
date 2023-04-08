@@ -47,7 +47,7 @@ class Repository {
   }
 }
 
-export default (ctx: any, inject: any) => {
+export default async (ctx: any, inject: any) => {
   const success = (data: AxiosResponse): Promise<ApiResponse> => {
     return Promise.resolve(normalizeResponse(data))
   }
@@ -57,8 +57,9 @@ export default (ctx: any, inject: any) => {
 
   ctx.$axios.interceptors.response.use(success, failure)
 
-  if (ctx.$fire.auth.currentUser?.token) {
-    ctx.$axios.setToken(ctx.$fire.auth.currentUser.token)
+  if (ctx.$fire.auth.currentUser) {
+    const token = await ctx.$fire.auth.currentUser.getIdToken(false);
+    ctx.$axios.setToken(token);
   }
 
   const plugin = new Repository(

@@ -1,19 +1,18 @@
 import { AxiosError } from "axios"
-import {FETCH_USER_PROFILE, CHANGE_USER_0AUTH_PROFILE, AUTH_STATE_CHANGED_ACTION, INIT_USER} from "./actions.type"
+import {FETCH_USER_PROFILE, AUTH_STATE_CHANGED_ACTION, INIT_USER, ID_TOKEN_CHANGED_ACTION} from "./actions.type"
 import {
   AUTH_STATE_CHANGED_END,
   FETCH_USER_PROFILE_END,
   FETCH_USER_PROFILE_START, SET_USER,
-  SET_USER_0AUTH_PROFILE,
 } from "./mutations.type"
 import ApiResponse from "@/plugins/Repository/ApiResponse"
-import { DefaultAuth0Profile } from "@/models/api/users/auth0"
 import Profile from "@/models/api/users/profile"
 
 class State {
   public userProfile: Profile = new Profile()
   public isUserProfileLoading: boolean = true
   public authUser: any;
+  public idToken: string = '';
 }
 
 const moduleState = () => new State()
@@ -32,12 +31,13 @@ const actions = {
     if (res && res.locals && res.locals.user) {
       const { allClaims: claims, idToken: token, ...authUser } = res.locals.user
 
+      console.log('INIT_USER', res.locals.user);
+
       commit(AUTH_STATE_CHANGED_END, { authUser, claims, token })
     }
   },
   [FETCH_USER_PROFILE]({ commit }: any): any {
     commit(FETCH_USER_PROFILE_START)
-    console.log(this);
     // @ts-ignore this isn't undefined, but don't know how to type it.
     return this.$repositories.user
       .getUserProfile()
@@ -48,10 +48,10 @@ const actions = {
         console.log(err)
       })
   },
-  [CHANGE_USER_0AUTH_PROFILE]({ commit }: any, params: DefaultAuth0Profile) {
-    commit(SET_USER_0AUTH_PROFILE, params)
+  async [ID_TOKEN_CHANGED_ACTION]({ commit, dispatch }: any, bar: any) {
+    console.log('ID_TOKEN_CHANGED_ACTION', bar)
   },
-  async [AUTH_STATE_CHANGED_ACTION]({ commit, dispatch }: any, { authUser, claims, token }: any) {
+  async [AUTH_STATE_CHANGED_ACTION]({ commit, dispatch }: any, { authUser, claims }: any) {
     if (!authUser) {
       await dispatch('cleanupAction')
 
@@ -69,7 +69,7 @@ const actions = {
       photoURL, // results in photoURL being undefined for server auth
       // use custom claims to control access (see https://firebase.google.com/docs/auth/admin/custom-claims)
       isAdmin: claims.custom_claim,
-      token,
+      idToken: authUser.getIdToken(false),
     })
   }
 }
@@ -86,16 +86,13 @@ const mutations = {
     }
     state.isUserProfileLoading = false
   },
-  [SET_USER_0AUTH_PROFILE](state: State, resp: DefaultAuth0Profile) {
-    state.userProfile.oauthProfile = resp
-  },
   [SET_USER](state: State, {
     uid,
     email,
     emailVerified,
     displayName,
     isAdmin,
-    token,
+    idToken,
   }: any) {
     state.authUser = {
       uid,
@@ -103,12 +100,14 @@ const mutations = {
       emailVerified,
       displayName,
       isAdmin,
-      token,
+      idToken,
     }
   },
-  [AUTH_STATE_CHANGED_END](state: State, { authUser, claims, token }: any) {
+  [AUTH_STATE_CHANGED_END](state: State, { authUser, claims }: any) {
     // you can request additional fields if they are optional (e.g. photoURL)
     const { uid, email, emailVerified, displayName, photoURL } = authUser
+
+    console.log(authUser);
 
     state.authUser = {
       uid,
@@ -118,7 +117,7 @@ const mutations = {
       photoURL: photoURL || null, // results in photoURL being null for server auth
       // use custom claims to control access (see https://firebase.google.com/docs/auth/admin/custom-claims)
       isAdmin: claims.custom_claim,
-      token,
+      idToken: '',
     }
   }
 }

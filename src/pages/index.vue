@@ -10,10 +10,6 @@
       </v-btn>
       <v-btn variant="plain" @click="login">
         <span> {{ $t("header.links.login") }}</span>
-        <span>
-                {{ $t("header.links.redirecting") }}
-                <Spinner size="16" width="2"/>
-              </span>
       </v-btn>
     </v-app-bar>
     <v-container fill-height class="full-height">
@@ -187,7 +183,7 @@ export default Vue.extend({
       return this.$fire.auth.currentUser != null
     },
     login() {
-      this.$router.push({ name: "Auth/Login" })
+      this.$router.push('/auth/login')
     },
     signup() {
       this.$router.push('/auth/signup')

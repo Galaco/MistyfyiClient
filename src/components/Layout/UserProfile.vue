@@ -66,7 +66,9 @@ export default Vue.extend({
   },
   methods: {
     handleLogout() {
-      this.$fire.auth.signOut()
+      this.$fire.auth.signOut().then(result => {
+        this.$router.push('/auth/login')
+      })
     },
     DateToString(date: number): string {
       return DateToDateString(new Date(date * 1000))

@@ -44,7 +44,7 @@ import Spinner from "@/components/LoadingIndicator/Spinner.vue"
 
 export default Vue.extend({
   layout: "empty",
-  name: "auth/signup",
+  name: "auth-signup",
   components: {
     BrandLogo,
     Spinner,

@@ -7,6 +7,6 @@ export interface Popular {
 
 export default (axios: AxiosInstance) => ({
   getPopular() {
-    return axios.get(`${BASE_URL}/api/v1/popular`)
+    return axios.get(`${BASE_URL}/v1/popular`)
   },
 })

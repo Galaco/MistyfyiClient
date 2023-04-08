@@ -9,16 +9,16 @@ export interface Levels {
 
 export default ($axios: AxiosInstance) => ({
   getWatchedLevels() {
-    return $axios.get(`${BASE_URL}/api/v1/levels/list`)
+    return $axios.get(`${BASE_URL}/v1/levels/list`)
   },
   addWatchedLevel(name: string, server: string) {
-    return $axios.put(`${BASE_URL}/api/v1/levels/add`, {
+    return $axios.put(`${BASE_URL}/v1/levels/add`, {
       name,
       serverId: server,
     })
   },
   deleteWatchedLevel(id: string) {
-    return $axios.delete(`${BASE_URL}/api/v1/levels/remove`, {
+    return $axios.delete(`${BASE_URL}/v1/levels/remove`, {
       data: {
         id,
       },

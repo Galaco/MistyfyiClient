@@ -10,16 +10,16 @@ export interface Servers {
 
 export default (axios: AxiosInstance) => ({
   getServerStatuses(): Promise<ApiResponse> {
-    return axios.get(`${BASE_URL}/api/v1/servers/list`)
+    return axios.get(`${BASE_URL}/v1/servers/list`)
   },
   addNewServer(ip: string, port: number): Promise<ApiResponse> {
-    return axios.put(`${BASE_URL}/api/v1/servers/add`, {
+    return axios.put(`${BASE_URL}/v1/servers/add`, {
       ip,
       port,
     })
   },
   deleteServer(ip: string, port: number): Promise<ApiResponse> {
-    return axios.delete(`${BASE_URL}/api/v1/servers/remove`, {
+    return axios.delete(`${BASE_URL}/v1/servers/remove`, {
       data: {
         ip,
         port,

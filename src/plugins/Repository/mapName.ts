@@ -7,7 +7,7 @@ export interface MapName {
 
 export default ($axios: AxiosInstance) => ({
   disableMapName(id: string, isDisabled: boolean) {
-    return $axios.post(`${BASE_URL}/api/v1/map/disable/${isDisabled}`, {
+    return $axios.post(`${BASE_URL}/v1/map/disable/${isDisabled}`, {
       id,
     })
   },

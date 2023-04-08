@@ -7,6 +7,6 @@ export interface Feed {
 
 export default (axios: AxiosInstance) => ({
   getFeedLatest() {
-    return axios.get(`${BASE_URL}/api/v1/feed/latest`)
+    return axios.get(`${BASE_URL}/v1/feed/latest`)
   },
 })

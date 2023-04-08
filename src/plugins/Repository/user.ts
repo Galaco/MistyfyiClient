@@ -12,10 +12,10 @@ export interface User {
 
 export default ($axios: AxiosInstance) => ({
   getUserProfile() {
-    return $axios.get(`${BASE_URL}/api/v1/user/profile`)
+    return $axios.get(`${BASE_URL}/v1/user/profile`)
   },
   sendContactRequest(email: string, message: string, recaptcha: string) {
-    return $axios.post(`${BASE_URL}/api/v1/user/contact/request`, {
+    return $axios.post(`${BASE_URL}/v1/user/contact/request`, {
       email,
       message,
       recaptcha,

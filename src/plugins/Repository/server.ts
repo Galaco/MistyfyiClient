@@ -7,6 +7,6 @@ export interface Server {
 
 export default ($axios: AxiosInstance) => ({
   getServerHistory(id: string) {
-    return $axios.get(`${BASE_URL}/api/v1/server/history/${id}`)
+    return $axios.get(`${BASE_URL}/v1/server/history/${id}`)
   },
 })

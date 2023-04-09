@@ -77,7 +77,7 @@ export default Vue.extend({
     },
     postLogin() {
       console.log('authenticated');
-      this.$router.push('/admin/feed')
+      this.$router.push({name: 'manage-feed'})
     },
     async logout() {
       try {

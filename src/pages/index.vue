@@ -175,7 +175,7 @@ export default Vue.extend({
   }),
   mounted() {
     if (this.isLoggedIn()) {
-      this.$router.push({name: "feed"})
+      this.$router.push({name: "manage-feed"})
     }
   },
   methods: {
@@ -183,10 +183,10 @@ export default Vue.extend({
       return this.$fire.auth.currentUser != null
     },
     login() {
-      this.$router.push('/auth/login')
+      this.$router.push({name: 'auth-login'})
     },
     signup() {
-      this.$router.push('/auth/signup')
+      this.$router.push({name: 'auth-signup'})
     },
   },
   head() {

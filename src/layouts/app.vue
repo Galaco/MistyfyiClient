@@ -10,7 +10,7 @@
       <v-divider class="mb-2" />
 
       <v-list dense>
-        <v-list-item link to="/admin/popular" exact rounded="xl">
+        <v-list-item link :to="{name: 'manage-popular'}" exact rounded="xl">
           <v-list-item-action>
             <v-icon>mdi-star</v-icon>
           </v-list-item-action>
@@ -23,7 +23,7 @@
 
         <v-divider class="mb-2" />
 
-        <v-list-item link to="/admin/feed" exact rounded="xl">
+        <v-list-item link :to="{name: 'manage-feed'}" exact rounded="xl">
           <v-list-item-action>
             <v-icon>mdi-newspaper</v-icon>
           </v-list-item-action>
@@ -33,7 +33,7 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link to="/admin/servers" exact rounded="xl">
+        <v-list-item link :to="{name: 'manage-servers'}" exact rounded="xl">
           <v-list-item-action>
             <v-icon>mdi-playlist-star</v-icon>
           </v-list-item-action>
@@ -43,7 +43,7 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link to="/admin/notifications" exact rounded="xl">
+        <v-list-item link :to="{name: 'manage-notifications'}" exact rounded="xl">
           <v-list-item-action>
             <v-icon>mdi-bell</v-icon>
           </v-list-item-action>
@@ -56,7 +56,7 @@
 
         <v-divider class="mb-2" />
 
-        <v-list-item link to="/help" exact rounded="xl">
+        <v-list-item link :to="{name: 'help'}" exact rounded="xl">
           <v-list-item-action>
             <v-icon>mdi-help-box</v-icon>
           </v-list-item-action>

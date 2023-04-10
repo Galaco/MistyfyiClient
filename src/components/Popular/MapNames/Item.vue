@@ -71,7 +71,7 @@ export default Vue.extend({
     addWatchName() {
       this.saving = true
       this.$repositories.levels
-        .addWatchedLevel(this.model.name, "")
+        .addWatchedLevel(this.model.name, null)
         .then(() => {
           this.$toast.success(
             this.$t("notifications.toast.add.success", { name })

@@ -3,14 +3,14 @@ export default class WatchedMap {
 
   public name: string = ""
 
-  public serverId: string = ""
+  public serverId: number|null = null
 
   public disabled: boolean = false
 
   constructor(
     id: string,
     name: string,
-    serverId: string = "",
+    serverId: number|null = null,
     disabled: boolean = false
   ) {
     this.id = id

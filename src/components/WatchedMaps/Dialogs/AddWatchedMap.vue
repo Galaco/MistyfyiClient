@@ -66,7 +66,7 @@ export default Vue.extend({
   data: () => ({
     formValid: false,
     mapName: "",
-    serverId: "",
+    serverId: null,
     mapNameValid: true,
     sending: false,
     mapNameRegex: /^[a-zA-Z0-9-_*]+$/,
@@ -92,11 +92,11 @@ export default Vue.extend({
       this.sending = false
       this.mapName = ""
       this.mapNameValid = true
-      this.serverId = ""
+      this.serverId = null
     },
     addWatchedMap() {
       const name = this.mapName
-      const serverId = this.serverId
+      const serverId = this.serverId ? Number(this.serverId): null
       this.$repositories.levels
         .addWatchedLevel(name, serverId)
         .then(() => {
